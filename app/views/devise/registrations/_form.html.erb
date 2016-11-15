@@ -1,0 +1,51 @@
+
+<form id="register-form" class="text-left">
+  <div class="login-form-main-message"></div>
+  <div class="main-login-form">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="login-group">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+          <div class="form-group">
+            <%= f.email_field :email, placeholder: 'Email Address', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'form-control' %>
+          </div>
+
+          <!--     <div class="form-group">
+                 <label for="reg_email" class="sr-only">Email</label>
+                 <input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email">
+               </div> -->
+          <div class="form-group">
+
+          </div>
+
+          <!--     <div class="form-group login-group-checkbox">
+                 <input type="radio" class="" name="reg_gender" id="male" placeholder="username">
+                 <label for="male">male</label>
+
+                 <input type="radio" class="" name="reg_gender" id="female" placeholder="username">
+                 <label for="female">female</label>
+               </div>
+       -->
+          <div class="form-group login-group-checkbox">
+            <input type="checkbox" class="" id="reg_agree" name="reg_agree">
+            <label for="reg_agree">I agree with <a href="#">terms</a></label>
+          </div>
+          </div>
+          <%= f.submit :Signup, class: 'login-button' %>
+      <% end %>
+      <%= render "devise/shared/links" %>
+      <!-- <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button> -->
+      </div>
+
+
+  <div class="etc-login-form">
+    <p>already have an account? <a href="#" id="loginRegister">login here</a></p>
+  </div>
+</form>

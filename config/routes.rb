@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
-  root 'pages#welcome'
+  devise_for :users
+  #get 'sessions/login,'
+
+  #get 'sessions/home,'
+
+ # get 'sessions/profile,'
+
+ # get 'sessions/setting'
+  #devise_for :user
+
+  get 'users/new'
+  resource :users
+  root 'pages#dashboard'
+  get 'sessions/home' => 'sessions#home'
+
+
+  #match ':controller(/:action(/:id))(.:format)'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
