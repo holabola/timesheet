@@ -16,4 +16,7 @@
 //= require bootstrap
 //= require tinymce
 //= require turbolinks
+//= require bootstrap/alert
+//= require bootstrap/dropdown
+//= require bootstrap-select
 //= require_tree .

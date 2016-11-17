@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get 'users/new'
   resource :users
+  resources :pages
   root 'pages#dashboard'
   get 'sessions/home' => 'sessions#home'
 

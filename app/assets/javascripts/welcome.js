@@ -6,6 +6,7 @@
 
 $( document ).ready(function() {
     var login,forgot,register,alertMes,loginMes,RegisterMes,lazyCheckDark;
+
     login = "#loginWrap";
     register = "#registerWrap";
     forgot = "#forgotWrap";
@@ -13,6 +14,11 @@ $( document ).ready(function() {
     loginMes = "Invalid Em";
     RegisterMes = "Emailcan't";
     lazyCheckDark = 1;
+
+    /* Dashboard */
+
+
+    /* Login */
 
     setTimeout(function() {
         $('.containerError').fadeOut('slow');

@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115204153) do
+ActiveRecord::Schema.define(version: 20161117222454) do
+
+  create_table "pages", force: true do |t|
+    t.string   "creditUnion"
+    t.string   "activity"
+    t.string   "task"
+    t.string   "billingOptions"
+    t.string   "billingOptionsSCR"
+    t.string   "billingOptionsFTR"
+    t.integer  "sun"
+    t.integer  "mon"
+    t.integer  "tue"
+    t.integer  "wed"
+    t.integer  "thu"
+    t.integer  "fri"
+    t.integer  "sat"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["user_id", "created_at"], name: "index_pages_on_user_id_and_created_at"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

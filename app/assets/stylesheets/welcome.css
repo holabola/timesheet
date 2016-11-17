@@ -23,6 +23,33 @@
     min-width: 100%;
 }
 
+/* Dashboard */
+
+.table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td{
+    padding: 2px;
+}
+
+#dashContents {
+    width: 1900px;
+
+}
+#pageGapDash {
+    position: absolute;
+    left: 310px;
+    width: 1700px;
+    height: 400px;
+}
+#sidebarNav {
+    width:280px;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 270px;
+    overflow-x: hidden;
+}
+
+
 
 .exitButton {
     font-size: 35px;
@@ -441,3 +468,4 @@ label:hover:before {
     font-size: 30px;
     line-height: 25px;
 }
+

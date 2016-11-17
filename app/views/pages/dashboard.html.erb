@@ -1,4 +1,11 @@
 <style>
+  .table-responsive {
+
+  }
+
+  html {
+    width: 1600px;
+  }
   .custom-combobox {
     position: relative;
     display: inline-block;
@@ -18,6 +25,81 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+  $(function() {
+    $("#datepicker").datepicker();
+  });
+
+  $(document).on('change', '#datepicker', function() {
+    var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    curr = $('#datepicker').datepicker('getDate');
+    first = curr.getDate() - curr.getDay();
+    second = first +1;
+    third = first + 2;
+    fourth = first + 3;
+    fifth = first + 4;
+    sixth = first + 5;
+    last = first + 6;
+
+    firstday = new Date(curr.setDate(first));
+    secondday = new Date(curr.setDate(second));
+    thirdday = new Date(curr.setDate(third));
+    fourthday = new Date(curr.setDate(fourth));
+    fifthday = new Date(curr.setDate(fifth));
+    sixthday = new Date(curr.setDate(sixth));
+    lastday = new Date(curr.setDate(last));
+
+    $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+    $('#Date1').text("Sun " + firstday.getDate() );
+    $('#Date2').text("Mon " + secondday.getDate() );
+    $('#Date3').text("Tue " + thirdday.getDate() );
+    $('#Date4').text("Wed " + fourthday.getDate() );
+    $('#Date5').text("Thu " + fifthday.getDate() );
+    $('#Date6').text("Fri " + sixthday.getDate() );
+    $('#Date7').text("Sat " + lastday.getDate() );
+
+  });
+
+  $( document ).ready(function() {
+    var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    curr = $('#datepicker').datepicker('getDate');
+    first = curr.getDate() - curr.getDay();
+    second = first +1;
+    third = first + 2;
+    fourth = first + 3;
+    fifth = first + 4;
+    sixth = first + 5;
+    last = first + 6;
+
+    firstday = new Date(curr.setDate(first));
+    secondday = new Date(curr.setDate(second));
+    thirdday = new Date(curr.setDate(third));
+    fourthday = new Date(curr.setDate(fourth));
+    fifthday = new Date(curr.setDate(fifth));
+    sixthday = new Date(curr.setDate(sixth));
+    lastday = new Date(curr.setDate(last));
+
+    $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+    $('#Date1').text("Sun " + firstday.getDate() );
+    $('#Date2').text("Mon " + secondday.getDate() );
+    $('#Date3').text("Tue " + thirdday.getDate() );
+    $('#Date4').text("Wed " + fourthday.getDate() );
+    $('#Date5').text("Thu " + fifthday.getDate() );
+    $('#Date6').text("Fri " + sixthday.getDate() );
+    $('#Date7').text("Sat " + lastday.getDate() );
+
+  });
+
+  $(".dropdown-menu li a").click(function(){
+    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+  });
+
   $( function() {
     $.widget( "custom.combobox", {
       _create: function() {
@@ -186,16 +268,19 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid" >
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
+          <h2>Timesheet</h2>
+          <div style="" id="datepicker"></div>
+          </br>
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
             <li><a href="#">Reports</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
+         <!-- <ul class="nav nav-sidebar">
             <li><a href="">Nav item</a></li>
             <li><a href="">Nav item again</a></li>
             <li><a href="">One more nav</a></li>
@@ -206,11 +291,20 @@
             <li><a href="">Nav item again</a></li>
             <li><a href="">One more nav</a></li>
             <li><a href="">Another nav item</a></li>
-          </ul>
+          </ul> -->
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
 
+        <div id="dashContents">
+          <div style="position: relative;height:80px;">
+          <h2 class="page-header" style="left:310px;position:absolute;" id="dateTitle"></h2>
+            <div class="btn-group" role="group" aria-label="..." style="left:310px;position:absolute;top:100px;">
+              <button type="button" class="btn btn-default" id="saveButton"> <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Save</button>
+
+            </div>
+
+
+          </div>
+<!--
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
               <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
@@ -234,56 +328,181 @@
             </div>
           </div>
 
-
-          <div class="ui-widget">
-            <label>Timesheet: </label>
-            <select id="combobox">
-              <option value="">Select one...</option>
-              <option value="ActionScript">ActionScript</option>
-              <option value="AppleScript">AppleScript</option>
-              <option value="Asp">Asp</option>
-              <option value="BASIC">BASIC</option>
-              <option value="C">C</option>
-              <option value="C++">C++</option>
-              <option value="Clojure">Clojure</option>
-              <option value="COBOL">COBOL</option>
-              <option value="ColdFusion">ColdFusion</option>
-              <option value="Erlang">Erlang</option>
-              <option value="Fortran">Fortran</option>
-              <option value="Groovy">Groovy</option>
-              <option value="Haskell">Haskell</option>
-              <option value="Java">Java</option>
-              <option value="JavaScript">JavaScript</option>
-              <option value="Lisp">Lisp</option>
-              <option value="Perl">Perl</option>
-              <option value="PHP">PHP</option>
-              <option value="Python">Python</option>
-              <option value="Ruby">Ruby</option>
-              <option value="Scala">Scala</option>
-              <option value="Scheme">Scheme</option>
-            </select>
-          </div>
+-->
 
 
-          <h2 class="sub-header">Section title</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
+          <h2 class="sub-header">Timesheet</h2>
+          <div class="table-responsive" id="pageGapDash">
+            <table class="table table-striped" style="font-size:12px;">
               <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                <tr >
+                  <th >Credit Union</th>
+                  <th >Activity</th>
+                  <th >Task</th>
+                  <th >Billing Options</th>
+                  <th >Billing Opt - SCR</th>
+                  <th >Billing Opt - FTR</th>
+                  <th  id="Date1"></th>
+                  <th  id="Date2"></th>
+                  <th  id="Date3"></th>
+                  <th  id="Date4"></th>
+                  <th  id="Date5"></th>
+                  <th  id="Date6"></th>
+                  <th  id="Date7"></th>
+                  <th >Total</th>
+
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                <tr >
+
+                  <td >
+
+                    <select class="selectpicker show-tick" data-live-search="true" title="Credit Union" data-width="120px" >
+                      <option value="ActionScript">ActionScript</option>
+                      <option value="AppleScript">AppleScript</option>
+                      <option value="Asp">Asp</option>
+                      <option value="BASIC">BASIC</option>
+                      <option value="C">C</option>
+                      <option value="C++">C++</option>
+                      <option value="Clojure">Clojure</option>
+                      <option value="COBOL">COBOL</option>
+                      <option value="ColdFusion">ColdFusion</option>
+                      <option value="Erlang">Erlang</option>
+                      <option value="Fortran">Fortran</option>
+                      <option value="Groovy">Groovy</option>
+                      <option value="Haskell">Haskell</option>
+                      <option value="Java">Java</option>
+                      <option value="JavaScript">JavaScript</option>
+                      <option value="Lisp">Lisp</option>
+                      <option value="Perl">Perl</option>
+                      <option value="PHP">PHP</option>
+                      <option value="Python">Python</option>
+                      <option value="Ruby">Ruby</option>
+                      <option value="Scala">Scala</option>
+                      <option value="Scheme">Scheme</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="selectpicker show-tick" data-live-search="true" title="Activity" data-width="120px" style="color:black;">
+                      <option>06-CU-10 IT Compliance Review</option>
+                      <option>748 Annual Review</option>
+                      <option>ACH Audit</option>
+                      <option>ACH Audit Risk Assessment</option>
+                      <option>Administrative</option>
+                      <option >ATM Safety Evaluation</option>
+                      <option >Ballot Tabulation</option>
+                      <option >Bank Reconciliation</option>
+                      <option >BSA/CIP/OFAC Compliance Review</option>
+                      <option >Call Report Preparation</option>
+                      <option >Cash Counts</option>
+                      <option >Custom IT Consulting</option>
+                      <option >Cyber Security Assessment Toolkit</option>
+                      <option >FTR Speaking Engagement</option>
+                      <option >FTR Workshops</option>
+                      <option >Holiday</option>
+                      <option >Holiday/Personal</option>
+                      <option >Illness</option>
+                      <option >Internal Audit</option>
+                      <option >Loan Review</option>
+                      <option >Member Account Verification</option>
+                      <option >PCI PIN Security Compliance Review</option>
+                      <option >Personal</option>
+                      <option >Remote Systems Maintence</option>
+                      <option >Risk Assessment & Policy Development</option>
+                      <option >Special Services</option>
+                      <option >Supervisory Committee Annual Review</option>
+                      <option >TR-39 PIN Audit</option>
+                      <option >Travel</option>
+                      <option >Vacation</option>
+                      <option >Vulnerability Assessment Training</option>
+                    </select>
+                 </td>
+                  <td>
+                    <%= form_for(@new_pages) do |t| %>
+                        <%= t.select :creditUnion, options_for_select([
+                                                                             ["Select One", ""],
+                                                                             "Your nick name",
+                                                                             "your schoool name",
+                                                                             "your love name",
+                                                                             "your comapnay name",
+                                                                             "your favourite website"]),
+                                     {}, { class: "selectpicker show-tick" }, :data => { :width => '90px' } %>
+                    <%= t.submit %>
+                    <% end %>
+                    <!--
+                    <select class="selectpicker show-tick" title="Task" data-width="90px">
+                      <option>Production</option>
+                      <option>Non-Production</option>
+                    </select> -->
+                 </td>
+                  <td>
+                    <select class="selectpicker show-tick" title="Bill" data-width="90px">
+                      <option>Onsite</option>
+                      <option>Remote</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="selectpicker show-tick" title="Bill SCR" data-width="100px">
+                      <option>Meeting Billable</option>
+                      <option>Non-Billable</option>
+                      <option>Onsite Billable</option>
+                      <option>Remote Billable</option>
+                      <option>Report Review Billable</option>
+                      <option>Report Writing Billable</option>
+                      <option>Setup/Preaudit Billable</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="selectpicker show-tick" title="Bill FTR" data-width="100px">
+                    <option>Meeting Billable</option>
+                    <option>Non-Billable</option>
+                    <option>Onsite Billable</option>
+                    <option>Remote Billable</option>
+                    <option>Report Review Billable</option>
+                    <option>Report Writing Billable</option>
+                    <option>Setup/Preaudit Billable</option>
+                  </select></td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="0.00" aria-describedby="basic-addon1" style="width:60px">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="0.00" aria-describedby="basic-addon1" style="width:60px">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="0.00" aria-describedby="basic-addon1" style="width:60px">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="0.00" aria-describedby="basic-addon1" style="width:60px">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="0.00" aria-describedby="basic-addon1" style="width:60px">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="0.00" aria-describedby="basic-addon1" style="width:60px">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="0.00" aria-describedby="basic-addon1" style="width:60px">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="0.00" aria-describedby="basic-addon1" style="width:60px">
+                    </div>
+                  </td>
                 </tr>
                 <tr>
                   <td>1,002</td>
@@ -292,104 +511,7 @@
                   <td>adipiscing</td>
                   <td>elit</td>
                 </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
+
               </tbody>
             </table>
           </div>
