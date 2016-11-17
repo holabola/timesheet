@@ -9,11 +9,16 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'default', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "welcome.js" %>
+
+
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="containerError">
+  <%= render 'layouts/messages' %>
+</div>
 <%= yield %>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" id="nav">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -36,7 +41,7 @@
                 </li>
             <% else %>
                 <li>
-                  <%= link_to('Login', new_user_session_path)  %>
+                  <a href="#" id="loginToolbar">Login</a>
                 </li>
             <% end %>
           </ul>
@@ -46,6 +51,8 @@
         </div>
       </div>
     </nav>
-  
+
+
+
 </body>
 </html>

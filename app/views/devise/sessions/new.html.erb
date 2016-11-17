@@ -4,17 +4,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-
+<%= devise_error_messages! %>
 <div id="welcomeWrapper">
   <div id="shadowOnOff">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
+
+
         <div class="item active">
           <img class="first-slide" src="http://i.imgur.com/w5JxQ1j.jpg"  alt="First slide">
           <div class="container">
@@ -26,7 +22,7 @@
           </div>
         </div>
 
-      </div>
+
     </div>
   </div>
 </div>
@@ -34,11 +30,14 @@
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<div class="text-center" style="padding:50px 0 0 0">
-  <div class="logo"></div>
+<div class="text-center" id = "offBut" style="padding:50px 0 0 0">
+
   <!-- Main Form -->
   <div class="login-form-1">
     <div id="loginWrap"" >
+
+    <div class="logo">login</div>
+    <a href="#" class="glyphicon glyphicon-remove-circle exitButton" ></a>
     <form id="login-form" class="text-left">
       <div class="login-form-main-message"></div>
 
@@ -46,23 +45,29 @@
             <div class="login-group">
 
               <div class="form-group">
-                <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true %>
-              </div>
-              <div class="form-group">
-                <%= f.label :password %>
-                <% if @minimum_password_length %>
-                    <em>(<%= @minimum_password_length %> characters minimum)</em>
-                <% end %><br />
-                <%= f.password_field :password, autocomplete: "off" %>
 
+                <%= f.email_field :email, placeholder: "Email", class: 'form-control', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+
+
+                <%= f.password_field :password, placeholder: "Password", class: 'form-control', autocomplete: "off" %>
+
+              </div>
+              <div style="line-height:50%;">
+                <br>
               </div>
               <div class="form-group login-group-checkbox">
                 <input type="checkbox" id="lg_remember" name="lg_remember">
                 <%= f.check_box :remember_me %>
                 <%= f.label :remember_me %>
+
               </div>
-              <%= f.submit "Sign in" %>
+              <%= button_tag(type: "submit", class: "login-button") do %>
+                  <i class="fa fa-chevron-right"></i>
+              <% end %>
+
             </div>
 
       </div>
@@ -82,20 +87,20 @@
 
 <!-- REGISTRATION FORM -->
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-<div class="text-center" style="padding:50px 0 0 0">
-  <div class="logo"></div>
+<div class="text-center" id="offBut" style="padding:50px 0 0 0">
+
   <!-- Main Form -->
   <div class="login-form-1">
     <div id="registerWrap" >
-
+      <a href="#" class="glyphicon glyphicon-remove-circle exitButton" ></a>
       <form id="register-form" class="text-left">
         <div class="login-form-main-message"></div>
         <div class="main-login-form">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
+
+          <div class="logo">register</div>
           <div class="login-group">
 
-                <%= devise_error_messages! %>
+
                 <div class="form-group">
                   <%= f.email_field :email, placeholder: 'Email Address', class: 'form-control' %>
                 </div>
@@ -122,12 +127,17 @@
                        <label for="female">female</label>
                      </div>
              -->
+                <div style="line-height:50%;">
+                  <br>
+                </div>
                 <div class="form-group login-group-checkbox">
                   <input type="checkbox" class="" id="reg_agree" name="reg_agree">
                   <label for="reg_agree">I agree with <a href="#">terms</a></label>
                 </div>
                 </div>
-                <%= f.submit :Signup, class: 'login-button' %>
+          <%= button_tag(type: "submit", class: "login-button") do %>
+              <i class="fa fa-chevron-right" ></i>
+          <% end %>
 
             <!-- <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button> -->
             </div>
@@ -145,7 +155,7 @@
 
 
 <!-- FORGOT PASSWORD FORM -->
-<div class="text-center" style="padding:50px 0 0 0">
+<div class="text-center" id="offBut" style="padding:50px 0 0 0">
   <div class="logo"></div>
   <!-- Main Form -->
   <div class="login-form-1">
