@@ -44,3 +44,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'jquery-ui-rails'
 gem "simple_calendar", "~> 2.0"
 gem 'bootstrap-select-rails'
+gem 'table_print'
+gem 'jquery-ui-themes'

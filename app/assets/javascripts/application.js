@@ -19,4 +19,5 @@
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require bootstrap-select
+//= require moment
 //= require_tree .

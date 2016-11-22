@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117222454) do
+ActiveRecord::Schema.define(version: 20161122205559) do
 
   create_table "pages", force: true do |t|
     t.string   "creditUnion"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20161117222454) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "total"
+    t.date     "dateOfTime"
   end
 
   add_index "pages", ["user_id", "created_at"], name: "index_pages_on_user_id_and_created_at"
@@ -45,6 +47,9 @@ ActiveRecord::Schema.define(version: 20161117222454) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "firstName"
+    t.string   "lastName"
+    t.string   "department"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -37,7 +37,7 @@
     <div id="loginWrap"" >
 
     <div class="logo">login</div>
-    <a href="#" class="glyphicon glyphicon-remove-circle exitButton" ></a>
+    <a href="#" class="glyphicon glyphicon-remove-circle exitButton" style="top:20%;"></a>
     <form id="login-form" class="text-left">
       <div class="login-form-main-message"></div>
 
@@ -100,7 +100,12 @@
           <div class="logo">register</div>
           <div class="login-group">
 
-
+                <div class="form-group">
+                  <%= f.text_field :firstName, placeholder: 'First Name', class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.text_field :lastName, placeholder: 'Last Name', class: 'form-control' %>
+                </div>
                 <div class="form-group">
                   <%= f.email_field :email, placeholder: 'Email Address', class: 'form-control' %>
                 </div>

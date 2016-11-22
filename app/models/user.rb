@@ -5,4 +5,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validate :email_domain
+
+  def email_domain
+    domain = email.split(".").last
+    if !email.blank?
+      errors.add(:email, "Invalid Domain") if domain != "coop"
+    end
+  end
+
 end

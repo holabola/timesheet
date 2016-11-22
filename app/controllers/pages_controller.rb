@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
 
   def create
-    @new_pages = Page.new(new_pages_params)
+    @new_pages = Page.new(params_final)
     if @new_pages.save!
       flash[:success] = "Timesheet entry created!"
       redirect_to root_url
@@ -21,9 +21,13 @@ class PagesController < ApplicationController
   end
 
   private
+  def params_final
+    new_pages_params.merge(:user => current_user)
+  end
 
   def new_pages_params
-    params.require(:page).permit(:creditUnion)
+    params.require(:page).permit(:creditUnion, :activity, :task, :billingOptions, :billingOptionsSCR, :billingOptionsFTR, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :total, :dateOfTime)
   end
+
 
 end
