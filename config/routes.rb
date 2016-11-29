@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'sessions/home' => 'sessions#home'
 
 
+
   #match ':controller(/:action(/:id))(.:format)'
 
   # The priority is based upon order of creation: first created -> highest priority.

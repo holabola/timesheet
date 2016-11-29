@@ -41,8 +41,13 @@ gem 'bcrypt'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
+gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 gem "simple_calendar", "~> 2.0"
 gem 'bootstrap-select-rails'
 gem 'table_print'
 gem 'jquery-ui-themes'
+gem 'coffee-script-source', '1.8.0'
+gem 'tinymce-rails'
+gem 'momentjs-rails'
+gem 'data-confirm-modal'

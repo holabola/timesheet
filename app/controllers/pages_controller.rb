@@ -1,8 +1,12 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @pages = current_user.pages
+  end
 
   def dashboard
+    @pages = current_user.pages
     @new_pages = Page.new
   end
 
@@ -18,6 +22,14 @@ class PagesController < ApplicationController
   end
 
   def destroy
+    @page = Page.find params[:id]
+    @page.destroy
+
+    respond_to do |format|
+      format.html { redirect_to  }
+      format.json { head :no_content }
+      format.js   { render :layout => false }
+    end
   end
 
   private

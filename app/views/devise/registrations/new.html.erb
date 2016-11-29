@@ -17,7 +17,7 @@
           <div class="carousel-caption">
             <h1>The Dawn of a Timesheet</h1>
             <p>I have some high hopes for this. I really hope I can make this work out as well as I want to. Let's pray.</p>
-            <p><a class="btn btn-lg btn-primary" id="loginButton" href="#" role="button">Login</a></p>
+            <p><a class="btn btn-lg btn-primary" id="loginButton" href="#" data-turbolinks="false">Login</a></p>
           </div>
         </div>
       </div>
@@ -30,14 +30,14 @@
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="text-center" id = "offBut" style="padding:50px 0 0 0">
+    <div class="text-center" id = "offBut" style="padding:50px 0 0 0" >
 
       <!-- Main Form -->
       <div class="login-form-1">
         <div id="loginWrap"" >
 
         <div class="logo">login</div>
-        <a href="#" class="glyphicon glyphicon-remove-circle exitButton" ></a>
+        <a href="#" class="glyphicon glyphicon-remove-circle exitButton" data-turbolinks="false"></a>
         <form id="login-form" class="text-left">
           <div class="login-form-main-message"></div>
 
@@ -72,8 +72,8 @@
 
           </div>
           <div class="etc-login-form">
-            <p>forgot your password? <a href="#" id="forgotPass" >click here</a></p>
-            <p>new user? <a href="#" id="newUser">create new account</a></p>
+            <p>forgot your password? <a href="#" id="forgotPass" data-turbolinks="false">click here</a></p>
+            <p>new user? <a href="#" id="newUser" data-turbolinks="false">create new account</a></p>
           </div>
 
         </form>
@@ -92,7 +92,7 @@
       <!-- Main Form -->
       <div class="login-form-1">
         <div id="registerWrap" >
-          <a href="#" class="glyphicon glyphicon-remove-circle exitButton"  style="top:20%;"></a>
+          <a href="#" class="glyphicon glyphicon-remove-circle exitButton"  style="top:20%;" data-turbolinks="false"></a>
           <form id="register-form" class="text-left">
             <div class="login-form-main-message"></div>
             <div class="main-login-form">
@@ -115,7 +115,16 @@
                 <div class="form-group">
                   <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'form-control' %>
                 </div>
-
+                <div style="line-height:30%;">
+                  <br>
+                </div>
+                <div class="form-group">
+                  <%= f.select :department, options_for_select([
+                                                                   "Auditing",
+                                                                   "Marketing",
+                                                                   "Something else"]),
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '150px', 'title' => 'Department', 'style' => "margin: 0 auto;" } %>
+                </div>
                 <!--     <div class="form-group">
                        <label for="reg_email" class="sr-only">Email</label>
                        <input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email">
@@ -149,7 +158,7 @@
 
 
             <div class="etc-login-form">
-              <p>already have an account? <a href="#" id="loginRegister">login here</a></p>
+              <p>already have an account? <a href="#" id="loginRegister" data-turbolinks="false">login here</a></p>
             </div>
           </form>
         </div>
