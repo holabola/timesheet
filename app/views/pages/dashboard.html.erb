@@ -37,19 +37,18 @@
     ];
     curr = $('#datepicker').datepicker('getDate');
     first = curr.getDate() - curr.getDay();
-    second = first +1;
-    third = first + 2;
-    fourth = first + 3;
-    fifth = first + 4;
-    sixth = first + 5;
-    last = first + 6;
-
     firstday = new Date(curr.setDate(first));
+    second = curr.getDate() +1;
     secondday = new Date(curr.setDate(second));
+    third = curr.getDate() + 1;
     thirdday = new Date(curr.setDate(third));
+    fourth = curr.getDate() + 1;
     fourthday = new Date(curr.setDate(fourth));
+    fifth = curr.getDate() + 1;
     fifthday = new Date(curr.setDate(fifth));
+    sixth = curr.getDate() + 1;
     sixthday = new Date(curr.setDate(sixth));
+    last = curr.getDate() + 1;
     lastday = new Date(curr.setDate(last));
 
     $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
@@ -79,31 +78,44 @@
       }
     });
 
+    //Saves date local variable
+    sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+
   });
 
-  $( document ).ready(function() {
-    var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
+  $( document ).ready(function() {var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
 
-    $("#datepicker").datepicker({ dateFormat: "dd/mm/yy" }).datepicker("setDate", new Date("10/10/2016"));
+    if (sessionStorage.refreshCount == undefined) {
+      $("#datepicker").datepicker().datepicker("setDate", new Date());
+      sessionStorage.refreshCount = 1;
+    } else {
+      var date = sessionStorage.datePicked;
+      date = new Date(date);
+      date.setDate(date.getDate());
+
+      $("#datepicker").datepicker().datepicker("setDate", date );
+    }
+    sessionStorage.refreshCount = sessionStorage.refreshCount + 1;
+    //new Date("10/10/2016")
 
     curr = $('#datepicker').datepicker('getDate');
     first = curr.getDate() - curr.getDay();
-    second = first +1;
-    third = first + 2;
-    fourth = first + 3;
-    fifth = first + 4;
-    sixth = first + 5;
-    last = first + 6;
 
     firstday = new Date(curr.setDate(first));
+    second = curr.getDate() +1;
     secondday = new Date(curr.setDate(second));
+    third = curr.getDate() + 1;
     thirdday = new Date(curr.setDate(third));
+    fourth = curr.getDate() + 1;
     fourthday = new Date(curr.setDate(fourth));
+    fifth = curr.getDate() + 1;
     fifthday = new Date(curr.setDate(fifth));
+    sixth = curr.getDate() + 1;
     sixthday = new Date(curr.setDate(sixth));
+    last = curr.getDate() + 1;
     lastday = new Date(curr.setDate(last));
 
     $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
@@ -117,6 +129,7 @@
 
     $('#datePicked').val(curr);
 
+    //Limits text to 15 characters
     $('#tableElements').children('tr').each(function () {
       if ($(this).children('.dateBlob').text() == $.datepicker.formatDate("yy-mm-dd", curr)) {
         $(this).css("display","");
@@ -133,6 +146,8 @@
       }
     });
 
+    //Saves date local variable
+    sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
   });
 
   $(window).scroll(function (event) {

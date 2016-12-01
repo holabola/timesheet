@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   #devise_for :user
 
   get 'users/new'
-  resource :users
+  resource :users, :controllers => { :confirmations => "confirmations" }
   resources :pages
   root 'pages#dashboard'
   get 'sessions/home' => 'sessions#home'
-
+  #get '/settings' => 'devise/registrations#edit'
 
 
   #match ':controller(/:action(/:id))(.:format)'

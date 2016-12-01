@@ -67,7 +67,7 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
-    jquery-ui-rails (6.0.0)
+    jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     jquery-ui-themes (0.0.12)
       httparty
@@ -76,7 +76,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    minitest (5.9.1)
+    minitest (5.10.0)
     momentjs-rails (2.15.1)
       railties (>= 3.1)
     multi_json (1.12.1)
@@ -114,7 +114,7 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simple_calendar (2.2.1)
+    simple_calendar (2.2.2)
       rails (>= 3.0)
     spring (1.7.2)
     sprockets (2.12.4)
@@ -132,7 +132,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    tinymce-rails (4.4.3)
+    tinymce-rails (4.5.0)
       railties (>= 3.1.1)
     treetop (1.4.15)
       polyglot
@@ -144,7 +144,7 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2016.10)
       tzinfo (>= 1.0.0)
-    uglifier (3.0.3)
+    uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
@@ -164,8 +164,8 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
-  jquery-ui-rails
-  jquery-ui-themes
+  jquery-ui-rails (~> 5.0.5)
+  jquery-ui-themes (~> 0.0.11)
   momentjs-rails
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)

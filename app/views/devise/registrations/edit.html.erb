@@ -1,43 +1,109 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<body>
+<br>
+<div class="container">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="jumbotron" style="padding: 20px 40px 20px 40px;">
+    <h1>Need to become an Admin?</h1>
+    <p class="lead">Email Steven and he can grant you the power!</p>
+    <br>
+    <!--<p><a class="btn btn-lg btn-success" href="#" role="button">Become Admin!</a></p> -->
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <div class="row marketing">
+    <div class="col-lg-6">
+      <b><h4 style="text-align:center;">Change First Name</h4></b>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <b>New First Name</b>
+          <%= f.text_field :firstName, :class => "form-control", :style => "width:200px;", autocomplete: "off", placeholder: "First Name" %>
+          <h5><b>Current Password</b><i> (I need your current password to confirm your changes)</i></h5>
+          <%= f.password_field :current_password, :class => "form-control", :style => "width:200px;", autocomplete: "off", placeholder: "Password" %>
+          <div style="line-height:75%;"><br></div>
+          <%= f.submit "Update", :class => "btn btn-primary", :style => "background-color:#337ab7;" %>
+      <% end %>
+      <hr style="border-color:#0d5ddd;">
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+      <b><h4 style="text-align:center;">Change Last Name</h4></b>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <b>New Last Name</b>
+          <%= f.text_field :lastName, :class => "form-control", :style => "width:200px;", autocomplete: "off", placeholder: "Last Name" %>
+          <div style="line-height:40%;"><br></div>
+          <b>Current Password</b>
+          <%= f.password_field :current_password, :class => "form-control", :style => "width:200px;", autocomplete: "off", placeholder: "Password" %>
+          <div style="line-height:75%;"><br></div>
+          <%= f.submit "Update", :class => "btn btn-primary", :style => "background-color:#337ab7;" %>
+      <% end %>
+      <hr style="border-color:#0d5ddd;">
+
+      <b><h4 style="text-align:center;">Change Department</h4></b>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <b>New Department</b>
+          <br>
+          <%= f.select :department, options_for_select([
+                                                           "Auditing",
+                                                           "Marketing",
+                                                           "Something else"]),
+                       {}, { :class => "selectpicker show-tick" , 'data-width' => '150px', 'title' => 'Department', 'style' => "margin: 0 auto;" } %>
+          <br>
+          <div style="line-height:40%;"><br></div>
+          <b>Current Password</b>
+          <%= f.password_field :current_password, :class => "form-control", :style => "width:200px;", autocomplete: "off", placeholder: "Password" %>
+          <div style="line-height:75%;"><br></div>
+          <%= f.submit "Update", :class => "btn btn-primary", :style => "background-color:#337ab7;" %>
+      <% end %>
+      <br>
+    </div>
+
+    <div class="col-lg-6">
+    <h4 style="text-align:center;">Change Password</h4>
+      <br>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, :class => "form-control", :style => "width:200px;" %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+            <%= f.password_field :password, autocomplete: "off", :class => "form-control", :style => "width:200px;" %>
+            <% if @minimum_password_length %>
+
+                <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control", :style => "width:200px;" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+            <%= f.password_field :current_password, autocomplete: "off", :class => "form-control", :style => "width:200px;" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Update", :class => "btn btn-primary", :style => "background-color:#337ab7;" %>
+          </div>
+      <% end %>
+
+
+    </div>
   </div>
+</body>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
 
+<!--
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+-->
