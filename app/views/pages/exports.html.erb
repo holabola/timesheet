@@ -1,0 +1,44 @@
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar" >
+      <h2 style="text-align: center;">Exports</h2>
+
+      </br>
+      <ul class="nav nav-sidebar">
+        <li><a href="/" data-turbolinks="false">Timesheet</a></li>
+        <!--<li><a href="#">Reports</a></li>
+        <li><a href="#">Analytics</a></li> -->
+        <li class="active"><a href="#">Exports<span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h1 class="page-header">Export to Excel (.xlsx)</h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Download</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= link_to 'All Users', exportsall_path(format: :xlsx, foo_param: 'all') %></td>
+        <td>Download a list of all Timesheet entries from all users</td>
+      </tr>
+      <tr>
+        <td><%= link_to 'Deparment Users', exportsDepart_path(format: :xlsx, foo_param: 'all') %></td>
+        <td>Download a list of all Timesheet entries from the users of your specified department</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
+  </div>
+

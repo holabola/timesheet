@@ -5,9 +5,47 @@ class PagesController < ApplicationController
     @pages = current_user.pages
   end
 
+  def exports
+    @users = User.all
+    @pages = Page.order('created_at DESC')
+      respond_to do |format|
+        format.html
+        format.xlsx {
+          response.headers['Content-Disposition'] = 'attachment; filename="timesheet_export.xlsx"'
+        }
+      end
+  end
+
+  def exportsall
+    @users = User.all
+    @pages = Page.order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="timesheet_all_export.xlsx"'
+      }
+    end
+  end
+
+  def exportsDepart
+    @users = User.all
+    @pages = Page.order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="timesheet_by_department.xlsx"'
+      }
+    end
+  end
+
   def dashboard
-    @pages = current_user.pages
-    @new_pages = Page.new
+    if current_user.admin == false
+      @pages = current_user.pages
+      @new_pages = Page.new
+    else
+      @pages = Page.where(:department => current_user.department)
+      @new_pages = Page.new
+    end
   end
 
   def create
@@ -38,7 +76,7 @@ class PagesController < ApplicationController
   end
 
   def new_pages_params
-    params.require(:page).permit(:creditUnion, :activity, :task, :billingOptions, :billingOptionsSCR, :billingOptionsFTR, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :total, :dateOfTime)
+    params.require(:page).permit(:creditUnion, :activity, :task, :billingOptions, :billingOptionsSCR, :billingOptionsFTR, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :total, :dateOfTime, :department)
   end
 
 

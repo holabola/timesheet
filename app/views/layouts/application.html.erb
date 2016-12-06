@@ -32,6 +32,12 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" >CU Timesheet</a>
+          <% if user_signed_in? %>
+            <% if current_user.admin == true %>
+
+                <a style="padding: 15px 15px 15px 35px;" class="navbar-brand" >Administrator Mode</a>
+            <% end %>
+          <% end %>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">

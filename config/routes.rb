@@ -8,12 +8,15 @@ Rails.application.routes.draw do
 
  # get 'sessions/setting'
   #devise_for :user
-
+  root 'pages#dashboard'
   get 'users/new'
   resource :users, :controllers => { :confirmations => "confirmations" }
   resources :pages
-  root 'pages#dashboard'
+
   get 'sessions/home' => 'sessions#home'
+  get '/exports' => 'pages#exports'
+  get '/exportsall' => 'pages#exportsall'
+  get '/exportsDepart' => 'pages#exportsDepart'
   #get '/settings' => 'devise/registrations#edit'
 
 

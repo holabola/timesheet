@@ -1,0 +1,260 @@
+
+<%= form_for(@new_pages) do |t| %>
+    <div class="container-fluid" >
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
+          <div style="line-height:75%;"><br></div>
+          <h2 style="text-align: center;">Timesheet</h2>
+
+          <%= t.text_field :dateOfTime, { :id => 'datePicked', :style => "display:none"  } %>
+          <%= t.text_field :department, :value => current_user.department, :style => "display:none"   %>
+          <div style="" id="datepicker"></div>
+          </br>
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Timesheet<span class="sr-only">(current)</span></a></li>
+            <!--<li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li> -->
+            <li><a href="/exports">Exports</a></li>
+          </ul>
+          <!-- <ul class="nav nav-sidebar">
+             <li><a href="">Nav item</a></li>
+             <li><a href="">Nav item again</a></li>
+             <li><a href="">One more nav</a></li>
+             <li><a href="">Another nav item</a></li>
+             <li><a href="">More navigation</a></li>
+           </ul>
+           <ul class="nav nav-sidebar">
+             <li><a href="">Nav item again</a></li>
+             <li><a href="">One more nav</a></li>
+             <li><a href="">Another nav item</a></li>
+           </ul> -->
+        </div>
+
+        <div id="dashContents">
+          <div style="position: relative;height:80px;">
+            <h2 class="page-header" style="left:310px;position:absolute;" id="dateTitle"></h2>
+
+            <p style="left:310px;position:absolute;  top:110px;">Hit the checkmark to save a sheet. Hit the X button to delete a sheet.</p>
+
+
+          </div>
+          <!--
+                    <div class="row placeholders">
+                      <div class="col-xs-6 col-sm-3 placeholder">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                      </div>
+                      <div class="col-xs-6 col-sm-3 placeholder">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                      </div>
+                      <div class="col-xs-6 col-sm-3 placeholder">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                      </div>
+                      <div class="col-xs-6 col-sm-3 placeholder">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                      </div>
+                    </div>
+
+          -->
+
+
+          <h2 class="sub-header">Timesheet</h2>
+          <div class="table-responsive" id="pageGapDash">
+
+            <table class="table table-striped" style="font-size:12px;">
+              <thead>
+              <tr style="padding: 8px 8px 8px 0px;">
+                <th></th>
+                <th>Author</th>
+                <th >Credit Union</th>
+                <th >Activity</th>
+                <th >Task</th>
+                <th >Billing Options</th>
+                <th >Billing Opt - SCR</th>
+                <th >Billing Opt - FTR</th>
+                <th  id="Date1"></th>
+                <th  id="Date2"></th>
+                <th  id="Date3"></th>
+                <th  id="Date4"></th>
+                <th  id="Date5"></th>
+                <th  id="Date6"></th>
+                <th  id="Date7"></th>
+                <th >Total</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr >
+
+                <td style="z-index:1000;" id="submitBut">
+                  <%= button_tag "", type: 'submit', class: "btn btn-success glyphicon glyphicon-ok pull-right" %>
+                </td>
+                <td></td>
+                <td >
+
+                  <%= t.select :creditUnion, options_for_select([
+                                                                    "Bay FCU",
+                                                                    "Wazchawhatchitah FCUBCUTCU",]),
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '120px', 'title' => 'Credit Union' } %>
+                </td>
+                <td>
+
+                  <%= t.select :activity, options_for_select([
+                                                                 "06-CU-10 IT Compliance Review",
+                                                                 "748 Annual Review",
+                                                                 "ACH Audit",
+                                                                 "ACH Audit Risk Assessment",
+                                                                 "Administrative",
+                                                                 "ATM Safety Evaluation",
+                                                                 "Ballot Tabulation",
+                                                                 "Bank Reconciliation",
+                                                                 "BSA/CIP/OFAC Compliance Review",
+                                                                 "Call Report Preparation",
+                                                                 "Cash Counts",
+                                                                 "Custom IT Consulting",
+                                                                 "Cyber Security Assessment Toolkit",
+                                                                 "FTR Speaking Engagement",
+                                                                 "FTR Workshops",
+                                                                 "Holiday",
+                                                                 "Holiday/Personal",
+                                                                 "Illness",
+                                                                 "Internal Audit",
+                                                                 "Loan Review",
+                                                                 "Member Account Verification",
+                                                                 "PCI PIN Security Compliance Review",
+                                                                 "Personal",
+                                                                 "Remote Systems Maintence",
+                                                                 "Risk Assessment & Policy Development",
+                                                                 "Special Services",
+                                                                 "Supervisory Committee Annual Review",
+                                                                 "TR-39 PIN Audit",
+                                                                 "Travel",
+                                                                 "Vacation",
+                                                                 "Vulnerability Assessment Training"]),
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '120px', 'title' => 'Activity' } %>
+                </td>
+                <td>
+
+                  <%= t.select :task, options_for_select([
+                                                             "Production",
+                                                             "Non-Production"]),
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '120px', 'title' => 'Task' } %>
+
+
+                  <!--
+                  <select class="selectpicker show-tick" title="Task" data-width="90px">
+                    <option>Production</option>
+                    <option>Non-Production</option>
+                  </select> -->
+                </td>
+                <td>
+                  <%= t.select :billingOptions, options_for_select([
+                                                                       "Onsite",
+                                                                       "Remote"]),
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '80px', 'title' => 'Bill' } %>
+
+                </td>
+                <td>
+                  <%= t.select :billingOptionsSCR, options_for_select([
+                                                                          "Meeting Billable",
+                                                                          "Non-Billable",
+                                                                          "Onsite Billable",
+                                                                          "Remote Billable",
+                                                                          "Report Review Billable",
+                                                                          "Report Writing Billable",
+                                                                          "Setup/Preaudit Billable"]),
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '100px', 'title' => 'Bill SCR' } %>
+
+                </td>
+                <td>
+                  <%= t.select :billingOptionsFTR, options_for_select([
+                                                                          "Meeting Billable",
+                                                                          "Non-Billable",
+                                                                          "Onsite Billable",
+                                                                          "Remote Billable",
+                                                                          "Report Review Billable",
+                                                                          "Report Writing Billable",
+                                                                          "Setup/Preaudit Billable"]),
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '100px', 'title' => 'Bill FTR' } %>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <%= t.number_field :sun, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:68px;" , 'placeholder' => '0.00' } %>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <%= t.number_field :mon, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:68px;" , 'placeholder' => '0.00' } %>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <%= t.number_field :tue, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:68px;" , 'placeholder' => '0.00' } %>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <%= t.number_field :wed, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:68px;" , 'placeholder' => '0.00' } %>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <%= t.number_field :thu, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:68px;" , 'placeholder' => '0.00' } %>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <%= t.number_field :fri, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:68px;" , 'placeholder' => '0.00' } %>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <%= t.number_field :sat, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:68px;" , 'placeholder' => '0.00' } %>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+
+                    <%= t.number_field :total, {:class => "form-control" , :style => "width:68px;" , :id => "totalNew" , 'onkeydown' => 'return false;' } %>
+                  </div>
+                </td>
+              </tr>
+<% end %>
+</tbody>
+
+<tbody id="tableElements">
+<% @pages.each do |p| %>
+    <tr id="row_<%= p.id %>">
+      <td><%= link_to '', p, method: :delete, data: { confirm: 'Do you want to delete this entry?' }, :remote => true, :style => "font-size:10px;", :class => 'delete_page btn btn-danger glyphicon glyphicon-remove pull-right' %></td>
+      <td><%= p.user.firstName %> <%= p.user.lastName %></td>
+      <td><%= p.creditUnion %> </td>
+      <td><%= p.activity %> </td>
+      <td><%= p.task %> </td>
+      <td><%= p.billingOptions %> </td>
+      <td><%= p.billingOptionsSCR %> </td>
+      <td><%= p.billingOptionsFTR %> </td>
+      <td><%= p.sun %> </td>
+      <td><%= p.mon %> </td>
+      <td><%= p.tue %> </td>
+      <td><%= p.wed %> </td>
+      <td><%= p.thu %> </td>
+      <td><%= p.fri %> </td>
+      <td><%= p.sat %> </td>
+      <td><%= p.total %> </td>
+      <td style="display:none;" class="dateBlob"><%= p.dateOfTime %></td>
+    </tr>
+<% end %>
+</tbody>
+
+</table>
+</div>
+</div>
+</div>
+</div>

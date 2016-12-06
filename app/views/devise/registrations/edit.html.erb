@@ -38,11 +38,13 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <b>New Department</b>
           <br>
+
           <%= f.select :department, options_for_select([
                                                            "Auditing",
                                                            "Marketing",
                                                            "Something else"]),
-                       {}, { :class => "selectpicker show-tick" , 'data-width' => '150px', 'title' => 'Department', 'style' => "margin: 0 auto;" } %>
+                       {}, {  'data-width' => '150px', 'title' => 'Department', 'style' => "" } %>
+
           <br>
           <div style="line-height:40%;"><br></div>
           <b>Current Password</b>
@@ -86,7 +88,7 @@
             <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
             <%= f.password_field :current_password, autocomplete: "off", :class => "form-control", :style => "width:200px;" %>
           </div>
-
+          <div style="line-height:40%;"><br></div>
           <div class="actions">
             <%= f.submit "Update", :class => "btn btn-primary", :style => "background-color:#337ab7;" %>
           </div>
