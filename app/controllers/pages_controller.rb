@@ -48,6 +48,11 @@ class PagesController < ApplicationController
     end
   end
 
+  def approvals
+      @pages = Page.where(:department => current_user.department)
+      @new_pages = Page.new
+  end
+
   def create
     @new_pages = Page.new(params_final)
     if @new_pages.save!

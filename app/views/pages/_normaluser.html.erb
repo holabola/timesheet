@@ -96,10 +96,7 @@
                 </td>
                 <td >
 
-                  <%= t.select :creditUnion, options_for_select([
-                                                                    "Bay FCU",
-                                                                    "Wazchawhatchitah FCUBCUTCU",]),
-                               {}, { :class => "selectpicker show-tick" , 'data-width' => '120px', 'title' => 'Credit Union' } %>
+                  <%= render "culist" %>
                 </td>
                 <td>
 
@@ -135,14 +132,14 @@
                                                                  "Travel",
                                                                  "Vacation",
                                                                  "Vulnerability Assessment Training"]),
-                               {}, { :class => "selectpicker show-tick" , 'data-width' => '120px', 'title' => 'Activity' } %>
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '120px', 'title' => 'Activity' , 'style' => "max-height: 100px;overflow: hidden;"} %>
                 </td>
                 <td>
 
                   <%= t.select :task, options_for_select([
                                                              "Production",
                                                              "Non-Production"]),
-                               {}, { :class => "selectpicker show-tick" , 'data-width' => '120px', 'title' => 'Task' } %>
+                               {}, { :class => "js-example-basic-multiple" , 'data-width' => '120px', 'multiple' => 'multiple' } %>
 
 
                   <!--

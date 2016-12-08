@@ -22,13 +22,26 @@
     padding: 5px 10px;
   }
 </style>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+
   $(function() {
     $("#datepicker").datepicker();
+    $('input[id="timerange"]').daterangepicker();
+    $('.selectpicker').selectpicker();
   });
 
+  $(document).on('change', "#timerange", function(){
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    var thing = $('#timerange').val().indexOf("-");
+    var firstday = new Date($("#timerange").val().substring(0,thing-1));
+    var lastday= new Date($("#timerange").val().substring(thing,$("#timerange").val().length));
+
+    $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+
+
+  });
 
   $(document).on('change', '#datepicker', function() {
     var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
@@ -79,6 +92,9 @@
       }
     });
 
+    $('#timerange').data('daterangepicker').setStartDate(firstday);
+    $('#timerange').data('daterangepicker').setEndDate(lastday);
+
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
 
@@ -89,6 +105,7 @@
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
+
 
     if (sessionStorage.refreshCount == undefined) {
       $("#datepicker").datepicker().datepicker("setDate", new Date());
@@ -123,6 +140,7 @@
     $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
     $('#Date1').text("Sun " + firstday.getDate() );
     $('#Date2').text("Mon " + secondday.getDate() );
+
     $('#Date3').text("Tue " + thirdday.getDate() );
     $('#Date4').text("Wed " + fourthday.getDate() );
     $('#Date5').text("Thu " + fifthday.getDate() );
@@ -131,7 +149,7 @@
 
     $('#datePicked').val(curr);
 
-    //Limits text to 15 characters
+    //Limits text to 15 characters and hides entries
     $('#tableElements').children('tr').each(function () {
       if ($(this).children('.dateBlob').text() == $.datepicker.formatDate("yy-mm-dd", curr)) {
         $(this).css("display","");
@@ -146,7 +164,10 @@
         $(this).css("display","none");
         // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
       }
+
     });
+    $('#timerange').data('daterangepicker').setStartDate(firstday);
+    $('#timerange').data('daterangepicker').setEndDate(lastday);
 
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');

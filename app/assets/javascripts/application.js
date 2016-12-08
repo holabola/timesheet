@@ -10,16 +10,17 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
-//= require data-confirm-modal
 //= require jquery.turbolinks
 //= require bootstrap
+//= require jquery-ui
+//= require data-confirm-modal
+//= require moment
+//= require daterangepicker
 //= require tinymce
-//= require turbolinks
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require bootstrap-select
-//= require moment
 //= require_tree .
