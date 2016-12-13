@@ -8,3 +8,4 @@
 
 # User.delete_all
 # Page.delete_all
+# Expense.delete_all

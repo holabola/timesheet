@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206171517) do
+ActiveRecord::Schema.define(version: 20161213180211) do
+
+  create_table "expenses", force: true do |t|
+    t.string   "creditUnion"
+    t.date     "dateActivity"
+    t.string   "typeOfExpense"
+    t.float    "amount"
+    t.string   "payment"
+    t.string   "notes"
+    t.string   "filename"
+    t.string   "content_type"
+    t.binary   "file_contents"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+  end
 
   create_table "pages", force: true do |t|
     t.string   "creditUnion"

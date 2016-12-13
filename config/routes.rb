@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'sessions/home' => 'sessions#home'
   get '/exports' => 'pages#exports'
   get '/approvals' => 'pages#approvals'
+  get '/expenses' => 'pages#expenses'
+  post "/expenses" => "pages#create", :as => :create_page
   get '/exportsall' => 'pages#exportsall'
   get '/exportsDepart' => 'pages#exportsDepart'
   #get '/settings' => 'devise/registrations#edit'

@@ -1,0 +1,557 @@
+<style>
+
+  .table-responsive {
+
+  }
+
+  html {
+    width: 1600px;
+  }
+  .custom-combobox {
+    position: relative;
+    display: inline-block;
+  }
+  .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+  }
+
+  /*    --------------------------------------------------
+:: General
+-------------------------------------------------- */
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: #353535;
+  }
+  .content h1 {
+    text-align: center;
+  }
+  .content .content-footer p {
+    color: #6d6d6d;
+    font-size: 12px;
+    text-align: center;
+  }
+  .content .content-footer p a {
+    color: inherit;
+    font-weight: bold;
+  }
+
+  /*	--------------------------------------------------
+    :: Table Filter
+    -------------------------------------------------- */
+  .panel {
+    border: 1px solid #ddd;
+    background-color: #fcfcfc;
+  }
+  .panel .btn-group {
+    margin: 15px 0 30px;
+  }
+  .panel .btn-group .btn {
+    transition: background-color .3s ease;
+  }
+  .table-filter {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  .table-filter tbody tr:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+  .table-filter tbody tr td {
+    padding: 10px;
+    vertical-align: middle;
+    border-top-color: #eee;
+  }
+  .table-filter tbody tr.selected td {
+    background-color: #eee;
+  }
+  .table-filter tr td:first-child {
+    width: 38px;
+  }
+  .table-filter tr td:nth-child(2) {
+    width: 35px;
+  }
+  .ckbox {
+    position: relative;
+  }
+  .ckbox input[type="checkbox"] {
+    opacity: 0;
+  }
+  .ckbox label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .ckbox label:before {
+    content: '';
+    top: 1px;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: absolute;
+    border-radius: 2px;
+    border: 1px solid #bbb;
+    background-color: #fff;
+  }
+  .ckbox input[type="checkbox"]:checked + label:before {
+    border-color: #2BBCDE;
+    background-color: #2BBCDE;
+  }
+  .ckbox input[type="checkbox"]:checked + label:after {
+    top: 3px;
+    left: 3.5px;
+    content: '\e013';
+    color: #fff;
+    font-size: 11px;
+    font-family: 'Glyphicons Halflings';
+    position: absolute;
+  }
+  .table-filter .star {
+    color: #ccc;
+    text-align: center;
+    display: block;
+  }
+  .table-filter .star.star-checked {
+    color: #F0AD4E;
+  }
+  .table-filter .star:hover {
+    color: #ccc;
+  }
+  .table-filter .star.star-checked:hover {
+    color: #F0AD4E;
+  }
+  .table-filter .media-photo {
+    width: 35px;
+  }
+  .table-filter .media-body {
+    display: block;
+    /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+  }
+  .table-filter .media-meta {
+    font-size: 11px;
+    color: #999;
+  }
+  .table-filter .media .title {
+    color: #2BBCDE;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0;
+  }
+  .table-filter .media .title span {
+    font-size: .8em;
+    margin-right: 20px;
+  }
+  .table-filter .media .title span.pagado {
+    color: #5cb85c;
+  }
+  .table-filter .media .title span.pendiente {
+    color: #f0ad4e;
+  }
+  .table-filter .media .title span.cancelado {
+    color: #d9534f;
+  }
+  .table-filter .media .summary {
+    font-size: 14px;
+  }
+  #newExpense
+    {
+display:none;
+    }
+</style>
+<script>
+  $('#newEntry').click(function(){
+    $("#newExpense").css("display", "inherit");
+    $("#shadowOnOffs").css("background-color", "black");
+    $("#shadowOnOffs").css("opacity", "0.3");
+  });
+
+  $(function() {
+    $('input[id="expenseDate"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          locale: {
+            format: 'YYYY-MM-DD'
+          }
+        },
+        function(start, end, label) {
+
+        });
+  });
+
+  $(function() {
+    $("#datepicker").datepicker();
+    $('.selectpicker').selectpicker();
+  });
+
+  $(window).scroll(function (event) {
+    var scroll = $(window).scrollLeft();
+    if (scroll > 50 ) {
+      $('#submitBut').css('position','fixed');
+    }
+    else {
+      $('#submitBut').css('position','');
+    }
+    // Do something
+  });
+
+  $(".dropdown-menu li a").click(function(){
+    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+  });
+
+  var sum;
+  $(document).on('change', '.numb', function() {
+    sum = 0;
+    $('.numb').each(function () {
+      sum = sum + Number($(this).val());
+    });
+    $('#totalNew').val(sum);
+  });
+
+  function validate(evt) {
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode( key );
+    var regex = /[0-9]|\./;
+    if( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }
+
+
+
+  $( function() {
+    $.widget( "custom.combobox", {
+      _create: function() {
+        this.wrapper = $( "<span>" )
+            .addClass( "custom-combobox" )
+            .insertAfter( this.element );
+
+        this.element.hide();
+        this._createAutocomplete();
+        this._createShowAllButton();
+      },
+
+      _createAutocomplete: function() {
+        var selected = this.element.children( ":selected" ),
+            value = selected.val() ? selected.text() : "";
+
+        this.input = $( "<input>" )
+            .appendTo( this.wrapper )
+            .val( value )
+            .attr( "title", "" )
+            .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+            .autocomplete({
+              delay: 0,
+              minLength: 0,
+              source: $.proxy( this, "_source" )
+            })
+            .tooltip({
+              classes: {
+                "ui-tooltip": "ui-state-highlight"
+              }
+            });
+
+        this._on( this.input, {
+          autocompleteselect: function( event, ui ) {
+            ui.item.option.selected = true;
+            this._trigger( "select", event, {
+              item: ui.item.option
+            });
+          },
+
+          autocompletechange: "_removeIfInvalid"
+        });
+      },
+
+      _createShowAllButton: function() {
+        var input = this.input,
+            wasOpen = false;
+
+        $( "<a>" )
+            .attr( "tabIndex", -1 )
+            .attr( "title", "Show All Items" )
+            .tooltip()
+            .appendTo( this.wrapper )
+            .button({
+              icons: {
+                primary: "ui-icon-triangle-1-s"
+              },
+              text: false
+            })
+            .removeClass( "ui-corner-all" )
+            .addClass( "custom-combobox-toggle ui-corner-right" )
+            .on( "mousedown", function() {
+              wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+            })
+            .on( "click", function() {
+              input.trigger( "focus" );
+
+              // Close if already visible
+              if ( wasOpen ) {
+                return;
+              }
+
+              // Pass empty string as value to search for, displaying all results
+              input.autocomplete( "search", "" );
+            });
+      },
+
+      _source: function( request, response ) {
+        var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+        response( this.element.children( "option" ).map(function() {
+          var text = $( this ).text();
+          if ( this.value && ( !request.term || matcher.test(text) ) )
+            return {
+              label: text,
+              value: text,
+              option: this
+            };
+        }) );
+      },
+
+      _removeIfInvalid: function( event, ui ) {
+
+        // Selected an item, nothing to do
+        if ( ui.item ) {
+          return;
+        }
+
+        // Search for a match (case-insensitive)
+        var value = this.input.val(),
+            valueLowerCase = value.toLowerCase(),
+            valid = false;
+        this.element.children( "option" ).each(function() {
+          if ( $( this ).text().toLowerCase() === valueLowerCase ) {
+            this.selected = valid = true;
+            return false;
+          }
+        });
+
+        // Found a match, nothing to do
+        if ( valid ) {
+          return;
+        }
+
+        // Remove invalid value
+        this.input
+            .val( "" )
+            .attr( "title", value + " didn't match any item" )
+            .tooltip( "open" );
+        this.element.val( "" );
+        this._delay(function() {
+          this.input.tooltip( "close" ).attr( "title", "" );
+        }, 2500 );
+        this.input.autocomplete( "instance" ).term = "";
+      },
+
+      _destroy: function() {
+        this.wrapper.remove();
+        this.element.show();
+      }
+    });
+
+    $( "#combobox" ).combobox();
+    $( "#toggle" ).on( "click", function() {
+      $( "#combobox" ).toggle();
+    });
+  } );
+</script>
+</head>
+
+<div id="shadowOnOffs">
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Project name</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" data-turbolinks="false">Dashboard</a></li>
+        <li><a href="#" data-turbolinks="false">Settings</a></li>
+        <li><a href="#" data-turbolinks="false">Profile</a></li>
+        <li><a href="#" data-turbolinks="false">Help</a></li>
+      </ul>
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" placeholder="Search...">
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
+      <div style="line-height:75%;"><br></div>
+      <h2 style="text-align: center;">Expenses</h2>
+
+      <ul class="nav nav-sidebar">
+        <li><a href="/" data-turbolinks="false">Timesheet</a></li>
+        <!--<li><a href="#">Reports</a></li>
+        <li><a href="#">Analytics</a></li> -->
+        <% if current_user.admin == true %>
+            <li><a href="/approvals">Approvals</a></li>
+        <% end %>
+        <li class="active"><a href="#">Expenses<span class="sr-only">(current)</span></a></li>
+        <% if current_user.admin == true %>
+            <li><a href="/exports">Exports</a></li>
+        <% end %>
+      </ul>
+      <!-- <ul class="nav nav-sidebar">
+         <li><a href="">Nav item</a></li>
+         <li><a href="">Nav item again</a></li>
+         <li><a href="">One more nav</a></li>
+         <li><a href="">Another nav item</a></li>
+         <li><a href="">More navigation</a></li>
+       </ul>
+       <ul class="nav nav-sidebar">
+         <li><a href="">Nav item again</a></li>
+         <li><a href="">One more nav</a></li>
+         <li><a href="">Another nav item</a></li>
+       </ul> -->
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+
+        <section class="content">
+          <h1>Table Filter</h1>
+          <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="pull-left">
+                    <button type="button" class="btn btn-primary btn-filter" id="newEntry">Create New Entry</button>
+                </div>
+                <div class="pull-right">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-success btn-filter" data-target="pagado">Pagado</button>
+                    <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
+                    <button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
+                    <button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
+                  </div>
+                </div>
+                <div class="table-container">
+                  <table class="table table-filter">
+                    <tbody>
+                    <% @expenses.each do |e| %>
+                    <tr data-status="pagado">
+                      <td>
+                        <div class="ckbox">
+                          <input type="checkbox" id="checkbox1">
+                          <label for="checkbox1"></label>
+                        </div>
+                      </td>
+                      <td>
+                        <a href="javascript:;" class="star">
+                          <i class="glyphicon glyphicon-star"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <div class="media">
+                          <a href="#" class="pull-left">
+                            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                          </a>
+                          <div class="media-body" style="width:600px;">
+                            <span class="media-meta pull-right"><%= e.dateActivity %></span>
+                            <h4 class="title">
+                              <%= e.typeOfExpense %>
+                              <span class="pull-right pagado">(Approved)</span>
+                              <span class="pull-right">Price</span>
+                            </h4>
+                            <p class="summary"><%= e.notes %>></p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+</div>
+<div id="newExpense">
+  <%= render "newexpense" %>
+</div>
+
+
+<!--
+
+
+      <h2 class="sub-header">Timesheet</h2>
+      <div class="table-responsive" id="pageGapDash">
+
+
+          <%= form_for @new_expenses, html: { multipart: true } do |t| %>
+
+                <%= t.text_field :dateActivity, { :id => "expenseDate", :class => "form-control"} %>
+
+                <%= t.text_field :typeOfExpense, {:class => "form-control", :placeholder => "Type" } %>
+
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+                <%= t.number_field :amount, { :class => "form-control numb" , :style => "" , 'placeholder' => '0.00', :step => 0.01 } %>
+              </div>
+
+                <%= t.text_field :payment, {:class => "form-control", :placeholder => "Payment Type" } %>
+
+
+                <%= t.text_field :notes, {:class => "form-control", :placeholder => "Notes"} %>
+
+                <%= t.file_field :image, :class => "form-control-file" %>
+                <%= button_tag "Submit", type: 'submit', class: "btn btn-primary" %>
+          <% end %>
+
+        <br>
+        <div class="table-responsive">
+        <table class="table table-striped">
+          <tr>
+        <% @expenses.each do |e| %>
+                <td>
+            <p><%= e.dateActivity %></p>
+            <p><%= e.typeOfExpense %></p>
+            <p><%= e.amount %></p>
+            <p><%= e.payment %></p>
+            <p><%= e.notes %></p>
+            <%= image_tag e.image %>
+                  </td>
+        <% end %>
+
+          </tr>
+        </table>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+-->
