@@ -41,7 +41,6 @@
   #contactz {
     background: #F9F9F9;
     padding: 25px;
-    margin: 150px 0;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
 
@@ -140,30 +139,165 @@
   :-ms-input-placeholder {
     color: #888;
   }
+
+  .image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+  .image-preview-input input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+  .image-preview-input-title {
+    margin-left:2px;
+  }
+
+  img {
+    display: block;
+    max-width:300px;
+    max-height:600px;
+    width: auto;
+    height: auto;
+  }
 </style>
+<script>
+  $(document).on('click', '#close-preview', function(){
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+          $('.image-preview').popover('show');
+        },
+        function () {
+          $('.image-preview').popover('hide');
+        }
+    );
+  });
 
-<div class="containerz" class="inputwrap" style="">
-  <form id="contactz" action="" method="post">
-    <h3>Colorlib Contact Form</h3>
-    <h4>Contact us for custom quote</h4>
-    <fieldset>
-      <input placeholder="Your name" type="text" tabindex="1" required autofocus>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Your Email Address" type="email" tabindex="2" required>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required>
-    </fieldset>
-    <fieldset>
-      <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
-    </fieldset>
-    <fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-    </fieldset>
+  $(function() {
+    // Create the close button
+    var closebtn = $('<button/>', {
+      type:"button",
+      text: 'x',
+      id: 'close-preview',
+      style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    // Set the popover default content
+    $('.image-preview').popover({
+      trigger:'manual',
+      html:true,
+      title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+      content: "There's no image",
+      placement:'bottom'
+    });
+    // Clear event
+    $('.image-preview-clear').click(function(){
+      $('.image-preview').attr("data-content","").popover('hide');
+      $('.image-preview-filename').val("");
+      $('.image-preview-clear').hide();
+      $('.image-preview-input input:file').val("");
+      $(".image-preview-input-title").text("Browse");
+    });
+    // Create the preview image
+    $(".image-preview-input input:file").change(function (){
+      var img = $('<img/>', {
+        id: 'dynamic',
+        width:250,
+        height:200
+      });
+      var file = this.files[0];
+      var reader = new FileReader();
+      // Set preview image into the popover data-content
+      reader.onload = function (e) {
+        $(".image-preview-input-title").text("Change");
+        $(".image-preview-clear").show();
+        $(".image-preview-filename").val(file.name);
+        img.attr('src', e.target.result);
+        $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+      }
+      reader.readAsDataURL(file);
+    });
+  });
 
-  </form>
-</div>
+</script>
+
+
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content containerz">
+          <div class="modal-header" style="padding: 1px 15px 1px 15px;">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+          </div>
+
+          <div class="modal-body">
+
+            <div class="containerz" class="inputwrap" style="">
+              <form id="contactz" action="" method="post">
+                <h3>Add Expense</h3>
+                <h4>Enter the information below to submit an expense</h4>
+                <%= form_for @new_expenses, html: { multipart: true } do |t| %>
+                <fieldset>
+                  <%= t.text_field :dateActivity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
+                </fieldset>
+                <fieldset>
+                  <%= t.text_field :typeOfExpense, { :placeholder => "Type" } %>
+                </fieldset>
+                <fieldset>
+                  <%= t.text_field :amount, {  :id => "amountInput" , 'placeholder' => 'Amount $0.00', :step => 0.01 } %>
+                </fieldset>
+                <fieldset>
+                  <%= t.text_field :payment, { :placeholder => "Payment Type" } %>
+                </fieldset>
+                <fieldset>
+                  <%= t.text_field :notes, {:class => "form-control", :placeholder => "Description"} %>
+                </fieldset>
+                    <div style="line-height:75%;"><br></div>
+                <fieldset>
+                  <label class="control-label">Upload a Receipt</label>
+                  <div class="input-group image-preview">
+                    <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                    <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Clear
+                    </button>
+                      <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input" >
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">Browse</span>
+                        <%= t.file_field :image %>
+
+                    </div>
+                </span>
+                  </div><!-- /input-group image-preview [TO HERE]-->
+
+                </fieldset>
+                    <br>
+                <fieldset>
+                  <%= button_tag "Submit", type: 'submit', id: "contact-submit" %>
+                </fieldset>
+                <% end %>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>

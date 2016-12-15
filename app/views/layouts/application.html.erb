@@ -10,8 +10,12 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-eval' => false %>
 
   <%= javascript_include_tag "welcome.js" %>
+  <%= javascript_include_tag "canvas-to-blob.min.js" %>
+  <%= javascript_include_tag "fileinput.min.js" %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+
+
 
   <% if content_for?(:head) %>
       <%= yield(:head) %>
@@ -37,7 +41,7 @@
           <% if user_signed_in? %>
             <% if current_user.admin == true %>
 
-                <a style="padding: 15px 15px 15px 35px;" class="navbar-brand" >Administrator Mode</a>
+                <a style="padding: 15px 15px 15px 35px;" class="navbar-brand" >Administrator</a>
             <% end %>
           <% end %>
         </div>

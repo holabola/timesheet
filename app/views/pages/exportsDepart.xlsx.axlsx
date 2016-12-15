@@ -9,9 +9,9 @@ wb.styles do |style|
 
   @users.each do |user|
     if user.department == current_user.department
-    wb.add_worksheet(name: user.firstName) do |sheet|
-      user.pages.each do |page|
-        sheet.add_row ["Date Created","Credit Union", "Activity", "Task", "Billing Options", "Billing Options SCR", "Billing Options FTR", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Total"], style: [ title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2 ]
+    wb.add_worksheet(name: user.firstName) do |sheet|\
+    sheet.add_row ["Date Created","Credit Union", "Activity", "Task", "Billing Options", "Billing Options SCR", "Billing Options FTR", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Total"], style: [ title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2 ]
+    user.pages.each do |page|
         sheet.add_row [page.dateOfTime, page.creditUnion, page.activity, page.task, page.billingOptions, page.billingOptionsSCR, page.billingOptionsFTR, page.sun, page.mon, page.tue, page.wed, page.thu, page.fri, page.sat, page.sun], style: [ date_cell, nil, nil, nil, nil, nil, nil, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell]
         sheet.column_widths 13, 19, 19, 14, 14, 19, 19, 9,9,9,12,9,9,9,9
       end

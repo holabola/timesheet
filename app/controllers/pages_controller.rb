@@ -70,7 +70,7 @@ class PagesController < ApplicationController
   def create
     #Timesheet
     current_uri = request.env['PATH_INFO']
-    if current_uri == "/"
+    if current_uri == "/pages"
     @new_pages = Page.new(params_final)
     if @new_pages.save!
       flash[:success] = "Timesheet entry created!"
@@ -82,22 +82,29 @@ class PagesController < ApplicationController
     end
 
     #Expense
+    if current_uri == "/expenses"
     @new_expenses = Expense.new(params_final_expense)
     if @new_expenses.save!
-      flash[:success] = "Expenses entry created!"
+      flash[:success] = "Expense entry created!"
       redirect_to expenses_url
     else
-      flash[:success] = "Expenses entry failed :("
+      flash[:success] = "Expense entry failed :("
       redirect_to expenses_url
     end
+      end
   end
 
   def destroy
-    @page = Page.find params[:id]
-    @page.destroy
+    current_uri = request.env['PATH_INFO']
 
-    @expense = Expense.find params[:id]
-    @expense.destroy
+      @page = Page.find params[:id]
+      @page.destroy
+
+
+    if current_uri == "/expenses"
+      @expense = Expense.find params[:id]
+      @expense.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to  }

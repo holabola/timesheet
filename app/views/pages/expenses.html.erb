@@ -165,17 +165,22 @@
   }
   #newExpense
     {
-display:none;
+
     }
 </style>
 <script>
-  $('#newEntry').click(function(){
-    $("#newExpense").css("display", "inherit");
-    $("#shadowOnOffs").css("background-color", "black");
-    $("#shadowOnOffs").css("opacity", "0.3");
-  });
+
 
   $(function() {
+    $('#amountInput').on('keypress', function (event) {
+      var regex = new RegExp("^[a-zA-Z0-9.]+$");
+      var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+      if (!regex.test(key)) {
+        event.preventDefault();
+        return false;
+      }
+    });
+
     $('input[id="expenseDate"]').daterangepicker({
           singleDatePicker: true,
           showDropdowns: true,
@@ -370,7 +375,7 @@ display:none;
 </script>
 </head>
 
-<div id="shadowOnOffs">
+<div id="shadowOnOffs" style="background-color:#eaf1fc;">
 
 
 
@@ -434,23 +439,23 @@ display:none;
     </div>
 
 
-    <div class="container">
+
+    <div class="container" style="margin:0px 0px 0px 80px;">
       <div class="row">
 
         <section class="content">
-          <h1>Table Filter</h1>
+          <h1>All Expenses</h1>
           <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+            <div class="panel panel-default"  id="goBlack">
               <div class="panel-body">
                 <div class="pull-left">
-                    <button type="button" class="btn btn-primary btn-filter" id="newEntry">Create New Entry</button>
+                    <button type="button" class="btn btn-primary btn-filter" id="newEntry" data-toggle="modal" data-target="#myModal" >Create New Entry</button>
                 </div>
                 <div class="pull-right">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-success btn-filter" data-target="pagado">Pagado</button>
-                    <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
-                    <button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
-                    <button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
+                    <button type="button" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
+                    <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
+                    <button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
                   </div>
                 </div>
                 <div class="table-container">
@@ -460,8 +465,7 @@ display:none;
                     <tr data-status="pagado">
                       <td>
                         <div class="ckbox">
-                          <input type="checkbox" id="checkbox1">
-                          <label for="checkbox1"></label>
+                          <%= link_to '', expenses_path(e), method: :delete, data: { confirm: 'Do you want to delete this entry?' }, :remote => true, :style => "font-size:6px;", :class => 'delete_page btn btn-danger glyphicon glyphicon-remove pull-right' %>
                         </div>
                       </td>
                       <td>
@@ -470,8 +474,9 @@ display:none;
                         </a>
                       </td>
                       <td>
-                        <div class="media">
-                          <a href="#" class="pull-left">
+
+                        <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
+                          <a href="#" class="pull-left" data-toggle="modal" data-target="#myModal">
                             <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
                           </a>
                           <div class="media-body" style="width:600px;">
@@ -479,11 +484,12 @@ display:none;
                             <h4 class="title">
                               <%= e.typeOfExpense %>
                               <span class="pull-right pagado">(Approved)</span>
-                              <span class="pull-right">Price</span>
+                              <span class="pull-right">$<%= e.amount %></span>
                             </h4>
-                            <p class="summary"><%= e.notes %>></p>
+                            <p class="summary"><%= e.notes %></p>
                           </div>
                         </div>
+
                       </td>
                     </tr>
                     <% end %>
@@ -502,7 +508,36 @@ display:none;
 <div id="newExpense">
   <%= render "newexpense" %>
 </div>
+  <% @expenses.each do |e| %>
+      <div class="modal fade" id="myModal-<%= e.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content containerz">
+            <div class="modal-header" style="padding: 1px 15px 1px 15px;">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
 
+            </div>
+
+            <div class="modal-body">
+
+              <div class="containerz" class="inputwrap" style="">
+                <form id="contactz" action="" method="post" style="padding: 2px 25px 25px 25px;">
+                  <h3 style="font-size:20px;text-align:center;">Expense from <%= e.dateActivity %></h3>
+                  <div style="line-height:75%;"><br></div>
+                  <p>Type: <%= e.typeOfExpense %></p>
+                  <p>Amount: $<%= e.amount %></p>
+                  <p>Payment Type: <%= e.payment %></p>
+                  <p>Description: <%= e.notes %></p>
+                  <%= image_tag e.image, :style => "max-width:300px;width:auto;"%>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <% end %>
 
 <!--
 

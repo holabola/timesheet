@@ -15,7 +15,21 @@ $( document ).ready(function() {
     RegisterMes = "Emailcan't";
     lazyCheckDark = 1;
 
-    /* Dashboard */
+    /* Expense */
+
+    function toggleAutoComplete(){
+        $("#input-4").fileinput({
+            showRemove: false,
+            showUploadedThumbs: false,
+            showUpload: true,
+            allowedFileTypes: ['image'],
+            maxFileCount: 1,
+            showCaption: false,
+        });
+    }
+    $(document).ready(function(){ toggleAutoComplete() });
+    document.addEventListener('page:load', function(){ toggleAutoComplete() });
+
 
 
     /* Login */
@@ -39,6 +53,10 @@ $( document ).ready(function() {
         $(forgot).css("display", "none");
         $(register).css("display", "none");
     });
+
+
+
+
 
     if (lazyCheckDark === 2) {
         $('body').click(function(evt){
