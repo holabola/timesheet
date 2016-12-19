@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   end
 
   def expenses
-    @expenses = current_user.expenses
+    @expenses = current_user.expenses.order('dateActivity DESC')
     @new_expenses = Expense.new
 
   end
@@ -83,34 +83,43 @@ class PagesController < ApplicationController
 
     #Expense
     if current_uri == "/expenses"
-    @new_expenses = Expense.new(params_final_expense)
-    if @new_expenses.save!
-      flash[:success] = "Expense entry created!"
-      redirect_to expenses_url
-    else
-      flash[:success] = "Expense entry failed :("
-      redirect_to expenses_url
-    end
+      @new_expenses = Expense.new(params_final_expense)
+      if @new_expenses.save
+        flash[:success] = "Expense entry created!"
+
+        redirect_to expenses_url
+      else
+        flash[:success] = "Expense entry failed :("
+        redirect_to expenses_url
       end
+    end
   end
 
   def destroy
-    current_uri = request.env['PATH_INFO']
+    current_type = params[:type]
 
+    if current_type == "timesheet"
       @page = Page.find params[:id]
       @page.destroy
 
+      respond_to do |format|
+        format.html { redirect_to  }
+        format.json { head :no_content }
+        format.js   { render :layout => false }
+      end
+    end
 
-    if current_uri == "/expenses"
+    if current_type == "expense"
       @expense = Expense.find params[:id]
       @expense.destroy
+
+      respond_to do |format|
+        format.html { redirect_to  }
+        format.json { head :no_content }
+        format.js   { render :template => 'destroyExpense.js.erb', :layout => false }
+      end
     end
 
-    respond_to do |format|
-      format.html { redirect_to  }
-      format.json { head :no_content }
-      format.js   { render :layout => false }
-    end
   end
 
   #approvals

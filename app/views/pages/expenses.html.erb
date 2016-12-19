@@ -1,5 +1,7 @@
 <style>
-
+  .ui-datepicker-calendar {
+    display: none;
+  }
   .table-responsive {
 
   }
@@ -171,31 +173,40 @@
 <script>
 
 
+
+
   $(function() {
-    $('#amountInput').on('keypress', function (event) {
-      var regex = new RegExp("^[a-zA-Z0-9.]+$");
-      var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-      if (!regex.test(key)) {
-        event.preventDefault();
-        return false;
+    $('.selectpicker').selectpicker();
+    $("#datepickermonth").datepicker( {
+      changeMonth: true,
+      changeYear: true,
+      showButtonPanel: true,
+      dateFormat: 'MM yy',
+      onClose: function(dateText, inst) {
+        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+        $(this).datepicker('setDate', new Date(year, month, 1));
+        $(".dateHolder").each(function() {
+          var dateColumn = moment($(this).clone().children().remove().end().text());
+          var from = new Date(year, month, 1);
+          var to = new Date(year, month, 31);
+          var rowNum = "#row_" + $(this).find("p").text();
+
+          if (dateColumn >= from && dateColumn <= to) {
+            $(rowNum).css("display","");
+          } else {
+            $(rowNum).css("display","none");
+          }
+        });
       }
     });
-
     $('input[id="expenseDate"]').daterangepicker({
-          singleDatePicker: true,
-          showDropdowns: true,
-          locale: {
-            format: 'YYYY-MM-DD'
-          }
-        },
-        function(start, end, label) {
-
-        });
-  });
-
-  $(function() {
-    $("#datepicker").datepicker();
-    $('.selectpicker').selectpicker();
+      singleDatePicker: true,
+      showDropdowns: true,
+      locale: {
+        format: 'YYYY-MM-DD'
+      },
+    });
   });
 
   $(window).scroll(function (event) {
@@ -452,20 +463,28 @@
                     <button type="button" class="btn btn-primary btn-filter" id="newEntry" data-toggle="modal" data-target="#myModal" >Create New Entry</button>
                 </div>
                 <div class="pull-right">
-                  <div class="btn-group">
+                  <div class="btn-group" style="margin: 30px 0px 10px 0px;">
                     <button type="button" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
                     <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
                     <button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
                   </div>
+<br>
+                  <div class="pull-right" >
+                    <label for="startDate">Date Range:</label>
+                    <input name="startDate" id="datepickermonth" />
+                  </div>
                 </div>
+
+                  <div style="line-height:75%;"><br></div>
                 <div class="table-container">
                   <table class="table table-filter">
                     <tbody>
                     <% @expenses.each do |e| %>
-                    <tr data-status="pagado">
+                    <tr id="row_<%= e.id %>" data-status="pagado">
                       <td>
                         <div class="ckbox">
-                          <%= link_to '', expenses_path(e), method: :delete, data: { confirm: 'Do you want to delete this entry?' }, :remote => true, :style => "font-size:6px;", :class => 'delete_page btn btn-danger glyphicon glyphicon-remove pull-right' %>
+                          <%= link_to '', page_path(e, :type => "expense"), method: :delete, data: { confirm: 'Do you want to delete this entry?' }, :remote => true, :style => "font-size:6px;", :class => 'delete_page btn btn-danger glyphicon glyphicon-remove pull-right' %>
+
                         </div>
                       </td>
                       <td>
@@ -476,11 +495,15 @@
                       <td>
 
                         <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
-                          <a href="#" class="pull-left" data-toggle="modal" data-target="#myModal">
-                            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                          <a href="#" class="pull-left" >
+                            <% if e.filename != nil %>
+                            <img src="http://i.imgur.com/VjrGsZ7.png" class="media-photo">
+                                <% else %>
+                                <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
+                                <% end %>
                           </a>
                           <div class="media-body" style="width:600px;">
-                            <span class="media-meta pull-right"><%= e.dateActivity %></span>
+                            <span class="media-meta pull-right dateHolder"><%= e.dateActivity %><p style="display:none"><%= e.id%></p></span>
                             <h4 class="title">
                               <%= e.typeOfExpense %>
                               <span class="pull-right pagado">(Approved)</span>
@@ -529,7 +552,7 @@
                   <p>Amount: $<%= e.amount %></p>
                   <p>Payment Type: <%= e.payment %></p>
                   <p>Description: <%= e.notes %></p>
-                  <%= image_tag e.image, :style => "max-width:300px;width:auto;"%>
+                  <%= image_tag e.image%>
                 </form>
               </div>
             </div>

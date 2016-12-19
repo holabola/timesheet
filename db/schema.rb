@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213180211) do
+ActiveRecord::Schema.define(version: 20161219212151) do
 
   create_table "expenses", force: true do |t|
     t.string   "creditUnion"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20161213180211) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+    t.string   "approval"
   end
 
   create_table "pages", force: true do |t|
