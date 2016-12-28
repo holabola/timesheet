@@ -19,6 +19,11 @@ class Page < ActiveRecord::Base
     self.thu = '0' if self.thu.nil?
     self.fri = '0' if self.fri.nil?
     self.sat = '0' if self.sat.nil?
+
+  end
+
+  def init_approval
+    self.approval = "Approved"
   end
 
 

@@ -122,16 +122,39 @@ class PagesController < ApplicationController
 
   end
 
+  def update
+    @page = Page.find(params[:id])
+    @approvalStatus = params[:subaction]
+
+    respond_to do |format|
+      if @page.update_attributes(:approval => @approvalStatus)
+        # If update succeeds, redirect to the list action
+        format.js   { }
+        format.json { render :show, status: :created, location: @comment }
+
+
+      else
+        # If save fails, redisplay the form so user can fix problems
+        format.js   { }
+        flash[:notice] = "Approval failed."
+      end
+     end
+  end
+
   #approvals
 
   def approvals
-    @pages = Page.where(:department => current_user.department)
+    @pages = Page.where(:department => current_user.department).order('dateOfTime ASC')
     @new_pages = Page.new
   end
 
   private
   def params_final
     new_pages_params.merge(:user => current_user)
+  end
+
+  def update_params
+    params.require(:page).permit(:approval)
   end
 
   def new_pages_params

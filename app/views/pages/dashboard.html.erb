@@ -73,10 +73,10 @@
     $('#Date6').text("Fri " + sixthday.getDate() );
     $('#Date7').text("Sat " + lastday.getDate() );
 
-    $('#datePicked').val(curr);
+    $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
     $('#tableElements').children('tr').each(function () {
-      if ($(this).children('.dateBlob').text() == $.datepicker.formatDate("yy-mm-dd", curr)) {
+      if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
         $(this).css("display","");
         $(this).children('td').each(function () {
           var str = $(this).text();
@@ -92,8 +92,7 @@
       }
     });
 
-    $('#timerange').data('daterangepicker').setStartDate(firstday);
-    $('#timerange').data('daterangepicker').setEndDate(lastday);
+
 
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
@@ -147,11 +146,12 @@
     $('#Date6').text("Fri " + sixthday.getDate() );
     $('#Date7').text("Sat " + lastday.getDate() );
 
-    $('#datePicked').val(curr);
+    $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
     //Limits text to 15 characters and hides entries
     $('#tableElements').children('tr').each(function () {
-      if ($(this).children('.dateBlob').text() == $.datepicker.formatDate("yy-mm-dd", curr)) {
+      if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
+
         $(this).css("display","");
         $(this).children('td').each(function () {
           var str = $(this).text();
@@ -166,8 +166,7 @@
       }
 
     });
-    $('#timerange').data('daterangepicker').setStartDate(firstday);
-    $('#timerange').data('daterangepicker').setEndDate(lastday);
+
 
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219212151) do
+ActiveRecord::Schema.define(version: 20161228184151) do
 
   create_table "expenses", force: true do |t|
     t.string   "creditUnion"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20161219212151) do
     t.integer  "total"
     t.date     "dateOfTime"
     t.string   "department"
+    t.string   "approval"
   end
 
   add_index "pages", ["user_id", "created_at"], name: "index_pages_on_user_id_and_created_at"
