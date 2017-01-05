@@ -21,14 +21,21 @@
     margin: 0;
     padding: 5px 10px;
   }
+  .event a {
+    background-color: #EC971F !important;
+    background-image :none !important;
+    color: #ffffff !important;
+  }
 </style>
 <script>
 
   $(function() {
-    $("#datepicker").datepicker();
+
     $('input[id="timerange"]').daterangepicker();
     $('.selectpicker').selectpicker();
   });
+
+
 
   $( "body" ).click(function( event ) {
 
@@ -38,7 +45,7 @@
       $(event.target).className = '';
       $(event.target).addClass("btn btn-success glyphicon glyphicon-ok");
       $(event.target).parent().find("#failBut").addClass("btn btn-default glyphicon glyphicon-remove");
-    
+
     }
     else if (event.target.id == "failBut") {
       var otherchild = $(event.target).parent().find("#successBut");
@@ -50,21 +57,35 @@
 
   });
 
+  $(document).on('change', '#UserSearch', function() {
+    var selectedOption = $('#UserSearch').val().trim();
+    if (selectedOption != "") {
+      $('#tableElements').children('tr').each(function () {
+        if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == selectedOption ) {
+          $(this).css("display","");
+        } else {
+          $(this).css("display","none");
+        }
+      });
+    }
+  });
+
   $(document).on('change', "#timerange", function(){
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
     var thing = $('#timerange').val().indexOf("-");
     var firstday = new Date($("#timerange").val().substring(0,thing-1));
-    var lastday= new Date($("#timerange").val().substring(thing,$("#timerange").val().length));
+    var lastday = new Date($("#timerange").val().substring(thing,$("#timerange").val().length));
 
     $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
 
 
   });
-
+  var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
   $(document).on('change', '#datepicker', function() {
-    var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
+
+
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
@@ -97,20 +118,31 @@
     $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
     $('#tableElements').children('tr').each(function () {
-      if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
-        $(this).css("display","");
-        $(this).children('td').each(function () {
-          var str = $(this).text();
-          if(str.length > 10) {
-            str = str.substring(0, 15) + "...";
-            $(this).text(str);
-          }
-        });
+        var selectedOption = $('#UserSearch').val().trim();
+        if (selectedOption != "") {
+          $('#tableElements').children('tr').each(function () {
+            if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == selectedOption ) {
+              $(this).css("display","");
+            } else {
+              $(this).css("display","none");
+            }
+          });
+        } else {
+          if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
+            $(this).css("display", "");
+            $(this).children('td').each(function () {
+              var str = $(this).text();
+              if (str.length > 10) {
+                str = str.substring(0, 15) + "...";
+                $(this).text(str);
+              }
+            });
 
-      } else {
-        $(this).css("display","none");
-        // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
-      }
+          } else {
+            $(this).css("display", "none");
+            // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
+          }
+        }
     });
 
     $('#timerange').data('daterangepicker').setStartDate(firstday);
@@ -124,10 +156,31 @@
   });
 
   $( document ).ready(function() {
-    var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
+
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
+    var nameArray = [];
+
+    //Init Datepicker
+    var eventDates = {};
+    $('.timesheetEntry').each(function() {
+      var approval = $(this).find('#approval').text();
+      var datez = $(this).find('#dateOfTime').text();
+      if (approval == "Pending" || approval == "") {
+        eventDates[new Date(moment(datez))] = new Date(moment(datez));
+      }
+    });
+    $("#datepicker").datepicker( {
+      beforeShowDay: function( date ) {
+        var highlight = eventDates[date];
+        if( highlight ) {
+          return [true, "event", 'Tooltip text'];
+        } else {
+          return [true, '', ''];
+        }
+      }
+    });
 
 
     if (sessionStorage.refreshCount == undefined) {
@@ -170,6 +223,9 @@
     $('#Date6').text("Fri " + sixthday.getDate() );
     $('#Date7').text("Sat " + lastday.getDate() );
 
+    //extra name initialize
+    $('#UserSearch').append('<option></option>');
+    //
 
     $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
@@ -187,6 +243,16 @@
       } else {
         $(this).css("display","none");
         // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
+      }
+
+      //find names
+      var name = $(this).find('#names').text();
+      if (jQuery.inArray(name,nameArray) == -1 ) {
+        nameArray.push(name);
+        $('#UserSearch').append('<option data-icon="glyphicon-user">' + name + '</option>');
+        $('.selectpicker').selectpicker('refresh');
+      } else {
+
       }
     });
     $('#timerange').data('daterangepicker').setStartDate(firstday);
@@ -213,6 +279,9 @@
         $(this).find('#failBut').addClass("btn btn-warning glyphicon glyphicon-remove");
       }
     });
+
+
+
   });
 
   $(window).scroll(function (event) {
@@ -437,8 +506,9 @@
           </br>
           <ul class="nav nav-sidebar">
             <li><a href="/" data-turbolinks="false">Timesheet</a></li>
-            <li class="active"><a href="#">Approvals<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#">Timesheet Approvals<span class="sr-only">(current)</span></a></li>
             <li><a href="/expenses">Expenses</a></li>
+            <li><a href="/expensesapprovals">Expenses Approvals</a></li>
             <li><a href="/exports">Exports</a></li>
           </ul>
           <!-- <ul class="nav nav-sidebar">
@@ -459,8 +529,8 @@
           <div style="position: relative;height:80px;left:310px;top:10px;">
             <h2 class="page-header" style="" id="dateTitle"></h2>
 
-            <p style="left:310px;">Hit the checkmark to save a sheet. Hit the X button to delete a sheet.</p>
-
+            <p style="left:310px;">Sheets yet to be approved appear yellow. Just hit the check or x to approve or unapprove.</p>
+            table
 
           </div>
 
@@ -500,12 +570,13 @@
 
 <tbody id="tableElements">
 <% @pages.each do |p| %>
-    <tr id="row_<%= p.id %>">
+    <tr id="row_<%= p.id %>" class="timesheetEntry">
       <td><div class="btn-group approvalButtons" role="group" aria-label="..."><%= form_for(p, remote: true, :url => {:action => 'update', :id => p.id}) do |f| %><%= f.text_field :approval, :value => p.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "", id:"successBut", name: "subaction", value: "Approved" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "Unapproved" %></div>
         <% end %>
       </td>
-      <td><%= p.dateOfTime %></td>
-      <td><%= p.user.firstName %> <%= p.user.lastName %></td>
+      <td id="approval" style="display:none;"><%= p.approval %></td>
+      <td id="dateOfTime"><%= p.dateOfTime %></td>
+      <td id="names"><%= p.user.firstName %> <%= p.user.lastName %></td>
       <td><%= p.creditUnion %> </td>
       <td><%= p.activity %> </td>
       <td><%= p.task %> </td>

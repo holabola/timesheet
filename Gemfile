@@ -55,7 +55,4 @@ gem 'momentjs-rails'
 gem 'data-confirm-modal'
 gem 'axlsx_rails'
 gem 'select2-rails'
-gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
-
-gem 'pry-rails'
-gem 'pry-byebug'
+gem 'carrierwave'

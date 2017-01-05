@@ -172,6 +172,17 @@
   }
 </style>
 <script>
+  function isNumber(evt) {
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode(key);
+    if (key.length == 0) return;
+    var regex = /^[0-9.,\b]+$/;
+    if (!regex.test(key)) {
+      theEvent.returnValue = false;
+      if (theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }
 </script>
 
 
@@ -194,30 +205,24 @@
                 <h3>Add Expense</h3>
                 <h4>Enter the information below to submit an expense</h4>
                 <%= form_for @new_expenses, html: { multipart: true } do |t| %>
-                <fieldset>
+
                   <%= t.text_field :dateActivity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
-                </fieldset>
-                <fieldset>
+
                   <%= t.text_field :typeOfExpense, { :placeholder => "Type" } %>
-                </fieldset>
-                <fieldset>
-                  <%= t.text_field :amount, {  :id => "amountInput" , 'placeholder' => 'Amount $0.00', :step => 0.01 } %>
-                </fieldset>
-                <fieldset>
+
+                  <%= t.text_field :amount, {  :onkeypress => 'return isNumber()', :id => "amountInput" , 'placeholder' => 'Amount $0.00', :step => 0.01 } %>
+
                   <%= t.text_field :payment, { :placeholder => "Payment Type" } %>
-                </fieldset>
-                <fieldset>
+
+
                   <%= t.text_field :notes, {:class => "form-control", :placeholder => "Description"} %>
-                </fieldset>
-                    <div style="line-height:75%;"><br></div>
-                <fieldset>
 
-                        <%= t.file_field :image %>
+                  <div style="line-height:75%;"><br></div>
 
+                  <%= t.file_field :image %>
 
-                </fieldset>
                     <br>
-                <fieldset>
+
                   <%= button_tag "Submit", type: 'submit', id: "contact-submit" %>
                 </fieldset>
                 <% end %>

@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   get '/exports' => 'pages#exports'
   get '/approvals' => 'pages#approvals'
   get '/expenses' => 'pages#expenses'
+  get '/expensesapprovals' => 'pages#expensesapprovals'
   post "/expenses" => "pages#create", :as => :create_page
   get '/exportsall' => 'pages#exportsall'
-
   get '/exportsDepart' => 'pages#exportsDepart'
   #get '/settings' => 'devise/registrations#edit'
 
