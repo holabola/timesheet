@@ -447,6 +447,11 @@
     }
   }
 
+  function calculateMilage() {
+    var amount = $("#milage").val();
+    $("#amountInput").val((amount * 0.535).toFixed(2));
+  }
+
   $(document).ready(function() {
     $(".approvalclass").each(function() {
       var approval = $(this).clone().children().remove().end().text();
@@ -786,7 +791,18 @@ var approvalStatus;
 
                   <%= t.text_field :dateActivity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
 
-                  <%= t.text_field :typeOfExpense, { :placeholder => "Type" } %>
+                  <%= t.select :typeOfExpense, options_for_select([
+                                                             "Car Travel",
+                                                             "Air Travel Baggage & Fuel",
+                                                             "Taxi Parking, Tolls",
+                                                              "Car Rental",
+                                                             "Meals",
+                                                                  "Lodging",
+                                                                  "Entertainment",
+                                                                  "Other"]),
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '318px', 'placeholder' => 'Type of Expense', :id => "selectType" } %>
+
+                  <input type="text" id="milage" placeholder="Miles Driven @ $0.535" onkeypress="return isNumber()" onkeyup="calculateMilage()">
 
                   <%= t.text_field :amount, {  :onkeypress => 'return isNumber()', :id => "amountInput" , 'placeholder' => 'Amount $0.00', :step => 0.01 } %>
 
