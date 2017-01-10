@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post "/expenses" => "pages#create", :as => :create_page
   get '/exportsall' => 'pages#exportsall'
   get '/exportsDepart' => 'pages#exportsDepart'
+  get '/exportsExpenses' => 'pages#exportsExpenses'
   #get '/settings' => 'devise/registrations#edit'
 
 

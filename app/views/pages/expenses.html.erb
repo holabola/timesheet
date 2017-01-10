@@ -1,4 +1,209 @@
 <style>
+
+  /* ------------------------------------------
+          :: New Expense ::
+     ------------------------------------------ */
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+  .container{
+    margin-top:20px;
+  }
+  .image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+  .image-preview-input input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+  .image-preview-input-title {
+    margin-left:2px;
+  }
+  * .inputwrap {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body .inputwrap {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 30px;
+    color: #777;
+    background: #4CAF50;
+  }
+
+  .containerz {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  #contact input[type="text"],
+  #contact input[type="email"],
+  #contact input[type="tel"],
+  #contact input[type="url"],
+  #contact textarea,
+  #contact button[type="submit"] {
+    font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+  }
+
+  #contactz {
+    background: #F9F9F9;
+    padding: 25px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  #contactz h3 {
+    display: block;
+    font-size: 30px;
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+
+  #contactz h4 {
+    margin: 5px 0 15px;
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  fieldset .inputwrap  {
+    border: medium none !important;
+    margin: 0 0 10px;
+    min-width: 100%;
+    padding: 0;
+    width: 100%;
+  }
+
+  #contactz input[type="text"],
+  #contactz input[type="email"],
+  #contactz input[type="tel"],
+  #contactz input[type="url"],
+  #contactz textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    background: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
+  }
+
+  #contactz input[type="text"]:hover,
+  #contactz input[type="email"]:hover,
+  #contactz input[type="tel"]:hover,
+  #contactz input[type="url"]:hover,
+  #contactz textarea:hover {
+    -webkit-transition: border-color 0.3s ease-in-out;
+    -moz-transition: border-color 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
+    border: 1px solid #aaa;
+  }
+
+  #contactz textarea {
+    height: 100px;
+    max-width: 100%;
+    resize: none;
+  }
+
+  #contactz button[type="submit"] {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    background: #4CAF50;
+    color: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  #contactz button[type="submit"]:hover {
+    background: #43A047;
+    -webkit-transition: background 0.3s ease-in-out;
+    -moz-transition: background 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  #contactz button[type="submit"]:active {
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+
+  #contactz input:focus,
+  #contactz textarea:focus {
+    outline: 0;
+    border: 1px solid #aaa;
+  }
+
+  ::-webkit-input-placeholder {
+    color: #888;
+  }
+
+  :-moz-placeholder {
+    color: #888;
+  }
+
+  ::-moz-placeholder {
+    color: #888;
+  }
+
+  :-ms-input-placeholder {
+    color: #888;
+  }
+
+  .image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+  .image-preview-input input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+  .image-preview-input-title {
+    margin-left:2px;
+  }
+
+  img {
+    display: block;
+    max-width:300px;
+    max-height:600px;
+    width: auto;
+    height: auto;
+  }
+
+  /* -------------------------------------------
+          :: Custom ::
+     ------------------------------------------- */
+
   .ui-datepicker-calendar {
     display: none;
   }
@@ -171,6 +376,76 @@
     }
 </style>
 <script>
+  $(document).on('click', '#close-preview', function(){
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+          $('.image-preview').popover('show');
+        },
+        function () {
+          $('.image-preview').popover('hide');
+        }
+    );
+  });
+
+  $(function() {
+    // Create the close button
+    var closebtn = $('<button/>', {
+      type:"button",
+      text: 'x',
+      id: 'close-preview',
+      style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    // Set the popover default content
+    $('.image-preview').popover({
+      trigger:'manual',
+      html:true,
+      title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+      content: "There's no image",
+      placement:'bottom'
+    });
+    // Clear event
+    $('.image-preview-clear').click(function(){
+      $('.image-preview').attr("data-content","").popover('hide');
+      $('.image-preview-filename').val("");
+      $('.image-preview-clear').hide();
+      $('.image-preview-input input:file').val("");
+      $(".image-preview-input-title").text("Browse");
+    });
+    // Create the preview image
+    $(".image-preview-input input:file").change(function (){
+      var img = $('<img/>', {
+        id: 'dynamic',
+        width:250,
+        height:200
+      });
+      var file = this.files[0];
+      var reader = new FileReader();
+      // Set preview image into the popover data-content
+      reader.onload = function (e) {
+        $(".image-preview-input-title").text("Change");
+        $(".image-preview-clear").show();
+        $(".image-preview-filename").val(file.name);
+        img.attr('src', e.target.result);
+        $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+      }
+      reader.readAsDataURL(file);
+    });
+  });
+
+  function isNumber(evt) {
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode(key);
+    if (key.length == 0) return;
+    var regex = /^[0-9.,\b]+$/;
+    if (!regex.test(key)) {
+      theEvent.returnValue = false;
+      if (theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }
 
   $(document).ready(function() {
     $(".approvalclass").each(function() {
@@ -411,6 +686,7 @@ var approvalStatus;
 
         <section class="content">
           <h1>All Expenses</h1>
+
           <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default"  id="goBlack">
               <div class="panel-body">
@@ -418,7 +694,7 @@ var approvalStatus;
                     <button type="button" class="btn btn-primary btn-filter" id="newEntry" data-toggle="modal" data-target="#myModal" >Create New Entry</button>
                 </div>
                 <div class="pull-right">
-                  <div class="btn-group" style="margin: 30px 0px 10px 0px;">
+                  <div class="btn-group pull-right" style="margin: 30px 0px 10px 0px;">
                     <button type="button" id="Approved" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
                     <button type="button" id="Pending" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
                     <button type="button" id="Unapproved" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
@@ -457,10 +733,10 @@ var approvalStatus;
 
                         <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
                           <a href="#" class="pull-left" >
-                            <% if e.filename != nil %>
-                            <img src="http://i.imgur.com/VjrGsZ7.png" class="media-photo">
+                            <% if e.image.blank? %>
+                            <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
                                 <% else %>
-                                <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
+                                <img src="http://i.imgur.com/VjrGsZ7.png" class="media-photo">
                                 <% end %>
                           </a>
                           <div class="media-body" style="width:600px;">
@@ -490,7 +766,67 @@ var approvalStatus;
     </div>
 </div>
 <div id="newExpense">
-  <%= render "newexpense" %>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content containerz">
+        <div class="modal-header" style="padding: 1px 15px 1px 15px;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+
+        <div class="modal-body">
+
+          <div class="containerz" class="inputwrap" style="">
+            <div id="contactz" >
+              <h3>Add Expense</h3>
+              <h4>Enter the information below to submit an expense</h4>
+              <%= form_for @new_expenses, html: { multipart: true } do |t| %>
+
+                  <%= t.text_field :dateActivity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
+
+                  <%= t.text_field :typeOfExpense, { :placeholder => "Type" } %>
+
+                  <%= t.text_field :amount, {  :onkeypress => 'return isNumber()', :id => "amountInput" , 'placeholder' => 'Amount $0.00', :step => 0.01 } %>
+
+                  <%= t.text_field :payment, { :placeholder => "Payment Type" } %>
+
+
+                  <%= t.text_field :notes, {:class => "form-control", :placeholder => "Description"} %>
+
+                  <div style="line-height:75%;"><br></div>
+
+                  <div class="input-group image-preview" style="width:320px;">
+                    <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                    <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Clear
+                    </button>
+                      <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">Browse</span>
+                      <%= t.file_field :image, class: "image-preview-input" %>
+
+                    </div>
+                </span>
+                  </div>
+
+                  <br>
+
+                  <%= button_tag "Submit", type: 'submit', id: "contact-submit" %>
+
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
   <% @expenses.each do |e| %>
       <div class="modal fade" id="myModal-<%= e.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -522,55 +858,3 @@ var approvalStatus;
         </div>
       </div>
       <% end %>
-
-<!--
-
-
-      <h2 class="sub-header">Timesheet</h2>
-      <div class="table-responsive" id="pageGapDash">
-
-
-          <%= form_for @new_expenses, html: { multipart: true } do |t| %>
-
-                <%= t.text_field :dateActivity, { :id => "expenseDate", :class => "form-control"} %>
-
-                <%= t.text_field :typeOfExpense, {:class => "form-control", :placeholder => "Type" } %>
-
-            <div class="input-group">
-              <span class="input-group-addon">$</span>
-                <%= t.number_field :amount, { :class => "form-control numb" , :style => "" , 'placeholder' => '0.00', :step => 0.01 } %>
-              </div>
-
-                <%= t.text_field :payment, {:class => "form-control", :placeholder => "Payment Type" } %>
-
-
-                <%= t.text_field :notes, {:class => "form-control", :placeholder => "Notes"} %>
-
-                <%= t.file_field :image, :class => "form-control-file" %>
-                <%= button_tag "Submit", type: 'submit', class: "btn btn-primary" %>
-          <% end %>
-
-        <br>
-        <div class="table-responsive">
-        <table class="table table-striped">
-          <tr>
-        <% @expenses.each do |e| %>
-                <td>
-            <p><%= e.dateActivity %></p>
-            <p><%= e.typeOfExpense %></p>
-            <p><%= e.amount %></p>
-            <p><%= e.payment %></p>
-            <p><%= e.notes %></p>
-            <%= image_tag e.image %>
-                  </td>
-        <% end %>
-
-          </tr>
-        </table>
-          </div>
-      </div>
-
-    </div>
-  </div>
-</div>
--->

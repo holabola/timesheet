@@ -169,6 +169,9 @@
   {
 
   }
+    .bootstrap-select {
+      margin:2px;
+    }
 </style>
 <script>
 
@@ -192,19 +195,23 @@
   $( "body" ).click(function( event ) {
 
     if (event.target.id == "successBut") {
-
+      var texts = $(event.target).parent().parent().parent().parent().find(".approvalclass");
       $(event.target).parent().find("#failBut").removeClass();
-      $(event.target).className = '';
+      event.target.className = '';
       $(event.target).addClass("btn btn-success glyphicon glyphicon-ok");
       $(event.target).parent().find("#failBut").addClass("btn btn-default glyphicon glyphicon-remove");
-
+      texts.text("Approved");
+      texts.css("color","");
     }
     else if (event.target.id == "failBut") {
+      var texts = $(event.target).parent().parent().parent().parent().find(".approvalclass");
       var otherchild = $(event.target).parent().find("#successBut");
       otherchild.removeClass();
       event.target.className = '';
       otherchild.addClass("btn btn-default glyphicon glyphicon-ok");
       $(event.target).addClass("btn btn-danger glyphicon glyphicon-remove");
+      texts.text("Unapproved");
+      texts.css("color","#cc0a0a");
     }
 
   });
@@ -248,13 +255,16 @@
           var from = new Date(year, month, 1);
           var to = new Date(year, month, 31);
           var rowNum = "#row_" + $(this).find("p").text();
-
-          if (dateColumn >= from && dateColumn <= to) {
-            $(rowNum).css("display","");
-            $(rowNum).css("opacity","");
-          } else {
-            $(rowNum).css("display","none");
-            $(rowNum).css("opacity",".99");
+          ifsearchactive = true;
+          three = true;
+          if ($(rowNum).css("opacity") == 1) {
+            if (dateColumn >= from && dateColumn <= to) {
+              $(rowNum).css("display", "");
+              $(rowNum).css("opacity", "");
+            } else {
+              $(rowNum).css("display", "none");
+              $(rowNum).css("opacity", ".99");
+            }
           }
         });
       }
@@ -263,6 +273,11 @@
 
 
     $("#clearMonth").click(function() {
+      ifsearchactive = false;
+      three = false;
+      $("#UserSearch").val("");
+      $("#datepickermonth").val("");
+      $('.selectpicker').selectpicker('refresh');
       $(".dateHolder").each(function() {
         var rowNum = "#row_" + $(this).find("p").text();
         $(rowNum).css("display", "");
@@ -272,43 +287,57 @@
 
     $("#Approved").click(function(){
       approvalStatus = "Approved";
+      ifsearchactive = true;
       $(".approvalclass").each(function() {
         var approval = $(this).clone().children().remove().end().text();
         var row = "#row_" + $(this).find("p").text();
-        if ($(row).css("opacity") == "1"){
+        var opacityCheck = $(row).css("opacity");
+        if (three == false) {  opacityCheck = 1; }
+        if (opacityCheck == "1"){
           if (approval == approvalStatus) {
             $(row).css("display","");
+            $(row).css("opacity","1");
           } else {
             $(row).css("display","none");
+            $(row).css("opacity",".99");
           }
         }
       });
     });
     $("#Pending").click(function(){
       approvalStatus = "Pending";
+      ifsearchactive = true;
       $(".approvalclass").each(function() {
         var approval = $(this).clone().children().remove().end().text();
         var row = "#row_" + $(this).find("p").text();
-        //alert(approval + "    " + row);
-        if ($(row).css("opacity") == "1"){
+        var opacityCheck = $(row).css("opacity");
+        if (three == false) {  opacityCheck = 1; }
+        if (opacityCheck == "1"){
           if (approval == approvalStatus) {
             $(row).css("display","");
+            $(row).css("opacity","1");
           } else {
             $(row).css("display","none");
+            $(row).css("opacity",".99");
           }
         }
       });
     });
     $("#Unapproved").click(function(){
       approvalStatus = "Unapproved";
+      ifsearchactive = true;
       $(".approvalclass").each(function() {
         var approval = $(this).clone().children().remove().end().text();
         var row = "#row_" + $(this).find("p").text();
-        if ($(row).css("opacity") == "1"){
+        var opacityCheck = $(row).css("opacity");
+        if (three == false) {  opacityCheck = 1; }
+        if (opacityCheck == "1"){
           if (approval == approvalStatus) {
             $(row).css("display","");
+            $(row).css("opacity","1");
           } else {
             $(row).css("display","none");
+            $(row).css("opacity",".99");
           }
         }
       });
@@ -352,14 +381,27 @@
     }
   }
 
+  var ifsearchactive = false;
+  var three = false;
   $(document).on('change', '#UserSearch', function() {
     var selectedOption = $('#UserSearch').val().trim();
+    three = true;
     if (selectedOption != "") {
-      $('#tableElements').children('tr').each(function () {
-        if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == selectedOption ) {
-          $(this).css("display","");
+      $(".expenseEntry").each(function() {
+        var person = $(this).find(".names").text();
+        if (selectedOption == person) {
+          var opacityCheck = $(this).css("opacity");
+          if (ifsearchactive == false) { opacityCheck = 1; }
+          if (opacityCheck == 1) {
+            $(this).css("display", "");
+            $(this).css("opacity", "1");
+          } else {
+            $(this).css("display", "none");
+            $(this).css("opacity", ".99");
+          }
         } else {
-          $(this).css("display","none");
+          $(this).css("display", "none");
+          $(this).css("opacity", ".99");
         }
       });
     }
@@ -521,21 +563,22 @@
 
     $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
-    $('#tableElements').children('tr').each(function () {
+    $('.expenseEntry').each(function () {
+      var str = $(this).find('.summary').text();
+      if(str.length > 45) {
+        str = str.substring(0, 40) + "...";
+        $(this).find('.summary').text(str);
+      }
+
       if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
-        $(this).css("display","");
-        $(this).children('td').each(function () {
-          var str = $(this).text();
-          if(str.length > 10) {
-            str = str.substring(0, 15) + "...";
-            $(this).text(str);
-          }
-        });
+        //$(this).css("display","");
 
       } else {
-        $(this).css("display","none");
+        //$(this).css("display","none");
         // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
       }
+
+
 
 
       //find names
@@ -567,7 +610,7 @@
   });
   $(window).load(function() {
     var nameArray = [];
-    $('#UserSearch').append('<option></option>');
+    //$('#UserSearch').append('<option></option>');
     $('.names').each(function () {
       var name = $(this).text();
       if (jQuery.inArray(name, nameArray) == -1) {
@@ -655,26 +698,27 @@
         <div class="row">
 
           <section class="content">
-            <h1>All Expenses</h1>
+
             <div class="col-md-8 col-md-offset-2">
-              <div class="panel panel-default"  id="goBlack">
+              <h1>&nbsp;</h1>
+              <div class="panel panel-default"  id="goBlack" style="width:1000px;margin:0 auto; text-align:center;">
+
                 <div class="panel-body">
-                  <div class="pull-left">
-                    <button type="button" class="btn btn-primary btn-filter" id="newEntry" data-toggle="modal" data-target="#myModal" >Create New Entry</button>
-                  </div>
+
                   <div class="pull-right">
-                    <div class="btn-group" style="margin: 30px 0px 10px 0px;">
+                    <div class="btn-group pull-right" style="margin: 30px 0px 10px 0px;text-align:right;">
                       <button type="button" id="Approved" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
                       <button type="button" id="Pending" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
                       <button type="button" id="Unapproved" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
                     </div>
-                    <br>
-                    <div class="pull-right">
-                      <select style="left:310px;" class="selectpicker" id="UserSearch" title="Search by User...">
+                    <div style="line-height:50%;"><br></div>
+
+                    <div class="pull-right" style="float:right; text-align:right;">
+                      <label for="UserSearch">Search by User:</label>
+                      <select style="margin:2px;" class="selectpicker" id="UserSearch" title="Search by User...">
 
                       </select>
-                    </div>
-                    <div class="pull-right" >
+                      <div style="line-height:50%;"><br></div>
                       <label for="startDate">Date Range:</label>
                       <input name="startDate" id="datepickermonth" />
                       <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:1px;">All</button>
@@ -708,21 +752,27 @@
 
                               <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
                                 <a href="#" class="pull-left" >
-                                  <% if e.filename != nil %>
-                                      <img src="http://i.imgur.com/VjrGsZ7.png" class="media-photo">
-                                  <% else %>
+                                  <% if e.image.blank? %>
                                       <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
+                                  <% else %>
+                                      <img src="http://i.imgur.com/VjrGsZ7.png" class="media-photo">
                                   <% end %>
                                 </a>
-                                <div class="media-body" style="width:600px;">
+                                <div class="pull-left">
+                                  <h4 class="title" style="text-align:left;">
+                                    <%= e.typeOfExpense%>
+                                    </h4>
+                                  <p class="summary"><%= e.notes %></p>
+                                </div>
+                                <div class="media-body pull-right" style="width:300px;">
                                   <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<%= e.dateActivity %><p style="display:none"><%= e.id%></p></span>
                                   <span class="pull-right" ><p class="media-meta names" style="color:#273772;"><%= e.user.firstName %> <%= e.user.lastName %></p></span>
                                   <h4 class="title">
-                                    <%= e.typeOfExpense %>
+
                                     <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
                                    <!-- <span class="pull-right">$<%= e.amount %></span> -->
                                   </h4>
-                                  <p class="summary"><%= e.notes %></p>
+
                                 </div>
                               </div>
 

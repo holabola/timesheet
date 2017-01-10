@@ -38,6 +38,10 @@
         <td><%= link_to 'Deparment Users', exportsDepart_path(format: :xlsx, foo_param: 'all') %></td>
         <td>Download a list of all Timesheet entries from the users of your specified department</td>
       </tr>
+      <tr>
+        <td><%= link_to 'Deparment Expenses', exportsExpenses_path(format: :xlsx, foo_param: 'all') %></td>
+        <td>Download a list of all Expense entries from the users of your specified department</td>
+      </tr>
       </tbody>
     </table>
   </div>

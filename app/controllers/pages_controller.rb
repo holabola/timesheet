@@ -55,6 +55,17 @@ class PagesController < ApplicationController
     end
   end
 
+  def exportsExpenses
+    @users = User.all
+    @expenses = Expense.order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="expenses_by_department.xlsx"'
+      }
+    end
+  end
+
   #dashboard
 
   def dashboard
@@ -91,7 +102,7 @@ class PagesController < ApplicationController
 
         redirect_to expenses_url
       else
-        flash[:success] = "Expense entry failed :("
+        flash[:error] = @new_expenses.errors.full_messages.to_sentence
         redirect_to expenses_url
       end
     end
