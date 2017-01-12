@@ -99,6 +99,8 @@ GEM
     nokogiri (1.7.0.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    pg (0.19.0)
+    pg (0.19.0-x86-mingw32)
     polyglot (0.3.5)
     rack (1.5.5)
     rack-test (0.6.3)
@@ -190,6 +192,7 @@ DEPENDENCIES
   jquery-ui-themes (~> 0.0.11)
   json (>= 1.8.3)
   momentjs-rails
+  pg
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
