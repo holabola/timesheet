@@ -765,9 +765,9 @@ var approvalStatus;
                                 <% end %>
                           </a>
                           <div class="media-body" style="width:600px;">
-                            <span class="media-meta pull-right dateHolder"><%= e.dateActivity %><p style="display:none"><%= e.id%></p></span>
+                            <span class="media-meta pull-right dateHolder"><%= e.date_activity %><p style="display:none"><%= e.id%></p></span>
                             <h4 class="title">
-                              <%= e.typeOfExpense %>
+                              <%= e.type_of_expense %>
                               <span class="pull-right pagado approvalclass"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
                               <span class="pull-right">$<%= e.amount %></span>
                             </h4>
@@ -809,9 +809,9 @@ var approvalStatus;
               <h4>Enter the information below to submit an expense</h4>
               <%= form_for @new_expenses, html: { multipart: true } do |t| %>
 
-                  <%= t.text_field :dateActivity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
+                  <%= t.text_field :date_activity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
 
-                  <%= t.select :typeOfExpense, options_for_select([
+                  <%= t.select :type_of_expense, options_for_select([
                                                              "Car Travel",
                                                              "Air Travel Baggage & Fuel",
                                                              "Taxi Parking, Tolls",
@@ -879,9 +879,9 @@ var approvalStatus;
 
               <div class="containerz" class="inputwrap" style="">
                 <form id="contactz" action="" method="post" style="padding: 2px 25px 25px 25px;">
-                  <h3 style="font-size:20px;text-align:center;">Expense from <%= e.dateActivity %></h3>
+                  <h3 style="font-size:20px;text-align:center;">Expense from <%= e.date_activity %></h3>
                   <div style="line-height:75%;"><br></div>
-                  <p>Type: <%= e.typeOfExpense %></p>
+                  <p>Type: <%= e.type_of_expense %></p>
                   <p>Amount: $<%= e.amount %></p>
                   <p>Payment Type: <%= e.payment %></p>
                   <p>Description: <%= e.notes %></p>

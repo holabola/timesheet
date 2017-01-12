@@ -575,14 +575,14 @@
         <% end %>
       </td>
       <td id="approval" style="display:none;"><%= p.approval %></td>
-      <td id="dateOfTime"><%= p.dateOfTime %></td>
-      <td id="names"><%= p.user.firstName %> <%= p.user.lastName %></td>
-      <td><%= p.creditUnion %> </td>
+      <td id="dateOfTime"><%= p.date_of_time %></td>
+      <td id="names"><%= p.user.first_name %> <%= p.user.last_name %></td>
+      <td><%= p.credit_union %> </td>
       <td><%= p.activity %> </td>
       <td><%= p.task %> </td>
-      <td><%= p.billingOptions %> </td>
-      <td><%= p.billingOptionsSCR %> </td>
-      <td><%= p.billingOptionsFTR %> </td>
+      <td><%= p.billing_options %> </td>
+      <td><%= p.billing_options_scr %> </td>
+      <td><%= p.billing_options_ftr %> </td>
       <td><%= p.sun %> </td>
       <td><%= p.mon %> </td>
       <td><%= p.tue %> </td>
@@ -591,7 +591,7 @@
       <td><%= p.fri %> </td>
       <td><%= p.sat %> </td>
       <td><%= p.total %> </td>
-      <td style="display:none;" class="dateBlob"><%= p.dateOfTime %></td>
+      <td style="display:none;" class="dateBlob"><%= p.date_of_time %></td>
     </tr>
 <% end %>
 </tbody>

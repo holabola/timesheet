@@ -206,9 +206,9 @@
                 <h4>Enter the information below to submit an expense</h4>
                 <%= form_for @new_expenses, html: { multipart: true } do |t| %>
 
-                  <%= t.text_field :dateActivity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
+                  <%= t.text_field :date_activity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
 
-                  <%= t.text_field :typeOfExpense, { :placeholder => "Type" } %>
+                  <%= t.text_field :type_of_expense, { :placeholder => "Type" } %>
 
                   <%= t.text_field :amount, {  :onkeypress => 'return isNumber()', :id => "amountInput" , 'placeholder' => 'Amount $0.00', :step => 0.01 } %>
 

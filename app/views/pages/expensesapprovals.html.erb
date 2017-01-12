@@ -760,13 +760,13 @@
                                 </a>
                                 <div class="pull-left">
                                   <h4 class="title" style="text-align:left;">
-                                    <%= e.typeOfExpense%>
+                                    <%= e.type_of_expense%>
                                     </h4>
                                   <p class="summary"><%= e.notes %></p>
                                 </div>
                                 <div class="media-body pull-right" style="width:300px;">
-                                  <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<%= e.dateActivity %><p style="display:none"><%= e.id%></p></span>
-                                  <span class="pull-right" ><p class="media-meta names" style="color:#273772;"><%= e.user.firstName %> <%= e.user.lastName %></p></span>
+                                  <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<%= e.date_activity %><p style="display:none"><%= e.id%></p></span>
+                                  <span class="pull-right" ><p class="media-meta names" style="color:#273772;"><%= e.user.first_name %> <%= e.user.last_name %></p></span>
                                   <h4 class="title">
 
                                     <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
@@ -809,10 +809,10 @@
 
                 <div class="containerz" class="inputwrap" style="">
                   <form id="contactz" action="" method="post" style="padding: 2px 25px 25px 25px;">
-                    <h3 style="font-size:20px;text-align:center;">Expense from <%= e.dateActivity %></h3>
+                    <h3 style="font-size:20px;text-align:center;">Expense from <%= e.date_activity %></h3>
                     <div style="line-height:75%;"><br></div>
-                    <p>Creator: <%= e.user.firstName %> <%= e.user.lastName %></p>
-                    <p>Type: <%= e.typeOfExpense %></p>
+                    <p>Creator: <%= e.user.first_name %> <%= e.user.last_name %></p>
+                    <p>Type: <%= e.type_of_expense %></p>
                     <p>Amount: $<%= e.amount %></p>
                     <p>Payment Type: <%= e.payment %></p>
                     <p>Description: <%= e.notes %></p>
