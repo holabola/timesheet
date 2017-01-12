@@ -15,6 +15,10 @@ class CreatePages < ActiveRecord::Migration
       t.integer :thu
       t.integer :fri
       t.integer :sat
+      t.integer :total
+      t.string :approval
+      t.string :date_of_time
+      t.string :department
       t.references :user, foreign_key: true
       t.timestamps
     end
