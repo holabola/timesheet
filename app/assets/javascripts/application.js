@@ -18,7 +18,6 @@
 //= require jquery-ui
 //= require data-confirm-modal
 //= require moment
-//= require daterangepicker
 //= require tinymce
 //= require bootstrap/alert
 //= require bootstrap/dropdown
