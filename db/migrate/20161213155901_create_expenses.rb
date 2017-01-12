@@ -1,8 +1,8 @@
 class CreateExpenses < ActiveRecord::Migration
   def change
     create_table :expenses do |t|
-      t.string :creditUnion
-      t.date :dateActivity
+      t.string :creditunion
+      t.date :dateactivity
       t.string :type
       t.float :amount
       t.string :payment

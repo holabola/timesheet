@@ -1,12 +1,12 @@
 class CreatePages < ActiveRecord::Migration
   def change
     create_table :pages do |t|
-      t.string :creditUnion
+      t.string :creditunion
       t.string :activity
       t.string :task
-      t.string :billingOptions
-      t.string :billingOptionsSCR
-      t.string :billingOptionsFTR
+      t.string :billingoptions
+      t.string :billingoptionsscr
+      t.string :billingoptionsftr
       t.integer :sun
       t.integer :mon
       t.integer :tue
