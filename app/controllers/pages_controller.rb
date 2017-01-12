@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   end
 
   def expenses
-    @expenses = current_user.expenses.order('dateActivity DESC')
+    @expenses = current_user.expenses.order('date_activity DESC')
     @new_expenses = Expense.new
 
   end
@@ -182,12 +182,12 @@ class PagesController < ApplicationController
   #approvals
 
   def approvals
-    @pages = Page.where(:department => current_user.department).order('dateOfTime DESC')
+    @pages = Page.where(:department => current_user.department).order('date_of_time DESC')
     @new_pages = Page.new
   end
 
   def expensesapprovals
-    @expenses = Expense.where(:department => current_user.department).order('dateActivity DESC')
+    @expenses = Expense.where(:department => current_user.department).order('date_activity DESC')
     @new_expenses = Expense.new
   end
 
@@ -209,7 +209,7 @@ class PagesController < ApplicationController
   end
 
   def new_pages_params
-    params.require(:page).permit(:creditUnion, :activity, :task, :billingOptions, :billingOptionsSCR, :billingOptionsFTR, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :total, :dateOfTime, :department)
+    params.require(:page).permit(:credit_union, :activity, :task, :billing_options, :billing_options_scr, :billing_options_ftr, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :total, :date_of_time, :department)
   end
 
   def params_final_expense
@@ -217,7 +217,7 @@ class PagesController < ApplicationController
   end
 
   def new_pages_params_expense
-    params.require(:expense).permit(:dateActivity, :typeOfExpense, :amount, :payment, :notes, :image)
+    params.require(:expense).permit(:date_activity, :type_of_expense, :amount, :payment, :notes, :image)
   end
 
 
