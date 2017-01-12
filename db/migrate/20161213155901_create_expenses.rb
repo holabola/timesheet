@@ -1,6 +1,7 @@
 class CreateExpenses < ActiveRecord::Migration
   def change
     create_table :expenses do |t|
+      #case modified
       t.string :creditunion
       t.date :dateactivity
       t.string :type
