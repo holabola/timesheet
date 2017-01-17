@@ -31,10 +31,16 @@
 
   $(function() {
 
-    $('input[id="timerange"]').daterangepicker();
     $('.selectpicker').selectpicker();
-  });
 
+      $("#clearMonth").click(function() {
+          $("#UserSearch").val("");
+          $('.selectpicker').selectpicker('refresh');
+          $('#tableElements').children('tr').each(function () {
+             $(this).css("display","");
+          });
+      });
+  });
 
 
   $( "body" ).click(function( event ) {
@@ -70,18 +76,7 @@
     }
   });
 
-  $(document).on('change', "#timerange", function(){
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-    var thing = $('#timerange').val().indexOf("-");
-    var firstday = new Date($("#timerange").val().substring(0,thing-1));
-    var lastday = new Date($("#timerange").val().substring(thing,$("#timerange").val().length));
 
-    $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
-
-
-  });
   var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
   $(document).on('change', '#datepicker', function() {
 
@@ -145,8 +140,7 @@
         }
     });
 
-    $('#timerange').data('daterangepicker').setStartDate(firstday);
-    $('#timerange').data('daterangepicker').setEndDate(lastday);
+
 
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
@@ -224,7 +218,7 @@
     $('#Date7').text("Sat " + lastday.getDate() );
 
     //extra name initialize
-    $('#UserSearch').append('<option></option>');
+
     //
 
     $('#datePicked').val($('#datepicker').datepicker('getDate'));
@@ -255,8 +249,7 @@
 
       }
     });
-    $('#timerange').data('daterangepicker').setStartDate(firstday);
-    $('#timerange').data('daterangepicker').setEndDate(lastday);
+
 
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
@@ -497,15 +490,13 @@
         <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
           <div style="line-height:75%;"><br></div>
           <h2 style="text-align: center;">Timesheet</h2>
-          <h4 style="text-align:center;">Custom Date Range</h4>
-          <div style="text-align:center;"><input id="timerange" type="text"  ></div>
           </br>
 
           <div style="" id="datepicker"></div>
           </br>
           </br>
           <ul class="nav nav-sidebar">
-            <li><a href="/" data-turbolinks="false">Timesheet</a></li>
+            <li><a href="/" >Timesheet</a></li>
             <li class="active"><a href="#">Timesheet Approvals<span class="sr-only">(current)</span></a></li>
             <li><a href="/expenses">Expenses</a></li>
             <li><a href="/expensesapprovals">Expenses Approvals</a></li>
@@ -528,9 +519,12 @@
         <div id="dashContents">
           <div style="position: relative;height:80px;left:310px;top:10px;">
             <h2 class="page-header" style="" id="dateTitle"></h2>
+            <p style="">Sheets yet to be approved appear yellow. Just hit the check or x to approve or unapprove.</p>
 
-            <p style="left:310px;">Sheets yet to be approved appear yellow. Just hit the check or x to approve or unapprove.</p>
-            table
+            <label for="UserSearch">Search by User:</label>
+            <select style="margin:2px;" class="selectpicker" id="UserSearch" title="Search by User...">
+            </select><button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:1px;">All</button>
+
 
           </div>
 
