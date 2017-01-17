@@ -1,4 +1,9 @@
-<style>
+<head>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+
+  <style>
   .ui-datepicker-calendar {
     display: none;
   }
@@ -7,7 +12,7 @@
   }
 
   html {
-    width: 1600px;
+    width: 100%;
   }
   .custom-combobox {
     position: relative;
@@ -31,6 +36,7 @@
   body {
     font-family: 'Open Sans', sans-serif;
     color: #353535;
+    background-color: #eaf1fc;
   }
   .content h1 {
     text-align: center;
@@ -701,7 +707,7 @@
 
             <div class="col-md-8 col-md-offset-2">
               <h1>&nbsp;</h1>
-              <div class="panel panel-default"  id="goBlack" style="width:1000px;margin:0 auto; text-align:center;">
+              <div class="panel panel-default"  id="goBlack" style="width:120%;margin:0 auto; text-align:center;">
 
                 <div class="panel-body">
 
@@ -755,7 +761,7 @@
                                   <% if e.image.blank? %>
                                       <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
                                   <% else %>
-                                      <img src="http://i.imgur.com/VjrGsZ7.png" class="media-photo">
+                                      <%= image_tag e.image.thumb %>
                                   <% end %>
                                 </a>
                                 <div class="pull-left">
@@ -816,7 +822,7 @@
                     <p>Amount: $<%= e.amount %></p>
                     <p>Payment Type: <%= e.payment %></p>
                     <p>Description: <%= e.notes %></p>
-                    <%= image_tag e.image%>
+                    <%= image_tag e.image %>
                   </form>
                 </div>
               </div>
@@ -825,3 +831,26 @@
           </div>
         </div>
     <% end %>
+
+    <!--
+
+
+      <h2 class="sub-header">Timesheet</h2>
+      <div class="table-responsive" id="pageGapDash">
+
+
+        <br>
+        <div class="table-responsive">
+        <table class="table table-striped">
+          <tr>
+
+
+          </tr>
+        </table>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+-->

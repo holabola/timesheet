@@ -53,6 +53,7 @@
     line-height: 30px;
     color: #777;
     background: #4CAF50;
+    background-color: #eaf1fc;
   }
 
   .containerz {
@@ -216,7 +217,7 @@
   }
 
   html {
-    width: 1600px;
+    width: 100%;
   }
   .custom-combobox {
     position: relative;
@@ -240,6 +241,7 @@
   body {
     font-family: 'Open Sans', sans-serif;
     color: #353535;
+    background-color: #eaf1fc;
   }
   .content h1 {
     text-align: center;
@@ -765,17 +767,24 @@ var approvalStatus;
                             <% if e.image.blank? %>
                             <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
                                 <% else %>
-                                <img src="http://i.imgur.com/VjrGsZ7.png" class="media-photo">
+                                <%= image_tag e.image.thumb %>
                                 <% end %>
                           </a>
-                          <div class="media-body" style="width:600px;">
-                            <span class="media-meta pull-right dateHolder"><%= e.date_activity %><p style="display:none"><%= e.id%></p></span>
-                            <h4 class="title">
-                              <%= e.type_of_expense %>
-                              <span class="pull-right pagado approvalclass"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
-                              <span class="pull-right">$<%= e.amount %></span>
+
+                          <div class="pull-left">
+                            <h4 class="title" style="text-align:left;">
+                              <%= e.type_of_expense%>
                             </h4>
                             <p class="summary"><%= e.notes %></p>
+                          </div>
+                          <div class="media-body pull-right" style="width:300px;">
+                            <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<%= e.date_activity %><p style="display:none"><%= e.id%></p></span>
+                           <h4 class="title">
+
+                              <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
+                              <!-- <span class="pull-right">$<%= e.amount %></span> -->
+                            </h4>
+
                           </div>
                         </div>
 

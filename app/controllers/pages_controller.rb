@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!
-  before_filter :authorize_admin, only: [:approvals, :exports]
+  before_filter :authorize_admin, only: [:approvals, :exports, :expensesapprovals]
 
   def index
     @pages = current_user.pages

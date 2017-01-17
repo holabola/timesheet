@@ -8,4 +8,5 @@ class Expense < ActiveRecord::Base
     self.approval = 'Pending' if self.approval.nil?
   end
 
+
 end
