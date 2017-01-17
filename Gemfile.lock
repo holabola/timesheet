@@ -132,6 +132,7 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+    scout_apm (2.1.20)
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -197,6 +198,7 @@ DEPENDENCIES
   pg
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
+  scout_apm
   sdoc (~> 0.4.0)
   select2-rails
   simple_calendar (~> 2.0)
