@@ -2,7 +2,9 @@
  * Created by sbarsam on 11/8/2016.
  */
 
-
+$(document).on('click',function(){
+    $('.collapse').collapse('hide');
+})
 
 $( document ).ready(function() {
     var login,forgot,register,alertMes,loginMes,RegisterMes,lazyCheckDark;

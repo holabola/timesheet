@@ -651,14 +651,18 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" data-turbolinks="false">Dashboard</a></li>
-          <li><a href="#" data-turbolinks="false">Settings</a></li>
-          <li><a href="#" data-turbolinks="false">Profile</a></li>
-          <li><a href="#" data-turbolinks="false">Help</a></li>
+          <li><a href="/" >Timesheet</a></li>
+          <% if current_user.admin == true %>
+              <li><a href="/approvals" >Timesheet Approvals</a></li>
+          <% end %>
+          <li><a href="/expenses" >Expenses</a></li>
+          <% if current_user.admin == true %>
+              <li><a href="/expensesapprovals" >Expenses Approvals</a></li>
+              <li><a href="/exports" >Exports</a></li>
+          <% end %>
+          <li><%= link_to "Settings", edit_user_registration_path(@user) %></li>
         </ul>
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control" placeholder="Search...">
-        </form>
+
       </div>
     </div>
   </nav>

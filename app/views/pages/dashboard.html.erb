@@ -360,32 +360,34 @@
 
 
 
-
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" data-turbolinks="false">Dashboard</a></li>
-            <li><a href="#" data-turbolinks="false">Settings</a></li>
-            <li><a href="#" data-turbolinks="false">Profile</a></li>
-            <li><a href="#" data-turbolinks="false">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-        </div>
-      </div>
-    </nav>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Project name</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/" >Timesheet</a></li>
+        <% if current_user.admin == true %>
+            <li><a href="/approvals" >Timesheet Approvals</a></li>
+        <% end %>
+        <li><a href="/expenses" >Expenses</a></li>
+        <% if current_user.admin == true %>
+            <li><a href="/expensesapprovals" >Expenses Approvals</a></li>
+            <li><a href="/exports" >Exports</a></li>
+        <% end %>
+        <li><%= link_to "Settings", edit_user_registration_path(@user) %></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
 
 <% if user_signed_in? %>
     <% if current_user.admin == true %>
