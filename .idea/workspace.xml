@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c14c5481-09b4-43f9-8cc4-253b629dec6c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/welcome.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/welcome.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/welcome.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/welcome.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/approvals.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/approvals.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/expenses.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/expenses.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/exports.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/exports.html.erb" />
-    </list>
+    <list default="true" id="c14c5481-09b4-43f9-8cc4-253b629dec6c" name="Default" comment="" />
     <ignored path="timesheet.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -48,8 +37,8 @@
       <file leaf-file-name="approvals.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="186">
+              <caret line="414" column="55" lean-forward="false" selection-start-line="414" selection-start-column="44" selection-end-line="414" selection-end-column="55" />
               <folding>
                 <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -64,8 +53,8 @@
       <file leaf-file-name="welcome.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/welcome.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="522" column="0" lean-forward="true" selection-start-line="522" selection-start-column="0" selection-end-line="522" selection-end-column="0" />
+            <state relative-caret-position="272">
+              <caret line="521" column="10" lean-forward="true" selection-start-line="521" selection-start-column="10" selection-end-line="521" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -137,7 +126,6 @@
       <find>dashboard</find>
       <find>timerange</find>
       <find>$(document).on('click',function(){ $('.collapse').collapse('hide'); })$(document).on('click','.navbar-collapse.in',function(e) {     if( $(e.target).is('a') &amp;&amp; $(e.target).attr('class') != 'dropdown-toggle' ) {         $(this).collapse('hide');     } });</find>
-      <find>pagegapdash</find>
       <find>datetitle</find>
       <find>search</find>
       <find>Search</find>
@@ -145,6 +133,7 @@
       <find>body</find>
       <find>html</find>
       <find>font-size</find>
+      <find>pagegapdash</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -936,12 +925,12 @@
       <workItem from="1484257546632" duration="347000" />
       <workItem from="1484258901885" duration="13377000" />
       <workItem from="1484848641150" duration="809000" />
-      <workItem from="1484853661418" duration="4940000" />
+      <workItem from="1484853661418" duration="5238000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="376217000" />
+    <option name="totallyTimeSpent" value="376515000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1304,8 +1293,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="186">
+          <caret line="414" column="55" lean-forward="false" selection-start-line="414" selection-start-column="44" selection-end-line="414" selection-end-column="55" />
           <folding>
             <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1318,8 +1307,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/welcome.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="522" column="0" lean-forward="true" selection-start-line="522" selection-start-column="0" selection-end-line="522" selection-end-column="0" />
+        <state relative-caret-position="272">
+          <caret line="521" column="10" lean-forward="true" selection-start-line="521" selection-start-column="10" selection-end-line="521" selection-end-column="10" />
           <folding />
         </state>
       </provider>
