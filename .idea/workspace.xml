@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c14c5481-09b4-43f9-8cc4-253b629dec6c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_normaluser.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_normaluser.html.erb" />
     </list>
     <ignored path="timesheet.iws" />
@@ -39,7 +41,7 @@
       <file leaf-file-name="approvals.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6">
+            <state relative-caret-position="66">
               <caret line="384" column="22" lean-forward="true" selection-start-line="384" selection-start-column="22" selection-end-line="384" selection-end-column="22" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -52,8 +54,8 @@
       <file leaf-file-name="welcome.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/welcome.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="60" column="13" lean-forward="false" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+            <state relative-caret-position="255">
+              <caret line="73" column="18" lean-forward="true" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -62,11 +64,12 @@
       <file leaf-file-name="_adminuser.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/_adminuser.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="74" column="10" lean-forward="false" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#3761#3767#1#HTML" expanded="true" />
+                <element signature="e#3762#3768#1#HTML" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,10 +78,11 @@
       <file leaf-file-name="_normaluser.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/pages/_normaluser.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="34" column="43" lean-forward="false" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+            <state relative-caret-position="465">
+              <caret line="95" column="21" lean-forward="true" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#3634#3640#1#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,7 +150,6 @@
       <find>body</find>
       <find>html</find>
       <find>font-size</find>
-      <find>pagegapdash</find>
       <find>height</find>
       <find>1448</find>
       <find>width:</find>
@@ -169,6 +172,7 @@
       <find>80px</find>
       <find>navbar-toggle</find>
       <find>class=&quot;navbar-toggle collapsed&quot; data-toggle=&quot;collapse&quot;</find>
+      <find>pagegapdash</find>
       <find>dashcontents</find>
     </findStrings>
   </component>
@@ -223,12 +227,12 @@
         <option value="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/exports.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/approvals.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/welcome.css" />
         <option value="$PROJECT_DIR$/app/views/pages/expenses.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/_normaluser.html.erb" />
       </list>
     </option>
@@ -962,12 +966,12 @@
       <workItem from="1484258901885" duration="13377000" />
       <workItem from="1484848641150" duration="809000" />
       <workItem from="1484853661418" duration="6295000" />
-      <workItem from="1485358874017" duration="8646000" />
+      <workItem from="1485358874017" duration="8905000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="386218000" />
+    <option name="totallyTimeSpent" value="386477000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1281,14 +1285,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/welcome.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="60" column="13" lean-forward="false" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/welcome.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-345">
@@ -1303,17 +1299,6 @@
           <caret line="653" column="51" lean-forward="false" selection-start-line="653" selection-start-column="37" selection-end-line="653" selection-end-column="51" />
           <folding>
             <element signature="n#style#0;n#h1#0;n#section#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6">
-          <caret line="384" column="22" lean-forward="true" selection-start-line="384" selection-start-column="22" selection-end-line="384" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1336,23 +1321,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="384" column="22" lean-forward="true" selection-start-line="384" selection-start-column="22" selection-end-line="384" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/welcome.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="73" column="18" lean-forward="true" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/_adminuser.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="74" column="10" lean-forward="false" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="44" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#3761#3767#1#HTML" expanded="true" />
+            <element signature="e#3762#3768#1#HTML" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/_normaluser.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="34" column="43" lean-forward="false" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+        <state relative-caret-position="465">
+          <caret line="95" column="21" lean-forward="true" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#3634#3640#1#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
