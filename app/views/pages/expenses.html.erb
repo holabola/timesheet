@@ -671,6 +671,7 @@ var approvalStatus;
               <li><a href="/exports" >Exports</a></li>
           <% end %>
           <li><%= link_to "Settings", edit_user_registration_path(@user) %></li>
+          <li><%= link_to('Logout', destroy_user_session_path, :method => :get) %></li>
         </ul>
 
       </div>
