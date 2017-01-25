@@ -33,14 +33,17 @@
   $(function() {
 
     $('.selectpicker').selectpicker();
-
+      var heights = 0;
       $("#clearMonth").click(function() {
           $("#UserSearch").val("");
           $('.selectpicker').selectpicker('refresh');
           $('#tableElements').children('tr').each(function () {
              $(this).css("display","");
+             heights += 1;
           });
       });
+      heights = 60 + (60 * heights);
+      $('#pageGapDash').css("height",heights);
   });
 
 
@@ -65,16 +68,19 @@
   });
 
   $(document).on('change', '#UserSearch', function() {
+      var heights = 0;
     var selectedOption = $('#UserSearch').val().trim();
     if (selectedOption != "") {
       $('#tableElements').children('tr').each(function () {
         if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == selectedOption ) {
           $(this).css("display","");
+          heights += 1;
         } else {
           $(this).css("display","none");
         }
       });
     }
+
   });
 
 
@@ -113,12 +119,14 @@
 
     $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
+    var heights = 0;
     $('#tableElements').children('tr').each(function () {
         var selectedOption = $('#UserSearch').val().trim();
         if (selectedOption != "") {
           $('#tableElements').children('tr').each(function () {
             if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == selectedOption ) {
               $(this).css("display","");
+              heights += 1;
             } else {
               $(this).css("display","none");
             }
@@ -126,6 +134,7 @@
         } else {
           if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
             $(this).css("display", "");
+              heights += 1;
             $(this).children('td').each(function () {
               var str = $(this).text();
               if (str.length > 10) {
@@ -140,7 +149,8 @@
           }
         }
     });
-
+      heights = 60 + (60 * heights);
+      $('#pageGapDash').css("height",heights);
 
 
     //Saves date local variable

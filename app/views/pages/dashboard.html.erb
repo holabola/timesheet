@@ -22,20 +22,6 @@
     padding: 5px 10px;
   }
 
-  #dashContents {
-    width: 1900px;
-
-  }
-  #pageGapDash {
-    position: absolute;
-    left: 310px;
-    width: 1700px;
-    height: 400px;
-  }
-  #sidebarNav {
-    width:280px;
-  }
-
   .scrollable-menu {
     height: auto;
     max-height: 270px;
@@ -83,9 +69,11 @@
 
     $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
+    var heights = 0;
     $('#tableElements').children('tr').each(function () {
       if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
         $(this).css("display","");
+        heights += 1;
         $(this).children('td').each(function () {
           var str = $(this).text();
           if(str.length > 10) {
@@ -99,7 +87,8 @@
         // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
       }
     });
-
+      heights = 100 + (60 * heights);
+      $('#pageGapDash').css("height",heights);
 
 
     //Saves date local variable
@@ -113,6 +102,13 @@
       "July", "August", "September", "October", "November", "December"
     ];
 
+      if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          $('#sidebarNav').find('[datePickerTag="first"]').removeAttr("id");
+      }
+      else {
+          $('#sidebarNav').find('[datePickerTag="first"]').attr("id","datepicker");
+          $('#aboveTable').find('[datePickerTag="last"]').css("display","none");
+      }
 
     if (sessionStorage.refreshCount == undefined) {
       $("#datepicker").datepicker().datepicker("setDate", new Date());
@@ -158,10 +154,11 @@
     $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
     //Limits text to 15 characters and hides entries
+      var heights = 0;
     $('#tableElements').children('tr').each(function () {
       if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
-
         $(this).css("display","");
+        heights += 1;
         $(this).children('td').each(function () {
           var str = $(this).text();
           if(str.length > 10) {
@@ -176,9 +173,15 @@
 
     });
 
+      //counts height of table
+
+      heights = 100 + (60 * heights);
+      $('#pageGapDash').css("height",heights);
 
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+
+
   });
 
   $(window).scroll(function (event) {

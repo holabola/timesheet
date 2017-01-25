@@ -8,7 +8,7 @@
             </br>
           <%= t.text_field :date_of_time, { :id => 'datePicked', :style => "display:none;"  } %>
           <%= t.text_field :department, :value => current_user.department, :style => "display:none;"   %>
-          <div style="" id="datepicker"></div>
+          <div style="" id="datepicker" datePickerTag="first"></div>
           </br>
           </br>
           <ul class="nav nav-sidebar">
@@ -33,11 +33,15 @@
         </div>
 
         <div id="dashContents">
-          <div style="position: relative;height:80px;left:310px;top:10px;">
+          <div style="">
             <h2 class="page-header" style="" id="dateTitle"></h2>
 
             <p style="left:310px;">Hit the checkmark to save a sheet. Hit the X button to delete a sheet.</p>
-
+            <div datePickerTag="last">
+              <label id="labelforlast">Select Date: </label>
+              <input style="" id="datepicker">
+              <br>
+            </div>
 
           </div>
           <!--
@@ -67,7 +71,7 @@
           -->
 
 
-          <h2 class="sub-header">Timesheet</h2>
+
           <div class="table-responsive" id="pageGapDash">
 
             <table class="table table-striped" style="font-size:12px;">
@@ -228,7 +232,7 @@
 
 <tbody id="tableElements">
 <% @pages.each do |p| %>
-    <tr id="row_<%= p.id %>">
+    <tr id="row_<%= p.id %>" class="timesheetEntry">
       <td><%= link_to '', page_path(p, :type => "timesheet"), method: :delete, data: { confirm: 'Do you want to delete this entry?' }, :remote => true, :style => "font-size:10px;", :class => 'delete_page btn btn-danger glyphicon glyphicon-remove pull-right' %></td>
       <td><%= p.credit_union %> </td>
       <td><%= p.activity %> </td>
