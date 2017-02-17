@@ -230,7 +230,6 @@ DEPENDENCIES
   select2-rails
   simple_calendar (~> 2.0)
   spring
-  sqlite3
   table_print
   tinymce-rails
   turbolinks
