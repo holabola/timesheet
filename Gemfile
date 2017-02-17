@@ -6,8 +6,11 @@ gem 'rails', '4.1.1'
 # Use sqlite3 as the database for Active Record
 
 
+group :development, :test  do
+  gem 'mailcatcher'
+end
 
-  gem 'pg'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -63,5 +66,5 @@ gem 'select2-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'scout_apm'
-gem 'mailcatcher'
+
 gem 'figaro'
