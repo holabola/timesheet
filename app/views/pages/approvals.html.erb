@@ -29,6 +29,103 @@
 
 </style>
 <script>
+    function totalColumns() {
+        var sunTotal,monTotal,tueTotal,wedTotal,thuTotal,friTotal,satTotal,totalTotal;
+        sunTotal = 0.00, monTotal = 0.00, tueTotal = 0.00, wedTotal = 0.00, thuTotal = 0.00, friTotal = 0.00, satTotal = 0.00, totalTotal = 0.00;
+
+        $(".sunEntry").each(function () {
+            if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                sunTotal += parseFloat($(this).text());
+            }
+        });
+        $(".monEntry").each(function () {
+            if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                monTotal += parseFloat($(this).text());
+            }
+        });
+        $(".tueEntry").each(function () {
+            if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                tueTotal += parseFloat($(this).text());
+            }
+        });
+        $(".wedEntry").each(function () {
+            if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                wedTotal += parseFloat($(this).text());
+            }
+        });
+        $(".thuEntry").each(function () {
+            if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                thuTotal += parseFloat($(this).text());
+            }
+        });
+        $(".friEntry").each(function () {
+            if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                friTotal += parseFloat($(this).text());
+            }
+        });
+        $(".satEntry").each(function () {
+            if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                satTotal += parseFloat($(this).text());
+            }
+        });
+        $(".totalEntry").each(function () {
+            if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                totalTotal += parseFloat($(this).text());
+            }
+        });
+        $("#totalSun").text(sunTotal);
+        $("#totalMon").text(monTotal);
+        $("#totalTue").text(tueTotal);
+        $("#totalWed").text(wedTotal);
+        $("#totalThu").text(thuTotal);
+        $("#totalFri").text(friTotal);
+        $("#totalSat").text(satTotal);
+        $("#totalTotal").text(totalTotal);
+
+        var totalVisibleNames = [];
+        $(".namesz").each(function() {
+            if (totalVisibleNames.indexOf($(this).text()) == -1 && $(this).parent().css("display") != "none") {
+                totalVisibleNames.push($(this).text());
+            }
+        });
+
+        if(sunTotal < (8 * totalVisibleNames.length)) {
+            $("#totalSun").closest("td").addClass("danger");
+        } else { $("#totalSun").closest("td").removeClass("danger"); }
+        if(monTotal < (8 * totalVisibleNames.length)) {
+            $("#totalMon").closest("td").addClass("danger");
+        } else { $("#totalMon").closest("td").removeClass("danger"); }
+        if(tueTotal < (8 * totalVisibleNames.length)) {
+            $("#totalTue").closest("td").addClass("danger");
+        } else { $("#totalTue").closest("td").removeClass("danger"); }
+        if(wedTotal < (8 * totalVisibleNames.length)) {
+            $("#totalWed").closest("td").addClass("danger");
+        } else { $("#totalWed").closest("td").removeClass("danger"); }
+        if(thuTotal < (8 * totalVisibleNames.length)) {
+            $("#totalThu").closest("td").addClass("danger");
+        } else { $("#totalThu").closest("td").removeClass("danger"); }
+        if(friTotal < (8 * totalVisibleNames.length)) {
+            $("#totalFri").closest("td").addClass("danger");
+        } else { $("#totalFri").closest("td").removeClass("danger"); }
+        if(satTotal < (8 * totalVisibleNames.length)) {
+            $("#totalSat").closest("td").addClass("danger");
+        } else { $("#totalSat").closest("td").removeClass("danger"); }
+        if(totalTotal < (40 * totalVisibleNames.length)) {
+            $("#totalTotal").closest("td").addClass("danger");
+        } else { $("#totalTotal").closest("td").removeClass("danger"); }
+
+        // Adding red to bottom if there is red anywhere
+
+        if($("#totalSun").closest("td").hasClass("danger") || $("#totalMon").closest("td").hasClass("danger") || $("#totalTue").closest("td").hasClass("danger") || $("#totalWed").closest("td").hasClass("danger") || $("#totalThu").closest("td").hasClass("danger") || $("#totalFri").closest("td").hasClass("danger") || $("#totalSat").closest("td").hasClass("danger") || $("#totalTotal").closest("td").hasClass("danger") ) {
+            $(".otherTotalCol").each(function() {
+                $(this).addClass("danger");
+            });
+        } else {
+            $(".otherTotalCol").each(function() {
+                $(this).removeClass("danger");
+            });
+        }
+    }
 
   $(function() {
 
@@ -41,6 +138,17 @@
              $(this).css("display","");
              heights += 1;
           });
+          totalColumns();
+          //Reshorten columns, for some reason glitched out
+          $('#tableElements').children('tr').each(function () {
+                  $(this).children('td').each(function () {
+                      var str = $(this).text();
+                      if(str.length > 14 && $(this).attr("id") != "names" && $(this).attr('id') != "butonz" && $(this).attr('class') != "dropdown") {
+                          str = str.substring(0, 15) + "...";
+                          $(this).text(str);
+                      }
+                  });
+            });
       });
       heights = 60 + (60 * heights);
       $('#pageGapDash').css("height",heights);
@@ -50,19 +158,23 @@
   $( "body" ).click(function( event ) {
 
     if (event.target.id == "successBut") {
-
-      $(event.target).parent().find("#failBut").removeClass();
-      $(event.target).className = '';
-      $(event.target).addClass("btn btn-success glyphicon glyphicon-ok");
-      $(event.target).parent().find("#failBut").addClass("btn btn-default glyphicon glyphicon-remove");
+        userid = ".userid-" + $(event.target).parent().parent().parent().parent().find("#userid").text();
+        $(userid).each(function() {
+           $(this).parent().parent().find("#failBut").removeClass();
+           $(this).parent().parent().find("#successBut").removeClass();
+           $(this).parent().parent().find("#successBut").addClass("btn btn-success glyphicon glyphicon-ok");
+           $(this).parent().parent().find("#failBut").addClass("btn btn-default glyphicon glyphicon-remove");
+        });
 
     }
     else if (event.target.id == "failBut") {
-      var otherchild = $(event.target).parent().find("#successBut");
-      otherchild.removeClass();
-      event.target.className = '';
-      otherchild.addClass("btn btn-default glyphicon glyphicon-ok");
-      $(event.target).addClass("btn btn-danger glyphicon glyphicon-remove");
+        userid = ".userid-" + $(event.target).parent().parent().parent().parent().find("#userid").text();
+        $(userid).each(function() {
+            $(this).parent().parent().find("#failBut").removeClass();
+            $(this).parent().parent().find("#successBut").removeClass();
+            $(this).parent().parent().find("#successBut").addClass("btn btn-default glyphicon glyphicon-ok");
+            $(this).parent().parent().find("#failBut").addClass("btn btn-danger glyphicon glyphicon-remove");
+        });
     }
 
   });
@@ -80,13 +192,13 @@
         }
       });
     }
+    totalColumns();
 
   });
 
 
   var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
   $(document).on('change', '#datepicker', function() {
-
 
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
@@ -137,7 +249,8 @@
               heights += 1;
             $(this).children('td').each(function () {
               var str = $(this).text();
-              if (str.length > 10) {
+              console.log($(this).attr('class'));
+              if (str.length > 14 && $(this).attr("id") != "names" && $(this).attr('id') != "butonz" && $(this).attr('class') != "dropdown") {
                 str = str.substring(0, 15) + "...";
                 $(this).text(str);
               }
@@ -157,6 +270,9 @@
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
 
 
+      //total all the entries
+      totalColumns();
+
 
   });
 
@@ -175,7 +291,7 @@
     ];
     var nameArray = [];
 
-    //Init Datepicker
+      //Init Datepicker
     var eventDates = {};
     $('.timesheetEntry').each(function() {
       var approval = $(this).find('#approval').text();
@@ -195,8 +311,16 @@
       }
     });
 
+    //Get rid of notes for ones that don't exist
 
-    if (sessionStorage.refreshCount == undefined) {
+      $(".noteclass").each(function () {
+          if ($(this).text() == "") {
+              $(this).closest(".dropdown").find(".dropdown-toggle").css("display","none");
+          }
+      });
+
+
+      if (sessionStorage.refreshCount == undefined) {
       $("#datepicker").datepicker().datepicker("setDate", new Date());
       sessionStorage.refreshCount = 1;
     } else {
@@ -236,10 +360,6 @@
     $('#Date6').text("Fri " + sixthday.getDate() );
     $('#Date7').text("Sat " + lastday.getDate() );
 
-    //extra name initialize
-
-    //
-
     $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
     $('#tableElements').children('tr').each(function () {
@@ -247,7 +367,7 @@
         $(this).css("display","");
         $(this).children('td').each(function () {
           var str = $(this).text();
-          if(str.length > 10) {
+          if(str.length > 14 && $(this).attr("id") != "names" && $(this).attr('id') != "butonz" && $(this).attr('class') != "dropdown") {
             str = str.substring(0, 15) + "...";
             $(this).text(str);
           }
@@ -272,6 +392,7 @@
 
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+
 
     //Approval Buttons
     $('.approvalButtons').each(function() {
@@ -300,7 +421,28 @@
       heights = 60 + (60 * heights);
       $('#pageGapDash').css("height",heights);
 
+
+      //total all the entries
+    totalColumns();
+
+      $('#tableElements').children('tr').each(function () {
+    $(this).find('#successBut').trigger("submit.rails");
+      });
+
   });
+
+    $.fn.simulateClick = function() {
+        return this.each(function() {
+            if('createEvent' in document) {
+                var doc = this.ownerDocument,
+                    evt = doc.createEvent('MouseEvents');
+                evt.initMouseEvent('click', true, true, doc.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+                this.dispatchEvent(evt);
+            } else {
+                this.click(); // IE
+            }
+        });
+    }
 
   $(window).scroll(function (event) {
     var scroll = $(window).scrollLeft();
@@ -336,6 +478,9 @@
       theEvent.returnValue = false;
       if(theEvent.preventDefault) theEvent.preventDefault();
     }
+
+
+
   }
 
 
@@ -383,7 +528,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
           <div style="line-height:75%;"><br></div>
-          <h2 style="text-align: center;">Timesheet</h2>
+          <h2 style="text-align: center;">Approvals</h2>
           </br>
 
           <div style="" id="datepicker" datePickerTag="first"></div>
@@ -443,8 +588,6 @@
                 <th >Activity</th>
                 <th >Task</th>
                 <th >Billing Options</th>
-                <th >Billing Opt - SCR</th>
-                <th >Billing Opt - FTR</th>
                 <th  id="Date1"></th>
                 <th  id="Date2"></th>
                 <th  id="Date3"></th>
@@ -462,33 +605,146 @@
               </tr>
 </tbody>
 
-<tbody id="tableElements">
-<% @pages.each do |p| %>
-    <tr id="row_<%= p.id %>" class="timesheetEntry">
-      <td><div class="btn-group approvalButtons" role="group" aria-label="..."><%= form_for(p, remote: true, :url => {:action => 'update', :id => p.id}) do |f| %><%= f.text_field :approval, :value => p.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "", id:"successBut", name: "subaction", value: "Approved" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "Unapproved" %></div>
-        <% end %>
-      </td>
-      <td id="approval" style="display:none;"><%= p.approval %></td>
-      <td id="dateOfTime"><%= p.date_of_time %></td>
-      <td id="names"><%= p.user.first_name %> <%= p.user.last_name %></td>
-      <td><%= p.credit_union %> </td>
-      <td><%= p.activity %> </td>
-      <td><%= p.task %> </td>
-      <td><%= p.billing_options %> </td>
-      <td><%= p.billing_options_scr %> </td>
-      <td><%= p.billing_options_ftr %> </td>
-      <td><%= p.sun %> </td>
-      <td><%= p.mon %> </td>
-      <td><%= p.tue %> </td>
-      <td><%= p.wed %> </td>
-      <td><%= p.thu %> </td>
-      <td><%= p.fri %> </td>
-      <td><%= p.sat %> </td>
-      <td><%= p.total %> </td>
-      <td style="display:none;" class="dateBlob"><%= p.date_of_time %></td>
-    </tr>
-<% end %>
-</tbody>
+
+              <tbody id="tableElements">
+              <% @pages.each do |p| %>
+                  <tr id="row_<%= p.id %>" class="timesheetEntry">
+                    <td style="display:none;"><p class="userid-<%= p.user_id %>" id="userid" style="display:none;"><%= p.user_id %></p></td>
+                    <td id="butonz"><div class="btn-group approvalButtons" role="group" aria-label="..."><%= form_for(p, remote: true, :url => {:action => 'update', :id => p.id}) do |f| %><%= f.text_field :approval, :value => p.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "successButt", id:"successBut", name: "subaction", value: "Approved" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "Unapproved" %></div>
+                      <% end %>
+                      </td>
+                    <td id="approval" style="display:none;"><%= p.approval %></td>
+                    <td id="dateOfTime"><%= p.date_of_time %></td>
+                    <td class="namesz" id="names"><%= p.user.first_name %> <%= p.user.last_name %></td>
+                    <td><%= p.credit_union %> </td>
+                    <td><%= p.activity %> </td>
+                    <td><%= p.task %> </td>
+                    <td><%= p.billing_options %> </td>
+
+                    <td class="dropdown">
+                      <p class="sunEntry" style="float:left;"><%= p.sun %></p><a class="glyphicon glyphicon-comment form-control-clear dropdown-toggle" data-toggle="dropdown" style="font-size:15px;padding-left:6px;vertical-align:center;float:left;"></a>
+                      <ul id="login-dp" class="dropdown-menu feedback">
+                        <li>
+                          <div class="report">
+                            <div class="col-sm-12">
+                              <p class="noteclass"><%= p.sunnotes %></p>
+                              <input name="screenshot" type="hidden" class="screen-uri">
+                              <span class="screenshot pull-right"><i class="fa fa-camera cam" title="Take Screenshot"></i></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                    <td class="dropdown"><p class="monEntry" style="float:left;"><%= p.mon %></p>
+                      <a class="glyphicon glyphicon-comment form-control-clear dropdown-toggle" data-toggle="dropdown" style="font-size:15px;padding-left:6px;vertical-align:center;"></a>
+                      <ul id="login-dp" class="dropdown-menu feedback">
+                        <li>
+                          <div class="report">
+                            <div class="col-sm-12">
+                              <p class="noteclass"><%= p.monnotes %></p>
+                              <input name="screenshot" type="hidden" class="screen-uri">
+                              <span class="screenshot pull-right"><i class="fa fa-camera cam" title="Take Screenshot"></i></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                    <td class="dropdown"><p class="tueEntry" style="float:left;"><%= p.tue %></p>
+                      <a class="glyphicon glyphicon-comment form-control-clear dropdown-toggle" data-toggle="dropdown" style="font-size:15px;padding-left:6px;vertical-align:center;"></a>
+                      <ul id="login-dp" class="dropdown-menu feedback">
+                        <li>
+                          <div class="report">
+                            <div class="col-sm-12">
+                              <p class="noteclass"><%= p.tuenotes %></p>
+                              <input name="screenshot" type="hidden" class="screen-uri">
+                              <span class="screenshot pull-right"><i class="fa fa-camera cam" title="Take Screenshot"></i></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                    <td class="dropdown"><p class="wedEntry" style="float:left;"><%= p.wed %></p>
+                      <a class="glyphicon glyphicon-comment form-control-clear dropdown-toggle" data-toggle="dropdown" style="font-size:15px;padding-left:6px;vertical-align:center;"></a>
+                      <ul id="login-dp" class="dropdown-menu feedback">
+                        <li>
+                          <div class="report">
+                            <div class="col-sm-12">
+                              <p class="noteclass"><%= p.wednotes %></p>
+                              <input name="screenshot" type="hidden" class="screen-uri">
+                              <span class="screenshot pull-right"><i class="fa fa-camera cam" title="Take Screenshot"></i></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                    <td class="dropdown"><p class="thuEntry" style="float:left;"><%= p.thu %></p>
+                      <a class="glyphicon glyphicon-comment form-control-clear dropdown-toggle" data-toggle="dropdown" style="font-size:15px;padding-left:6px;vertical-align:center;"></a>
+                      <ul id="login-dp" class="dropdown-menu feedback">
+                        <li>
+                          <div class="report">
+                            <div class="col-sm-12">
+                              <p class="noteclass"><%= p.thunotes %></p>
+                              <input name="screenshot" type="hidden" class="screen-uri">
+                              <span class="screenshot pull-right"><i class="fa fa-camera cam" title="Take Screenshot"></i></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                    <td class="dropdown"><p class="friEntry" style="float:left;"><%= p.fri %></p>
+                      <a class="glyphicon glyphicon-comment form-control-clear dropdown-toggle" data-toggle="dropdown" style="font-size:15px;padding-left:6px;vertical-align:center;"></a>
+                      <ul id="login-dp" class="dropdown-menu feedback">
+                        <li>
+                          <div class="report">
+                            <div class="col-sm-12">
+                              <p class="noteclass"><%= p.frinotes %></p>
+                              <input name="screenshot" type="hidden" class="screen-uri">
+                              <span class="screenshot pull-right"><i class="fa fa-camera cam" title="Take Screenshot"></i></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                    <td class="dropdown"><p class="satEntry" style="float:left;"><%= p.sat %></p>
+                      <a class="glyphicon glyphicon-comment form-control-clear dropdown-toggle" data-toggle="dropdown" style="font-size:15px;padding-left:6px;vertical-align:center;"></a>
+                      <ul id="login-dp" class="dropdown-menu feedback">
+                        <li>
+                          <div class="report">
+                            <div class="col-sm-12">
+                              <p class="noteclass"><%= p.satnotes %></p>
+                              <input name="screenshot" type="hidden" class="screen-uri">
+                              <span class="screenshot pull-right"><i class="fa fa-camera cam" title="Take Screenshot"></i></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    <td><p class="totalEntry"><%= p.total %></p> </td>
+                    <td style="display:none;" class="dateBlob"><%= p.date_of_time %></td>
+                  </tr>
+              <% end %>
+
+              </tbody>
+
+              <tbody>
+              <tr class="success" id="totalsColumn">
+                <td class="otherTotalCol"><p style="font-weight:bold;">Totals:</p></td>
+                <td class="otherTotalCol"></td>
+                <td class="otherTotalCol"></td>
+                <td class="otherTotalCol"></td>
+                <td class="otherTotalCol"></td>
+                <td class="otherTotalCol"></td>
+                <td class="otherTotalCol"></td>
+                <td><p style="font-weight:bold;" id="totalSun"></p></td>
+                <td><p style="font-weight:bold;" id="totalMon"></p></td>
+                <td><p style="font-weight:bold;" id="totalTue"></p></td>
+                <td><p style="font-weight:bold;" id="totalWed"></p></td>
+                <td><p style="font-weight:bold;" id="totalThu"></p></td>
+                <td><p style="font-weight:bold;" id="totalFri"></p></td>
+                <td><p style="font-weight:bold;" id="totalSat"></p></td>
+                <td><p style="font-weight:bold;" id="totalTotal"></p></td>
+              </tr>
+              </tbody>
+
 
 </table>
 </div>

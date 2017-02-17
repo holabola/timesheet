@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # User.delete_all
-# Page.delete_all
+ Page.delete_all
 # Expense.delete_all

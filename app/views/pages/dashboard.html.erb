@@ -2,7 +2,16 @@
   .table-responsive {
 
   }
-
+  .css-class-to-highlight a {
+    background-color: #910101 !important;
+    background-image :none !important;
+    color: #efefef !important;
+  }
+  .css-class-to-highlight-good a {
+    background-color: #218212 !important;
+    background-image :none !important;
+    color: #efefef !important;
+  }
   html {
     width: 1600px;
   }
@@ -27,14 +36,146 @@
     max-height: 270px;
     overflow-x: hidden;
   }
+  .btn-circle.btn-lg {
+    width: 40px;
+    height: 40px;
+    padding: 5px 8px;
+    font-size: 12px;
+    line-height: 1.33;
+    border-radius: 25px;
+  }
+
+
+
+  .feedback textarea{height: 180px; }
+  .feedback .screenshot{ position: relative; top: -24px; right: 10px; opacity: .6}
+  .feedback .screenshot:hover{  opacity: 1}
+  .feedback .reported p, .feedback .failed p  { height: 190px}
+
+
+  .feedback.left{left:5px; bottom:15px}
+  .feedback.right{right:5px; bottom:15px}
+
+  .feedback .dropdown-menu{width: 290px;height: 320px;bottom: 50px;}
+  .feedback.left .dropdown-menu{ left: 0px}
+  .feedback.right .dropdown-menu{ right: 0px}
+  .feedback .hideme{ display: none}
 </style>
 <script>
 
   $(function() {
-    $("#datepicker").datepicker();
+      //Init Datepicker and add Highlights if timesheets aren't finished
+
+      var counter = 0;
+      var test = []; eventDates = [], eventDatesGood = []; dateRange = [], sun = [], mon = [], tue = [], wed = [], thu = [], fri = [], sat = [], total = [];
+      var first, countz, curr;
+      $('.timesheetEntry').each(function() {
+          curr = new Date(moment($(this).find(".dateBlob").text()));
+          first = new Date(curr.setDate(curr.getDate() - curr.getDay()));
+          if (test.indexOf(first.toString().substring(0,10)) == -1) {
+              test[counter] = first.toString().substring(0,10);
+              dateRange[counter] = first;
+              sun[counter] = parseFloat($(this).find(".sunEntry").text());
+              mon[counter] = parseFloat($(this).find(".monEntry").text());
+              tue[counter] = parseFloat($(this).find(".tueEntry").text());
+              wed[counter] = parseFloat($(this).find(".wedEntry").text());
+              thu[counter] = parseFloat($(this).find(".thuEntry").text());
+              fri[counter] = parseFloat($(this).find(".friEntry").text());
+              sat[counter] = parseFloat($(this).find(".satEntry").text());
+              total[counter] = parseFloat($(this).find(".totalEntry").text());
+              counter += 1;
+          } else {
+              sun[test.indexOf(first.toString().substring(0,10))] = sun[test.indexOf(first.toString().substring(0,10))] + parseFloat($(this).find(".sunEntry").text());
+              mon[test.indexOf(first.toString().substring(0,10))] = mon[test.indexOf(first.toString().substring(0,10))] + parseFloat($(this).find(".monEntry").text());
+              tue[test.indexOf(first.toString().substring(0,10))] = tue[test.indexOf(first.toString().substring(0,10))] + parseFloat($(this).find(".tueEntry").text());
+              wed[test.indexOf(first.toString().substring(0,10))] = wed[test.indexOf(first.toString().substring(0,10))] + parseFloat($(this).find(".wedEntry").text());
+              thu[test.indexOf(first.toString().substring(0,10))] = thu[test.indexOf(first.toString().substring(0,10))] + parseFloat($(this).find(".thuEntry").text());
+              fri[test.indexOf(first.toString().substring(0,10))] = fri[test.indexOf(first.toString().substring(0,10))] + parseFloat($(this).find(".friEntry").text());
+              sat[test.indexOf(first.toString().substring(0,10))] = sat[test.indexOf(first.toString().substring(0,10))] + parseFloat($(this).find(".satEntry").text());
+              total[test.indexOf(first.toString().substring(0,10))] = total[test.indexOf(first.toString().substring(0,10))] + parseFloat($(this).find(".totalEntry").text());
+              console.log(test.indexOf(first.toString().substring(0,10)));
+          }
+      });
+
+      counter = 0;
+      countz = 0;
+      dateRange.forEach(function(entry) {
+          if(sun[counter] >= 8 && mon[counter] >= 8 && tue[counter] >= 8 && wed[counter] >= 8 && thu[counter] >= 8 && fri[counter] >= 8 && sat[counter] >= 8 && total[counter] >= 40) {
+              eventDatesGood[countz] = new Date(entry.setDate(entry.getDate()));
+              countz += 1;
+              for (index = countz; index < countz + 6; ++index) {
+                  eventDatesGood[index] = new Date(entry.setDate(entry.getDate() + 1));
+              }
+              countz += 6;
+          }
+          else {
+              eventDates[countz] = new Date(entry.setDate(entry.getDate()));
+              countz += 1;
+              for (index = countz; index < countz + 6; ++index) {
+                  eventDates[index] = new Date(entry.setDate(entry.getDate() + 1));
+              }
+              countz += 6;
+          }
+          counter += 1;
+      });
+
+    $("#datepicker").datepicker( {
+        beforeShowDay: function( date ) {
+            for (var i = 0; i < eventDates.length; i++) {
+                if (new Date(eventDates[i]).toString() == date.toString()) {
+                    return [true, 'css-class-to-highlight', 'tooltip text'];
+                }
+            }
+            for (var i = 0; i < eventDatesGood.length; i++) {
+                if (new Date(eventDatesGood[i]).toString() == date.toString()) {
+                    return [true, 'css-class-to-highlight-good', 'tooltip text'];
+                }
+            }
+            return [true, ''];
+        }
+    });
     $('.selectpicker').selectpicker();
+
+
+    //Checks if things aren't filled, prompts user
+
+      $(".actualSubmitBut").hover( function() {
+          //alert( $(".activitySelect").val() );
+          var message;
+          if ($(".creditUnionSelect option:checked").val() == "") { message = "Credit Union, " }
+          if ($(".activitySelect option:checked").val() == "") { message = message + "Activity, " }
+          if ($(".task option:checked").val() == "") { message = message + "Task, " }
+          if ($(".billing-options option:checked").val() == "") { message = message + "Billing-Options" }
+          if ($(".creditUnionSelect option:checked").val() == "" || $(".activitySelect option:checked").val() == "" || $(".task option:checked").val() == "" || $(".billing-options option:checked").val() == "") {
+              $(".actualSubmitBut").data("confirm", "You are missing some pieces of information. Continue without " + message + "?");
+          }
+          else {
+              $(".actualSubmitBut").removeData("confirm");
+          }
+      });
+
+
   });
 
+
+
+  $(document).on('change', 'textarea', function() {
+      $('textarea').each(function() {
+          if ($(this).val() != "") {
+              $(this).closest(".dropdown").find(".glyphicon-comment").css("color","green");
+          } else {
+              $(this).closest(".dropdown").find(".glyphicon-comment").css("color","");
+          }
+      });
+  });
+
+  $(document).on('change', '.task', function() {
+      if ($(this).val() == "Non-Production") {
+          $(".billing-options").val("Non-Billable");
+          $('.selectpicker').selectpicker('refresh');
+      }
+
+  });
 
 
   $(document).on('change', '#datepicker', function() {
@@ -42,6 +183,9 @@
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
+    var sunTotal,monTotal,tueTotal,wedTotal,thuTotal,friTotal,satTotal,totalTotal;
+    sunTotal = 0.00, monTotal = 0.00, tueTotal = 0.00, wedTotal = 0.00, thuTotal = 0.00, friTotal = 0.00, satTotal = 0.00, totalTotal = 0.00;
+
     curr = $('#datepicker').datepicker('getDate');
     first = curr.getDate() - curr.getDay();
     firstday = new Date(curr.setDate(first));
@@ -67,19 +211,20 @@
     $('#Date6').text("Fri " + sixthday.getDate() );
     $('#Date7').text("Sat " + lastday.getDate() );
 
-    $('#datePicked').val($('#datepicker').datepicker('getDate'));
+    $('#datePicked').val(moment($('#datepicker').datepicker('getDate')).format("YYYY-MM-DD"));
 
     var heights = 0;
     $('#tableElements').children('tr').each(function () {
       if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
         $(this).css("display","");
         heights += 1;
-        $(this).children('td').each(function () {
+        $(this).children('td').each(function (index, element) {
           var str = $(this).text();
           if(str.length > 10) {
             str = str.substring(0, 15) + "...";
             $(this).text(str);
           }
+            return index < 3;
         });
 
       } else {
@@ -94,6 +239,93 @@
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
 
+      //total all the entries
+
+      $(".sunEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              sunTotal += parseFloat($(this).text());
+          }
+      });
+      $(".monEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              monTotal += parseFloat($(this).text());
+          }
+      });
+      $(".tueEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              tueTotal += parseFloat($(this).text());
+          }
+      });
+      $(".wedEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              wedTotal += parseFloat($(this).text());
+          }
+      });
+      $(".thuEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              thuTotal += parseFloat($(this).text());
+          }
+      });
+      $(".friEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              friTotal += parseFloat($(this).text());
+          }
+      });
+      $(".satEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              satTotal += parseFloat($(this).text());
+          }
+      });
+      $(".totalEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              totalTotal += parseFloat($(this).text());
+          }
+      });
+      $("#totalSun").text(sunTotal);
+      $("#totalMon").text(monTotal);
+      $("#totalTue").text(tueTotal);
+      $("#totalWed").text(wedTotal);
+      $("#totalThu").text(thuTotal);
+      $("#totalFri").text(friTotal);
+      $("#totalSat").text(satTotal);
+      $("#totalTotal").text(totalTotal);
+
+      if(sunTotal < 8) {
+          $("#totalSun").closest("td").addClass("danger");
+      } else { $("#totalSun").closest("td").removeClass("danger"); }
+      if(monTotal < 8) {
+          $("#totalMon").closest("td").addClass("danger");
+      } else { $("#totalMon").closest("td").removeClass("danger"); }
+      if(tueTotal < 8) {
+          $("#totalTue").closest("td").addClass("danger");
+      } else { $("#totalTue").closest("td").removeClass("danger"); }
+      if(wedTotal < 8) {
+          $("#totalWed").closest("td").addClass("danger");
+      } else { $("#totalWed").closest("td").removeClass("danger"); }
+      if(thuTotal < 8) {
+          $("#totalThu").closest("td").addClass("danger");
+      } else { $("#totalThu").closest("td").removeClass("danger"); }
+      if(friTotal < 8) {
+          $("#totalFri").closest("td").addClass("danger");
+      } else { $("#totalFri").closest("td").removeClass("danger"); }
+      if(satTotal < 8) {
+          $("#totalSat").closest("td").addClass("danger");
+      } else { $("#totalSat").closest("td").removeClass("danger"); }
+      if(totalTotal < 40) {
+          $("#totalTotal").closest("td").addClass("danger");
+      } else { $("#totalTotal").closest("td").removeClass("danger"); }
+
+      if($("#totalSun").closest("td").hasClass("danger") || $("#totalMon").closest("td").hasClass("danger") || $("#totalTue").closest("td").hasClass("danger") || $("#totalWed").closest("td").hasClass("danger") || $("#totalThu").closest("td").hasClass("danger") || $("#totalFri").closest("td").hasClass("danger") || $("#totalSat").closest("td").hasClass("danger") || $("#totalTotal").closest("td").hasClass("danger") ) {
+          $(".otherTotalCol").each(function() {
+              $(this).addClass("danger");
+          });
+      } else {
+          $(".otherTotalCol").each(function() {
+              $(this).removeClass("danger");
+          });
+      }
+
+
   });
 
   $( document ).ready(function() {
@@ -101,6 +333,8 @@
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
+    var sunTotal,monTotal,tueTotal,wedTotal,thuTotal,friTotal,satTotal,totalTotal;
+    sunTotal = 0.00, monTotal = 0.00, tueTotal = 0.00, wedTotal = 0.00, thuTotal = 0.00, friTotal = 0.00, satTotal = 0.00, totalTotal = 0.00;
 
       if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
           $('#sidebarNav').find('[datePickerTag="first"]').removeAttr("id");
@@ -151,7 +385,7 @@
     $('#Date6').text("Fri " + sixthday.getDate() );
     $('#Date7').text("Sat " + lastday.getDate() );
 
-    $('#datePicked').val($('#datepicker').datepicker('getDate'));
+    $('#datePicked').val(moment($('#datepicker').datepicker('getDate')).format("YYYY-MM-DD"));
 
     //Limits text to 15 characters and hides entries
       var heights = 0;
@@ -159,12 +393,13 @@
       if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
         $(this).css("display","");
         heights += 1;
-        $(this).children('td').each(function () {
+        $(this).children('td').each(function (index, element) {
           var str = $(this).text();
           if(str.length > 10) {
             str = str.substring(0, 15) + "...";
             $(this).text(str);
           }
+          return index < 3;
         });
       } else {
         $(this).css("display","none");
@@ -180,6 +415,95 @@
 
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+
+    //hide notes for entries without them
+
+    $(".noteclass").each(function () {
+       if ($(this).text() == "") {
+           $(this).closest(".dropdown").find(".dropdown-toggle").css("display","none");
+       }
+    });
+
+    //total all the entries
+
+    $(".sunEntry").each(function () {
+        if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+            sunTotal += parseFloat($(this).text());
+            }
+    });
+      $(".monEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              monTotal += parseFloat($(this).text());
+          }
+      });
+      $(".tueEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              tueTotal += parseFloat($(this).text());
+          }
+      });
+      $(".wedEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              wedTotal += parseFloat($(this).text());
+          }
+      });
+      $(".thuEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              thuTotal += parseFloat($(this).text());
+          }
+      });
+      $(".friEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              friTotal += parseFloat($(this).text());
+          }
+      });
+      $(".satEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              satTotal += parseFloat($(this).text());
+          }
+      });
+      $(".totalEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              totalTotal += parseFloat($(this).text());
+          }
+      });
+      $("#totalSun").text(sunTotal);
+      $("#totalMon").text(monTotal);
+      $("#totalTue").text(tueTotal);
+      $("#totalWed").text(wedTotal);
+      $("#totalThu").text(thuTotal);
+      $("#totalFri").text(friTotal);
+      $("#totalSat").text(satTotal);
+      $("#totalTotal").text(totalTotal);
+
+      if(sunTotal < 8) {
+          $("#totalSun").closest("td").addClass("danger");
+      }
+      if(monTotal < 8) {
+          $("#totalMon").closest("td").addClass("danger");
+      }
+      if(tueTotal < 8) {
+          $("#totalTue").closest("td").addClass("danger");
+      }
+      if(wedTotal < 8) {
+          $("#totalWed").closest("td").addClass("danger");
+      }
+      if(thuTotal < 8) {
+          $("#totalThu").closest("td").addClass("danger");
+      }
+      if(friTotal < 8) {
+          $("#totalFri").closest("td").addClass("danger");
+      }
+      if(satTotal < 8) {
+          $("#totalSat").closest("td").addClass("danger");
+      }
+      if(totalTotal < 40) {
+          $("#totalTotal").closest("td").addClass("danger");
+      }
+      if($("#totalSun").closest("td").hasClass("danger") || $("#totalMon").closest("td").hasClass("danger") || $("#totalTue").closest("td").hasClass("danger") || $("#totalWed").closest("td").hasClass("danger") || $("#totalThu").closest("td").hasClass("danger") || $("#totalFri").closest("td").hasClass("danger") || $("#totalSat").closest("td").hasClass("danger") || $("#totalTotal").closest("td").hasClass("danger") ) {
+          $(".otherTotalCol").each(function() {
+              $(this).addClass("danger");
+          });
+      }
 
 
   });
@@ -221,143 +545,6 @@
   }
 
 
-
-  $( function() {
-    $.widget( "custom.combobox", {
-      _create: function() {
-        this.wrapper = $( "<span>" )
-            .addClass( "custom-combobox" )
-            .insertAfter( this.element );
-
-        this.element.hide();
-        this._createAutocomplete();
-        this._createShowAllButton();
-      },
-
-      _createAutocomplete: function() {
-        var selected = this.element.children( ":selected" ),
-            value = selected.val() ? selected.text() : "";
-
-        this.input = $( "<input>" )
-            .appendTo( this.wrapper )
-            .val( value )
-            .attr( "title", "" )
-            .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
-            .autocomplete({
-              delay: 0,
-              minLength: 0,
-              source: $.proxy( this, "_source" )
-            })
-            .tooltip({
-              classes: {
-                "ui-tooltip": "ui-state-highlight"
-              }
-            });
-
-        this._on( this.input, {
-          autocompleteselect: function( event, ui ) {
-            ui.item.option.selected = true;
-            this._trigger( "select", event, {
-              item: ui.item.option
-            });
-          },
-
-          autocompletechange: "_removeIfInvalid"
-        });
-      },
-
-      _createShowAllButton: function() {
-        var input = this.input,
-            wasOpen = false;
-
-        $( "<a>" )
-            .attr( "tabIndex", -1 )
-            .attr( "title", "Show All Items" )
-            .tooltip()
-            .appendTo( this.wrapper )
-            .button({
-              icons: {
-                primary: "ui-icon-triangle-1-s"
-              },
-              text: false
-            })
-            .removeClass( "ui-corner-all" )
-            .addClass( "custom-combobox-toggle ui-corner-right" )
-            .on( "mousedown", function() {
-              wasOpen = input.autocomplete( "widget" ).is( ":visible" );
-            })
-            .on( "click", function() {
-              input.trigger( "focus" );
-
-              // Close if already visible
-              if ( wasOpen ) {
-                return;
-              }
-
-              // Pass empty string as value to search for, displaying all results
-              input.autocomplete( "search", "" );
-            });
-      },
-
-      _source: function( request, response ) {
-        var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
-        response( this.element.children( "option" ).map(function() {
-          var text = $( this ).text();
-          if ( this.value && ( !request.term || matcher.test(text) ) )
-            return {
-              label: text,
-              value: text,
-              option: this
-            };
-        }) );
-      },
-
-      _removeIfInvalid: function( event, ui ) {
-
-        // Selected an item, nothing to do
-        if ( ui.item ) {
-          return;
-        }
-
-        // Search for a match (case-insensitive)
-        var value = this.input.val(),
-            valueLowerCase = value.toLowerCase(),
-            valid = false;
-        this.element.children( "option" ).each(function() {
-          if ( $( this ).text().toLowerCase() === valueLowerCase ) {
-            this.selected = valid = true;
-            return false;
-          }
-        });
-
-        // Found a match, nothing to do
-        if ( valid ) {
-          return;
-        }
-
-        // Remove invalid value
-        this.input
-            .val( "" )
-            .attr( "title", value + " didn't match any item" )
-            .tooltip( "open" );
-        this.element.val( "" );
-        this._delay(function() {
-          this.input.tooltip( "close" ).attr( "title", "" );
-        }, 2500 );
-        this.input.autocomplete( "instance" ).term = "";
-      },
-
-      _destroy: function() {
-        this.wrapper.remove();
-        this.element.show();
-      }
-    });
-
-    $( "#combobox" ).combobox();
-    $( "#toggle" ).on( "click", function() {
-      $( "#combobox" ).toggle();
-    });
-  } );
 </script>
 </head>
 

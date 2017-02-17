@@ -23,7 +23,7 @@ class ExpenseUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process scale: [200, 300]
+   process resize_to_fit: [1000, 1000]
   #
   # def scale(width, height)
   #   # do something

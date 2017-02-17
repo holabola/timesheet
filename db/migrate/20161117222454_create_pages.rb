@@ -6,18 +6,23 @@ class CreatePages < ActiveRecord::Migration
       t.string :activity
       t.string :task
       t.string :billing_options
-      t.string :billing_options_scr
-      t.string :billing_options_ftr
-      t.integer :sun
-      t.integer :mon
-      t.integer :tue
-      t.integer :wed
-      t.integer :thu
-      t.integer :fri
-      t.integer :sat
-      t.integer :total
+      t.string :sun_notes
+      t.string :mon_notes
+      t.string :tue_notes
+      t.string :wed_notes
+      t.string :thu_notes
+      t.string :fri_notes
+      t.string :sat_notes
+      t.float :sun
+      t.float :mon
+      t.float :tue
+      t.float :wed
+      t.float :thu
+      t.float :fri
+      t.float :sat
+      t.float :total
       t.string :approval
-      t.string :date_of_time
+      t.date :date_of_time
       t.string :department
       t.references :user, foreign_key: true
       t.timestamps

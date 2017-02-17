@@ -139,11 +139,24 @@ class PagesController < ApplicationController
 
     @approvalStatus = params[:subaction]
     if @approvalStatus == "Approved" || @approvalStatus == "Unapproved"
-      @page = Page.find(params[:id])
+      datez = Page.find(params[:id]).date_of_time
+      dateblob = datez.to_date
+      firstdate = dateblob.beginning_of_week - 1.day
+      lastdate = firstdate + 7.day
+      @departmentblob = Page.find(params[:id]).department
+      @pagez = Page.where(["date_of_time IN (?)",
+                                        (firstdate)..(lastdate)]).where(:user_id => Page.find(params[:id]).user_id)
+
+      #Client.all(:conditions => ["created_at > ? AND created_at < ?", params[:start_date], params[:end_date]])
+      print "\n#####\n"
+      print Page.find(params[:id]).user_id
+      print "\n#####\n"
+      print
+      print "\n#####\n"
 
 
       respond_to do |format|
-        if @page.update_attributes(:approval => @approvalStatus)
+        if @pagez.update_all(:approval => @approvalStatus)
           # If update succeeds, redirect to the list action
           format.js   { }
           format.json { render :show, status: :created, location: @comment }
@@ -186,6 +199,7 @@ class PagesController < ApplicationController
     @new_pages = Page.new
   end
 
+
   def expensesapprovals
     @expenses = Expense.where(:department => current_user.department).order('date_activity DESC')
     @new_expenses = Expense.new
@@ -209,7 +223,7 @@ class PagesController < ApplicationController
   end
 
   def new_pages_params
-    params.require(:page).permit(:credit_union, :activity, :task, :billing_options, :billing_options_scr, :billing_options_ftr, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :total, :date_of_time, :department)
+    params.require(:page).permit(:credit_union, :activity, :task, :billing_options, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :total, :date_of_time, :department, :sunnotes, :monnotes, :tuenotes, :wednotes, :thunotes, :frinotes, :satnotes)
   end
 
   def params_final_expense

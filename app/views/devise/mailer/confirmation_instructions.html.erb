@@ -1,5 +1,25 @@
-<p>Welcome <%= @email %>!</p>
+<head>
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+    p {
+      font-family: 'Titillium Web', Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <img src="http://i.imgur.com/2Y7jOGx.jpg" style="max-width:300%;min-width:100%;">
+  <font face="Titillium Web', Helvetica, sans-serif;">
+  <p style="text-align:center;"><img src="http://i.imgur.com/6yYQZqE.png"></p>
 
-<p>You can confirm your account email through the link below:</p>
+  <p style="color:blue;">Welcome <%= @email %>!</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  <p>Thank you for creating an account!</p>
+  <p>Sorry, I have to make you confirm your account to be sure you aren't a robot. You can confirm your account email through the link below:</p>
+
+  <br>
+
+  <div style="text-align:center;" class="btn btn-primary">
+    <%= link_to 'Confirm My Account', confirmation_url(@resource, confirmation_token: @token), :class => "btn" %>
+  </div>
+  </font>
+</body>

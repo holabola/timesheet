@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213155901) do
+ActiveRecord::Schema.define(version: 20170210152438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,22 +39,27 @@ ActiveRecord::Schema.define(version: 20161213155901) do
     t.string   "activity"
     t.string   "task"
     t.string   "billing_options"
-    t.string   "billing_options_scr"
-    t.string   "billing_options_ftr"
-    t.integer  "sun"
-    t.integer  "mon"
-    t.integer  "tue"
-    t.integer  "wed"
-    t.integer  "thu"
-    t.integer  "fri"
-    t.integer  "sat"
-    t.integer  "total"
+    t.string   "sunnotes"
+    t.string   "monnotes"
+    t.float    "sun"
+    t.float    "mon"
+    t.float    "tue"
+    t.float    "wed"
+    t.float    "thu"
+    t.float    "fri"
+    t.float    "sat"
+    t.float    "total"
     t.string   "approval"
     t.string   "date_of_time"
     t.string   "department"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tuenotes"
+    t.string   "wednotes"
+    t.string   "thunotes"
+    t.string   "frinotes"
+    t.string   "satnotes"
   end
 
   add_index "pages", ["user_id", "created_at"], name: "index_pages_on_user_id_and_created_at", using: :btree
@@ -74,8 +79,12 @@ ActiveRecord::Schema.define(version: 20161213155901) do
     t.string   "last_name"
     t.string   "department"
     t.boolean  "admin",                  default: false
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

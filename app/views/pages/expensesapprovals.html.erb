@@ -4,9 +4,7 @@
 
 
   <style>
-  .ui-datepicker-calendar {
-    display: none;
-  }
+
   .table-responsive {
 
   }
@@ -195,7 +193,6 @@
       }
     });
 
-
   });
 
   $( "body" ).click(function( event ) {
@@ -247,7 +244,7 @@
   $(function() {
     $('input[id="timerange"]').daterangepicker();
     $('.selectpicker').selectpicker();
-    $("#datepickermonth").datepicker( {
+    /* $("#datepickermonth").datepicker( {
       changeMonth: true,
       changeYear: true,
       showButtonPanel: true,
@@ -274,7 +271,7 @@
           }
         });
       }
-    });
+    }); */
 
 
 
@@ -282,13 +279,14 @@
       ifsearchactive = false;
       three = false;
       $("#UserSearch").val("");
-      $("#datepickermonth").val("");
+      //$("#datepickermonth").val("");
       $('.selectpicker').selectpicker('refresh');
       $(".dateHolder").each(function() {
-        var rowNum = "#row_" + $(this).find("p").text();
+        var rowNum = "#row_" + $(this).find(".idholder").text();
         $(rowNum).css("display", "");
         $(rowNum).css("opacity", "");
       });
+      dateRangeMaker();
     });
 
     $("#Approved").click(function(){
@@ -411,6 +409,7 @@
         }
       });
     }
+    dateRangeMaker();
   });
 
   $(document).on('change', "#timerange", function(){
@@ -429,168 +428,114 @@
   $(document).on('change', '#datepicker', function() {
 
 
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-    curr = $('#datepicker').datepicker('getDate');
-    first = curr.getDate() - curr.getDay();
-    firstday = new Date(curr.setDate(first));
-    second = curr.getDate() +1;
-    secondday = new Date(curr.setDate(second));
-    third = curr.getDate() + 1;
-    thirdday = new Date(curr.setDate(third));
-    fourth = curr.getDate() + 1;
-    fourthday = new Date(curr.setDate(fourth));
-    fifth = curr.getDate() + 1;
-    fifthday = new Date(curr.setDate(fifth));
-    sixth = curr.getDate() + 1;
-    sixthday = new Date(curr.setDate(sixth));
-    last = curr.getDate() + 1;
-    lastday = new Date(curr.setDate(last));
-
-    $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
-    $('#Date1').text("Sun " + firstday.getDate() );
-    $('#Date2').text("Mon " + secondday.getDate() );
-    $('#Date3').text("Tue " + thirdday.getDate() );
-    $('#Date4').text("Wed " + fourthday.getDate() );
-    $('#Date5').text("Thu " + fifthday.getDate() );
-    $('#Date6').text("Fri " + sixthday.getDate() );
-    $('#Date7').text("Sat " + lastday.getDate() );
-
-
-    $('#datePicked').val($('#datepicker').datepicker('getDate'));
-
-    $('#tableElements').children('tr').each(function () {
-      var selectedOption = $('#UserSearch').val().trim();
-      if (selectedOption != "") {
-        $('#tableElements').children('tr').each(function () {
-          if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == selectedOption ) {
-            $(this).css("display","");
-          } else {
-            $(this).css("display","none");
-          }
-        });
-      } else {
-        if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
-          $(this).css("display", "");
-          $(this).children('td').each(function () {
-            var str = $(this).text();
-            if (str.length > 10) {
-              str = str.substring(0, 15) + "...";
-              $(this).text(str);
-            }
-          });
-
-        } else {
-          $(this).css("display", "none");
-          // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
-        }
-      }
-    });
+    dateRangeMaker();
 
     //Saves date local variable
-    //sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+    sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
 
-
+    $("#UserSearch").val("");
+    $('.selectpicker').selectpicker('refresh');
 
   });
 
+  function dateRangeMaker() {
+      //Finds date range and applies the visibility of entries
+
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+      ];
+      var nameArray = [];
+
+      curr = $('#datepicker').datepicker('getDate');
+      first = curr.getDate() - curr.getDay();
+
+      firstday = new Date(curr.setDate(first));
+      second = curr.getDate() +1;
+      secondday = new Date(curr.setDate(second));
+      third = curr.getDate() + 1;
+      thirdday = new Date(curr.setDate(third));
+      fourth = curr.getDate() + 1;
+      fourthday = new Date(curr.setDate(fourth));
+      fifth = curr.getDate() + 1;
+      fifthday = new Date(curr.setDate(fifth));
+      sixth = curr.getDate() + 1;
+      sixthday = new Date(curr.setDate(sixth));
+      last = curr.getDate() + 1;
+      lastday = new Date(curr.setDate(last));
+
+      $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+      $('#Date1').text("Sun " + firstday.getDate() );
+      $('#Date2').text("Mon " + secondday.getDate() );
+
+      $('#Date3').text("Tue " + thirdday.getDate() );
+      $('#Date4').text("Wed " + fourthday.getDate() );
+      $('#Date5').text("Thu " + fifthday.getDate() );
+      $('#Date6').text("Fri " + sixthday.getDate() );
+      $('#Date7').text("Sat " + lastday.getDate() );
+
+      //extra name initialize
+
+      //
+
+      $('#datePicked').val($('#datepicker').datepicker('getDate'));
+
+      $('#tableholder').find('tr').each(function () {
+          if (moment($(this).find('.dateBlob').text()) <= lastday && moment($(this).find('.dateBlob').text()) >= firstday) {
+              $(this).css("display","");
+          } else {
+              $(this).css("display","none");
+              // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
+          }
+
+          //find names
+
+      });
+  }
+
   $( document ).ready(function() {
 
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-
-
-    //Init Datepicker
-    var eventDates = {};
-    $('.timesheetEntry').each(function() {
-      var approval = $(this).find('#approval').text();
-      var datez = $(this).find('#dateOfTime').text();
-      if (approval == "Pending" || approval == "") {
-        eventDates[new Date(moment(datez))] = new Date(moment(datez));
+      if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          $('#sidebarNav').find('[datePickerTag="first"]').removeAttr("id");
       }
-    });
-    $("#datepicker").datepicker( {
-      beforeShowDay: function( date ) {
-        var highlight = eventDates[date];
-        if( highlight ) {
-          return [true, "event", 'Tooltip text'];
-        } else {
-          return [true, '', ''];
-        }
-      }
-    });
-
-
-   // if (sessionStorage.refreshCount == undefined) {
-      $("#datepicker").datepicker().datepicker("setDate", new Date());
-   //   sessionStorage.refreshCount = 1;
-   // } else {
-    //  var date = sessionStorage.datePicked;
-     // date = new Date(date);
-     // date.setDate(date.getDate());
-
-     // $("#datepicker").datepicker().datepicker("setDate", date );
-    //}
-    //sessionStorage.refreshCount = sessionStorage.refreshCount + 1;
-    //new Date("10/10/2016")
-
-    curr = $('#datepicker').datepicker('getDate');
-    first = curr.getDate() - curr.getDay();
-
-    firstday = new Date(curr.setDate(first));
-    second = curr.getDate() +1;
-    secondday = new Date(curr.setDate(second));
-    third = curr.getDate() + 1;
-    thirdday = new Date(curr.setDate(third));
-    fourth = curr.getDate() + 1;
-    fourthday = new Date(curr.setDate(fourth));
-    fifth = curr.getDate() + 1;
-    fifthday = new Date(curr.setDate(fifth));
-    sixth = curr.getDate() + 1;
-    sixthday = new Date(curr.setDate(sixth));
-    last = curr.getDate() + 1;
-    lastday = new Date(curr.setDate(last));
-
-    $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
-    $('#Date1').text("Sun " + firstday.getDate() );
-    $('#Date2').text("Mon " + secondday.getDate() );
-
-    $('#Date3').text("Tue " + thirdday.getDate() );
-    $('#Date4').text("Wed " + fourthday.getDate() );
-    $('#Date5').text("Thu " + fifthday.getDate() );
-    $('#Date6').text("Fri " + sixthday.getDate() );
-    $('#Date7').text("Sat " + lastday.getDate() );
-
-    //extra name initialize
-
-    //
-
-    $('#datePicked').val($('#datepicker').datepicker('getDate'));
-
-    $('.expenseEntry').each(function () {
-      var str = $(this).find('.summary').text();
-      if(str.length > 45) {
-        str = str.substring(0, 40) + "...";
-        $(this).find('.summary').text(str);
+      else {
+          $('#sidebarNav').find('[datePickerTag="first"]').attr("id","datepicker");
+          $('.mobileDateCheck').find('[datePickerTag="last"]').css("display","none");
       }
 
-      if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
-        //$(this).css("display","");
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+      ];
+      var nameArray = [];
+      var eventDates = [];
 
+
+      $("#datepicker").datepicker( {
+          beforeShowDay: function( date ) {
+              var highlight = eventDates[date];
+              if( highlight ) {
+                  return [true, "event", 'Tooltip text'];
+              } else {
+                  return [true, '', ''];
+              }
+          }
+      });
+
+      if (sessionStorage.refreshCount == undefined) {
+          $("#datepicker").datepicker().datepicker("setDate", new Date());
+          sessionStorage.refreshCount = 1;
       } else {
-        //$(this).css("display","none");
-        // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
+          var date = sessionStorage.datePicked;
+          date = new Date(date);
+          date.setDate(date.getDate());
+
+          $("#datepicker").datepicker().datepicker("setDate", date );
       }
+      sessionStorage.refreshCount = sessionStorage.refreshCount + 1;
+      //new Date("10/10/2016")
 
+    //Finds date range and applies the visibility of entries
 
-
-
-      //find names
-
-    });
-
+    dateRangeMaker();
 
     //Saves date local variable
     //sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
@@ -614,6 +559,7 @@
       }
     });
   });
+
   $(window).load(function() {
     var nameArray = [];
     //$('#UserSearch').append('<option></option>');
@@ -674,8 +620,9 @@
     <div >
       <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
         <div style="line-height:75%;"><br></div>
-        <h2 style="text-align: center;">Expense Approval</h2>
-       <div style="" id="datepicker"></div>
+        <h3 style="text-align: center;">Expense Approval</h3>
+        <div style="" id="datepicker" datePickerTag="first"></div>
+        <br>
         <ul class="nav nav-sidebar">
           <li><a href="/" >Timesheet</a></li>
           <!--<li><a href="#">Reports</a></li>
@@ -716,7 +663,7 @@
               <div class="panel panel-default"  id="goBlackApproval" style="margin:0px;">
 
                 <div class="panel-body" id="goBlackApproval" style="margin:0px;">
-
+                  <h2 class="page-header" style="margin:1px;text-align:center;" id="dateTitle"></h2>
                   <div class="pull-right">
                     <div class="btn-group pull-right" style="margin: 30px 0px 10px 0px;text-align:right;">
                       <button type="button" id="Approved" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
@@ -724,16 +671,18 @@
                       <button type="button" id="Unapproved" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
                     </div>
                     <div style="line-height:50%;"><br></div>
-
-                    <div class="pull-right" style="float:right; text-align:right;">
+                    <div class="pull-right mobileDateCheck" style="float:right; text-align:right;">
+                      <div datePickerTag="last">
+                        <label id="labelforlast">Select Date: </label>
+                        <input style="" id="datepicker">
+                        <br>
+                      </div>
                       <label for="UserSearch">Search by User:</label>
-                      <select style="margin:2px;" class="selectpicker" id="UserSearch" title="Search by User...">
-
-                      </select>
+                      <select style="margin:2px;" class="selectpicker" id="UserSearch" title="Search by User..."></select>
+                      <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin-bottom:12px;">All</button>
                       <div style="line-height:50%;"><br></div>
-                      <label for="startDate">Date Range:</label>
-                      <input name="startDate" id="datepickermonth" />
-                      <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:1px;">All</button>
+                      <!--<label for="startDate">Date Range:</label>
+                      <input name="startDate" id="datepickermonth" />-->
                     </div>
                   </div>
 
@@ -777,7 +726,7 @@
                                   <p class="summary"><%= e.notes %></p>
                                 </div>
                                 <div class="media-body pull-right" style="width:300px;">
-                                  <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<%= e.date_activity %><p style="display:none"><%= e.id%></p></span>
+                                  <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
                                   <span class="pull-right" ><p class="media-meta names" style="color:#273772;"><%= e.user.first_name %> <%= e.user.last_name %></p></span>
                                   <h4 class="title">
 
