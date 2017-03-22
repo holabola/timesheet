@@ -26,9 +26,203 @@
     background-image :none !important;
     color: #ffffff !important;
   }
+  .css-class-to-highlight a {
+    background-color: #910101 !important;
+    background-image :none !important;
+    color: #efefef !important;
+  }
+  .css-class-to-highlight-good a {
+    background-color: #218212 !important;
+    background-image :none !important;
+    color: #efefef !important;
+  }
+  .ui-datepicker-current-day a {
+    background-color: #007fff !important;
+    background-image :none !important;
+    color: #efefef !important;
+  }
 
 </style>
 <script>
+
+  function newTotalFunction() {
+      var nameArray = [];
+
+      $('#tableElements').children('tr').each(function () {
+          //find names
+          var name = $(this).find('#names').text();
+          if (jQuery.inArray(name,nameArray) == -1 ) {
+              nameArray.push(name);
+          } else {
+
+          }
+      });
+
+      var sunTotal,monTotal,tueTotal,wedTotal,thuTotal,friTotal,satTotal,totalTotal,approvalStatus,submittedStatus;
+      sunTotal = [], monTotal = [], tueTotal = [], wedTotal = [], thuTotal = [], friTotal = [], satTotal = [], totalTotal = [], approvalStatus = [], submittedStatus = [];
+
+      for (var i = 0;i < nameArray.length;i++) {
+          sunTotal[i] = 0.00, monTotal[i] = 0.00, tueTotal[i] = 0.00, wedTotal[i] = 0.00, thuTotal[i] = 0.00, friTotal[i] = 0.00, satTotal[i] = 0.00, totalTotal[i] = 0.00;
+          $('#tableElements').children('tr').each(function () {
+              if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == nameArray[i] ) {
+
+                  if (parseFloat($(this).find(".sunEntry").text()) != NaN) {
+                      sunTotal[i] += parseFloat($(this).find(".sunEntry").text());
+                      }
+                  if (parseFloat($(this).find(".monEntry").text()) != NaN) {
+                      monTotal[i] += parseFloat($(this).find(".monEntry").text());
+                  }
+                  if (parseFloat($(this).find(".tueEntry").text()) != NaN) {
+                      tueTotal[i] += parseFloat($(this).find(".tueEntry").text());
+                  }
+                  if (parseFloat($(this).find(".wedEntry").text()) != NaN) {
+                      wedTotal[i] += parseFloat($(this).find(".wedEntry").text());
+                  }
+                  if (parseFloat($(this).find(".thuEntry").text()) != NaN) {
+                      thuTotal[i] += parseFloat($(this).find(".thuEntry").text());
+                  }
+                  if (parseFloat($(this).find(".friEntry").text()) != NaN) {
+                      friTotal[i] += parseFloat($(this).find(".friEntry").text());
+                  }
+                  if (parseFloat($(this).find(".satEntry").text()) != NaN) {
+                      satTotal[i] += parseFloat($(this).find(".satEntry").text());
+                  }
+                  if (parseFloat($(this).find(".totalEntry").text()) != NaN) {
+                      totalTotal[i] += parseFloat($(this).find(".totalEntry").text());
+                  }
+                  approvalStatus[i] = $(this).find("#approval").text();
+                  submittedStatus[i] = $(this).find("#submittedStatus").text();
+
+              } else {
+
+              }
+          });
+      }
+
+      $(".frontTable").each(function() {
+          for (var z = 0; z < nameArray.length; z++) {
+            if ($(this).attr("id") == nameArray[z]) {
+                width = (totalTotal[z] / 40)*100;
+                $(this).find("#progressbar").css('width',(width + "%"));
+                $(this).find("#progressbartext").text(totalTotal[z]);
+                $(this).find("#approvalCover").text(submittedStatus[z]);
+                if (totalTotal[z] < 40 || totalTotal[z] > 80 ) {
+                    $(this).find("#progressbar").removeClass("progress-bar-success");
+                    $(this).find("#progressbar").addClass("progress-bar-danger");
+                } else {
+                    $(this).find("#progressbar").removeClass("progress-bar-danger");
+                    $(this).find("#progressbar").addClass("progress-bar-success");
+                }
+                var counter = 0;
+                $(this).find(".manySubmitButtons").each(function() {
+                    if ($(this).attr("data-extra") == nameArray[z] && counter == 0 && moment($(this).attr("data-date")) <= lastday && moment($(this).attr("data-date")) >= firstday) {
+                        $(this).css("display","");
+                        $(this).parent().parent().parent().find("#idholder").text( $(this).find("#idholderinside").text() );
+                        counter = 1;
+                    } else {
+                        $(this).css("display","none");
+                    }
+
+                });
+            }
+          }
+            if ($(this).find("#progressbartext").text() == 0) {
+              $(this).find(".manySubmitButtons").each(function() {
+                 $(this).css("display","none");
+              });
+          }
+          if ($(this).find("#approvalCover").text() != "Submitted") {
+              $(this).find(".manySubmitButtons").each(function() {
+                  $(this).css("display","none");
+              });
+          }
+      });
+
+  }
+
+    function calendarHighlight() {
+        //Init Datepicker and add Highlights if timesheets aren't finished
+
+        var counter = 0;
+        var test = [];
+        eventDates = [], eventDatesGood = [];
+        dateRange = [], sun = [], mon = [], tue = [], wed = [], thu = [], fri = [], sat = [], total = [];
+        var first, countz, curr;
+        $('.timesheetEntry').each(function () {
+          name = $('#UserSearch').val().trim();
+          nameEntry = $(this).find("#names").text();
+          //alert(name + "...." + nameEntry);
+          if (name == nameEntry) {
+              curr = new Date(moment($(this).find(".dateBlob").text()));
+              first = new Date(curr.setDate(curr.getDate() - curr.getDay()));
+              if (test.indexOf(first.toString().substring(0, 10)) == -1) {
+                  test[counter] = first.toString().substring(0, 10);
+                  dateRange[counter] = first;
+                  sun[counter] = parseFloat($(this).find(".sunEntry").text());
+                  mon[counter] = parseFloat($(this).find(".monEntry").text());
+                  tue[counter] = parseFloat($(this).find(".tueEntry").text());
+                  wed[counter] = parseFloat($(this).find(".wedEntry").text());
+                  thu[counter] = parseFloat($(this).find(".thuEntry").text());
+                  fri[counter] = parseFloat($(this).find(".friEntry").text());
+                  sat[counter] = parseFloat($(this).find(".satEntry").text());
+                  total[counter] = parseFloat($(this).find(".totalEntry").text());
+                  counter += 1;
+              } else {
+                  sun[test.indexOf(first.toString().substring(0, 10))] = sun[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".sunEntry").text());
+                  mon[test.indexOf(first.toString().substring(0, 10))] = mon[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".monEntry").text());
+                  tue[test.indexOf(first.toString().substring(0, 10))] = tue[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".tueEntry").text());
+                  wed[test.indexOf(first.toString().substring(0, 10))] = wed[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".wedEntry").text());
+                  thu[test.indexOf(first.toString().substring(0, 10))] = thu[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".thuEntry").text());
+                  fri[test.indexOf(first.toString().substring(0, 10))] = fri[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".friEntry").text());
+                  sat[test.indexOf(first.toString().substring(0, 10))] = sat[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".satEntry").text());
+                  total[test.indexOf(first.toString().substring(0, 10))] = total[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".totalEntry").text());
+                  console.log(test.indexOf(first.toString().substring(0, 10)));
+              }
+          }
+        });
+
+        counter = 0;
+        countz = 0;
+        dateRange.forEach(function (entry) {
+            if (total[counter] >= 40) {
+                eventDatesGood[countz] = new Date(entry.setDate(entry.getDate()));
+                countz += 1;
+                for (index = countz; index < countz + 6; ++index) {
+                    eventDatesGood[index] = new Date(entry.setDate(entry.getDate() + 1));
+                }
+                countz += 6;
+            }
+            else {
+                eventDates[countz] = new Date(entry.setDate(entry.getDate()));
+                countz += 1;
+                for (index = countz; index < countz + 6; ++index) {
+                    eventDates[index] = new Date(entry.setDate(entry.getDate() + 1));
+                }
+                countz += 6;
+            }
+            counter += 1;
+        });
+
+        var datesave = $('#datepicker').datepicker('getDate');
+        $("#datepicker").datepicker('destroy');
+        $("#datepicker").datepicker({
+            beforeShowDay: function (date) {
+                for (var i = 0; i < eventDates.length; i++) {
+                    if (new Date(eventDates[i]).toString() == date.toString()) {
+                        return [true, 'css-class-to-highlight', 'tooltip text'];
+                    }
+                }
+                for (var i = 0; i < eventDatesGood.length; i++) {
+                    if (new Date(eventDatesGood[i]).toString() == date.toString()) {
+                        return [true, 'css-class-to-highlight-good', 'tooltip text'];
+                    }
+                }
+                return [true, ''];
+            }
+        });
+        $("#datepicker").datepicker('setDate',datesave);
+    }
+
     function totalColumns() {
         var sunTotal,monTotal,tueTotal,wedTotal,thuTotal,friTotal,satTotal,totalTotal;
         sunTotal = 0.00, monTotal = 0.00, tueTotal = 0.00, wedTotal = 0.00, thuTotal = 0.00, friTotal = 0.00, satTotal = 0.00, totalTotal = 0.00;
@@ -116,7 +310,7 @@
 
         // Adding red to bottom if there is red anywhere
 
-        if($("#totalSun").closest("td").hasClass("danger") || $("#totalMon").closest("td").hasClass("danger") || $("#totalTue").closest("td").hasClass("danger") || $("#totalWed").closest("td").hasClass("danger") || $("#totalThu").closest("td").hasClass("danger") || $("#totalFri").closest("td").hasClass("danger") || $("#totalSat").closest("td").hasClass("danger") || $("#totalTotal").closest("td").hasClass("danger") ) {
+        if($("#totalTotal").closest("td").hasClass("danger") ) {
             $(".otherTotalCol").each(function() {
                 $(this).addClass("danger");
             });
@@ -131,6 +325,7 @@
 
     $('.selectpicker').selectpicker();
       var heights = 0;
+      /*
       $("#clearMonth").click(function() {
           $("#UserSearch").val("");
           $('.selectpicker').selectpicker('refresh');
@@ -149,36 +344,46 @@
                       }
                   });
             });
+          dateUpdate();
+          var datesave = $('#datepicker').datepicker('getDate');
+          $("#datepicker").datepicker('destroy');
+          $("#datepicker").datepicker();
+          $("#datepicker").datepicker('setDate',datesave);
       });
       heights = 60 + (60 * heights);
       $('#pageGapDash').css("height",heights);
+      */
   });
 
 
   $( "body" ).click(function( event ) {
 
     if (event.target.id == "successBut") {
-        userid = ".userid-" + $(event.target).parent().parent().parent().parent().find("#userid").text();
-        $(userid).each(function() {
-           $(this).parent().parent().find("#failBut").removeClass();
-           $(this).parent().parent().find("#successBut").removeClass();
-           $(this).parent().parent().find("#successBut").addClass("btn btn-success glyphicon glyphicon-ok");
-           $(this).parent().parent().find("#failBut").addClass("btn btn-default glyphicon glyphicon-remove");
-        });
+        //userid = ".userid-" + $(event.target).parent().parent().parent().parent().find("#userid").text();
+        //$(userid).each(function() {
+           $(event.target).parent().parent().find("#failBut").removeClass();
+           $(event.target).parent().parent().find("#successBut").removeClass();
+           $(event.target).parent().parent().find("#successBut").addClass("btn btn-success hvr-radial-out-green");
+           $(event.target).parent().parent().find("#failBut").addClass("btn btn-default hvr-radial-out");
+        $(event.target).parent().parent().find("#successBut").text("Approved");
+        $(event.target).parent().parent().find("#failBut").text("Unapprove");
+        //});
 
     }
     else if (event.target.id == "failBut") {
-        userid = ".userid-" + $(event.target).parent().parent().parent().parent().find("#userid").text();
-        $(userid).each(function() {
-            $(this).parent().parent().find("#failBut").removeClass();
-            $(this).parent().parent().find("#successBut").removeClass();
-            $(this).parent().parent().find("#successBut").addClass("btn btn-default glyphicon glyphicon-ok");
-            $(this).parent().parent().find("#failBut").addClass("btn btn-danger glyphicon glyphicon-remove");
-        });
+        //userid = ".userid-" + $(event.target).parent().parent().parent().parent().find("#userid").text();
+        //$(userid).each(function() {
+            $(event.target).parent().parent().find("#failBut").removeClass();
+            $(event.target).parent().parent().find("#successBut").removeClass();
+            $(event.target).parent().parent().find("#successBut").addClass("btn btn-default hvr-radial-out-green");
+            $(event.target).parent().parent().find("#failBut").addClass("btn btn-danger hvr-radial-out");
+        $(event.target).parent().parent().find("#successBut").text("Approve");
+        $(event.target).parent().parent().find("#failBut").text("Unapproved");
+       // });
     }
 
   });
-
+/*
   $(document).on('change', '#UserSearch', function() {
       var heights = 0;
     var selectedOption = $('#UserSearch').val().trim();
@@ -193,86 +398,135 @@
       });
     }
     totalColumns();
-
+    calendarHighlight();
   });
+*/
+  function dateUpdate() {
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+      ];
+      curr = $('#datepicker').datepicker('getDate');
+      first = curr.getDate() - curr.getDay();
+      firstday = new Date(curr.setDate(first));
+      second = curr.getDate() +1;
+      secondday = new Date(curr.setDate(second));
+      third = curr.getDate() + 1;
+      thirdday = new Date(curr.setDate(third));
+      fourth = curr.getDate() + 1;
+      fourthday = new Date(curr.setDate(fourth));
+      fifth = curr.getDate() + 1;
+      fifthday = new Date(curr.setDate(fifth));
+      sixth = curr.getDate() + 1;
+      sixthday = new Date(curr.setDate(sixth));
+      last = curr.getDate() + 1;
+      lastday = new Date(curr.setDate(last));
+
+      $(".dateTitle").each(function() {
+          $(this).text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+      });
+       $('#Date1').text("Sun " + firstday.getDate() );
+      $('#Date2').text("Mon " + secondday.getDate() );
+      $('#Date3').text("Tue " + thirdday.getDate() );
+      $('#Date4').text("Wed " + fourthday.getDate() );
+      $('#Date5').text("Thu " + fifthday.getDate() );
+      $('#Date6').text("Fri " + sixthday.getDate() );
+      $('#Date7').text("Sat " + lastday.getDate() );
+
+
+      $('#datePicked').val($('#datepicker').datepicker('getDate'));
+
+      var heights = 0;
+      $('#tableElements').children('tr').each(function () {
+          var selectedOption;
+          if (selectedOption != "") {
+              $('#tableElements').children('tr').each(function () {
+                  if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == selectedOption ) {
+                      $(this).css("display","");
+                      heights += 1;
+                  } else {
+                      $(this).css("display","none");
+                  }
+              });
+          } else {
+              if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
+                  $(this).css("display", "");
+                  heights += 1;
+                  $(this).children('td').each(function () {
+                      var str = $(this).text();
+                      console.log($(this).attr('class'));
+                      if (str.length > 14 && $(this).attr("id") != "names" && $(this).attr('id') != "butonz" && $(this).attr('class') != "dropdown") {
+                          str = str.substring(0, 15) + "...";
+                          $(this).text(str);
+                      }
+                  });
+
+              } else {
+                  $(this).css("display", "none");
+                  // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
+              }
+          }
+      });
+  }
 
 
   var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
+
   $(document).on('change', '#datepicker', function() {
 
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
-    curr = $('#datepicker').datepicker('getDate');
-    first = curr.getDate() - curr.getDay();
-    firstday = new Date(curr.setDate(first));
-    second = curr.getDate() +1;
-    secondday = new Date(curr.setDate(second));
-    third = curr.getDate() + 1;
-    thirdday = new Date(curr.setDate(third));
-    fourth = curr.getDate() + 1;
-    fourthday = new Date(curr.setDate(fourth));
-    fifth = curr.getDate() + 1;
-    fifthday = new Date(curr.setDate(fifth));
-    sixth = curr.getDate() + 1;
-    sixthday = new Date(curr.setDate(sixth));
-    last = curr.getDate() + 1;
-    lastday = new Date(curr.setDate(last));
 
-    $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
-    $('#Date1').text("Sun " + firstday.getDate() );
-    $('#Date2').text("Mon " + secondday.getDate() );
-    $('#Date3').text("Tue " + thirdday.getDate() );
-    $('#Date4').text("Wed " + fourthday.getDate() );
-    $('#Date5').text("Thu " + fifthday.getDate() );
-    $('#Date6').text("Fri " + sixthday.getDate() );
-    $('#Date7').text("Sat " + lastday.getDate() );
+    //waits until fadeout is completed can calls the rest
+      $("#dashContents").fadeOut();
 
+      $('#datePicked').val($('#datepicker').datepicker('getDate'));
 
-    $('#datePicked').val($('#datepicker').datepicker('getDate'));
-
-    var heights = 0;
-    $('#tableElements').children('tr').each(function () {
-        var selectedOption = $('#UserSearch').val().trim();
-        if (selectedOption != "") {
-          $('#tableElements').children('tr').each(function () {
-            if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == selectedOption ) {
-              $(this).css("display","");
-              heights += 1;
-            } else {
-              $(this).css("display","none");
-            }
-          });
-        } else {
-          if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
-            $(this).css("display", "");
-              heights += 1;
-            $(this).children('td').each(function () {
-              var str = $(this).text();
-              console.log($(this).attr('class'));
-              if (str.length > 14 && $(this).attr("id") != "names" && $(this).attr('id') != "butonz" && $(this).attr('class') != "dropdown") {
-                str = str.substring(0, 15) + "...";
-                $(this).text(str);
-              }
-            });
-
+      var heights = 0;
+      $('#tableElements').children('tr').each(function () {
+          var selectedOption;
+          if (selectedOption != "") {
+              $('#tableElements').children('tr').each(function () {
+                  if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday && $(this).find("#names").text().trim() == selectedOption) {
+                      $(this).css("display", "");
+                      heights += 1;
+                  } else {
+                      $(this).css("display", "none");
+                  }
+              });
           } else {
-            $(this).css("display", "none");
-            // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
+              if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
+                  $(this).css("display", "");
+                  heights += 1;
+                  $(this).children('td').each(function () {
+                      var str = $(this).text();
+                      console.log($(this).attr('class'));
+                      if (str.length > 14 && $(this).attr("id") != "names" && $(this).attr('id') != "butonz" && $(this).attr('class') != "dropdown") {
+                          str = str.substring(0, 15) + "...";
+                          $(this).text(str);
+                      }
+                  });
+
+              } else {
+                  $(this).css("display", "none");
+                  // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
+              }
           }
-        }
-    });
+      });
       heights = 60 + (60 * heights);
-      $('#pageGapDash').css("height",heights);
+      $('#pageGapDash').css("height", 420);
 
 
-    //Saves date local variable
-    sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+      //Saves date local variable
+      sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
 
 
       //total all the entries
-      totalColumns();
+      setTimeout(dateUpdate,400);
+      setTimeout(totalColumns,400);
+      setTimeout(newTotalFunction,400);
 
+      $("#dashContents").fadeIn();
 
   });
 
@@ -350,8 +604,10 @@
     last = curr.getDate() + 1;
     lastday = new Date(curr.setDate(last));
 
-    $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
-    $('#Date1').text("Sun " + firstday.getDate() );
+      $(".dateTitle").each(function() {
+          $(this).text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+      });
+   $('#Date1').text("Sun " + firstday.getDate() );
     $('#Date2').text("Mon " + secondday.getDate() );
 
     $('#Date3').text("Tue " + thirdday.getDate() );
@@ -400,16 +656,23 @@
       $(this).find('#successBut').className = '';
       $(this).find('#failBut').className = '';
       if (approval == "Approved") {
-        $(this).find('#successBut').addClass("btn btn-success glyphicon glyphicon-ok");
-        $(this).find('#failBut').addClass("btn btn-default glyphicon glyphicon-remove");
+        $(this).find('#successBut').addClass("btn btn-success ");
+        $(this).find('#failBut').addClass("btn btn-default ");
+        $(this).find("#successBut").text("Approved");
+        $(this).find("#failBut").text("Unapprove");
       }
       if (approval == "Unapproved") {
-        $(this).find('#successBut').addClass("btn btn-default glyphicon glyphicon-ok");
-        $(this).find('#failBut').addClass("btn btn-danger glyphicon glyphicon-remove");
+        $(this).find('#successBut').addClass("btn btn-default ");
+        $(this).find('#failBut').addClass("btn btn-danger ");
+          $(this).find("#successBut").text("Approve");
+          $(this).find("#failBut").text("Unapproved");
+          $(this).find('#failBut').css("background","color:#d9534f")
       }
       if (approval == "Pending" || approval == "") {
-        $(this).find('#successBut').addClass("btn btn-warning glyphicon glyphicon-ok");
-        $(this).find('#failBut').addClass("btn btn-warning glyphicon glyphicon-remove");
+        $(this).find('#successBut').addClass("btn btn-warning");
+        $(this).find('#failBut').addClass("btn btn-warning ");
+          $(this).find("#successBut").text("Approve");
+          $(this).find("#failBut").text("Unapprove");
       }
     });
 
@@ -419,15 +682,46 @@
           heights += 1;
       });
       heights = 60 + (60 * heights);
-      $('#pageGapDash').css("height",heights);
+      $('#pageGapDash').css("height",420);
+
+      //HEIGHT IS DEPRICATED RIGHT NOW. JUST DEFAULTED TO 420
 
 
       //total all the entries
     totalColumns();
+    newTotalFunction();
 
       $('#tableElements').children('tr').each(function () {
-    $(this).find('#successBut').trigger("submit.rails");
+        $(this).find('#successBut').trigger("submit.rails");
       });
+
+      $(".displayTable").click(function(e) {
+          var clicked = $(e.target);
+          if (clicked.hasClass("progress-bar")) {
+              var id = clicked.parent().parent().parent().parent().parent().find("#idholder").text();
+          } else {
+            var id = clicked.parent().parent().find("#idholder").text();
+              }
+          $(".timesheetEntry").each(function() {
+              console.log(id);
+              console.log($(this).find("#userid").text());
+             if ($(this).find("#userid").text() == id) {
+                 if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
+                     $(this).css("display", "");
+                 }
+             } else {
+                 $(this).css("display","none");
+             }
+          });
+
+      });
+
+
+      $('#clearMonth').click(function() {
+          $("#wholeWrapper").css("display","none");
+         $("#expenseWrap").slideDown();
+      });
+
 
   });
 
@@ -527,19 +821,21 @@
     <div class="container-fluid" >
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
-          <div style="line-height:75%;"><br></div>
+
           <h2 style="text-align: center;">Approvals</h2>
-          </br>
 
           <div style="" id="datepicker" datePickerTag="first"></div>
-          </br>
-          </br>
+          <br>
           <ul class="nav nav-sidebar">
-            <li><a href="/" >Timesheet</a></li>
-            <li class="active"><a href="#">Timesheet Approvals<span class="sr-only">(current)</span></a></li>
-            <li><a href="/expenses">Expenses</a></li>
-            <li><a href="/expensesapprovals">Expenses Approvals</a></li>
-            <li><a href="/exports">Exports</a></li>
+            <li><a class="hvr-sweep-to-right" href="/" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
+            <% if current_user.admin == true %>
+                <li class="active"><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
+            <% end %>
+            <li ><a class="hvr-sweep-to-right" href="/expenses">Expenses<span class="glyphicon glyphicon-usd pull-right"></span></a></li>
+            <% if current_user.admin == true %>
+                <li ><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
+                <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
+            <% end %>
           </ul>
           <!-- <ul class="nav nav-sidebar">
              <li><a href="">Nav item</a></li>
@@ -555,10 +851,15 @@
            </ul> -->
         </div>
 
+        <%= render "approvalcover" %>
+        <div id="wholeWrapper" style="display:none;" >
+
+
         <div id="dashContents">
           <div id="aboveTable" style="">
-            <h2 class="page-header" style="" id="dateTitle"></h2>
-            <p style="">Sheets yet to be approved appear yellow. Just hit the check or x to approve or unapprove.</p>
+            <h2 class="page-header dateTitle" style="margin-bottom:0px;"></h2>
+            <h4 id="nameForTable" style="color:black;margin-top:10px;margin-bottom:30px;">Name</h4>
+            <!--<p style="">Sheets yet to be approved appear yellow. Just hit the check or x to approve or unapprove.</p>
             <div datePickerTag="last">
               <label id="labelforlast">Select Date: </label>
               <input style="" id="datepicker">
@@ -566,10 +867,8 @@
             </div>
             <label for="UserSearch">Search by User:</label>
             <select style="margin:2px;" class="selectpicker" id="UserSearch" title="Search by User...">
-            </select><button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:1px;">All</button>
 
-
-
+            </select>-->
           </div>
           <br>
 
@@ -581,20 +880,18 @@
             <table class="table table-striped" style="font-size:12px;">
               <thead>
               <tr style="padding: 8px 8px 8px 0px;">
-                <th></th>
-                <th>Date</th>
-                <th>Author</th>
-                <th >Credit Union</th>
-                <th >Activity</th>
-                <th >Task</th>
-                <th >Billing Options</th>
-                <th  id="Date1"></th>
-                <th  id="Date2"></th>
-                <th  id="Date3"></th>
-                <th  id="Date4"></th>
-                <th  id="Date5"></th>
-                <th  id="Date6"></th>
-                <th  id="Date7"></th>
+
+                <th style="width:150px;">Credit Union</th>
+                <th style="width:150px;">Activity</th>
+                <th style="width:120px;">Task</th>
+                <th style="width:130px;">Billing Options</th>
+                <th style="width:80px;" id="Date1"></th>
+                <th style="width:80px;" id="Date2"></th>
+                <th style="width:80px;" id="Date3"></th>
+                <th style="width:80px;" id="Date4"></th>
+                <th style="width:80px;" id="Date5"></th>
+                <th style="width:80px;" id="Date6"></th>
+                <th style="width:80px;" id="Date7"></th>
                 <th >Total</th>
 
               </tr>
@@ -605,17 +902,17 @@
               </tr>
 </tbody>
 
-
               <tbody id="tableElements">
               <% @pages.each do |p| %>
                   <tr id="row_<%= p.id %>" class="timesheetEntry">
                     <td style="display:none;"><p class="userid-<%= p.user_id %>" id="userid" style="display:none;"><%= p.user_id %></p></td>
-                    <td id="butonz"><div class="btn-group approvalButtons" role="group" aria-label="..."><%= form_for(p, remote: true, :url => {:action => 'update', :id => p.id}) do |f| %><%= f.text_field :approval, :value => p.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "successButt", id:"successBut", name: "subaction", value: "Approved" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "Unapproved" %></div>
+                    <td style="display:none;" id="butonz"><div class="btn-group approvalButtons" role="group" aria-label="..."><%= form_for(p, remote: true, :url => {:action => 'update', :id => p.id}) do |f| %><%= f.text_field :approval, :value => p.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "Approve", type: 'submit', class: "successButt", id:"successBut", name: "subaction", value: "Approved" %><%= button_tag "Reject", type: 'submit', class: "btn btn-default failButt", id: "failBut", name: "subaction", value: "Unapproved" %> </div>
                       <% end %>
                       </td>
                     <td id="approval" style="display:none;"><%= p.approval %></td>
-                    <td id="dateOfTime"><%= p.date_of_time %></td>
-                    <td class="namesz" id="names"><%= p.user.first_name %> <%= p.user.last_name %></td>
+                    <td style="display:none;" id="dateOfTime"><%= p.date_of_time %></td>
+                    <td style="display:none;" class="namesz" id="names"><%= p.user.first_name %> <%= p.user.last_name %></td>
+                    <td style="display:none;" id="submittedStatus"><%= p.submitted %></td>
                     <td><%= p.credit_union %> </td>
                     <td><%= p.activity %> </td>
                     <td><%= p.task %> </td>
@@ -731,9 +1028,6 @@
                 <td class="otherTotalCol"></td>
                 <td class="otherTotalCol"></td>
                 <td class="otherTotalCol"></td>
-                <td class="otherTotalCol"></td>
-                <td class="otherTotalCol"></td>
-                <td class="otherTotalCol"></td>
                 <td><p style="font-weight:bold;" id="totalSun"></p></td>
                 <td><p style="font-weight:bold;" id="totalMon"></p></td>
                 <td><p style="font-weight:bold;" id="totalTue"></p></td>
@@ -747,7 +1041,10 @@
 
 
 </table>
+            <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:1px;">Return to Main</button>
+
+          </div>
 </div>
 </div>
 </div>
-</div>
+    </div>

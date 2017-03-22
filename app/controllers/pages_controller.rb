@@ -1,6 +1,11 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!
   before_filter :authorize_admin, only: [:approvals, :exports, :expensesapprovals]
+  before_filter :set_admin
+
+  def set_admin
+    @users_for_switch = User.where(:department => current_user.department)
+  end
 
   def index
     @pages = current_user.pages
@@ -15,6 +20,15 @@ class PagesController < ApplicationController
   def expenses
     @expenses = current_user.expenses.order('date_activity DESC')
     @new_expenses = Expense.new
+
+    @CUArray = current_user.pages.pluck(:credit_union).uniq
+    @ExtraCUs = current_user.expenses.pluck(:credit_union).uniq
+    @temp = @CUArray + @ExtraCUs
+    @combinedCUs = (@temp - (@CUArray & @ExtraCUs))
+
+    (@CUArray & @ExtraCUs).each { |x|  @combinedCUs.push(x) }
+
+    @pages = current_user.pages.order('date_of_time DESC')
 
   end
 
@@ -34,8 +48,10 @@ class PagesController < ApplicationController
   end
 
   def exportsall
-    @users = User.all
-    @pages = Page.order('created_at DESC')
+    startDate = Date.strptime(params[:startDate], '%Y-%m-%d')
+    endDate = Date.strptime(params[:endDate], '%Y-%m-%d')
+    @users = User.where(:department => current_user.department)
+    @pages = Page.where(:date_of_time => startDate..endDate).order('date_of_time DESC')
     respond_to do |format|
       format.html
       format.xlsx {
@@ -45,23 +61,41 @@ class PagesController < ApplicationController
   end
 
   def exportsDepart
-    @users = User.all
-    @pages = Page.order('created_at DESC')
+    startDate = Date.strptime(params[:startDate], '%Y-%m-%d')
+    endDate = Date.strptime(params[:endDate], '%Y-%m-%d')
+    @users = User.where(:department => current_user.department)
+    @pages = Page.where(:date_of_time => startDate..endDate).order('date_of_time DESC')
+    #@pages = Page.order('created_at DESC')
     respond_to do |format|
       format.html
       format.xlsx {
-        response.headers['Content-Disposition'] = 'attachment; filename="timesheet_by_department.xlsx"'
+        response.headers['Content-Disposition'] = 'attachment; filename="Timesheets.xlsx"'
       }
     end
   end
 
   def exportsExpenses
-    @users = User.all
-    @expenses = Expense.order('created_at DESC')
+    startDate = Date.strptime(params[:startDate], '%Y-%m-%d')
+    endDate = Date.strptime(params[:endDate], '%Y-%m-%d')
+    @users = User.where(:department => current_user.department)
+    @expenses = Expense.where(:date_activity => startDate..endDate).order('date_activity DESC')
     respond_to do |format|
       format.html
       format.xlsx {
-        response.headers['Content-Disposition'] = 'attachment; filename="expenses_by_department.xlsx"'
+        response.headers['Content-Disposition'] = 'attachment; filename="Expenses By Department.xlsx"'
+      }
+    end
+  end
+
+  def exportsBillable
+    startDate = Date.strptime(params[:startDate], '%Y-%m-%d')
+    endDate = Date.strptime(params[:endDate], '%Y-%m-%d')
+    @users = User.where(:department => current_user.department)
+    @pages = Page.where(:date_of_time => startDate..endDate)
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="Billable Hours.xlsx"'
       }
     end
   end
@@ -148,12 +182,7 @@ class PagesController < ApplicationController
                                         (firstdate)..(lastdate)]).where(:user_id => Page.find(params[:id]).user_id)
 
       #Client.all(:conditions => ["created_at > ? AND created_at < ?", params[:start_date], params[:end_date]])
-      print "\n#####\n"
-      print Page.find(params[:id]).user_id
-      print "\n#####\n"
-      print
-      print "\n#####\n"
-
+      #print Page.find(params[:id]).user_id
 
       respond_to do |format|
         if @pagez.update_all(:approval => @approvalStatus)
@@ -168,6 +197,8 @@ class PagesController < ApplicationController
       end
     end
 
+    ## EXPENSES APPROVAL
+
     if @approvalStatus == "ApprovedEX" || @approvalStatus == "UnapprovedEX"
       @expense = Expense.find(params[:id])
       if @approvalStatus == "ApprovedEX"
@@ -177,9 +208,18 @@ class PagesController < ApplicationController
         @approvalStatus = "Unapproved"
       end
 
+      ## NOT USING THIS YET ONLY UPDATES INVIDIVIDUALLY
+      datez = Expense.find(params[:id]).date_activity
+      dateblob = datez.to_date
+      firstdate = dateblob.beginning_of_week - 1.day
+      lastdate = firstdate + 7.day
+      @departmentblob = Expense.find(params[:id]).department
+      @pagez = Expense.where(["date_activity IN (?)",
+                           (firstdate)..(lastdate)]).where(:user_id => Expense.find(params[:id]).user_id)
+
 
       respond_to do |format|
-        if @expense.update_attributes(:approval => @approvalStatus)
+        if @expense.update(:approval => @approvalStatus)
           # If update succeeds, redirect to the list action
           format.js   { }
           format.json { render :show, status: :created, location: @comment }
@@ -190,6 +230,73 @@ class PagesController < ApplicationController
         end
       end
     end
+
+    ##### EXPENSES UPDATE #####
+
+    if @approvalStatus == "Submitted" || @approvalStatus == "Not Submitted"
+      datez = Page.find(params[:id]).date_of_time
+      dateblob = datez.to_date
+      firstdate = dateblob.beginning_of_week - 1.day
+      lastdate = firstdate + 7.day
+      @departmentblob = Page.find(params[:id]).department
+      @pagez = Page.where(["date_of_time IN (?)",
+                           (firstdate)..(lastdate)]).where(:user_id => Page.find(params[:id]).user_id)
+
+      #Client.all(:conditions => ["created_at > ? AND created_at < ?", params[:start_date], params[:end_date]])
+      #print Page.find(params[:id]).user_id
+
+      respond_to do |format|
+        if @pagez.update_all(:submitted => @approvalStatus)
+          # If update succeeds, redirect to the list action
+          format.html { redirect_to root_path }
+          if @approvalStatus == "Submitted"
+            flash[:notice] = "Timesheet Submitted"
+          end
+          if @approvalStatus == "Not Submitted"
+            flash[:notice] = "Timesheet Unsubmitted"
+          end
+        else
+          # If save fails, redisplay the form so user can fix problems
+          format.html { redirect_to root_path }
+          flash[:notice] = "Approval failed."
+        end
+      end
+    end
+
+    if @approvalStatus == "SubmittedEX" || @approvalStatus == "Not SubmittedEX"
+      if @approvalStatus == "SubmittedEX"
+        @approvalStatus = "Submitted"
+      end
+      if @approvalStatus == "Not SubmittedEX"
+        @approvalStatus = "Not Submitted"
+      end
+
+      datez = Expense.find(params[:id]).date_activity
+      dateblob = datez.to_date
+      firstdate = dateblob.beginning_of_week - 1.day
+      lastdate = firstdate + 7.day
+      @departmentblob = Expense.find(params[:id]).department
+      @pagez = Expense.where(["date_activity IN (?)",
+                           (firstdate)..(lastdate)]).where(:user_id => Expense.find(params[:id]).user_id)
+
+
+      respond_to do |format|
+        if @pagez.update_all(:submitted => @approvalStatus)
+          # If update succeeds, redirect to the list action
+          format.html { redirect_to "/expenses" }
+          if @approvalStatus == "Submitted"
+            flash[:notice] = "Expenses Submitted"
+          end
+          if @approvalStatus == "Not Submitted"
+            flash[:notice] = "Expenses Unsubmitted"
+          end
+        else
+          # If save fails, redisplay the form so user can fix problems
+          format.html { redirect_to root_path }
+          flash[:notice] = "Submit failed."
+        end
+      end
+    end
   end
 
   #approvals
@@ -197,12 +304,24 @@ class PagesController < ApplicationController
   def approvals
     @pages = Page.where(:department => current_user.department).order('date_of_time DESC')
     @new_pages = Page.new
+    @users = User.where(:department => current_user.department)
   end
 
 
   def expensesapprovals
     @expenses = Expense.where(:department => current_user.department).order('date_activity DESC')
     @new_expenses = Expense.new
+
+    @CUArray = current_user.pages.pluck(:credit_union).uniq
+    @ExtraCUs = current_user.expenses.pluck(:credit_union).uniq
+    @temp = @CUArray + @ExtraCUs
+    @combinedCUs = (@temp - (@CUArray & @ExtraCUs))
+
+    (@CUArray & @ExtraCUs).each { |x|  @combinedCUs.push(x) }
+
+    @pages = current_user.pages.order('date_of_time DESC')
+    @users = User.where(:department => current_user.department)
+
   end
 
   private
@@ -219,11 +338,11 @@ class PagesController < ApplicationController
   end
 
   def update_params
-    params.require(:page).permit(:approval)
+    params.require(:page).permit(:approval,:submitted)
   end
 
   def new_pages_params
-    params.require(:page).permit(:credit_union, :activity, :task, :billing_options, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :total, :date_of_time, :department, :sunnotes, :monnotes, :tuenotes, :wednotes, :thunotes, :frinotes, :satnotes)
+    params.require(:page).permit(:credit_union, :activity, :task, :billing_options, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :total, :date_of_time, :department, :sunnotes, :monnotes, :tuenotes, :wednotes, :thunotes, :frinotes, :satnotes, :submitted)
   end
 
   def params_final_expense
@@ -231,7 +350,7 @@ class PagesController < ApplicationController
   end
 
   def new_pages_params_expense
-    params.require(:expense).permit(:date_activity, :type_of_expense, :amount, :payment, :notes, :image)
+    params.require(:expense).permit(:date_activity, :type_of_expense, :amount, :payment, :notes, :image, :credit_union, :meal_type)
   end
 
 

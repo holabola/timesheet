@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
   #get 'sessions/login,'
 
   #get 'sessions/home,'
@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get '/exportsall' => 'pages#exportsall'
   get '/exportsDepart' => 'pages#exportsDepart'
   get '/exportsExpenses' => 'pages#exportsExpenses'
+  get '/exportsBillable' => 'pages#exportsBillable'
+  get '/dashboard' => 'pages#truedashboard'
   #get '/settings' => 'devise/registrations#edit'
 
 

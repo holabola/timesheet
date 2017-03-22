@@ -1,3 +1,61 @@
+<head>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+  <script>
+  $(document).ready(function() {
+      var startDate, endDate;
+
+      $(function() {
+
+          tempDay1 = moment().day();
+          tempDay2 = tempDay1 + 1;
+          var end = moment().subtract(tempDay2,'days');
+          tempDay3 = tempDay2 + 6;
+          var start = moment().subtract(tempDay3,'days');
+
+          tempDay4 = tempDay3 + 1;
+          var twoEnd = moment().subtract(tempDay4,'days');
+          tempDay5 = tempDay3 + 7;
+          var twoStart = moment().subtract(tempDay5,'days');
+
+          var lastMonthEnd = moment().subtract(tempDay2,'days');
+          tempDay6 = tempDay2 + 27;
+          var lastMonthStart = moment().subtract(tempDay6,'days');
+
+          var lastThreeMonthsEnd = moment().subtract(tempDay2,'days');
+          tempDay7 = tempDay2 + 90;
+          var lastThreeMonthsStart = moment().subtract(tempDay7,'days');
+
+          function cb(start, end) {
+              $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+              startDate = moment(start).format("YYYY-MM-DD");
+              endDate = moment(end).format("YYYY-MM-DD");
+              $('#exportDepart').attr('href',"/exportsDepart.xlsx?endDate=" + endDate + "&startDate=" + startDate);
+              $('#expenses').attr('href',"/exportsExpenses.xlsx?endDate=" + endDate + "&startDate=" + startDate);
+              $('#billable').attr('href',"/exportsBillable.xlsx?endDate=" + endDate + "&startDate=" + startDate);
+          }
+
+          $('#reportrange').daterangepicker({
+              startDate: start,
+              endDate: end,
+              ranges: {
+                  'Last Week': [start,end],
+                  'Two Weeks Ago': [twoStart,twoEnd],
+                  'Last Month': [lastMonthStart,lastMonthEnd],
+                  'Last 3 Month': [lastThreeMonthsStart,lastThreeMonthsEnd]
+              }
+          }, cb);
+
+          cb(start, end);
+
+      });
+
+  });
+
+</script>
+</head>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -18,7 +76,7 @@
         <li><a href="/expenses" >Expenses</a></li>
         <% if current_user.admin == true %>
             <li><a href="/expensesapprovals" >Expenses Approvals</a></li>
-            <li><a href="/exports" >Exports</a></li>
+            <li class="active"><a href="/exports" >Exports</a></li>
         <% end %>
         <li><%= link_to "Settings", edit_user_registration_path(@user) %></li>
         <li><%= link_to('Logout', destroy_user_session_path, :method => :get) %></li>
@@ -35,14 +93,15 @@
 
       </br>
       <ul class="nav nav-sidebar">
-        <li><a href="/">Timesheet</a></li>
-        <!--<li><a href="#">Reports</a></li>
-        <li><a href="#">Analytics</a></li> -->
-
-        <li><a href="/approvals">Timesheet Approvals</a></li>
-        <li><a href="/expenses">Expenses</a></li>
-        <li><a href="/expensesapprovals">Expenses Approval</a></li>
-        <li class="active"><a href="#">Exports<span class="sr-only">(current)</span></a></li>
+        <li ><a class="hvr-sweep-to-right" href="/" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
+        <% if current_user.admin == true %>
+            <li ><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
+        <% end %>
+        <li ><a class="hvr-sweep-to-right" href="/expenses">Expenses<span class="glyphicon glyphicon-usd pull-right"></span></a></li>
+        <% if current_user.admin == true %>
+            <li><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
+            <li class="active"><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -50,6 +109,14 @@
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <h1 class="page-header">Export to Excel (.xlsx)</h1>
+
+  <p>Enter Time Range: </p>
+  <div id="reportrange" class="" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 30%">
+    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+    <span></span> <b class="caret"></b>
+  </div>
+
+  <br>
 
   <div class="table-responsive" id="exportsMobile">
     <table class="table table-striped">
@@ -60,17 +127,21 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
+      <!-- <tr>
         <td><%= link_to 'All Users', exportsall_path(format: :xlsx, foo_param: 'all') %></td>
         <td>Download a list of all Timesheet entries from all users</td>
-      </tr>
+      </tr> -->
       <tr>
-        <td><%= link_to 'Deparment Users', exportsDepart_path(format: :xlsx, foo_param: 'all') %></td>
+        <td><%= link_to 'Department Users', exportsDepart_path(format: :xlsx, startDate: 'all', endDate: 'all'), id: "exportDepart" %></td>
         <td>Download a list of all Timesheet entries from the users of your specified department</td>
       </tr>
       <tr>
-        <td><%= link_to 'Deparment Expenses', exportsExpenses_path(format: :xlsx, foo_param: 'all') %></td>
+        <td><%= link_to 'Department Expenses', exportsExpenses_path(format: :xlsx, startDate: 'all', endDate: 'all'), id: "expenses"  %></td>
         <td>Download a list of all Expense entries from the users of your specified department</td>
+      </tr>
+      <tr>
+        <td><%= link_to 'Billable Time', exportsBillable_path(format: :xlsx, startDate: 'all', endDate: 'all'), id: "billable"  %></td>
+        <td>Download a list of all users billable time vs non-billable</td>
       </tr>
       </tbody>
     </table>

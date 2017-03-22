@@ -1,42 +1,20 @@
 
-<%= form_for(@new_pages) do |t| %>
-    <div class="container-fluid" >
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
-          <div style="line-height:75%;"><br></div>
-          <h2 style="text-align: center;">Timesheet</h2>
-            </br>
-          <%= t.text_field :date_of_time, { :id => 'datePicked', :style => "display:none;"  } %>
-          <%= t.text_field :department, :value => current_user.department, :style => "display:none;"   %>
-          <div style="" id="datepicker" datePickerTag="first"></div>
-          </br>
-          </br>
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Timesheet<span class="sr-only">(current)</span></a></li>
-            <li><a href="/approvals">Timesheet Approvals</a></li>
-            <li><a href="/expenses">Expenses</a></li>
-            <li><a href="/expensesapprovals">Expenses Approvals</a></li>
-            <li><a href="/exports">Exports</a></li>
-          </ul>
-          <!-- <ul class="nav nav-sidebar">
-             <li><a href="">Nav item</a></li>
-             <li><a href="">Nav item again</a></li>
-             <li><a href="">One more nav</a></li>
-             <li><a href="">Another nav item</a></li>
-             <li><a href="">More navigation</a></li>
-           </ul>
-           <ul class="nav nav-sidebar">
-             <li><a href="">Nav item again</a></li>
-             <li><a href="">One more nav</a></li>
-             <li><a href="">Another nav item</a></li>
-           </ul> -->
-        </div>
 
         <div id="dashContents">
           <div id="textAboveTable">
             <h2 class="page-header" style="" id="dateTitle"></h2>
 
             <p style="left:310px;">Hit the checkmark to save a sheet. Hit the X button to delete a sheet.</p>
+            <% @pages.each do |p| %>
+                <div>
+                <p id="submitStatus" style="display:none;"><%= p.submitted %></p>
+                <p id="submitDate" style="display:none;"><%= p.date_of_time %></p>
+            <%= form_for(p,  :url => {:action => 'update', :id => p.id}) do |f| %>
+                    <%= button_tag "Submit for Approval?", type: 'submit', class: "submitButton btn", style: "display:none;",id:"submitButton", name: "subaction", value: "Submitted" %>
+                <% end %>
+                </div>
+                <% end %>
+
             <div datePickerTag="last">
               <label id="labelforlast">Select Date: </label>
               <input style="" id="datepicker">
@@ -45,6 +23,9 @@
             </div>
 
           </div>
+          <%= form_for(@new_pages) do |t| %>
+              <%= t.text_field :date_of_time, { :id => 'datePicked', :style => "display:none;"  } %>
+              <%= t.text_field :department, :value => current_user.department, :style => "display:none;"   %>
           <!--
                     <div class="row placeholders">
                       <div class="col-xs-6 col-sm-3 placeholder">
@@ -115,7 +96,7 @@
                                                                  "06-CU-10 IT Compliance Review",
                                                                  "748 Annual Review",
                                                                  "ACH Audit",
-                                                                 "ACH Audit Risk Assessment",
+                                                                 "ACH Risk Assessment",
                                                                  "Administrative",
                                                                  "ATM Safety Evaluation",
                                                                  "Ballot Tabulation",
@@ -128,7 +109,6 @@
                                                                  "FTR Speaking Engagement",
                                                                  "FTR Workshops",
                                                                  "Holiday",
-                                                                 "Holiday/Personal",
                                                                  "Illness",
                                                                  "Internal Audit",
                                                                  "Loan Review",

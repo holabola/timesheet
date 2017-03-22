@@ -1,0 +1,74 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  date_cell = style.add_style(format_code: "yyyy-mm-dd", border: Axlsx::STYLE_THIN_BORDER)
+  number_cell = style.add_style(alignment: { horizontal: :center },
+                                :format_code => "#,##0")
+  title_cell_1 = style.add_style(b: true,
+                                 border: { :style => :thin,  color: "000000", :edges => [:bottom,:top,:left,:right] },
+                                 :alignment=>{:horizontal => :center,:vertical => :center},
+                                 :bg_color => "dbdbdb")
+  title_cell_2 = style.add_style(b: true, border: { :style => :thin,  color: "000000", :edges => [:bottom] })
+  body_cell_1 = style.add_style(:alignment=>{:horizontal => :center},
+                                border: { :style => :thin,  color: "000000", :edges => [:left,:right] })
+  body_cell_2 = style.add_style(:alignment=>{:horizontal => :center},
+                                border: { :style => :thin,  color: "000000", :edges => [:left,:right,:bottom] },
+                                :bg_color => "AACF91")
+  body_cell_1_no_center = style.add_style( border: { :style => :thin,  color: "000000", :edges => [:left,:right] })
+  body_cell_2_no_center = style.add_style( border: { :style => :thin,  color: "000000", :edges => [:left,:right,:bottom] },
+                                :bg_color => "AACF91")
+  percent = style.add_style(:num_fmt => Axlsx::NUM_FMT_PERCENT,
+                                border: { :style => :thin,  color: "000000", :edges => [:left,:right,:bottom] },
+                                :alignment=>{:horizontal => :center},
+                                :bg_color => "AACF91")
+
+  @users.each do |user|
+    #calculate billable and non-billable hours per user
+    onsite = 0
+    remote = 0
+    billable = 0
+    nonbillable = 0
+    @pages.each do |page|
+      if page.user_id == user.id
+        if page.billing_options == "Onsite"
+            onsite += page.total
+        end
+        if page.billing_options == "Remote"
+          remote += page.total
+        end
+        if page.billing_options == "Non-Billable"
+           nonbillable += page.total
+        end
+      end
+    end
+
+    billable = onsite + remote
+    if (billable + nonbillable) != 0
+      percentage = billable / (billable + nonbillable)
+    end
+
+    wb.add_worksheet(name: (user.first_name + user.last_name + "(" + user.id.to_s + ")")) do |sheet|
+      sheet.add_row [],:height => 24
+      sheet.add_row ["", "Billable Hours", "",""],style:[nil,title_cell_1,title_cell_1,title_cell_1],:height => 20
+      sheet.add_row ["", "Onsite:", onsite,""],style:[nil,body_cell_1_no_center,body_cell_1,body_cell_1],:height => 17
+      sheet.add_row ["", "Remote:", remote,""],style:[nil,body_cell_1_no_center,body_cell_1,body_cell_1],:height => 17
+      sheet.add_row ["", "Total Production:", billable,""],style:[nil,body_cell_2_no_center,body_cell_2,body_cell_2],:height => 17
+      sheet.add_row ["", "", "",""],style:[nil,body_cell_1_no_center,body_cell_1,body_cell_1],:height => 17
+      sheet.add_row ["", "Non-Production:", nonbillable,""],style:[nil,body_cell_2_no_center,body_cell_2,body_cell_2],:height => 17
+      sheet.add_row ["", "", "",""],style:[nil,body_cell_1_no_center,body_cell_1,body_cell_1],:height => 17
+      sheet.add_row ["", "Production vs Non:", percentage,""],style:[nil,body_cell_2_no_center,percent,percent],:height => 17
+
+      sheet.merge_cells "B2:D2"
+      sheet.merge_cells "C3:D3"
+      sheet.merge_cells "C4:D4"
+      sheet.merge_cells "C5:D5"
+      sheet.merge_cells "C6:D6"
+      sheet.merge_cells "C7:D7"
+      sheet.merge_cells "C8:D8"
+      sheet.merge_cells "C9:D9"
+      sheet.column_widths 6, 17, 12, 12
+
+      #resize first row to 28px
+    end
+  end
+end

@@ -1,587 +1,1033 @@
 <head>
   <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-
-
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
   <style>
 
-  .table-responsive {
-
-  }
-
-  html {
-    width: 100%;
-  }
-  .custom-combobox {
-    position: relative;
-    display: inline-block;
-  }
-  .custom-combobox-toggle {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin-left: -1px;
-    padding: 0;
-  }
-  .custom-combobox-input {
-    margin: 0;
-    padding: 5px 10px;
-  }
-
-  /*    --------------------------------------------------
-:: General
--------------------------------------------------- */
-  body {
-    font-family: 'Open Sans', sans-serif;
-    color: #353535;
-    background-color: #eaf1fc;
-  }
-  .content h1 {
-    text-align: center;
-  }
-  .content .content-footer p {
-    color: #6d6d6d;
-    font-size: 12px;
-    text-align: center;
-  }
-  .content .content-footer p a {
-    color: inherit;
-    font-weight: bold;
-  }
-
-  /*	--------------------------------------------------
-    :: Table Filter
-    -------------------------------------------------- */
-  .panel {
-    border: 1px solid #ddd;
-    background-color: #fcfcfc;
-  }
-  .panel .btn-group {
-    margin: 15px 0 30px;
-  }
-  .panel .btn-group .btn {
-    transition: background-color .3s ease;
-  }
-  .table-filter {
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
-  }
-  .table-filter tbody tr:hover {
-    cursor: pointer;
-    background-color: #eee;
-  }
-  .table-filter tbody tr td {
-    padding: 10px;
-    vertical-align: middle;
-    border-top-color: #eee;
-  }
-  .table-filter tbody tr.selected td {
-    background-color: #eee;
-  }
-  .table-filter tr td:first-child {
-    width: 38px;
-  }
-  .table-filter tr td:nth-child(2) {
-    width: 35px;
-  }
-  .ckbox {
-    position: relative;
-  }
-  .ckbox input[type="checkbox"] {
-    opacity: 0;
-  }
-  .ckbox label {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  .ckbox label:before {
-    content: '';
-    top: 1px;
-    left: 0;
-    width: 18px;
-    height: 18px;
-    display: block;
-    position: absolute;
-    border-radius: 2px;
-    border: 1px solid #bbb;
-    background-color: #fff;
-  }
-  .ckbox input[type="checkbox"]:checked + label:before {
-    border-color: #2BBCDE;
-    background-color: #2BBCDE;
-  }
-  .ckbox input[type="checkbox"]:checked + label:after {
-    top: 3px;
-    left: 3.5px;
-    content: '\e013';
-    color: #fff;
-    font-size: 11px;
-    font-family: 'Glyphicons Halflings';
-    position: absolute;
-  }
-  .table-filter .star {
-    color: #ccc;
-    text-align: center;
-    display: block;
-  }
-  .table-filter .star.star-checked {
-    color: #F0AD4E;
-  }
-  .table-filter .star:hover {
-    color: #ccc;
-  }
-  .table-filter .star.star-checked:hover {
-    color: #F0AD4E;
-  }
-  .table-filter .media-photo {
-    width: 35px;
-  }
-  .table-filter .media-body {
-    display: block;
-    /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
-  }
-  .table-filter .media-meta {
-    font-size: 11px;
-    color: #999;
-  }
-  .table-filter .media .title {
-    color: #2BBCDE;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: normal;
-    margin: 0;
-  }
-  .table-filter .media .title span {
-    font-size: .8em;
-    margin-right: 20px;
-  }
-  .table-filter .media .title span.pagado {
-    color: #5cb85c;
-  }
-  .table-filter .media .title span.pendiente {
-    color: #f0ad4e;
-  }
-  .table-filter .media .title span.cancelado {
-    color: #d9534f;
-  }
-  .table-filter .media .summary {
-    font-size: 14px;
-  }
-  #newExpense
-  {
-
-  }
-    .bootstrap-select {
-      margin:2px;
-    }
-</style>
-<script>
-
-  $(document).ready(function() {
-    $(".approvalclass").each(function() {
-      var approval = $(this).clone().children().remove().end().text();
-      if (approval == "Approved") {
-        $(this).css("color","");
-      }
-      if (approval == "Pending") {
-        $(this).css("color","#ec971f");
-      }
-      if (approval == "Unapproved") {
-        $(this).css("color","#cc0a0a");
-      }
-    });
-
-  });
-
-  $( "body" ).click(function( event ) {
-
-    if (event.target.id == "successBut") {
-      var texts = $(event.target).parent().parent().parent().parent().find(".approvalclass");
-      $(event.target).parent().find("#failBut").removeClass();
-      event.target.className = '';
-      $(event.target).addClass("btn btn-success glyphicon glyphicon-ok");
-      $(event.target).parent().find("#failBut").addClass("btn btn-default glyphicon glyphicon-remove");
-      texts.text("Approved");
-      texts.css("color","");
-    }
-    else if (event.target.id == "failBut") {
-      var texts = $(event.target).parent().parent().parent().parent().find(".approvalclass");
-      var otherchild = $(event.target).parent().find("#successBut");
-      otherchild.removeClass();
-      event.target.className = '';
-      otherchild.addClass("btn btn-default glyphicon glyphicon-ok");
-      $(event.target).addClass("btn btn-danger glyphicon glyphicon-remove");
-      texts.text("Unapproved");
-      texts.css("color","#cc0a0a");
+    /* ------------------------------------------
+            :: New Expense ::
+       ------------------------------------------ */
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+    .container{
+      margin-top:20px;
     }
 
-  });
-
-  $(document).on('click', function () {
-    var tablecount = 0;
-    var hiddencount = 0;
-    $("#tableholder").find('tr').each(function() {
-      tablecount = tablecount + 1;
-      if ($(this).css("display") == "none") {
-        hiddencount = hiddencount +1;
-      }
-    });
-
-    if ($("#noExpense").css("display") != "none") {
-      hiddencount = hiddencount +1;
+    .css-class-to-highlight-approved a {
+      background-color: #218212 !important;
+      background-image :none !important;
+      color: #efefef !important;
+    }
+    .css-class-to-highlight-pending a {
+      background-color: #EC971F !important;
+      background-image :none !important;
+      color: #efefef !important;
+    }
+    .css-class-to-highlight-declined a {
+      background-color: #910101 !important;
+      background-image :none !important;
+      color: #efefef !important;
     }
 
-    if ( tablecount == hiddencount ) {
-      $("#noExpense").css("display","");
-    } else {
-      $("#noExpense").css("display","none");
+    .ui-datepicker-current-day a {
+      background-color: #007fff !important;
+      background-image :none !important;
+      color: #efefef !important;
     }
-  });
 
-  var approvalStatus;
-  $(function() {
-    $('input[id="timerange"]').daterangepicker();
-    $('.selectpicker').selectpicker();
-    /* $("#datepickermonth").datepicker( {
-      changeMonth: true,
-      changeYear: true,
-      showButtonPanel: true,
-      dateFormat: 'MM yy',
-      onClose: function(dateText, inst) {
-        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-        $(this).datepicker('setDate', new Date(year, month, 1));
-        $(".dateHolder").each(function() {
-          var dateColumn = moment($(this).clone().children().remove().end().text());
-          var from = new Date(year, month, 1);
-          var to = new Date(year, month, 31);
-          var rowNum = "#row_" + $(this).find("p").text();
-          ifsearchactive = true;
-          three = true;
-          if ($(rowNum).css("opacity") == 1) {
-            if (dateColumn >= from && dateColumn <= to) {
-              $(rowNum).css("display", "");
-              $(rowNum).css("opacity", "");
-            } else {
-              $(rowNum).css("display", "none");
-              $(rowNum).css("opacity", ".99");
-            }
-          }
-        });
-      }
-    }); */
-
-
-
-    $("#clearMonth").click(function() {
-      ifsearchactive = false;
-      three = false;
-      $("#UserSearch").val("");
-      //$("#datepickermonth").val("");
-      $('.selectpicker').selectpicker('refresh');
-      $(".dateHolder").each(function() {
-        var rowNum = "#row_" + $(this).find(".idholder").text();
-        $(rowNum).css("display", "");
-        $(rowNum).css("opacity", "");
-      });
-      dateRangeMaker();
-    });
-
-    $("#Approved").click(function(){
-      approvalStatus = "Approved";
-      ifsearchactive = true;
-      $(".approvalclass").each(function() {
-        var approval = $(this).clone().children().remove().end().text();
-        var row = "#row_" + $(this).find("p").text();
-        var opacityCheck = $(row).css("opacity");
-        if (three == false) {  opacityCheck = 1; }
-        if (opacityCheck == "1"){
-          if (approval == approvalStatus) {
-            $(row).css("display","");
-            $(row).css("opacity","1");
-          } else {
-            $(row).css("display","none");
-            $(row).css("opacity",".99");
-          }
-        }
-      });
-    });
-    $("#Pending").click(function(){
-      approvalStatus = "Pending";
-      ifsearchactive = true;
-      $(".approvalclass").each(function() {
-        var approval = $(this).clone().children().remove().end().text();
-        var row = "#row_" + $(this).find("p").text();
-        var opacityCheck = $(row).css("opacity");
-        if (three == false) {  opacityCheck = 1; }
-        if (opacityCheck == "1"){
-          if (approval == approvalStatus) {
-            $(row).css("display","");
-            $(row).css("opacity","1");
-          } else {
-            $(row).css("display","none");
-            $(row).css("opacity",".99");
-          }
-        }
-      });
-    });
-    $("#Unapproved").click(function(){
-      approvalStatus = "Unapproved";
-      ifsearchactive = true;
-      $(".approvalclass").each(function() {
-        var approval = $(this).clone().children().remove().end().text();
-        var row = "#row_" + $(this).find("p").text();
-        var opacityCheck = $(row).css("opacity");
-        if (three == false) {  opacityCheck = 1; }
-        if (opacityCheck == "1"){
-          if (approval == approvalStatus) {
-            $(row).css("display","");
-            $(row).css("opacity","1");
-          } else {
-            $(row).css("display","none");
-            $(row).css("opacity",".99");
-          }
-        }
-      });
-    });
-
-
-  $(window).scroll(function (event) {
-
-    var scroll = $(window).scrollLeft();
-    if (scroll > 50 ) {
-      $('#submitBut').css('position','fixed');
+    .image-preview-input {
+      position: relative;
+      overflow: hidden;
+      margin: 0px;
+      color: #333;
+      background-color: #fff;
+      border-color: #ccc;
     }
-    else {
-      $('#submitBut').css('position','');
+    .image-preview-input input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
     }
-    // Do something
-  });
-
-  $(".dropdown-menu li a").click(function(){
-    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-  });
-
-  var sum;
-  $(document).on('change', '.numb', function() {
-    sum = 0;
-    $('.numb').each(function () {
-      sum = sum + Number($(this).val());
-    });
-    $('#totalNew').val(sum);
-  });
-
-  function validate(evt) {
-    var theEvent = evt || window.event;
-    var key = theEvent.keyCode || theEvent.which;
-    key = String.fromCharCode( key );
-    var regex = /[0-9]|\./;
-    if( !regex.test(key) ) {
-      theEvent.returnValue = false;
-      if(theEvent.preventDefault) theEvent.preventDefault();
+    .image-preview-input-title {
+      margin-left:2px;
     }
-  }
-
-  var ifsearchactive = false;
-  var three = false;
-  $(document).on('change', '#UserSearch', function() {
-    var selectedOption = $('#UserSearch').val().trim();
-    three = true;
-    if (selectedOption != "") {
-      $(".expenseEntry").each(function() {
-        var person = $(this).find(".names").text();
-        if (selectedOption == person) {
-          var opacityCheck = $(this).css("opacity");
-          if (ifsearchactive == false) { opacityCheck = 1; }
-          if (opacityCheck == 1) {
-            $(this).css("display", "");
-            $(this).css("opacity", "1");
-          } else {
-            $(this).css("display", "none");
-            $(this).css("opacity", ".99");
-          }
-        } else {
-          $(this).css("display", "none");
-          $(this).css("opacity", ".99");
-        }
-      });
+    * .inputwrap {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-font-smoothing: antialiased;
+      -o-font-smoothing: antialiased;
+      font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    dateRangeMaker();
-  });
 
-  $(document).on('change', "#timerange", function(){
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-    var thing = $('#timerange').val().indexOf("-");
-    var firstday = new Date($("#timerange").val().substring(0,thing-1));
-    var lastday = new Date($("#timerange").val().substring(thing,$("#timerange").val().length));
+    body .inputwrap {
+      font-family: "Roboto", Helvetica, Arial, sans-serif;
+      font-weight: 100;
+      font-size: 12px;
+      line-height: 30px;
+      color: #777;
+      background: #4CAF50;
+      background-color: #eaf1fc;
+    }
 
-    $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+    .containerz {
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    #contact input[type="text"],
+    #contact input[type="email"],
+    #contact input[type="tel"],
+    #contact input[type="url"],
+    #contact textarea,
+    #contact button[type="submit"] {
+      font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+    }
+
+    #contactz {
+      background: #F9F9F9;
+      padding: 25px;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+
+    #contactz h3 {
+      display: block;
+      font-size: 30px;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    #contactz h4 {
+      margin: 5px 0 15px;
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    fieldset .inputwrap  {
+      border: medium none !important;
+      margin: 0 0 10px;
+      min-width: 100%;
+      padding: 0;
+      width: 100%;
+    }
+
+    #contactz input[type="text"],
+    #contactz input[type="email"],
+    #contactz input[type="tel"],
+    #contactz input[type="url"],
+    #contactz textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      background: #FFF;
+      margin: 0 0 5px;
+      padding: 10px;
+    }
+
+    #contactz input[type="text"]:hover,
+    #contactz input[type="email"]:hover,
+    #contactz input[type="tel"]:hover,
+    #contactz input[type="url"]:hover,
+    #contactz textarea:hover {
+      -webkit-transition: border-color 0.3s ease-in-out;
+      -moz-transition: border-color 0.3s ease-in-out;
+      transition: border-color 0.3s ease-in-out;
+      border: 1px solid #aaa;
+    }
+
+    #contactz textarea {
+      height: 100px;
+      max-width: 100%;
+      resize: none;
+    }
+
+    #contactz button[type="submit"] {
+      cursor: pointer;
+      width: 100%;
+      border: none;
+      background: #4CAF50;
+      color: #FFF;
+      margin: 0 0 5px;
+      padding: 10px;
+      font-size: 15px;
+    }
+
+    #contactz button[type="submit"]:hover {
+      background: #43A047;
+      -webkit-transition: background 0.3s ease-in-out;
+      -moz-transition: background 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    #contactz button[type="submit"]:active {
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
 
 
-  });
-  var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
-  $(document).on('change', '#datepicker', function() {
+    #contactz input:focus,
+    #contactz textarea:focus {
+      outline: 0;
+      border: 1px solid #aaa;
+    }
+
+    ::-webkit-input-placeholder {
+      color: #888;
+    }
+
+    :-moz-placeholder {
+      color: #888;
+    }
+
+    ::-moz-placeholder {
+      color: #888;
+    }
+
+    :-ms-input-placeholder {
+      color: #888;
+    }
+
+    .image-preview-input {
+      position: relative;
+      overflow: hidden;
+      margin: 0px;
+      color: #333;
+      background-color: #fff;
+      border-color: #ccc;
+    }
+    .image-preview-input input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+    }
+    .image-preview-input-title {
+      margin-left:2px;
+    }
+
+    #imageNonZoom {
+      display: block;
+      max-width:300px;
+      max-height:500px;
+      width: auto;
+      height: auto;
+    }
+
+    /* -------------------------------------------
+            :: Custom ::
+       ------------------------------------------- */
 
 
-    dateRangeMaker();
+    .table-responsive {
 
-    //Saves date local variable
-    sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+    }
 
-    $("#UserSearch").val("");
-    $('.selectpicker').selectpicker('refresh');
+    html {
+      width: 100%;
+    }
+    .custom-combobox {
+      position: relative;
+      display: inline-block;
+    }
+    .custom-combobox-toggle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin-left: -1px;
+      padding: 0;
+    }
+    .custom-combobox-input {
+      margin: 0;
+      padding: 5px 10px;
+    }
 
-  });
+    /*    --------------------------------------------------
+  :: General
+  -------------------------------------------------- */
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #353535;
+      background-color: #eaf1fc;
+    }
+    .content h1 {
+      text-align: center;
+    }
+    .content .content-footer p {
+      color: #6d6d6d;
+      font-size: 12px;
+      text-align: center;
+    }
+    .content .content-footer p a {
+      color: inherit;
+      font-weight: bold;
+    }
 
-  function dateRangeMaker() {
-      //Finds date range and applies the visibility of entries
+    /*	--------------------------------------------------
+      :: Table Filter
+      -------------------------------------------------- */
+    .panel {
+      border: 1px solid #ddd;
+      background-color: #fcfcfc;
+    }
+    .panel .btn-group {
+      margin: 15px 0 30px;
+    }
+    .panel .btn-group .btn {
+      transition: background-color .3s ease;
+    }
+    .table-filter {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+    }
+    .table-filter tbody tr:hover {
+      cursor: pointer;
+      background-color: #eee;
+    }
+    .table-filter tbody tr td {
+      padding: 10px;
+      vertical-align: middle;
+      border-top-color: #eee;
+    }
+    .table-filter tbody tr.selected td {
+      background-color: #eee;
+    }
+    .table-filter tr td:first-child {
+      width: 38px;
+    }
+    .table-filter tr td:nth-child(2) {
+      width: 35px;
+    }
+    .ckbox {
+      position: relative;
+    }
+    .ckbox input[type="checkbox"] {
+      opacity: 0;
+    }
+    .ckbox label {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .ckbox label:before {
+      content: '';
+      top: 1px;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      display: block;
+      position: absolute;
+      border-radius: 2px;
+      border: 1px solid #bbb;
+      background-color: #fff;
+    }
+    .ckbox input[type="checkbox"]:checked + label:before {
+      border-color: #2BBCDE;
+      background-color: #2BBCDE;
+    }
+    .ckbox input[type="checkbox"]:checked + label:after {
+      top: 3px;
+      left: 3.5px;
+      content: '\e013';
+      color: #fff;
+      font-size: 11px;
+      font-family: 'Glyphicons Halflings';
+      position: absolute;
+    }
+    .table-filter .star {
+      color: #ccc;
+      text-align: center;
+      display: block;
+    }
+    .table-filter .star.star-checked {
+      color: #F0AD4E;
+    }
+    .table-filter .star:hover {
+      color: #ccc;
+    }
+    .table-filter .star.star-checked:hover {
+      color: #F0AD4E;
+    }
+    .table-filter .media-photo {
+      width: 35px;
+    }
+    .table-filter .media-body {
+      display: block;
+      /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+    }
+    .table-filter .media-meta {
+      font-size: 11px;
+      color: #999;
+    }
+    .table-filter .media .title {
+      color: #2BBCDE;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: normal;
+      margin: 0;
+    }
+    .table-filter .media .title span {
+      font-size: .8em;
+      margin-right: 20px;
+    }
+    .table-filter .media .title span.pagado {
+      color: #5cb85c;
+    }
+    .table-filter .media .title span.pendiente {
+      color: #f0ad4e;
+    }
+    .table-filter .media .title span.cancelado {
+      color: #d9534f;
+    }
+    .table-filter .media .summary {
+      font-size: 14px;
+    }
+    #newExpense {
 
-      var monthNames = ["January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
-      ];
-      var nameArray = [];
+    }
+    #milage {
+      display:none;
+    }
 
-      curr = $('#datepicker').datepicker('getDate');
-      first = curr.getDate() - curr.getDay();
-
-      firstday = new Date(curr.setDate(first));
-      second = curr.getDate() +1;
-      secondday = new Date(curr.setDate(second));
-      third = curr.getDate() + 1;
-      thirdday = new Date(curr.setDate(third));
-      fourth = curr.getDate() + 1;
-      fourthday = new Date(curr.setDate(fourth));
-      fifth = curr.getDate() + 1;
-      fifthday = new Date(curr.setDate(fifth));
-      sixth = curr.getDate() + 1;
-      sixthday = new Date(curr.setDate(sixth));
-      last = curr.getDate() + 1;
-      lastday = new Date(curr.setDate(last));
-
-      $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
-      $('#Date1').text("Sun " + firstday.getDate() );
-      $('#Date2').text("Mon " + secondday.getDate() );
-
-      $('#Date3').text("Tue " + thirdday.getDate() );
-      $('#Date4').text("Wed " + fourthday.getDate() );
-      $('#Date5').text("Thu " + fifthday.getDate() );
-      $('#Date6').text("Fri " + sixthday.getDate() );
-      $('#Date7').text("Sat " + lastday.getDate() );
-
-      //extra name initialize
-
-      //
-
-      $('#datePicked').val($('#datepicker').datepicker('getDate'));
-
-      $('#tableholder').find('tr').each(function () {
-          if (moment($(this).find('.dateBlob').text()) <= lastday && moment($(this).find('.dateBlob').text()) >= firstday) {
-              $(this).css("display","");
-          } else {
-              $(this).css("display","none");
-              // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
-          }
-
-          //find names
-
-      });
-  }
-
-  $( document ).ready(function() {
-
-      if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          $('#sidebarNav').find('[datePickerTag="first"]').removeAttr("id");
-      }
-      else {
-          $('#sidebarNav').find('[datePickerTag="first"]').attr("id","datepicker");
-          $('.mobileDateCheck').find('[datePickerTag="last"]').css("display","none");
-      }
-
-      var monthNames = ["January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
-      ];
-      var nameArray = [];
-      var eventDates = [];
+    /* BOOTSNAP TEMPLATE */
 
 
-      $("#datepicker").datepicker( {
-          beforeShowDay: function( date ) {
-              var highlight = eventDates[date];
-              if( highlight ) {
-                  return [true, "event", 'Tooltip text'];
+    .dropdown-user {
+      margin: 13px 0;
+      padding: 5px;
+      height: 100%;
+    }
+
+    .dropdown-user:hover {
+      cursor: pointer;
+
+    }
+
+    .dropdown-user:active {
+      transition: all ease-in-out 500ms;
+      transform: rotate(450deg);
+    }
+
+    /* BOOTSNAP PROGRESS BAR 4-STEP */
+
+    .one, .two, .three, .four{
+      position:absolute;
+      margin-top:-10px;
+      z-index:1;
+      height:40px;
+      width:40px;
+      border-radius:25px;
+      background-color:#dcdcdc;
+    }
+
+    .one{
+      left:-1%;
+    }
+    .two{
+      left:33%;
+    }
+    .three{
+      left:66%;
+    }
+    .four {
+      left:99%;
+    }
+    .primary-color{
+      background-color:#4989bd;
+    }
+    .success-color{
+      background-color:#5cb85c;
+    }
+    .danger-color{
+      background-color:#d9534f;
+    }
+    .warning-color{
+      background-color:#f0ad4e;
+    }
+    .info-color{
+      background-color:#5bc0de;
+    }
+    .no-color{
+      background-color:#dcdcdc;
+    }
+    .progress {
+      background-color:#dcdcdc;
+    }
+
+  </style>
+  <script>
+
+      function newTotalFunction() {
+          var nameArray = [];
+
+          $('#tableElements').children('tr').each(function () {
+              //find names
+              var name = $(this).find('#names').text();
+              if (jQuery.inArray(name,nameArray) == -1 ) {
+                  nameArray.push(name);
               } else {
-                  return [true, '', ''];
+
+              }
+          });
+
+          $(".frontTable").each(function() {
+
+              if ($(this).find("#progressbartext").text() == 0) {
+                  $(this).find(".manySubmitButtons").each(function() {
+                      $(this).css("display","none");
+                  });
+              }
+              if ($(this).find("#approvalCover").text() != "Submitted") {
+                  $(this).find(".manySubmitButtons").each(function() {
+                      $(this).css("display","none");
+                  });
+              }
+          });
+
+      }
+
+      function expenseSwitcher() {
+
+          var CUList, nameListEX, CUListEX, DateListEX;
+          CUList = [], nameListEX = [], CUListEX = [], DateListEX = [];
+
+          <% @expenses.each do |e| %>
+          nameListEX.push("<%= e.user.first_name %>" + " " + "<%= e.user.last_name %>");
+          CUListEX.push("<%= e.credit_union %>");
+          DateListEX.push("<%= e.date_activity %>");
+          <% end %>
+
+
+          for (var z = 0; z < nameListEX.length; z++) {
+              if (moment(DateListEX[z]) <= lastday && moment(DateListEX[z]) >= firstday && selectedName.trim() == nameListEX[z].trim() ) {
+                  if (CUList.indexOf(CUListEX[z]) == -1) {
+                      CUList.push(CUListEX[z]);
+                  }
+              }
+
+          }
+
+          for (var x = 1; x < 4; x++) {
+              tab = "#expenseTab" + x;
+              entry = $(tab).find(".expenseEntry");
+              if (CUList[x-1] != "" && CUList[x-1] != undefined) {
+                  $(tab).css("display","inherit");
+                  $(tab).find(".CUTitle").text(CUList[x-1]);
+                  $(tab).find(".expenseTab").data("role", CUList[x-1]);
+                  $(tab).find(".expenseEntry").each(function() {
+                      console.log($(this).data("name"));
+                      if ($(this).data("cu") == CUList[x-1] && moment($(this).data("date")) <= lastday && moment($(this).data("date")) >= firstday && selectedName == $(this).data("name")) {
+                          $(this).css("display","inherit");
+                      }
+                      else {
+                          $(this).css("display","none");
+                      }
+                  });
+              }
+              else {
+                  $(tab).css("display","none");
               }
           }
+      }
+
+      function calendarHighlight() {
+          //Init Datepicker and add Highlights if timesheets aren't finished
+
+          var counter = 0;
+          var firstDay, endDay;
+          var eventDates = [], eventDatesGood = [];
+          $('.submitButtonWrap').each(function () {
+              firstDay = moment($(this).find("#submitDate").text()).startOf("week");
+              if ($(this).find("#submitStatus").text() == "Submitted") {
+                  eventDatesGood.push(firstDay);
+                  eventDatesGood.push(moment(firstDay).add(1,'days'));
+                  eventDatesGood.push(moment(firstDay).add(2,'days'));
+                  eventDatesGood.push(moment(firstDay).add(3,'days'));
+                  eventDatesGood.push(moment(firstDay).add(4,'days'));
+                  eventDatesGood.push(moment(firstDay).add(5,'days'));
+                  eventDatesGood.push(moment(firstDay).add(6,'days'));
+              } else {
+                  eventDates.push(firstDay);
+                  eventDates.push(moment(firstDay).add(1,'days'));
+                  eventDates.push(moment(firstDay).add(2,'days'));
+                  eventDates.push(moment(firstDay).add(3,'days'));
+                  eventDates.push(moment(firstDay).add(4,'days'));
+                  eventDates.push(moment(firstDay).add(5,'days'));
+                  eventDates.push(moment(firstDay).add(6,'days'));
+              }
+          });
+
+          var datesave = $('#datepicker').datepicker('getDate');
+          $("#datepicker").datepicker('destroy');
+          $("#datepicker").datepicker({
+              beforeShowDay: function (date) {
+                  for (var i = 0; i < eventDates.length; i++) {
+                      if (new Date(eventDates[i]).toString() == date.toString()) {
+                          return [true, 'css-class-to-highlight-declined', 'tooltip text'];
+                      }
+                  }
+                  for (var i = 0; i < eventDatesGood.length; i++) {
+                      if (new Date(eventDatesGood[i]).toString() == date.toString()) {
+                          return [true, 'css-class-to-highlight-approved', 'tooltip text'];
+                      }
+                  }
+                  return [true, ''];
+              }
+          });
+          $("#datepicker").datepicker('setDate',datesave);
+      }
+
+      $(document).on('click', '#close-preview', function(){
+          $('.image-preview').popover('hide');
+          // Hover befor close the preview
+          $('.image-preview').hover(
+              function () {
+                  $('.image-preview').popover('show');
+              },
+              function () {
+                  $('.image-preview').popover('hide');
+              }
+          );
       });
 
-      if (sessionStorage.refreshCount == undefined) {
-          $("#datepicker").datepicker().datepicker("setDate", new Date());
-          sessionStorage.refreshCount = 1;
-      } else {
-          var date = sessionStorage.datePicked;
-          date = new Date(date);
-          date.setDate(date.getDate());
+      $(function() {
+          // Create the close button
+          var closebtn = $('<button/>', {
+              type:"button",
+              text: 'x',
+              id: 'close-preview',
+              style: 'font-size: initial;',
+          });
+          closebtn.attr("class","close pull-right");
+          // Set the popover default content
+          $('.image-preview').popover({
+              trigger:'manual',
+              html:true,
+              title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+              content: "There's no image",
+              placement:'bottom'
+          });
+          // Clear event
+          $('.image-preview-clear').click(function(){
+              $('.image-preview').attr("data-content","").popover('hide');
+              $('.image-preview-filename').val("");
+              $('.image-preview-clear').hide();
+              $('.image-preview-input input:file').val("");
+              $(".image-preview-input-title").text("Browse");
+          });
+          // Create the preview image
+          $(".image-preview-input input:file").change(function (){
+              var img = $('<img/>', {
+                  id: 'dynamic',
+                  width:250,
+                  height:200
+              });
+              var file = this.files[0];
+              var reader = new FileReader();
+              // Set preview image into the popover data-content
+              reader.onload = function (e) {
+                  $(".image-preview-input-title").text("Change");
+                  $(".image-preview-clear").show();
+                  $(".image-preview-filename").val(file.name);
+                  img.attr('src', e.target.result);
+                  $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+              }
+              reader.readAsDataURL(file);
+          });
+      });
 
-          $("#datepicker").datepicker().datepicker("setDate", date );
+      function isNumber(evt) {
+          var theEvent = evt || window.event;
+          var key = theEvent.keyCode || theEvent.which;
+          key = String.fromCharCode(key);
+          if (key.length == 0) return;
+          var regex = /^[0-9.,\b]+$/;
+          if (!regex.test(key)) {
+              theEvent.returnValue = false;
+              if (theEvent.preventDefault) theEvent.preventDefault();
+          }
       }
-      sessionStorage.refreshCount = sessionStorage.refreshCount + 1;
-      //new Date("10/10/2016")
 
-    //Finds date range and applies the visibility of entries
 
-    dateRangeMaker();
+      // DOCUMENT READY START //
 
-    //Saves date local variable
-    //sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+      var CUlist = [], dateList = [], sunList = [], monList = [], tueList = [], wedList = [], thuList = [], friList = [], satList = [];
+      $(document).ready(function() {
 
-    //Approval Buttons
-    $('.approvalButtons').each(function() {
-      var approval = $(this).find('#ApprovalBlob').val();
-      $(this).find('#successBut').className = '';
-      $(this).find('#failBut').className = '';
-      if (approval == "Approved") {
-        $(this).find('#successBut').addClass("btn btn-success glyphicon glyphicon-ok");
-        $(this).find('#failBut').addClass("btn btn-default glyphicon glyphicon-remove");
+          if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+              $('#sidebarNav').find('[datePickerTag="first"]').removeAttr("id");
+          }
+          else {
+              $('#sidebarNav').find('[datePickerTag="first"]').attr("id","datepicker");
+              $('.mobileDateCheck').find('[datePickerTag="last"]').css("display","none");
+          }
+
+          var monthNames = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"
+          ];
+          var nameArray = [];
+
+          calendarHighlight();
+
+          if (sessionStorage.refreshCount == undefined) {
+              $("#datepicker").datepicker().datepicker("setDate", new Date());
+              sessionStorage.refreshCount = 1;
+          } else {
+              var date = sessionStorage.datePicked;
+              date = new Date(date);
+              date.setDate(date.getDate());
+
+              $("#datepicker").datepicker().datepicker("setDate", date );
+          }
+          sessionStorage.refreshCount = sessionStorage.refreshCount + 1;
+          //new Date("10/10/2016")
+
+          noExpensesCheck();
+          dateRange();
+
+
+          //Saves date local variable
+          sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+
+          $(".approvalclass").each(function() {
+              var approval = $(this).clone().children().remove().end().text();
+              if (approval == "Approved") {
+                  $(this).css("color","");
+              }
+              if (approval == "Pending") {
+                  $(this).css("color","#ec971f");
+              }
+              if (approval == "Unapproved") {
+                  $(this).css("color","#cc0a0a");
+              }
+          });
+
+
+
+          //initialize selector
+          $('#selectizeInput').selectize({
+              create: true,
+              placeholder: 'Select a CU or Type Your Own',
+          });
+
+          $("#expenseDate").on('change', function() {
+              var $select = $('#selectizeInput').selectize();
+              var control = $select[0].selectize;
+              var dateBeg, dateEnd;
+              control.clearCache('option');
+              control.clearOptions();
+              control.refreshOptions(true);
+
+              day = moment($("#expenseDate").val()).day();
+              dateBeg = moment($("#expenseDate").val()).subtract(day,'days');
+              dateEnd = moment(dateBeg).add(6,'days').endOf('day');
+
+              for (var i = 0; i < CUlist.length; i++) {
+                  if (moment(dateList[i]) >= moment(dateBeg) && moment(dateList[i]) <= moment(dateEnd) ) {
+                      control.addOption({value:(CUlist[i]),text:CUlist[i]});
+                      control.addItem((CUlist[i]));
+                  }
+              }
+
+              control.clear();
+          });
+
+
+          newTotalFunction();
+
+          $('#tableElements').children('tr').each(function () {
+              $(this).find('#successBut').trigger("submit.rails");
+          });
+
+          $('.frontTable').click(function() {
+              selectedName = $(this).find("#nameHolder").text().trim();
+              expenseSwitcher();
+              $("#expenseWrap").slideUp();
+              $("#wholeWrapper").css("display","");
+          });
+
+
+          $('#clearMonth').click(function() {
+              $("#wholeWrapper").css("display","none");
+              $("#expenseWrap").slideDown();
+          });
+
+          //Approval Buttons
+          $('.approvalButtons').each(function() {
+              var approval = $(this).find('#ApprovalBlob').val();
+              $(this).find('#successBut').className = '';
+              $(this).find('#failBut').className = '';
+              if (approval == "Approved") {
+                  $(this).find('#successBut').addClass("btn btn-success glyphicon glyphicon-ok");
+                  $(this).find('#failBut').addClass("btn btn-default glyphicon glyphicon-remove");
+              }
+              if (approval == "Unapproved") {
+                  $(this).find('#successBut').addClass("btn btn-default glyphicon glyphicon-ok");
+                  $(this).find('#failBut').addClass("btn btn-danger glyphicon glyphicon-remove");
+              }
+              if (approval == "Pending" || approval == "") {
+                  $(this).find('#successBut').addClass("btn btn-warning glyphicon glyphicon-ok");
+                  $(this).find('#failBut').addClass("btn btn-warning glyphicon glyphicon-remove");
+              }
+          });
+
+
+      });
+
+      // DOCUMENT READY END  //
+      // ############## //
+
+
+      function noExpensesCheck() {
+          var tablecount = 0;
+          var hiddencount = 0;
+          $("#tableholder").find('tr').each(function() {
+              tablecount = tablecount + 1;
+              if ($(this).css("display") == "none") {
+                  hiddencount = hiddencount +1;
+              }
+          });
+
+          if ($("#noExpense").css("display") != "none") {
+              hiddencount = hiddencount +1;
+          }
+
+          if ( tablecount == hiddencount ) {
+              $("#noExpense").css("display","");
+              $("#noExpense").parents().closest(".expenseTab").find("#approvalStatus").text("Not Created");
+          } else {
+              $("#noExpense").css("display","none");
+          }
       }
-      if (approval == "Unapproved") {
-        $(this).find('#successBut').addClass("btn btn-default glyphicon glyphicon-ok");
-        $(this).find('#failBut').addClass("btn btn-danger glyphicon glyphicon-remove");
+
+      var approvalStatus;
+      $(function() {
+          $('.selectpicker').selectpicker();
+
+
+
+          $(document).on('show.bs.modal', '.modal', function (event) {
+              var zIndex = 1040 + (10 * $('.modal:visible').length);
+              $(this).css('z-index', zIndex);
+              setTimeout(function() {
+                  $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+              }, 0);
+          });
+
+
+          $('input[id="expenseDate"]').daterangepicker({
+              singleDatePicker: true,
+              showDropdowns: true,
+              locale: {
+                  format: 'YYYY-MM-DD'
+              },
+          });
+      });
+
+      var selectedName;
+      function dateRange() {
+          var monthNames = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"
+          ];
+          curr = $('#datepicker').datepicker('getDate');
+          first = curr.getDate() - curr.getDay();
+          firstday = new Date(curr.setDate(first));
+          second = curr.getDate() +1;
+          secondday = new Date(curr.setDate(second));
+          third = curr.getDate() + 1;
+          thirdday = new Date(curr.setDate(third));
+          fourth = curr.getDate() + 1;
+          fourthday = new Date(curr.setDate(fourth));
+          fifth = curr.getDate() + 1;
+          fifthday = new Date(curr.setDate(fifth));
+          sixth = curr.getDate() + 1;
+          sixthday = new Date(curr.setDate(sixth));
+          last = curr.getDate() + 1;
+          lastday = new Date(curr.setDate(last));
+
+          $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+          $('#Date1').text("Sun " + firstday.getDate() );
+          $('#Date2').text("Mon " + secondday.getDate() );
+          $('#Date3').text("Tue " + thirdday.getDate() );
+          $('#Date4').text("Wed " + fourthday.getDate() );
+          $('#Date5').text("Thu " + fifthday.getDate() );
+          $('#Date6').text("Fri " + sixthday.getDate() );
+          $('#Date7').text("Sat " + lastday.getDate() );
+
+
+          $('#datePicked').val($('#datepicker').datepicker('getDate'));
+
+
+
+          var CUlistE = [], dateListE = [];
+          <% @expenses.each do |p| %>
+          CUlistE.push("<%= p.credit_union %>");
+          dateListE.push("<%= p.date_activity %>");
+          <% end %>
+
+          $(".expenseTab").each(function() {
+
+
+              //Individual progress bars
+              var approval = $(this).find("#approvalStatus").text();
+              if (approval == "Denied") {
+                  $(this).find(".pb").addClass("progress-bar-danger");
+                  $(this).find(".pb").css("width","100%");
+                  $(this).find(".one").addClass("danger-color");
+                  $(this).find(".two").addClass("danger-color");
+                  $(this).find(".three").addClass("danger-color");
+                  $(this).find(".four").addClass("danger-color");
+              }
+              if (approval == "Pending") {
+                  $(this).find(".pb").addClass("progress-bar-warning");
+                  $(this).find(".pb").css("width","34%");
+                  $(this).find(".one").addClass("warning-color");
+                  $(this).find(".two").addClass("warning-color");
+                  $(this).find(".three").addClass("no-color");
+                  $(this).find(".four").addClass("no-color");
+              }
+              if (approval == "Reviewed") {
+                  $(this).find(".pb").addClass("progress-bar-info");
+                  $(this).find(".pb").css("width","67%");
+                  $(this).find(".one").addClass("info-color");
+                  $(this).find(".two").addClass("info-color");
+                  $(this).find(".three").addClass("info-color");
+                  $(this).find(".four").addClass("no-color");
+              }
+              if (approval == "Not Created") {
+                  $(this).find(".pb").addClass("progress-bar-info");
+                  $(this).find(".pb").css("width","0%");
+                  $(this).find(".one").addClass("no-color");
+                  $(this).find(".two").addClass("no-color");
+                  $(this).find(".three").addClass("no-color");
+                  $(this).find(".four").addClass("no-color");
+              }
+          });
+
+
+          var counter = 0;
+          $(".submitButton").each(function() {
+              var dater = $(this).parent().parent().find("#submitDate").text();
+              console.log(dater);
+              var submitStatus = $(this).parent().parent().find("#submitStatus").text();
+              //alert(dater + "...." + lastday + "...." + firstday);
+              if (moment(dater) <= lastday && moment(dater) >= firstday && counter == 0) {
+                  $(this).css("display","");
+                  counter = 1;
+                  if (submitStatus == "Not Submitted" || submitStatus == "") {
+                      $(this).removeClass("btn-danger");
+                      $(this).addClass("btn-success");
+                      $(this).attr("value","SubmittedEX");
+                      $(this).text("Submit for Approval?");
+                  } else {
+                      $(this).removeClass("btn-success");
+                      $(this).addClass("btn-danger");
+                      $(this).attr("value","Not SubmittedEX");
+                      $(this).text("Unsubmit for Approval?");
+                  }
+              } else {
+                  $(this).css("display","none");
+              }
+          });
+
+
       }
-      if (approval == "Pending" || approval == "") {
-        $(this).find('#successBut').addClass("btn btn-warning glyphicon glyphicon-ok");
-        $(this).find('#failBut').addClass("btn btn-warning glyphicon glyphicon-remove");
+
+      var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
+      $(document).on('change', '#datepicker', function() {
+
+          $("#expenseWrap").fadeOut();
+
+          setTimeout(dateRange,400);
+
+          $("#expenseWrap").fadeIn();
+
+          //Saves date local variable
+          sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+
+
+      });
+
+
+      $(".dropdown-menu li a").click(function(){
+          $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+          $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+      });
+
+      var sum;
+      $(document).on('change', '.numb', function() {
+          sum = 0;
+          $('.numb').each(function () {
+              sum = sum + Number($(this).val());
+          });
+          $('#totalNew').val(sum);
+      });
+
+      function validate(evt) {
+          var theEvent = evt || window.event;
+          var key = theEvent.keyCode || theEvent.which;
+          key = String.fromCharCode( key );
+          var regex = /[0-9]|\./;
+          if( !regex.test(key) ) {
+              theEvent.returnValue = false;
+              if(theEvent.preventDefault) theEvent.preventDefault();
+          }
       }
-    });
-  });
 
-  $(window).load(function() {
-    var nameArray = [];
-    //$('#UserSearch').append('<option></option>');
-    $('.names').each(function () {
-      var name = $(this).text();
-      if (jQuery.inArray(name, nameArray) == -1) {
-        nameArray.push(name);
-        $('#UserSearch').append('<option data-icon="glyphicon-user">' + name + '</option>');
-        $('.selectpicker').selectpicker('refresh');
-      } else {
-
-      }
-    });
-  });
-  });
+      $(document).ready(function() {
+          var panels = $('.user-infos');
+          var panelsButton = $('.dropdown-user');
 
 
-</script>
+          //Click dropdown
+          panelsButton.click(function() {
+              //get data-for attribute
+              var dataFor = $(this).attr('data-for');
+              var idFor = $(dataFor);
+
+              //current button
+              var currentButton = $(this);
+              idFor.slideToggle(400, function() {
+                  //Completed slidetoggle
+                  if(idFor.is(':visible'))
+                  {
+                      currentButton.removeClass("hvr-icon-hang");
+                      currentButton.addClass("hvr-icon-bob");
+                  }
+                  else
+                  {
+                      currentButton.removeClass("hvr-icon-bob");
+                      currentButton.addClass("hvr-icon-hang");
+                  }
+              })
+          });
+
+          $('[data-toggle="tooltip"]').tooltip();
+
+
+
+      });
+
+
+  </script>
 </head>
 
 <div id="shadowOnOffs" style="background-color:#eaf1fc;">
-
 
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -624,16 +1070,14 @@
         <div style="" id="datepicker" datePickerTag="first"></div>
         <br>
         <ul class="nav nav-sidebar">
-          <li><a href="/" >Timesheet</a></li>
-          <!--<li><a href="#">Reports</a></li>
-          <li><a href="#">Analytics</a></li> -->
+          <li><a class="hvr-sweep-to-right" href="/" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
           <% if current_user.admin == true %>
-              <li><a href="/approvals">Timesheet Approvals</a></li>
+              <li ><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
           <% end %>
-          <li><a href="/expenses">Expenses</a></li>
+          <li ><a class="hvr-sweep-to-right" href="/expenses">Expenses<span class="glyphicon glyphicon-usd pull-right"></span></a></li>
           <% if current_user.admin == true %>
-              <li class="active"><a href="/expensesapprovals">Expenses Approval</a></li>
-              <li><a href="/exports">Exports</a></li>
+              <li class="active"><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
+              <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
           <% end %>
         </ul>
         <!-- <ul class="nav nav-sidebar">
@@ -650,162 +1094,371 @@
          </ul> -->
       </div>
 
+      <div class="container" id="expenseWrap" style="">
+        <div class="row">
+          <%= render "expenseapprovalcover" %>
+        </div>
+      </div>
 
+      <div class="container" id="expenseWrap" >
+        <div class="row" id="wholeWrapper" style="display:none;">
 
-      <div class="container" id="expenseWrap">
-        <div class="row" >
+          <section class="content">
+            <h1 style="text-align:center;" class="marginBumpExpense">Add an Expense</h1>
 
-          <section class="content" id="dashContents" >
-            <h1 style="text-align:center;" class="marginBumpExpense">Approve Expenses</h1>
-
-            <div style="padding:0px;" class="marginBumpExpense">
-
-              <div class="panel panel-default"  id="goBlackApproval" style="margin:0px;">
-
-                <div class="panel-body" id="goBlackApproval" style="margin:0px;">
+            <div class="marginBumpExpense">
+              <div class="panel panel-default"  id="goBlack">
+                <div class="panel-body">
                   <h2 class="page-header" style="margin:1px;text-align:center;" id="dateTitle"></h2>
-                  <div class="pull-right">
-                    <div class="btn-group pull-right" style="margin: 30px 0px 10px 0px;text-align:right;">
-                      <button type="button" id="Approved" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
-                      <button type="button" id="Pending" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
-                      <button type="button" id="Unapproved" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
-                    </div>
-                    <div style="line-height:50%;"><br></div>
-                    <div class="pull-right mobileDateCheck" style="float:right; text-align:right;">
-                      <div datePickerTag="last">
-                        <label id="labelforlast">Select Date: </label>
-                        <input style="" id="datepicker">
-                        <br>
-                      </div>
-                      <label for="UserSearch">Search by User:</label>
-                      <select style="margin:2px;" class="selectpicker" id="UserSearch" title="Search by User..."></select>
-                      <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin-bottom:12px;">All</button>
-                      <div style="line-height:50%;"><br></div>
-                      <!--<label for="startDate">Date Range:</label>
-                      <input name="startDate" id="datepickermonth" />-->
-                    </div>
-                  </div>
 
-                  <div style="line-height:75%;"><br></div>
-                  <div class="table-container">
-                    <table id="tableholder" class="table table-filter">
-                      <tbody>
-                      <tr id="noExpense" style="display:none;">
-                        <td colspan="5" style="text-align:center;">
-                          <h2>No expenses found :( </h2>
-                        </td>
-                      </tr>
-                      <% @expenses.each do |e| %>
-                          <tr id="row_<%= e.id %>" class="expenseEntry" data-status="pagado">
-                            <td style="width:80px;">
 
-                                <div class="approvalButtons"  style="width:80px;" ><%= form_for(e, remote: true, :url => {:action => 'update', :id => e.id}) do |f| %><%= f.text_field :approval, :value => e.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "", id:"successBut", name: "subaction", value: "ApprovedEX", style: "" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "UnapprovedEX", style: "" %></div>
-                                  <% end %>
+                </div>
 
-                            </td>
-                            <div class="ckbox">
-                            <td>
-                              <a href="javascript:;" class="star">
-                                <i class="glyphicon glyphicon-star"></i>
-                              </a>
-                            </td>
-                            <td>
+                <div style="line-height:75%;"><br></div>
 
-                              <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
-                                <a href="#" class="pull-left" >
-                                  <% if e.image.blank? %>
-                                      <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
-                                  <% else %>
-                                      <%= image_tag e.image.thumb %>
-                                  <% end %>
-                                </a>
-                                <div class="pull-left">
-                                  <h4 class="title" style="text-align:left;">
-                                    <%= e.type_of_expense%>
-                                    </h4>
-                                  <p class="summary"><%= e.notes %></p>
-                                </div>
-                                <div class="media-body pull-right" style="width:300px;">
-                                  <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
-                                  <span class="pull-right" ><p class="media-meta names" style="color:#273772;"><%= e.user.first_name %> <%= e.user.last_name %></p></span>
-                                  <h4 class="title">
 
-                                    <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
-                                   <!-- <span class="pull-right">$<%= e.amount %></span> -->
-                                  </h4>
+                <div class="container" style="width:100%;">
+                  <div class="well span8 offset2">
 
+                    <div id="expenseTab1">
+                        <div class="expenseTab" data-role="CREDITUNION">
+                          <div class="row-fluid user-row">
+                            <div class="span1 dropdown-user pull-right hvr-icon-hang" data-for=".CLASSTHATACTIVATESDROPDOWN1">
+
+                            </div>
+
+                            <div class="span10">
+                              <strong class="CUTitle">ITS A CREDIT UNION</strong><br>
+
+                              <p class="text-muted">Approval Status: <span id="approvalStatus">Reviewed</span></p>
+                              <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
+                                <div class="progress" style="width:100%;height:20px;">
+                                  <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>
+                                  <div class="pb progress-bar" style="width: 27%"></div>
                                 </div>
                               </div>
+                            </div>
+                          </div>
 
-                            </td>
-                          </tr>
-                      <% end %>
-                      </tbody>
-                    </table>
+                          <div class="row-fluid user-infos CLASSTHATACTIVATESDROPDOWN1" style="margin-top:20px;">
+                            <div class="span10 offset1">
+                              <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                  <h3 class="panel-title">Expense Entries</h3>
+                                </div>
+                                <div class="panel-body">
+                                  <div class="row-fluid">
+                                    <div class="table-container">
+                                      <table id="tableholder" class="table table-filter">
+                                        <tbody data-cu="CREDITUNION">
+                                        <tr id="noExpense" style="display:none;">
+                                          <td colspan="5" style="text-align:center;">
+                                            <h2>No expenses found :( </h2>
+                                          </td>
+                                        </tr>
+                                        <% @expenses.each do |e| %>
+                                            <tr id="row_<%= e.id %>" class="expenseEntry" data-name="<%= e.user.first_name%> <%= e.user.last_name %>" data-cu="<%= e.credit_union %>" data-date="<%= e.date_activity %>" >
+                                              <td>
+                                                <div class="ckbox">
+                                                  <div class="approvalButtons"  style="width:80px;" ><%= form_for(e, remote: true, :url => {:action => 'update', :id => e.id}) do |f| %><%= f.text_field :approval, :value => e.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "", id:"successBut", name: "subaction", value: "ApprovedEX", style: "" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "UnapprovedEX", style: "" %></div>
+                                                    <% end %>
+                                                </div>
+                                              </td>
+                                              <td>
+                                                <a href="javascript:;" class="star">
+                                                  <i class="glyphicon glyphicon-star"></i>
+                                                </a>
+                                              </td>
+                                              <td>
+
+                                                <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
+                                                  <a href="#" class="pull-left" >
+                                                    <% if e.image.blank? %>
+                                                        <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
+                                                    <% else %>
+                                                        <%= image_tag e.image.thumb %>
+                                                    <% end %>
+                                                  </a>
+
+                                                  <div class="pull-left">
+                                                    <h4 class="title" style="text-align:left;">
+                                                      <%= e.type_of_expense%>
+                                                    </h4>
+                                                    <p class="summary">$<%= e.amount %></p>
+                                                  </div>
+                                                  <div class="media-body pull-right" style="width:300px;">
+                                                    <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
+                                                    <h4 class="title">
+
+                                                      <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
+
+                                                    </h4>
+
+                                                  </div>
+                                                </div>
+
+                                              </td>
+                                            </tr>
+                                        <% end %>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <hr style="border-color:#0d5ddd;">
+                        </div>
+                    </div>
+
+                    <div id="expenseTab2">
+                    <div class="expenseTab" data-role="CREDITUNION">
+                      <div class="row-fluid user-row">
+                        <div class="span1 dropdown-user pull-right hvr-icon-hang" data-for=".CLASSTHATACTIVATESDROPDOWN2">
+
+                        </div>
+
+                        <div class="span10">
+                          <strong class="CUTitle">ITS A CREDIT UNION</strong><br>
+
+                          <p class="text-muted">Approval Status: <span id="approvalStatus">Reviewed</span></p>
+                          <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
+                            <div class="progress" style="width:100%;height:20px;">
+                              <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>
+                              <div class="pb progress-bar" style="width: 27%"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row-fluid user-infos CLASSTHATACTIVATESDROPDOWN2" style="margin-top:20px;">
+                        <div class="span10 offset1">
+                          <div class="panel panel-primary">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">Expense Entries</h3>
+                            </div>
+                            <div class="panel-body">
+                              <div class="row-fluid">
+                                <div class="table-container">
+                                  <table id="tableholder" class="table table-filter">
+                                    <tbody data-cu="CREDITUNION">
+                                    <tr id="noExpense" style="display:none;">
+                                      <td colspan="5" style="text-align:center;">
+                                        <h2>No expenses found :( </h2>
+                                      </td>
+                                    </tr>
+                                    <% @expenses.each do |e| %>
+                                        <tr id="row_<%= e.id %>" class="expenseEntry" data-name="<%= e.user.first_name%> <%= e.user.last_name %>" data-cu="<%= e.credit_union %>" data-date="<%= e.date_activity %>" >
+                                          <td>
+                                            <div class="ckbox">
+                                              <div class="approvalButtons"  style="width:80px;" ><%= form_for(e, remote: true, :url => {:action => 'update', :id => e.id}) do |f| %><%= f.text_field :approval, :value => e.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "", id:"successBut", name: "subaction", value: "ApprovedEX", style: "" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "UnapprovedEX", style: "" %></div>
+                                                <% end %>
+                                            </div>
+                                          </td>
+                                          <td>
+                                            <a href="javascript:;" class="star">
+                                              <i class="glyphicon glyphicon-star"></i>
+                                            </a>
+                                          </td>
+                                          <td>
+
+                                            <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
+                                              <a href="#" class="pull-left" >
+                                                <% if e.image.blank? %>
+                                                    <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
+                                                <% else %>
+                                                    <%= image_tag e.image.thumb %>
+                                                <% end %>
+                                              </a>
+
+                                              <div class="pull-left">
+                                                <h4 class="title" style="text-align:left;">
+                                                  <%= e.type_of_expense%>
+                                                </h4>
+                                                <p class="summary">$<%= e.amount %></p>
+                                              </div>
+                                              <div class="media-body pull-right" style="width:300px;">
+                                                <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
+                                                <h4 class="title">
+
+                                                  <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
+
+                                                </h4>
+
+                                              </div>
+                                            </div>
+
+                                          </td>
+                                        </tr>
+                                    <% end %>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr style="border-color:#0d5ddd;">
+                    </div>
+                    </div>
+
+                    <div id="expenseTab3">
+                    <div class="expenseTab" data-role="CREDITUNION">
+                      <div class="row-fluid user-row">
+                        <div class="span1 dropdown-user pull-right hvr-icon-hang" data-for=".CLASSTHATACTIVATESDROPDOWN3">
+
+                        </div>
+
+                        <div class="span10">
+                          <strong class="CUTitle">ITS A CREDIT UNION</strong><br>
+
+                          <p class="text-muted">Approval Status: <span id="approvalStatus">Reviewed</span></p>
+                          <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
+                            <div class="progress" style="width:100%;height:20px;">
+                              <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>
+                              <div class="pb progress-bar" style="width: 27%"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row-fluid user-infos CLASSTHATACTIVATESDROPDOWN3" style="margin-top:20px;">
+                        <div class="span10 offset1">
+                          <div class="panel panel-primary">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">Expense Entries</h3>
+                            </div>
+                            <div class="panel-body">
+                              <div class="row-fluid">
+                                <div class="table-container">
+                                  <table id="tableholder" class="table table-filter">
+                                    <tbody data-cu="CREDITUNION">
+                                    <tr id="noExpense" style="display:none;">
+                                      <td colspan="5" style="text-align:center;">
+                                        <h2>No expenses found :( </h2>
+                                      </td>
+                                    </tr>
+                                    <% @expenses.each do |e| %>
+                                        <tr id="row_<%= e.id %>" class="expenseEntry" data-cu="<%= e.credit_union %>" data-date="<%= e.date_activity %>" data-name="<%= e.user.first_name%> <%= e.user.last_name %>">
+                                          <td>
+                                            <div class="ckbox">
+                                              <div class="approvalButtons"  style="width:80px;" ><%= form_for(e, remote: true, :url => {:action => 'update', :id => e.id}) do |f| %><%= f.text_field :approval, :value => e.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "", id:"successBut", name: "subaction", value: "ApprovedEX", style: "" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "UnapprovedEX", style: "" %></div>
+                                                <% end %>
+                                            </div>
+                                          </td>
+                                          <td>
+                                            <a href="javascript:;" class="star">
+                                              <i class="glyphicon glyphicon-star"></i>
+                                            </a>
+                                          </td>
+                                          <td>
+
+                                            <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
+                                              <a href="#" class="pull-left" >
+                                                <% if e.image.blank? %>
+                                                    <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
+                                                <% else %>
+                                                    <%= image_tag e.image.thumb %>
+                                                <% end %>
+                                              </a>
+
+                                              <div class="pull-left">
+                                                <h4 class="title" style="text-align:left;">
+                                                  <%= e.type_of_expense%>
+                                                </h4>
+                                                <p class="summary">$<%= e.amount %></p>
+                                              </div>
+                                              <div class="media-body pull-right" style="width:300px;">
+                                                <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
+                                                <h4 class="title">
+
+                                                  <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
+
+                                                </h4>
+
+                                              </div>
+                                            </div>
+
+                                          </td>
+                                        </tr>
+                                    <% end %>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr style="border-color:#0d5ddd;">
+                    </div>
+                    </div>
+
+
+
                   </div>
+                  <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:2px;margin-bottom:15px;">Return to Main</button>
                 </div>
-              </div>
 
+
+              </div>
             </div>
-          </section>
 
         </div>
+        </section>
+
       </div>
-    </div>
-    <div id="newExpense">
-      <%= render "newexpense" %>
-    </div>
-    <% @expenses.each do |e| %>
-        <div class="modal fade" id="myModal-<%= e.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content containerz">
-              <div class="modal-header" style="padding: 1px 15px 1px 15px;">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-
-              </div>
-
-              <div class="modal-body">
-
-                <div class="containerz" class="inputwrap" style="">
-                  <form id="contactz" action="" method="post" style="padding: 2px 25px 25px 25px;">
-                    <h3 style="font-size:20px;text-align:center;">Expense from <%= e.date_activity %></h3>
-                    <div style="line-height:75%;"><br></div>
-                    <p>Creator: <%= e.user.first_name %> <%= e.user.last_name %></p>
-                    <p>Type: <%= e.type_of_expense %></p>
-                    <p>Amount: $<%= e.amount %></p>
-                    <p>Payment Type: <%= e.payment %></p>
-                    <p>Description: <%= e.notes %></p>
-                    <%= image_tag e.image %>
-                  </form>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-    <% end %>
-
-    <!--
-
-
-      <h2 class="sub-header">Timesheet</h2>
-      <div class="table-responsive" id="pageGapDash">
-
-
-        <br>
-        <div class="table-responsive">
-        <table class="table table-striped">
-          <tr>
-
-
-          </tr>
-        </table>
-          </div>
-      </div>
-
     </div>
   </div>
-</div>
--->
+
+  <% @expenses.each do |e| %>
+      <div class="modal fade" id="myModal-<%= e.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content containerz">
+            <div class="modal-header" style="padding: 1px 15px 1px 15px;">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+
+            </div>
+
+            <div class="modal-body">
+
+              <div class="containerz" class="inputwrap" style="">
+                <form id="contactz" action="" method="post" style="padding: 2px 25px 25px 25px;">
+                  <h3 style="font-size:20px;text-align:center;">Expense from <%= e.date_activity %></h3>
+                  <div style="line-height:75%;"><br></div>
+                  <p>Credit Union: <%= e.credit_union %></p>
+                  <p>Type: <%= e.type_of_expense %></p>
+                  <p>Amount: $<%= e.amount %></p>
+                  <p>Description: <%= e.notes %></p>
+                  <a data-toggle="modal" href="#myModal2-<%= e.id %>" class="">
+                    <%= image_tag e.image, :id => "imageNonZoom" %>
+                  </a>
+                </form>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="modal fade rotate" id="myModal2-<%= e.id %>" style="width:800px;">
+        <div class="modal-dialog" style="width:800px;position:relative;">
+          <div class="modal-content" style="margin:30px;position:relative;">
+            <div style="margin:0 auto;display:relative;">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="text-align:center;">Image Zoom</h4>
+
+              </div>
+              <div style="margin: 0 auto;text-align:center;">
+                <%= image_tag e.image %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>

@@ -9,12 +9,13 @@ wb.styles do |style|
 
   @users.each do |user|
     if user.department == current_user.department
-    wb.add_worksheet(name: user.first_name) do |sheet|\
-    sheet.add_row ["Date", "Approval Status", "Type", "Amount", "Payment Type", "Description"], style: [ title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1 ]
-    user.expenses.each do |page|
-        sheet.add_row [page.date_activity, page.approval, page.type_of_expense, page.amount, page.payment, page.notes], style: [ date_cell, nil, nil, number_cell, nil, nil, nil, nil]
-        sheet.column_widths 12, 15, 16, 10, 14, 24, 20, 12
-
+    wb.add_worksheet(name: user.first_name) do |sheet|
+      sheet.add_row ["Date", "Approval Status", "Type", "Amount", "Payment Type", "Description"], style: [ title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1 ]
+      @expenses.each do |page|
+        if page.user_id == user.id
+          sheet.add_row [page.date_activity, page.approval, page.type_of_expense, page.amount, page.payment, page.notes], style: [ date_cell, nil, nil, number_cell, nil, nil, nil, nil]
+          sheet.column_widths 12, 15, 16, 10, 14, 24, 20, 12
+        end
       end
     end
       else

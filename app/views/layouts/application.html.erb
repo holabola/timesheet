@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CU Timesheet</title>
+  <title>GoldBar - CU Resources</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,500,700" rel="stylesheet">
+  <link rel="icon"  href="http://i66.tinypic.com/xgi8vc.png" />
   <meta name="viewport" content="width=device-width, minimum-scale = .8, initial-scale=.8, maximum-scale=12, user-scalable=1">
  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -23,6 +24,38 @@
   <%= csrf_meta_tags %>
 
 </head>
+<script>
+  //For admins, limits options to switch users to department
+  <% if current_user && current_user.admin == true %>
+  $( document ).ready(function() {
+      var keepers = [];
+      <% if defined? @users_for_switch %>
+        <% @users_for_switch.each do |u| %>
+          keepers.push("<%= u.email %>");
+        <% end %>
+      <% end %>
+
+      if (keepers.length == 0) {
+          keepers.push("You cannot switch here.");
+      }
+
+      $("#switch_user_identifier option").each(function () {
+          if (keepers.indexOf($(this).text()) == -1 ) {
+              $(this).remove();
+          }
+      });
+  });
+  <% end %>
+</script>
+<style>
+  .willthiswork {
+    margin-top:8px;
+  }
+    a {
+      color:#6b6c6d;
+    }
+
+</style>
 <body>
 <div class="containerError">
   <%= render 'layouts/messages' %>
@@ -38,13 +71,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" >CU Timesheet</a>
+          <img src="http://i.imgur.com/Gr9BLGl.png" style="width:55px;margin-top:0px;margin-right:8px;" class="pull-left">
+          <a class="navbar-brand" >GoldBar</a>
+         <div class="pull-right">
           <% if user_signed_in? %>
             <% if current_user.admin == true %>
+                <%= switch_user_select class: 'selectpicker willthiswork pull-right', styles: 'width: 100px; margin-top:10px;' %>
+                <a style="padding: 15px 15px 15px 35px;" class="navbar-brand" >Switch Users: </a>
 
-                <a style="padding: 15px 15px 15px 35px;" class="navbar-brand" >Administrator</a>
             <% end %>
           <% end %>
+        </div>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -56,6 +93,13 @@
                 </li>
                 <li>
                   <a style="padding: 15px 3px 15px 3px; font-size:30px;">|</a>
+                </li>
+                <li>
+                  <% if current_user.profile.present? %>
+                    <%= image_tag current_user.profile.thumb, :class => "img-circle", :style => "width:40px;margin-top:5px;" %>
+                      <% else %>
+                    <img src="http://i66.tinypic.com/of7zsw.png" class="img-circle" style="width:40px;margin-top:5px;">
+                  <% end %>
                 </li>
                 <li>
                   <a style="">Welcome, <%= current_user.first_name %></a>

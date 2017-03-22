@@ -3,7 +3,7 @@ class Expense < ActiveRecord::Base
   mount_uploader :image, ExpenseUploader
 
 
-  after_initialize :default_value
+  before_create :default_value
   def default_value
     self.approval = 'Pending' if self.approval.nil?
   end

@@ -20,6 +20,7 @@ class Page < ActiveRecord::Base
     self.fri = '0' if self.fri.nil?
     self.sat = '0' if self.sat.nil?
     self.total = '0' if self.total.nil?
+    self.submitted = "Not Submitted" if self.submitted.nil?
   end
 
   def init_approval

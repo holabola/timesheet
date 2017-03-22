@@ -64,7 +64,12 @@ gem 'data-confirm-modal'
 gem 'axlsx_rails'
 gem 'select2-rails'
 gem 'carrierwave'
+gem 'carrierwave-crop'
 gem 'mini_magick'
 gem 'scout_apm'
 
 gem 'figaro'
+
+gem 'switch_user'
+
+gem 'selectize-rails'

@@ -12,6 +12,12 @@
     background-image :none !important;
     color: #efefef !important;
   }
+  .ui-datepicker-current-day a {
+    background-color: #007fff !important;
+    background-image :none !important;
+    color: #efefef !important;
+  }
+
   html {
     width: 1600px;
   }
@@ -63,6 +69,110 @@
 </style>
 <script>
 
+  function totalColumns() {
+      var sunTotal,monTotal,tueTotal,wedTotal,thuTotal,friTotal,satTotal,totalTotal;
+      sunTotal = 0.00, monTotal = 0.00, tueTotal = 0.00, wedTotal = 0.00, thuTotal = 0.00, friTotal = 0.00, satTotal = 0.00, totalTotal = 0.00;
+
+
+      $(".sunEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              sunTotal += parseFloat($(this).text());
+          }
+      });
+      $(".monEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              monTotal += parseFloat($(this).text());
+          }
+      });
+      $(".tueEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              tueTotal += parseFloat($(this).text());
+          }
+      });
+      $(".wedEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              wedTotal += parseFloat($(this).text());
+          }
+      });
+      $(".thuEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              thuTotal += parseFloat($(this).text());
+          }
+      });
+      $(".friEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              friTotal += parseFloat($(this).text());
+          }
+      });
+      $(".satEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              satTotal += parseFloat($(this).text());
+          }
+      });
+      $(".totalEntry").each(function () {
+          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+              totalTotal += parseFloat($(this).text());
+          }
+      });
+      $("#totalSun").text(sunTotal);
+      $("#totalMon").text(monTotal);
+      $("#totalTue").text(tueTotal);
+      $("#totalWed").text(wedTotal);
+      $("#totalThu").text(thuTotal);
+      $("#totalFri").text(friTotal);
+      $("#totalSat").text(satTotal);
+      $("#totalTotal").text(totalTotal);
+
+      if(sunTotal < 8) {
+          $("#totalSun").closest("td").css('background-color','#efefef');
+      } else { $("#totalSun").closest("td").css('background-color','#DFF0D8'); }
+      if(monTotal < 8) {
+          $("#totalMon").closest("td").addClass("danger");
+      } else { $("#totalMon").closest("td").removeClass("danger"); }
+      if(tueTotal < 8) {
+          $("#totalTue").closest("td").addClass("danger");
+      } else { $("#totalTue").closest("td").removeClass("danger"); }
+      if(wedTotal < 8) {
+          $("#totalWed").closest("td").addClass("danger");
+      } else { $("#totalWed").closest("td").removeClass("danger"); }
+      if(thuTotal < 8) {
+          $("#totalThu").closest("td").addClass("danger");
+      } else { $("#totalThu").closest("td").removeClass("danger"); }
+      if(friTotal < 8) {
+          $("#totalFri").closest("td").addClass("danger");
+      } else { $("#totalFri").closest("td").removeClass("danger"); }
+      if(satTotal < 8) {
+          $("#totalSat").closest("td").css('background-color','#efefef');
+      } else { $("#totalSat").closest("td").css('background-color','#DFF0D8'); }
+      if(totalTotal < 40) {
+          $("#totalTotal").closest("td").addClass("danger");
+      } else
+          {
+              $("#totalTotal").closest("td").removeClass("danger");
+              $("#totalSun").closest("td").css('background-color','#DFF0D8');
+              $("#totalMon").closest("td").removeClass("danger");
+              $("#totalTue").closest("td").removeClass("danger");
+              $("#totalWed").closest("td").removeClass("danger");
+              $("#totalThu").closest("td").removeClass("danger");
+              $("#totalFri").closest("td").removeClass("danger");
+              $("#totalSat").closest("td").css('background-color','#DFF0D8');
+
+      }
+
+
+      //if($("#totalSun").closest("td").hasClass("danger") || $("#totalMon").closest("td").hasClass("danger") || $("#totalTue").closest("td").hasClass("danger") || $("#totalWed").closest("td").hasClass("danger") || $("#totalThu").closest("td").hasClass("danger") || $("#totalFri").closest("td").hasClass("danger") || $("#totalSat").closest("td").hasClass("danger") || $("#totalTotal").closest("td").hasClass("danger") ) {
+      if($("#totalTotal").closest("td").hasClass("danger") ) {
+          $(".otherTotalCol").each(function() {
+              $(this).addClass("danger");
+          });
+      } else {
+          $(".otherTotalCol").each(function() {
+              $(this).removeClass("danger");
+          });
+      }
+
+  }
+
   $(function() {
       //Init Datepicker and add Highlights if timesheets aren't finished
 
@@ -100,7 +210,7 @@
       counter = 0;
       countz = 0;
       dateRange.forEach(function(entry) {
-          if(sun[counter] >= 8 && mon[counter] >= 8 && tue[counter] >= 8 && wed[counter] >= 8 && thu[counter] >= 8 && fri[counter] >= 8 && sat[counter] >= 8 && total[counter] >= 40) {
+          if(total[counter] >= 40) {
               eventDatesGood[countz] = new Date(entry.setDate(entry.getDate()));
               countz += 1;
               for (index = countz; index < countz + 6; ++index) {
@@ -123,12 +233,12 @@
         beforeShowDay: function( date ) {
             for (var i = 0; i < eventDates.length; i++) {
                 if (new Date(eventDates[i]).toString() == date.toString()) {
-                    return [true, 'css-class-to-highlight', 'tooltip text'];
+                    return [true, 'css-class-to-highlight', 'You do not have 40 hours.'];
                 }
             }
             for (var i = 0; i < eventDatesGood.length; i++) {
                 if (new Date(eventDatesGood[i]).toString() == date.toString()) {
-                    return [true, 'css-class-to-highlight-good', 'tooltip text'];
+                    return [true, 'css-class-to-highlight-good', 'Completed!'];
                 }
             }
             return [true, ''];
@@ -177,14 +287,43 @@
 
   });
 
+  function submitButton() {
+      var counter = 0;
+      $(".submitButton").each(function() {
+          var dater = $(this).parent().parent().find("#submitDate").text();
+          var submitStatus = $(this).parent().parent().find("#submitStatus").text();
+          //alert(dater + "...." + lastday + "...." + firstday);
+          if (moment(dater) <= lastday && moment(dater) >= firstday && counter == 0) {
+              $(this).css("display","");
+              counter = 1;
+              if (submitStatus == "Not Submitted" || submitStatus == "") {
+                  $(this).removeClass("btn-danger");
+                  $(this).addClass("btn-success");
+                  $(this).attr("value","Submitted");
+                  $(this).text("Submit for Approval?");
+              } else {
+                  $(this).removeClass("btn-success");
+                  $(this).addClass("btn-danger");
+                  $(this).attr("value","Not Submitted");
+                  $(this).text("Unsubmit for Approval?");
+              }
+          } else {
+              $(this).css("display","none");
+          }
+      });
+  }
+
+  var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
 
   $(document).on('change', '#datepicker', function() {
-    var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
-    var monthNames = ["January", "February", "March", "April", "May", "June",
+  var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
-    var sunTotal,monTotal,tueTotal,wedTotal,thuTotal,friTotal,satTotal,totalTotal;
-    sunTotal = 0.00, monTotal = 0.00, tueTotal = 0.00, wedTotal = 0.00, thuTotal = 0.00, friTotal = 0.00, satTotal = 0.00, totalTotal = 0.00;
+
+    $("#timesheetContent").fadeOut();
+
+//waits until fadeout is completed can calls the rest
+ $("#timesheetContent").promise().done(function(){
 
     curr = $('#datepicker').datepicker('getDate');
     first = curr.getDate() - curr.getDay();
@@ -239,102 +378,20 @@
     //Saves date local variable
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
 
-      //total all the entries
+      totalColumns();
+      submitButton();
+      $("#timesheetContent").fadeIn();
 
-      $(".sunEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              sunTotal += parseFloat($(this).text());
-          }
-      });
-      $(".monEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              monTotal += parseFloat($(this).text());
-          }
-      });
-      $(".tueEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              tueTotal += parseFloat($(this).text());
-          }
-      });
-      $(".wedEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              wedTotal += parseFloat($(this).text());
-          }
-      });
-      $(".thuEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              thuTotal += parseFloat($(this).text());
-          }
-      });
-      $(".friEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              friTotal += parseFloat($(this).text());
-          }
-      });
-      $(".satEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              satTotal += parseFloat($(this).text());
-          }
-      });
-      $(".totalEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              totalTotal += parseFloat($(this).text());
-          }
-      });
-      $("#totalSun").text(sunTotal);
-      $("#totalMon").text(monTotal);
-      $("#totalTue").text(tueTotal);
-      $("#totalWed").text(wedTotal);
-      $("#totalThu").text(thuTotal);
-      $("#totalFri").text(friTotal);
-      $("#totalSat").text(satTotal);
-      $("#totalTotal").text(totalTotal);
+  });
 
-      if(sunTotal < 8) {
-          $("#totalSun").closest("td").addClass("danger");
-      } else { $("#totalSun").closest("td").removeClass("danger"); }
-      if(monTotal < 8) {
-          $("#totalMon").closest("td").addClass("danger");
-      } else { $("#totalMon").closest("td").removeClass("danger"); }
-      if(tueTotal < 8) {
-          $("#totalTue").closest("td").addClass("danger");
-      } else { $("#totalTue").closest("td").removeClass("danger"); }
-      if(wedTotal < 8) {
-          $("#totalWed").closest("td").addClass("danger");
-      } else { $("#totalWed").closest("td").removeClass("danger"); }
-      if(thuTotal < 8) {
-          $("#totalThu").closest("td").addClass("danger");
-      } else { $("#totalThu").closest("td").removeClass("danger"); }
-      if(friTotal < 8) {
-          $("#totalFri").closest("td").addClass("danger");
-      } else { $("#totalFri").closest("td").removeClass("danger"); }
-      if(satTotal < 8) {
-          $("#totalSat").closest("td").addClass("danger");
-      } else { $("#totalSat").closest("td").removeClass("danger"); }
-      if(totalTotal < 40) {
-          $("#totalTotal").closest("td").addClass("danger");
-      } else { $("#totalTotal").closest("td").removeClass("danger"); }
-
-      if($("#totalSun").closest("td").hasClass("danger") || $("#totalMon").closest("td").hasClass("danger") || $("#totalTue").closest("td").hasClass("danger") || $("#totalWed").closest("td").hasClass("danger") || $("#totalThu").closest("td").hasClass("danger") || $("#totalFri").closest("td").hasClass("danger") || $("#totalSat").closest("td").hasClass("danger") || $("#totalTotal").closest("td").hasClass("danger") ) {
-          $(".otherTotalCol").each(function() {
-              $(this).addClass("danger");
-          });
-      } else {
-          $(".otherTotalCol").each(function() {
-              $(this).removeClass("danger");
-          });
-      }
 
 
   });
 
   $( document ).ready(function() {
-    var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
-    var monthNames = ["January", "February", "March", "April", "May", "June",
+   var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
-    var sunTotal,monTotal,tueTotal,wedTotal,thuTotal,friTotal,satTotal,totalTotal;
-    sunTotal = 0.00, monTotal = 0.00, tueTotal = 0.00, wedTotal = 0.00, thuTotal = 0.00, friTotal = 0.00, satTotal = 0.00, totalTotal = 0.00;
 
       if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
           $('#sidebarNav').find('[datePickerTag="first"]').removeAttr("id");
@@ -424,87 +481,8 @@
        }
     });
 
-    //total all the entries
-
-    $(".sunEntry").each(function () {
-        if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-            sunTotal += parseFloat($(this).text());
-            }
-    });
-      $(".monEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              monTotal += parseFloat($(this).text());
-          }
-      });
-      $(".tueEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              tueTotal += parseFloat($(this).text());
-          }
-      });
-      $(".wedEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              wedTotal += parseFloat($(this).text());
-          }
-      });
-      $(".thuEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              thuTotal += parseFloat($(this).text());
-          }
-      });
-      $(".friEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              friTotal += parseFloat($(this).text());
-          }
-      });
-      $(".satEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              satTotal += parseFloat($(this).text());
-          }
-      });
-      $(".totalEntry").each(function () {
-          if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
-              totalTotal += parseFloat($(this).text());
-          }
-      });
-      $("#totalSun").text(sunTotal);
-      $("#totalMon").text(monTotal);
-      $("#totalTue").text(tueTotal);
-      $("#totalWed").text(wedTotal);
-      $("#totalThu").text(thuTotal);
-      $("#totalFri").text(friTotal);
-      $("#totalSat").text(satTotal);
-      $("#totalTotal").text(totalTotal);
-
-      if(sunTotal < 8) {
-          $("#totalSun").closest("td").addClass("danger");
-      }
-      if(monTotal < 8) {
-          $("#totalMon").closest("td").addClass("danger");
-      }
-      if(tueTotal < 8) {
-          $("#totalTue").closest("td").addClass("danger");
-      }
-      if(wedTotal < 8) {
-          $("#totalWed").closest("td").addClass("danger");
-      }
-      if(thuTotal < 8) {
-          $("#totalThu").closest("td").addClass("danger");
-      }
-      if(friTotal < 8) {
-          $("#totalFri").closest("td").addClass("danger");
-      }
-      if(satTotal < 8) {
-          $("#totalSat").closest("td").addClass("danger");
-      }
-      if(totalTotal < 40) {
-          $("#totalTotal").closest("td").addClass("danger");
-      }
-      if($("#totalSun").closest("td").hasClass("danger") || $("#totalMon").closest("td").hasClass("danger") || $("#totalTue").closest("td").hasClass("danger") || $("#totalWed").closest("td").hasClass("danger") || $("#totalThu").closest("td").hasClass("danger") || $("#totalFri").closest("td").hasClass("danger") || $("#totalSat").closest("td").hasClass("danger") || $("#totalTotal").closest("td").hasClass("danger") ) {
-          $(".otherTotalCol").each(function() {
-              $(this).addClass("danger");
-          });
-      }
-
+    totalColumns();
+    submitButton();
 
   });
 
@@ -580,6 +558,42 @@
   </div>
 </nav>
 
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
+      <div style="line-height:75%;"><br></div>
+      <h2 style="text-align: center;">Timesheet</h2>
+      </br>
+
+      <div style="" id="datepicker" datePickerTag="first"></div>
+      </br>
+      </br>
+      <ul class="nav nav-sidebar">
+        <li class="active"><a class="hvr-sweep-to-right" href="/" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
+        <% if current_user.admin == true %>
+            <li ><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
+        <% end %>
+        <li ><a class="hvr-sweep-to-right" href="/expenses">Expenses<span class="glyphicon glyphicon-usd pull-right"></span></a></li>
+        <% if current_user.admin == true %>
+            <li><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
+            <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
+        <% end %>
+      </ul>
+      <!-- <ul class="nav nav-sidebar">
+         <li><a href="">Nav item</a></li>
+         <li><a href="">Nav item again</a></li>
+         <li><a href="">One more nav</a></li>
+         <li><a href="">Another nav item</a></li>
+         <li><a href="">More navigation</a></li>
+       </ul>
+       <ul class="nav nav-sidebar">
+         <li><a href="">Nav item again</a></li>
+         <li><a href="">One more nav</a></li>
+         <li><a href="">Another nav item</a></li>
+       </ul> -->
+    </div>
+
+    <div id="timesheetContent">
 <% if user_signed_in? %>
     <% if current_user.admin == true %>
       <%= render "adminuser" %>
@@ -587,3 +601,4 @@
       <%= render "normaluser" %>
     <% end %>
 <% end %>
+    </div>

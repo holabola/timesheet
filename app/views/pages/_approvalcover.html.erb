@@ -1,0 +1,302 @@
+<style>
+  /*By DjelalEddine@gmail.com*/
+  #user .avatar {
+    width:60px;
+  }
+  #user .avatar > img{
+    width:50px;
+    height:50px;
+    border-radius:10%;
+  }
+  /*Card*/
+  #user .panel-thumb{
+    margin:5px auto;
+    text-align:center;
+  }
+  #user .panel-thumb .avatar-card {
+    text-align:center;
+    height:200px;
+    margin:auto;
+    overflow:hidden;
+  }
+  #user .panel-thumb .avatar-card > img{
+    max-width:200px;
+    max-height:200px;
+  }
+
+  /* table*/
+  #user .panel-table{
+    animation-duration:3s;
+  }
+
+  #user .panel-table .panel-body .table{
+    margin:0px;
+  }
+  #user .panel-table .panel-body {
+    padding:0px;
+  }
+  #user .panel-table .panel-body .table-bordered > thead > tr > th{
+    text-align:center;
+  }
+  #user .panel-table .panel-footer {
+    height:60px;
+    padding:0px;
+  }
+
+  /*    --------------------------------------------------
+:: General
+-------------------------------------------------- */
+
+  .content h1 {
+    text-align: center;
+  }
+  .content .content-footer p {
+    color: #6d6d6d;
+    font-size: 12px;
+    text-align: center;
+  }
+  .content .content-footer p a {
+    color: inherit;
+    font-weight: bold;
+  }
+
+  /*	--------------------------------------------------
+    :: Table Filter
+    -------------------------------------------------- */
+  .panel {
+    border: 1px solid #ddd;
+    background-color: #fcfcfc;
+  }
+  .panel .btn-group {
+    margin: 15px 0 30px;
+  }
+  .panel .btn-group .btn {
+    transition: background-color .3s ease;
+  }
+  .table-filter {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  .table-filter tbody tr:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+  .table-filter tbody tr td {
+    padding: 10px;
+    vertical-align: middle;
+    border-top-color: #eee;
+  }
+  .table-filter tbody tr.selected td {
+    background-color: #eee;
+  }
+  .table-filter tr td:first-child {
+    width: 38px;
+  }
+  .table-filter tr td:nth-child(2) {
+    width: 35px;
+  }
+  .ckbox {
+    position: relative;
+  }
+  .ckbox input[type="checkbox"] {
+    opacity: 0;
+  }
+  .ckbox label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .ckbox label:before {
+    content: '';
+    top: 1px;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: absolute;
+    border-radius: 2px;
+    border: 1px solid #bbb;
+    background-color: #fff;
+  }
+  .ckbox input[type="checkbox"]:checked + label:before {
+    border-color: #2BBCDE;
+    background-color: #2BBCDE;
+  }
+  .ckbox input[type="checkbox"]:checked + label:after {
+    top: 3px;
+    left: 3.5px;
+    content: '\e013';
+    color: #fff;
+    font-size: 11px;
+    font-family: 'Glyphicons Halflings';
+    position: absolute;
+  }
+  .table-filter .star {
+    color: #ccc;
+    text-align: center;
+    display: block;
+  }
+  .table-filter .star.star-checked {
+    color: #F0AD4E;
+  }
+  .table-filter .star:hover {
+    color: #ccc;
+  }
+  .table-filter .star.star-checked:hover {
+    color: #F0AD4E;
+  }
+  .table-filter .media-photo {
+    width: 35px;
+  }
+  .table-filter .media-body {
+    display: block;
+    /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+  }
+  .table-filter .media-meta {
+    font-size: 11px;
+    color: #999;
+  }
+  .table-filter .media .title {
+    color: #2BBCDE;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0;
+  }
+  .table-filter .media .title span {
+    font-size: .8em;
+    margin-right: 20px;
+  }
+  .table-filter .media .title span.pagado {
+    color: #5cb85c;
+  }
+  .table-filter .media .title span.pendiente {
+    color: #f0ad4e;
+  }
+  .table-filter .media .title span.cancelado {
+    color: #d9534f;
+  }
+  .table-filter .media .summary {
+    font-size: 14px;
+  }
+
+  .progress {height: 40px;}
+  .progress-bar { line-height: 40px; }
+
+</style>
+<script>
+
+</script>
+
+<div id="dashContents" style="">
+
+
+
+  <div class="container" id="expenseWrap">
+    <div class="row">
+
+      <section class="content">
+        <h1 style="text-align:center;" class="marginBumpExpense">Approve Timesheets</h1>
+
+        <div class="marginBumpExpense">
+          <div class="panel panel-default"  id="goBlack">
+            <div class="panel-body">
+              <h2 class="page-header dateTitle" style="color:#204d74;margin:1px;text-align:center;"></h2>
+              <!-- <div class="pull-left">
+                 <button type="button" style="margin-top:3px;" class="btn btn-primary btn-filter" id="newEntry" data-toggle="modal" data-target="#myModal" >Create New Entry</button>
+               </div>
+               <div class="pull-right">
+                 <div class="btn-group pull-right" style="margin: 30px 0px 10px 0px;">
+                   <button type="button" id="Approved" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
+                   <button type="button" id="Pending" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
+                   <button type="button" id="Unapproved" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
+                 </div>
+                 <br>
+                 <div class="pull-right mobileDateCheck" >
+                   <div datePickerTag="last">
+                     <label id="labelforlast">Select Date: </label>
+                     <input style="" id="datepicker">
+
+                   </div>
+                   <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:1px;">All</button>
+                </div>
+              </div>
+              -->
+              <div style="line-height:75%;"><br></div>
+              <div class="table-container">
+                <table id="tableholder" class="table table-filter">
+                  <tbody>
+                  <tr id="noExpense" style="display:none;">
+                    <td colspan="5" style="text-align:center;">
+                      <h2>No expenses found :( </h2>
+                    </td>
+                  </tr>
+                  <% @users.each do |u| %>
+                      <tr class="frontTable" id="<%= u.first_name %> <%= u.last_name %>" data-status="pagado">
+                        <td>
+                          <div class="ckbox">
+                            <% @pages.each do |p| %>
+                            <div class="manySubmitButtons" id="butonz" style="" data-date="<%= p.date_of_time %>" data-extra="<%= p.user.first_name %> <%= p.user.last_name %>"><div class="btn-group approvalButtons" role="group" aria-label="..."><%= form_for(p, remote: true, :url => {:action => 'update', :id => p.id}) do |f| %><%= f.text_field :approval, :value => p.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "successButt hvr-radial-out-green", id:"successBut", name: "subaction", value: "Approved", style: "width:100px;margin-bottom:10px;" %><%= button_tag "", type: 'submit', class: "btn btn-default failButt hvr-radial-out", id: "failBut", name: "subaction", value: "Unapproved", style: "width:100px;" %></div>
+                              <p id="idholderinside" style="display:none;"><%= p.user.id %></p>
+                              <% end %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </td>
+                        <td>
+                          <a href="javascript:;" class="star">
+                            <% if u.profile.present? %>
+                                <%= image_tag u.profile.thumb, :class => "img-circle" %>
+                            <% else %>
+                                <img src="http://i66.tinypic.com/of7zsw.png" class="img-circle" style="width:90px;margin-top:5px;">
+                            <% end %>
+                          </a>
+                        </td>
+                        <td>
+
+                          <div class="media displayTable "> <p id="idholder" style="display:none;">No Entries Found</p>
+                            <a href="#" class="pull-left" >
+
+                            </a>
+
+                            <div class="pull-left">
+                              <h4 class="title" style="text-align:left;">
+
+                                  <%= u.first_name %> <%= u.last_name %>
+                              </h4>
+                              <p class="summary" id="approvalCover">Not Submitted</p>
+                            </div>
+                            <div class="media-body pull-right" style="width:300px;">
+                              <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob">Temp</h10><p class="idholder" style="display:none">ID</p></span>
+                              <h4 class="title">
+
+                                <span class="pull-right pagado approvalclass" id="approval" style="width:200px;">
+                                <div class="progress progress-striped active">
+                                  <div class="progress-bar progress-bar-success" id="progressbar" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="40" style="width:0%">
+                                    <h10 id="progressbartext" style="color:black;">0</h10>
+                                  </div>
+                                </div>
+                                </span>
+                                <!-- <span class="pull-right">$</span> -->
+                              </h4>
+
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+</div>

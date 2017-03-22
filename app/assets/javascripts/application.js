@@ -22,4 +22,6 @@
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require bootstrap-select
+//= require jquery.jcrop
+//= require selectize
 //= require_tree .

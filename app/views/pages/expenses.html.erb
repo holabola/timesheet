@@ -1,7 +1,7 @@
 <head>
   <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
 <style>
 
   /* ------------------------------------------
@@ -11,6 +11,7 @@
   .container{
     margin-top:20px;
   }
+
   .css-class-to-highlight-approved a {
     background-color: #218212 !important;
     background-image :none !important;
@@ -23,6 +24,12 @@
   }
   .css-class-to-highlight-declined a {
     background-color: #910101 !important;
+    background-image :none !important;
+    color: #efefef !important;
+  }
+
+  .ui-datepicker-current-day a {
+    background-color: #007fff !important;
     background-image :none !important;
     color: #efefef !important;
   }
@@ -396,8 +403,122 @@
   #milage {
     display:none;
   }
+
+    /* BOOTSNAP TEMPLATE */
+
+
+  .dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+  }
+
+  .dropdown-user:hover {
+    cursor: pointer;
+
+  }
+
+    .dropdown-user:active {
+      transition: all ease-in-out 500ms;
+      transform: rotate(450deg);
+    }
+
+    /* BOOTSNAP PROGRESS BAR 4-STEP */
+
+  .one, .two, .three, .four{
+    position:absolute;
+    margin-top:-10px;
+    z-index:1;
+    height:40px;
+    width:40px;
+    border-radius:25px;
+    background-color:#dcdcdc;
+  }
+
+  .one{
+    left:-1%;
+  }
+  .two{
+    left:33%;
+  }
+  .three{
+    left:66%;
+  }
+  .four {
+    left:99%;
+  }
+  .primary-color{
+    background-color:#4989bd;
+  }
+  .success-color{
+    background-color:#5cb85c;
+  }
+  .danger-color{
+    background-color:#d9534f;
+  }
+  .warning-color{
+    background-color:#f0ad4e;
+  }
+  .info-color{
+    background-color:#5bc0de;
+  }
+  .no-color{
+    background-color:#dcdcdc;
+  }
+    .progress {
+      background-color:#dcdcdc;
+    }
+
 </style>
 <script>
+
+    function calendarHighlight() {
+        //Init Datepicker and add Highlights if timesheets aren't finished
+
+        var counter = 0;
+        var firstDay, endDay;
+        var eventDates = [], eventDatesGood = [];
+        $('.submitButtonWrap').each(function () {
+            firstDay = moment($(this).find("#submitDate").text()).startOf("week");
+            if ($(this).find("#submitStatus").text() == "Submitted") {
+                eventDatesGood.push(firstDay);
+                eventDatesGood.push(moment(firstDay).add(1,'days'));
+                eventDatesGood.push(moment(firstDay).add(2,'days'));
+                eventDatesGood.push(moment(firstDay).add(3,'days'));
+                eventDatesGood.push(moment(firstDay).add(4,'days'));
+                eventDatesGood.push(moment(firstDay).add(5,'days'));
+                eventDatesGood.push(moment(firstDay).add(6,'days'));
+            } else {
+                eventDates.push(firstDay);
+                eventDates.push(moment(firstDay).add(1,'days'));
+                eventDates.push(moment(firstDay).add(2,'days'));
+                eventDates.push(moment(firstDay).add(3,'days'));
+                eventDates.push(moment(firstDay).add(4,'days'));
+                eventDates.push(moment(firstDay).add(5,'days'));
+                eventDates.push(moment(firstDay).add(6,'days'));
+            }
+        });
+
+        var datesave = $('#datepicker').datepicker('getDate');
+        $("#datepicker").datepicker('destroy');
+        $("#datepicker").datepicker({
+            beforeShowDay: function (date) {
+                for (var i = 0; i < eventDates.length; i++) {
+                    if (new Date(eventDates[i]).toString() == date.toString()) {
+                        return [true, 'css-class-to-highlight-declined', 'tooltip text'];
+                    }
+                }
+                for (var i = 0; i < eventDatesGood.length; i++) {
+                    if (new Date(eventDatesGood[i]).toString() == date.toString()) {
+                        return [true, 'css-class-to-highlight-approved', 'tooltip text'];
+                    }
+                }
+                return [true, ''];
+            }
+        });
+        $("#datepicker").datepicker('setDate',datesave);
+    }
+
   $(document).on('click', '#close-preview', function(){
     $('.image-preview').popover('hide');
     // Hover befor close the preview
@@ -484,8 +605,21 @@
           $("#amountInput").css("margin-top","5px");
           $("#amountInput").prop("readonly","");
       }
+
+      current = "meal_type";
+      if ( $("#selectType option:selected").text() == "Meals" ) {
+          $("button[data-id='" + current +"']").css("display","inherit");
+          $("button[data-id='" + current +"']").css("margin-top","5px");
+          $("#amountInput").css("margin-top","5px");
+      } else {
+          $("button[data-id='" + current +"']").css("display","none");
+          $("#amountInput").css("margin-top","-25px");
+      }
   }
 
+  // DOCUMENT READY START //
+
+    var CUlist = [], dateList = [], sunList = [], monList = [], tueList = [], wedList = [], thuList = [], friList = [], satList = [];
   $(document).ready(function() {
 
       if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -500,37 +634,8 @@
           "July", "August", "September", "October", "November", "December"
       ];
       var nameArray = [];
-      var eventDatesApproved = [];
-      var eventDatesPending = [];
-      var eventDatesDeclined = [];
-      $(".dateBlob").each(function() {
-          approvalstatwnumbers = $(this).parent().parent().find("#approval").text();
-          approvalstat = approvalstatwnumbers.replace(/[0-9]/g, '');
-          if (approvalstat == "Approved") { eventDatesApproved.push(moment($(this).text())); }
-          if (approvalstat == "Pending") { eventDatesPending.push(moment($(this).text())); }
-          if (approvalstat == "Unapproved") { eventDatesDeclined.push(moment($(this).text())); }
-      });
 
-      $("#datepicker").datepicker( {
-          beforeShowDay: function( date ) {
-              for (var i = 0; i < eventDatesApproved.length; i++) {
-                  if (new Date(eventDatesApproved[i]).toString() == date.toString()) {
-                      return [true, 'css-class-to-highlight-approved', 'tooltip text'];
-                  }
-              }
-              for (var i = 0; i < eventDatesPending.length; i++) {
-                  if (new Date(eventDatesPending[i]).toString() == date.toString()) {
-                      return [true, 'css-class-to-highlight-pending', 'tooltip text'];
-                  }
-              }
-              for (var i = 0; i < eventDatesDeclined.length; i++) {
-                  if (new Date(eventDatesDeclined[i]).toString() == date.toString()) {
-                      return [true, 'css-class-to-highlight-declined', 'tooltip text'];
-                  }
-              }
-              return [true, ''];
-          }
-      });
+      calendarHighlight();
 
       if (sessionStorage.refreshCount == undefined) {
           $("#datepicker").datepicker().datepicker("setDate", new Date());
@@ -545,6 +650,7 @@
       sessionStorage.refreshCount = sessionStorage.refreshCount + 1;
       //new Date("10/10/2016")
 
+      noExpensesCheck();
       dateRange();
 
       $('#tableholder').find('tr').each(function () {
@@ -589,10 +695,41 @@
       });
 
 
+      //initialize selector
+      $('#selectizeInput').selectize({
+          create: true,
+          placeholder: 'Select a CU or Type Your Own',
+      });
+
+      $("#expenseDate").on('change', function() {
+          var $select = $('#selectizeInput').selectize();
+          var control = $select[0].selectize;
+          var dateBeg, dateEnd;
+          control.clearCache('option');
+          control.clearOptions();
+          control.refreshOptions(true);
+
+          day = moment($("#expenseDate").val()).day();
+          dateBeg = moment($("#expenseDate").val()).subtract(day,'days');
+          dateEnd = moment(dateBeg).add(6,'days').endOf('day');
+
+          for (var i = 0; i < CUlist.length; i++) {
+              if (moment(dateList[i]) >= moment(dateBeg) && moment(dateList[i]) <= moment(dateEnd) ) {
+                  control.addOption({value:(CUlist[i]),text:CUlist[i]});
+                  control.addItem((CUlist[i]));
+              }
+          }
+
+          control.clear();
+      });
+
   });
 
+// DOCUMENT READY END  //
+    // ############## //
 
-  $(document).on('click', function () {
+
+  function noExpensesCheck() {
     var tablecount = 0;
     var hiddencount = 0;
     $("#tableholder").find('tr').each(function() {
@@ -608,10 +745,11 @@
 
     if ( tablecount == hiddencount ) {
       $("#noExpense").css("display","");
+      $("#noExpense").parents().closest(".expenseTab").find("#approvalStatus").text("Not Created");
     } else {
       $("#noExpense").css("display","none");
     }
-  });
+  }
 
 var approvalStatus;
   $(function() {
@@ -755,12 +893,148 @@ var approvalStatus;
           }
 
       });
+
+      finishedDateList = [], tempArray = [], text = "", almostText = "";
+      //add all of users timesheets into array
+      <% @pages.each do |p| %>
+        CUlist.push("<%= p.credit_union %>");
+        dateList.push("<%= p.date_of_time %>");
+        sunList.push(<%= p.sun %>);
+        monList.push(<%= p.mon %>);
+        tueList.push(<%= p.tue %>);
+        wedList.push(<%= p.wed %>);
+        thuList.push(<%= p.thu %>);
+        friList.push(<%= p.fri %>);
+        satList.push(<%= p.sat %>);
+        //start to get invidiual monday etc to get dates and list them
+      <% end %>
+
+      for (var a = 0; a < sunList.length; a++) {
+          if (sunList[a] > 0 ) { tempArray.push(0); }
+          if (monList[a] > 0 ) { tempArray.push(1); }
+          if (tueList[a] > 0 ) { tempArray.push(2); }
+          if (wedList[a] > 0 ) { tempArray.push(3); }
+          if (thuList[a] > 0 ) { tempArray.push(4); }
+          if (friList[a] > 0 ) { tempArray.push(5); }
+          if (satList[a] > 0 ) { tempArray.push(6); }
+
+          for(var i = 0; i < tempArray.length; i++) {
+              text = text + moment(dateList[a]).startOf('week').add(tempArray[i],'days').format("MM/DD") + ", ";
+          }
+
+          almostText = "Dates Worked: " + text;
+          finishedDateList.push((almostText.substring(0,almostText.length-2)));
+          tempArray.splice(0,tempArray.length);
+          text = "";
+      }
+
+      var CUlistE = [], dateListE = [];
+      <% @expenses.each do |p| %>
+        CUlistE.push("<%= p.credit_union %>");
+        dateListE.push("<%= p.date_activity %>");
+      <% end %>
+
+      $(".expenseTab").each(function() {
+          var CU = $(this).data("role");
+          $(this).css("display","none");
+          for (var i = 0; i < CUlist.length; i++) {
+              if (moment(dateList[i]) <= lastday && moment(dateList[i]) >= firstday) {
+                  if (CUlist[i] == CU) {
+                      $(this).css("display","inherit");
+                      $(this).find("#datesWorked").text(finishedDateList[i]);
+                  }
+              }
+          }
+          for (var i = 0; i < CUlistE.length; i++) {
+              if (moment(dateListE[i]) <= lastday && moment(dateListE[i]) >= firstday) {
+                  if (CUlistE[i] == CU && CUlistE[i] != "") {
+                      $(this).css("display","inherit");
+                  }
+              }
+          }
+
+          //Individual progress bars
+          var approval = $(this).find("#approvalStatus").text();
+          if (approval == "Denied") {
+              $(this).find(".pb").addClass("progress-bar-danger");
+              $(this).find(".pb").css("width","100%");
+              $(this).find(".one").addClass("danger-color");
+              $(this).find(".two").addClass("danger-color");
+              $(this).find(".three").addClass("danger-color");
+              $(this).find(".four").addClass("danger-color");
+          }
+          if (approval == "Pending") {
+              $(this).find(".pb").addClass("progress-bar-warning");
+              $(this).find(".pb").css("width","34%");
+              $(this).find(".one").addClass("warning-color");
+              $(this).find(".two").addClass("warning-color");
+              $(this).find(".three").addClass("no-color");
+              $(this).find(".four").addClass("no-color");
+          }
+          if (approval == "Reviewed") {
+              $(this).find(".pb").addClass("progress-bar-info");
+              $(this).find(".pb").css("width","67%");
+              $(this).find(".one").addClass("info-color");
+              $(this).find(".two").addClass("info-color");
+              $(this).find(".three").addClass("info-color");
+              $(this).find(".four").addClass("no-color");
+          }
+          if (approval == "Not Created") {
+              $(this).find(".pb").addClass("progress-bar-info");
+              $(this).find(".pb").css("width","0%");
+              $(this).find(".one").addClass("no-color");
+              $(this).find(".two").addClass("no-color");
+              $(this).find(".three").addClass("no-color");
+              $(this).find(".four").addClass("no-color");
+          }
+      });
+
+      $(".expenseEntry").each(function() {
+        var CU = $(this).data("cu");
+        var datez = $(this).data("date");
+        $(this).css("display","none");
+              if (moment(datez) <= lastday && moment(datez) >= firstday) {
+                  if ($(this).parent().data("cu") == CU) {
+                      $(this).css("display","inherit");
+                  }
+              }
+      });
+
+      var counter = 0;
+      $(".submitButton").each(function() {
+          var dater = $(this).parent().parent().find("#submitDate").text();
+          console.log(dater);
+          var submitStatus = $(this).parent().parent().find("#submitStatus").text();
+          //alert(dater + "...." + lastday + "...." + firstday);
+          if (moment(dater) <= lastday && moment(dater) >= firstday && counter == 0) {
+              $(this).css("display","");
+              counter = 1;
+              if (submitStatus == "Not Submitted" || submitStatus == "") {
+                  $(this).removeClass("btn-danger");
+                  $(this).addClass("btn-success");
+                  $(this).attr("value","SubmittedEX");
+                  $(this).text("Submit for Approval?");
+              } else {
+                  $(this).removeClass("btn-success");
+                  $(this).addClass("btn-danger");
+                  $(this).attr("value","Not SubmittedEX");
+                  $(this).text("Unsubmit for Approval?");
+              }
+          } else {
+              $(this).css("display","none");
+          }
+      });
+
   }
 
   var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
   $(document).on('change', '#datepicker', function() {
 
-      dateRange();
+      $("#expenseWrap").fadeOut();
+
+      setTimeout(dateRange,400);
+
+      $("#expenseWrap").fadeIn();
 
       //Saves date local variable
       sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
@@ -768,16 +1042,6 @@ var approvalStatus;
 
   });
 
-  $(window).scroll(function (event) {
-    var scroll = $(window).scrollLeft();
-    if (scroll > 50 ) {
-      $('#submitBut').css('position','fixed');
-    }
-    else {
-      $('#submitBut').css('position','');
-    }
-    // Do something
-  });
 
   $(".dropdown-menu li a").click(function(){
     $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
@@ -803,6 +1067,39 @@ var approvalStatus;
       if(theEvent.preventDefault) theEvent.preventDefault();
     }
   }
+
+    $(document).ready(function() {
+        var panels = $('.user-infos');
+        var panelsButton = $('.dropdown-user');
+        panels.hide();
+
+        //Click dropdown
+        panelsButton.click(function() {
+            //get data-for attribute
+            var dataFor = $(this).attr('data-for');
+            var idFor = $(dataFor);
+
+            //current button
+            var currentButton = $(this);
+            idFor.slideToggle(400, function() {
+                //Completed slidetoggle
+                if(idFor.is(':visible'))
+                {
+                    currentButton.removeClass("hvr-icon-hang");
+                    currentButton.addClass("hvr-icon-bob");
+                }
+                else
+                {
+                    currentButton.removeClass("hvr-icon-bob");
+                    currentButton.addClass("hvr-icon-hang");
+                }
+            })
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+
+    });
 
 
 </script>
@@ -851,30 +1148,19 @@ var approvalStatus;
       <br>
 
       <ul class="nav nav-sidebar">
-        <li><a href="/" >Timesheet</a></li>
-        <!--<li><a href="#">Reports</a></li>
-        <li><a href="#">Analytics</a></li> -->
+        <li><a class="hvr-sweep-to-right" href="/" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
         <% if current_user.admin == true %>
-            <li><a href="/approvals">Timesheet Approvals</a></li>
+        <li ><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
         <% end %>
-        <li class="active"><a href="#">Expenses<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a class="hvr-sweep-to-right" href="/expenses">Expenses<span class="glyphicon glyphicon-usd pull-right"></span></a></li>
         <% if current_user.admin == true %>
-            <li><a href="/expensesapprovals">Expenses Approval</a></li>
-            <li><a href="/exports">Exports</a></li>
+        <li><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
+        <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
         <% end %>
       </ul>
-      <!-- <ul class="nav nav-sidebar">
-         <li><a href="">Nav item</a></li>
-         <li><a href="">Nav item again</a></li>
-         <li><a href="">One more nav</a></li>
-         <li><a href="">Another nav item</a></li>
-         <li><a href="">More navigation</a></li>
-       </ul>
-       <ul class="nav nav-sidebar">
-         <li><a href="">Nav item again</a></li>
-         <li><a href="">One more nav</a></li>
-         <li><a href="">Another nav item</a></li>
-       </ul> -->
+
+
+
     </div>
 
 
@@ -891,21 +1177,24 @@ var approvalStatus;
                 <h2 class="page-header" style="margin:1px;text-align:center;" id="dateTitle"></h2>
                 <div class="pull-left">
                     <button type="button" style="margin-top:3px;" class="btn btn-primary btn-filter" id="newEntry" data-toggle="modal" data-target="#myModal" >Create New Entry</button>
-                </div>
-                <div class="pull-right">
-                  <div class="btn-group pull-right" style="margin: 30px 0px 10px 0px;">
-                    <button type="button" id="Approved" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
-                    <button type="button" id="Pending" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
-                    <button type="button" id="Unapproved" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
-                  </div>
-<br>
-                  <div class="pull-right mobileDateCheck" >
-                    <div datePickerTag="last">
-                      <label id="labelforlast">Select Date: </label>
-                      <input style="" id="datepicker">
 
+                </div>
+                 <div class="pull-right">
+                   <!-- <div class="btn-group pull-right" style="margin: 30px 0px 10px 0px;">
+                      <button type="button" id="Approved" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
+                      <button type="button" id="Pending" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
+                      <button type="button" id="Unapproved" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
                     </div>
-                    <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:1px;">All</button>
+  <br>
+                    <div class="pull-right mobileDateCheck" >
+                      <div datePickerTag="last">
+                        <label id="labelforlast">Select Date: </label>
+                        <input style="" id="datepicker">
+
+                      </div>
+
+                      <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:1px;">All</button>
+                      -->
                     <!--
                     <label for="startDate">Date Range:</label>
                     <input name="startDate" id="datepickermonth" /> -->
@@ -914,61 +1203,116 @@ var approvalStatus;
                 </div>
 
                   <div style="line-height:75%;"><br></div>
-                <div class="table-container">
-                  <table id="tableholder" class="table table-filter">
-                    <tbody>
-                    <tr id="noExpense" style="display:none;">
-                      <td colspan="5" style="text-align:center;">
-                        <h2>No expenses found :( </h2>
-                      </td>
-                    </tr>
-                    <% @expenses.each do |e| %>
-                    <tr id="row_<%= e.id %>" data-status="pagado">
-                      <td>
-                        <div class="ckbox">
-                          <%= link_to '', page_path(e, :type => "expense"), method: :delete, data: { confirm: 'Do you want to delete this entry?' }, :remote => true, :style => "font-size:6px;", :class => 'delete_page btn btn-danger glyphicon glyphicon-remove pull-right' %>
 
+
+                <div class="container" style="width:100%;">
+                  <div class="well span8 offset2">
+                    <% @combinedCUs.each do |c| %>
+                   <div class="expenseTab" data-role="<%= c %>">
+                    <div class="row-fluid user-row">
+                      <div class="span1 dropdown-user pull-right hvr-icon-hang" data-for=".<%= c.gsub(/[ ]/,' ' => '-') %>">
+
+                      </div>
+
+                      <div class="span10">
+                        <strong><%= c %></strong><br>
+                        <p class="text-muted" id="datesWorked" style="margin-bottom:1px;">Dates Worked: </p>
+                        <p class="text-muted">Approval Status: <span id="approvalStatus">Reviewed</span></p>
+                        <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
+                        <div class="progress" style="width:100%;">
+                          <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>
+                          <div class="pb progress-bar" style="width: 27%"></div>
                         </div>
-                      </td>
-                      <td>
-                        <a href="javascript:;" class="star">
-                          <i class="glyphicon glyphicon-star"></i>
-                        </a>
-                      </td>
-                      <td>
-
-                        <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
-                          <a href="#" class="pull-left" >
-                            <% if e.image.blank? %>
-                            <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
-                                <% else %>
-                                <%= image_tag e.image.thumb %>
-                                <% end %>
-                          </a>
-
-                          <div class="pull-left">
-                            <h4 class="title" style="text-align:left;">
-                              <%= e.type_of_expense%>
-                            </h4>
-                            <p class="summary"><%= e.notes %></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row-fluid user-infos <%= c.gsub(/[ ]/,' ' => '-') %>" style="margin-top:20px;">
+                      <div class="span10 offset1">
+                        <div class="panel panel-primary">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Expense Entries</h3>
                           </div>
-                          <div class="media-body pull-right" style="width:300px;">
-                            <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
-                           <h4 class="title">
+                          <div class="panel-body">
+                            <div class="row-fluid">
+                              <div class="table-container">
+                                <table id="tableholder" class="table table-filter">
+                                  <tbody data-cu="<%= c %>">
+                                  <tr id="noExpense" style="display:none;">
+                                    <td colspan="5" style="text-align:center;">
+                                      <h2>No expenses found :( </h2>
+                                    </td>
+                                  </tr>
+                                  <% @expenses.where(:credit_union => c).each do |e| %>
+                                      <tr id="row_<%= e.id %>" class="expenseEntry" data-cu="<%= e.credit_union %>" data-date="<%= e.date_activity %>" >
+                                        <td>
+                                          <div class="ckbox">
+                                            <%= link_to '', page_path(e, :type => "expense"), method: :delete, data: { confirm: 'Do you want to delete this entry?' }, :remote => true, :style => "font-size:6px;", :class => 'delete_page btn btn-danger glyphicon glyphicon-remove pull-right' %>
 
-                             <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
-                              <!-- <span class="pull-right">$<%= e.amount %></span> -->
-                            </h4>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <a href="javascript:;" class="star">
+                                            <i class="glyphicon glyphicon-star"></i>
+                                          </a>
+                                        </td>
+                                        <td>
 
+                                          <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
+                                            <a href="#" class="pull-left" >
+                                              <% if e.image.blank? %>
+                                                  <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
+                                              <% else %>
+                                                  <%= image_tag e.image.thumb %>
+                                              <% end %>
+                                            </a>
+
+                                            <div class="pull-left">
+                                              <h4 class="title" style="text-align:left;">
+                                                <%= e.type_of_expense%>
+                                              </h4>
+                                              <p class="summary">$<%= e.amount %></p>
+                                            </div>
+                                            <div class="media-body pull-right" style="width:300px;">
+                                              <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
+                                              <h4 class="title">
+
+                                                <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
+
+                                              </h4>
+
+                                            </div>
+                                          </div>
+
+                                        </td>
+                                      </tr>
+                                  <% end %>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                        <hr style="border-color:#0d5ddd;">
+                    </div>
+                        <% end %>
 
-                      </td>
-                    </tr>
-                    <% end %>
-                    </tbody>
-                  </table>
+
+
+                  </div>
                 </div>
+
+              <% @expenses.each do |e| %>
+                  <div class="submitButtonWrap" style="margin:0 auto;text-align:center;margin-bottom:10px;">
+                    <p id="submitStatus" style="display:none;"><%= e.submitted %></p>
+                    <p id="submitDate" style="display:none;"><%= e.date_activity %></p>
+                    <%= form_for(e,  :url => {:action => 'update', :id => e.id}) do |f| %>
+                        <%= button_tag "Submit for Approval?", type: 'submit', class: "submitButton btn btn3d", style: "display:none;",id:"submitButton", name: "subaction", value: "SubmittedEX" %>
+                    <% end %>
+                  </div>
+              <% end %>
+
               </div>
             </div>
 
@@ -999,6 +1343,10 @@ var approvalStatus;
 
                   <%= t.text_field :date_activity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
 
+                  <%= t.select :credit_union, options_for_select([["Select a CU or Type Your Own", ""],
+                                                                    ["Credit Union"]]),
+                               {}, { :class => "selectized" , 'data-width' => '318px', 'placeholder' => 'Select a CU or Type Your Own', :id => "selectizeInput" } %>
+
                   <%= t.select :type_of_expense, options_for_select([
                                                              "Car Travel",
                                                              "Air Travel Baggage & Fuel",
@@ -1012,10 +1360,14 @@ var approvalStatus;
 
                   <input type="text" id="milage" placeholder="Miles Driven @ $0.535" onkeypress="return isNumber()" onkeyup="calculateMilage()" style="margin-top:5px;">
 
+                  <%= t.select :meal_type, options_for_select([
+                                                                        "Breakfest",
+                                                                        "Lunch",
+                                                                        "Dinner"]),
+                               {}, { :class => "selectpicker show-tick" , 'data-width' => '318px', 'placeholder' => 'Type of Meal', :id => "meal_type" } %>
+
+
                   <%= t.text_field :amount, {  :onkeypress => 'return isNumber()', :id => "amountInput" , 'placeholder' => 'Amount $0.00', :step => 0.01 } %>
-
-                  <%= t.text_field :payment, { :placeholder => "Payment Type" } %>
-
 
                   <%= t.text_field :notes, {:class => "form-control", :placeholder => "Description"} %>
 
@@ -1069,9 +1421,9 @@ var approvalStatus;
                 <form id="contactz" action="" method="post" style="padding: 2px 25px 25px 25px;">
                   <h3 style="font-size:20px;text-align:center;">Expense from <%= e.date_activity %></h3>
                   <div style="line-height:75%;"><br></div>
+                  <p>Credit Union: <%= e.credit_union %></p>
                   <p>Type: <%= e.type_of_expense %></p>
                   <p>Amount: $<%= e.amount %></p>
-                  <p>Payment Type: <%= e.payment %></p>
                   <p>Description: <%= e.notes %></p>
                   <a data-toggle="modal" href="#myModal2-<%= e.id %>" class="">
                   <%= image_tag e.image, :id => "imageNonZoom" %>
@@ -1080,21 +1432,23 @@ var approvalStatus;
               </div>
             </div>
 
-            <div class="modal fade rotate" id="myModal2-<%= e.id %>">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" style="text-align:center;">Image Zoom</h4>
 
-                  </div>
-                  <div style="margin: 0 auto;text-align:center;">
-                    <%= image_tag e.image %>
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade rotate" id="myModal2-<%= e.id %>" style="width:800px;">
+        <div class="modal-dialog" style="width:800px;position:relative;">
+          <div class="modal-content" style="margin:30px;position:relative;">
+            <div style="margin:0 auto;display:relative;">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title" style="text-align:center;">Image Zoom</h4>
+
             </div>
-
+            <div style="margin: 0 auto;text-align:center;">
+              <%= image_tag e.image %>
+            </div>
+            </div>
           </div>
         </div>
       </div>

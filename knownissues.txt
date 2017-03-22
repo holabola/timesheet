@@ -1,0 +1,2 @@
+-Switching users is not secure. Department change is coded in javascript, easily avoidable.
+    If an admin wanted to, could log into anyone's account, not just limited to department.

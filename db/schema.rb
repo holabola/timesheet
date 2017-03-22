@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210152438) do
+ActiveRecord::Schema.define(version: 20170315210557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20170210152438) do
     t.date     "date_activity"
     t.string   "type_of_expense"
     t.float    "amount"
-    t.string   "payment"
     t.string   "notes"
     t.string   "filename"
     t.string   "content_type"
@@ -32,6 +31,9 @@ ActiveRecord::Schema.define(version: 20170210152438) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "meal_type"
+    t.string   "submitted"
+    t.string   "approvalFinal"
   end
 
   create_table "pages", force: true do |t|
@@ -50,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170210152438) do
     t.float    "sat"
     t.float    "total"
     t.string   "approval"
-    t.string   "date_of_time"
+    t.date     "date_of_time"
     t.string   "department"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -60,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170210152438) do
     t.string   "thunotes"
     t.string   "frinotes"
     t.string   "satnotes"
+    t.string   "submitted"
   end
 
   add_index "pages", ["user_id", "created_at"], name: "index_pages_on_user_id_and_created_at", using: :btree
@@ -82,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170210152438) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "profile"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
