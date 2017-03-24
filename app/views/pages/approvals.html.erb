@@ -176,7 +176,7 @@
                   fri[test.indexOf(first.toString().substring(0, 10))] = fri[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".friEntry").text());
                   sat[test.indexOf(first.toString().substring(0, 10))] = sat[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".satEntry").text());
                   total[test.indexOf(first.toString().substring(0, 10))] = total[test.indexOf(first.toString().substring(0, 10))] + parseFloat($(this).find(".totalEntry").text());
-                  console.log(test.indexOf(first.toString().substring(0, 10)));
+
               }
           }
         });
@@ -325,34 +325,7 @@
 
     $('.selectpicker').selectpicker();
       var heights = 0;
-      /*
-      $("#clearMonth").click(function() {
-          $("#UserSearch").val("");
-          $('.selectpicker').selectpicker('refresh');
-          $('#tableElements').children('tr').each(function () {
-             $(this).css("display","");
-             heights += 1;
-          });
-          totalColumns();
-          //Reshorten columns, for some reason glitched out
-          $('#tableElements').children('tr').each(function () {
-                  $(this).children('td').each(function () {
-                      var str = $(this).text();
-                      if(str.length > 14 && $(this).attr("id") != "names" && $(this).attr('id') != "butonz" && $(this).attr('class') != "dropdown") {
-                          str = str.substring(0, 15) + "...";
-                          $(this).text(str);
-                      }
-                  });
-            });
-          dateUpdate();
-          var datesave = $('#datepicker').datepicker('getDate');
-          $("#datepicker").datepicker('destroy');
-          $("#datepicker").datepicker();
-          $("#datepicker").datepicker('setDate',datesave);
-      });
-      heights = 60 + (60 * heights);
-      $('#pageGapDash').css("height",heights);
-      */
+
   });
 
 
@@ -453,7 +426,6 @@
                   heights += 1;
                   $(this).children('td').each(function () {
                       var str = $(this).text();
-                      console.log($(this).attr('class'));
                       if (str.length > 14 && $(this).attr("id") != "names" && $(this).attr('id') != "butonz" && $(this).attr('class') != "dropdown") {
                           str = str.substring(0, 15) + "...";
                           $(this).text(str);
@@ -500,7 +472,6 @@
                   heights += 1;
                   $(this).children('td').each(function () {
                       var str = $(this).text();
-                      console.log($(this).attr('class'));
                       if (str.length > 14 && $(this).attr("id") != "names" && $(this).attr('id') != "butonz" && $(this).attr('class') != "dropdown") {
                           str = str.substring(0, 15) + "...";
                           $(this).text(str);
@@ -695,25 +666,26 @@
         $(this).find('#successBut').trigger("submit.rails");
       });
 
-      $(".displayTable").click(function(e) {
-          var clicked = $(e.target);
-          if (clicked.hasClass("progress-bar")) {
-              var id = clicked.parent().parent().parent().parent().parent().find("#idholder").text();
-          } else {
-            var id = clicked.parent().parent().find("#idholder").text();
-              }
+      $(".frontTable").click(function(event) {
+          if (event.target.id == "successBut" || event.target.id == "failBut") {
+              return;
+          }
+          id=$(this).data("id");
           $(".timesheetEntry").each(function() {
-              console.log(id);
-              console.log($(this).find("#userid").text());
-             if ($(this).find("#userid").text() == id) {
-                 if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
-                     $(this).css("display", "");
-                 }
-             } else {
-                 $(this).css("display","none");
-             }
+              if ($(this).find("#userid").text() == id) {
+                  if (moment($(this).children('.dateBlob').text()) <= lastday && moment($(this).children('.dateBlob').text()) >= firstday) {
+                      $(this).css("display", "");
+                  }
+              } else {
+                  $(this).css("display","none");
+              }
           });
-
+          selectedName = $(this).attr("id");
+          $("#nameForTable").text("Name: " + selectedName);
+          totalColumns();
+          newTotalFunction();
+          $("#expenseWrap").slideUp();
+          $("#wholeWrapper").slideDown();
       });
 
 

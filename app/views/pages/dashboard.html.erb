@@ -21,6 +21,10 @@
   html {
     width: 1600px;
   }
+  .disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+  }
   .custom-combobox {
     position: relative;
     display: inline-block;
@@ -306,6 +310,7 @@
                   $(this).addClass("btn-danger");
                   $(this).attr("value","Not Submitted");
                   $(this).text("Unsubmit for Approval?");
+                  $("#pageGapDash").addClass("disabledbutton");
               }
           } else {
               $(this).css("display","none");

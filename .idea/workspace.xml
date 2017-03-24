@@ -2,49 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c14c5481-09b4-43f9-8cc4-253b629dec6c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/croppie.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/jquery.Jcrop.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/hover.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/selectize.bootstrap3.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/registrations_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/pages/expensesapprovalsold.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/pages/truedashboard.html.erb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/1/6c6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/1/thumb_6c6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/12/14089192_10207062517416620_3156179801358920066_n.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/12/thumb_14089192_10207062517416620_3156179801358920066_n.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/users.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/users.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/welcome.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/welcome.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pages_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/expense.rb" afterPath="$PROJECT_DIR$/app/models/expense.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/page.rb" afterPath="$PROJECT_DIR$/app/models/page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_newexpense.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_newexpense.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_normaluser.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_normaluser.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/approvals.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/approvals.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/destroy.js.erb" afterPath="$PROJECT_DIR$/app/views/pages/destroy.js.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/expenses.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/expenses.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/exports.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/exports.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/exportsDepart.xlsx.axlsx" afterPath="$PROJECT_DIR$/app/views/pages/exportsDepart.xlsx.axlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/exportsExpenses.xlsx.axlsx" afterPath="$PROJECT_DIR$/app/views/pages/exportsExpenses.xlsx.axlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/exportsall.xlsx.axlsx" afterPath="$PROJECT_DIR$/app/views/pages/exportsall.xlsx.axlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/manifest-ba80456e18abb1c4c2af63c78ee797d7.json" afterPath="$PROJECT_DIR$/public/assets/manifest-ba80456e18abb1c4c2af63c78ee797d7.json" />
     </list>
     <ignored path="timesheet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,10 +52,10 @@
       <file leaf-file-name="approvals.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10755">
-              <caret line="717" column="0" lean-forward="false" selection-start-line="717" selection-start-column="0" selection-end-line="717" selection-end-column="0" />
+            <state relative-caret-position="3996">
+              <caret line="683" column="19" lean-forward="false" selection-start-line="683" selection-start-column="19" selection-end-line="683" selection-end-column="19" />
               <folding>
-                <marker date="1490127443000" expanded="false" signature="36388:36399" ph="..." />
+                <marker date="1490392123000" expanded="false" signature="35000:35011" ph="..." />
               </folding>
             </state>
           </provider>
@@ -93,8 +64,8 @@
       <file leaf-file-name="_approvalcover.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3855">
-              <caret line="257" column="56" lean-forward="false" selection-start-line="257" selection-start-column="56" selection-end-line="257" selection-end-column="56" />
+            <state relative-caret-position="186">
+              <caret line="239" column="147" lean-forward="false" selection-start-line="239" selection-start-column="147" selection-end-line="239" selection-end-column="147" />
               <folding />
             </state>
           </provider>
@@ -103,28 +74,21 @@
       <file leaf-file-name="_expenseapprovalcover.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3615">
-              <caret line="241" column="48" lean-forward="false" selection-start-line="241" selection-start-column="48" selection-end-line="241" selection-end-column="48" />
-              <folding />
+            <state relative-caret-position="288">
+              <caret line="235" column="505" lean-forward="false" selection-start-line="235" selection-start-column="505" selection-end-line="235" selection-end-column="525" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#span#0;n#h4#0;n#div#1;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h10#0;n#div#0;n#div#0;n#span#0;n#h4#0;n#div#1;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="expensesapprovals.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb">
+      <file leaf-file-name="expenses.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/pages/expenses.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="1305" column="0" lean-forward="true" selection-start-line="1305" selection-start-column="0" selection-end-line="1305" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pages_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3150">
-              <caret line="210" column="55" lean-forward="false" selection-start-line="210" selection-start-column="55" selection-end-line="210" selection-end-column="55" />
+            <state relative-caret-position="216">
+              <caret line="1039" column="63" lean-forward="false" selection-start-line="1039" selection-start-column="63" selection-end-line="1039" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -142,36 +106,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;day&quot;</find>
-      <find>datepicker</find>
-      <find>beforeshowday</find>
+      <find>reviewed</find>
+      <find>progress</find>
+      <find>progressbartext</find>
+      <find>progress-bar</find>
+      <find>event.</find>
       <find>daterange</find>
-      <find>display</find>
-      <find>shadowon</find>
-      <find>front</find>
-      <find>dashcontents</find>
-      <find>.dateblob</find>
-      <find>none</find>
-      <find>milage</find>
-      <find>combinedCU</find>
-      <find>expenseTab</find>
-      <find>expenseEntry</find>
-      <find>expenseentry</find>
-      <find>&quot;display&quot;</find>
-      <find>tableholder</find>
-      <find>change</find>
-      <find>tableelements</find>
-      <find>slideup</find>
-      <find>hvr-icon</find>
+      <find>approvalclass</find>
+      <find>Approved</find>
+      <find>approvalSuccessButton</find>
+      <find>manysub</find>
+      <find>approvalStatus</find>
+      <find>manysubmitbu</find>
       <find>clearmonth</find>
-      <find>slidedown</find>
+      <find>console.log</find>
+      <find>timesheetentry</find>
+      <find>400</find>
       <find>slide</find>
-      <find>approvalCover</find>
-      <find>expenseWrap</find>
-      <find>wholewrap</find>
-      <find>newtotal</find>
-      <find>tablelements</find>
-      <find>wholewrapper</find>
+      <find>totalColumns</find>
+      <find>selectedName</find>
+      <find>info</find>
+      <find>approvalblob</find>
+      <find>approvalBlob</find>
+      <find>approvalButtons</find>
+      <find>approvalFinal</find>
+      <find>approvalButtonsfinal</find>
+      <find>manysubmitbutton</find>
+      <find>successbut</find>
+      <find>submitButton</find>
+      <find>nameholder</find>
+      <find>namefor</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,8 +145,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/devise/mailer/confirmation_instructions.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/mailer/reset_password_instructions.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20161117222454_create_pages.rb" />
         <option value="$PROJECT_DIR$/Gemfile.lock" />
         <option value="$PROJECT_DIR$/knownissues.txt" />
@@ -199,7 +161,6 @@
         <option value="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/exportsall.xlsx.axlsx" />
-        <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/uploaders/profile_uploader.rb" />
         <option value="$PROJECT_DIR$/app/controllers/registrations_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
@@ -212,26 +173,29 @@
         <option value="$PROJECT_DIR$/app/views/pages/exportsExpenses.xlsx.axlsx" />
         <option value="$PROJECT_DIR$/app/views/pages/exportsBillable.xlsx.axlsx" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" />
         <option value="$PROJECT_DIR$/db/migrate/20170310165026_change_payment_in_expenses.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20170310180313_add_mealtype_to_expenses.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/hover.css" />
-        <option value="$PROJECT_DIR$/app/models/expense.rb" />
         <option value="$PROJECT_DIR$/app/models/page.rb" />
-        <option value="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20170315210557_add_submitted_to_expenses.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/welcome.css" />
-        <option value="$PROJECT_DIR$/app/views/pages/expenses.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/_newexpense.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/expensesapprovalsold.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/expensesapprovalsupdated.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/app/models/expense.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20161122205559_add_first_name_to_users.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20170324151655_add_superadmin_to_users.rb" />
+        <option value="$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/approvals.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/approvals.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/expenses.html.erb" />
       </list>
     </option>
   </component>
@@ -1065,12 +1029,12 @@
       <workItem from="1487777824489" duration="15526000" />
       <workItem from="1487866420096" duration="12298000" />
       <workItem from="1488293497078" duration="88394000" />
-      <workItem from="1490131715776" duration="837000" />
+      <workItem from="1490131715776" duration="30501000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="584013000" />
+    <option name="totallyTimeSpent" value="613677000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1090,18 +1054,18 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32833582" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32831326" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1125,42 +1089,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1110">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/uploaders/expense_uploader.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/users.js.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1179,13 +1107,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="109" lean-forward="false" selection-start-line="6" selection-start-column="109" selection-end-line="6" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1300,20 +1221,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="582">
           <caret line="322" column="0" lean-forward="false" selection-start-line="322" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/expense.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="9" lean-forward="false" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/page.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1321,13 +1229,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170315210557_add_submitted_to_expenses.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1345,17 +1246,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/dashboard.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="294" column="47" lean-forward="true" selection-start-line="294" selection-start-column="47" selection-end-line="294" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/welcome.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="582">
           <caret line="681" column="1" lean-forward="false" selection-start-line="681" selection-start-column="1" selection-end-line="681" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1373,25 +1268,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="34" lean-forward="true" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/_adminuser.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6000">
-          <caret line="400" column="58" lean-forward="false" selection-start-line="400" selection-start-column="58" selection-end-line="400" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -1414,6 +1294,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-270">
           <caret line="757" column="24" lean-forward="false" selection-start-line="701" selection-start-column="0" selection-end-line="757" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1424,58 +1305,159 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/expenses.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1470">
-          <caret line="1030" column="24" lean-forward="false" selection-start-line="1030" selection-start-column="18" selection-end-line="1030" selection-end-column="24" />
+        <state relative-caret-position="90">
+          <caret line="6" column="41" lean-forward="true" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/page.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170315210557_add_submitted_to_expenses.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3615">
-          <caret line="241" column="48" lean-forward="false" selection-start-line="241" selection-start-column="48" selection-end-line="241" selection-end-column="48" />
+        <state relative-caret-position="426">
+          <caret line="83" column="55" lean-forward="true" selection-start-line="83" selection-start-column="55" selection-end-line="83" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20161115204153_add_devise_to_users.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3855">
-          <caret line="257" column="56" lean-forward="false" selection-start-line="257" selection-start-column="56" selection-end-line="257" selection-end-column="56" />
+        <state relative-caret-position="-216">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20161117222454_create_pages.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10755">
-          <caret line="717" column="0" lean-forward="false" selection-start-line="717" selection-start-column="0" selection-end-line="717" selection-end-column="0" />
-          <folding>
-            <marker date="1490127443000" expanded="false" signature="36388:36399" ph="..." />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20161122205559_add_first_name_to_users.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="1305" column="0" lean-forward="true" selection-start-line="1305" selection-start-column="0" selection-end-line="1305" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170324151655_add_superadmin_to_users.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/uploaders/expense_uploader.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/expense.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3150">
-          <caret line="210" column="55" lean-forward="false" selection-start-line="210" selection-start-column="55" selection-end-line="210" selection-end-column="55" />
+        <state relative-caret-position="194">
+          <caret line="278" column="9" lean-forward="false" selection-start-line="278" selection-start-column="9" selection-end-line="278" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/_adminuser.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20940">
+          <caret line="400" column="58" lean-forward="false" selection-start-line="400" selection-start-column="58" selection-end-line="400" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="922" column="19" lean-forward="true" selection-start-line="922" selection-start-column="19" selection-end-line="922" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/dashboard.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3996">
+          <caret line="683" column="19" lean-forward="false" selection-start-line="683" selection-start-column="19" selection-end-line="683" selection-end-column="19" />
+          <folding>
+            <marker date="1490392123000" expanded="false" signature="35000:35011" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="239" column="147" lean-forward="false" selection-start-line="239" selection-start-column="147" selection-end-line="239" selection-end-column="147" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="235" column="505" lean-forward="false" selection-start-line="235" selection-start-column="505" selection-end-line="235" selection-end-column="525" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#span#0;n#h4#0;n#div#1;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h10#0;n#div#0;n#div#0;n#span#0;n#h4#0;n#div#1;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/expenses.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="1039" column="63" lean-forward="false" selection-start-line="1039" selection-start-column="63" selection-end-line="1039" selection-end-column="63" />
           <folding />
         </state>
       </provider>

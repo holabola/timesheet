@@ -202,7 +202,7 @@ class PagesController < ApplicationController
     if @approvalStatus == "ApprovedEX" || @approvalStatus == "UnapprovedEX"
       @expense = Expense.find(params[:id])
       if @approvalStatus == "ApprovedEX"
-        @approvalStatus = "Approved"
+        @approvalStatus = "Reviewed"
       end
       if @approvalStatus == "UnapprovedEX"
         @approvalStatus = "Unapproved"
@@ -215,11 +215,18 @@ class PagesController < ApplicationController
       lastdate = firstdate + 7.day
       @departmentblob = Expense.find(params[:id]).department
       @pagez = Expense.where(["date_activity IN (?)",
-                           (firstdate)..(lastdate)]).where(:user_id => Expense.find(params[:id]).user_id)
+                           (firstdate)..(lastdate)]).where(:user_id => Expense.find(params[:id]).user_id).where(:credit_union => Expense.find(params[:id]).credit_union)
+      @approvalArray = []
 
 
       respond_to do |format|
         if @expense.update(:approval => @approvalStatus)
+          (@pagez).each { |x| @approvalArray.push(x.approval) }
+            if @approvalArray.include?("Unapproved")
+                @pagez.update_all(:approvalFinal => "Unapproved")
+             else
+                @pagez.update_all(:approvalFinal => "Reviewed")
+            end
           # If update succeeds, redirect to the list action
           format.js   { }
           format.json { render :show, status: :created, location: @comment }
@@ -262,6 +269,37 @@ class PagesController < ApplicationController
         end
       end
     end
+
+    if @approvalStatus == "ApprovedFinalEX" || @approvalStatus == "UnapprovedFinalEX"
+      if @approvalStatus == "ApprovedFinalEX"
+        @approvalStatus = "Approved"
+      end
+      if @approvalStatus == "UnapprovedFinalEX"
+        @approvalStatus = "Unapproved"
+      end
+
+      datez = Expense.find(params[:id]).date_activity
+      dateblob = datez.to_date
+      firstdate = dateblob.beginning_of_week - 1.day
+      lastdate = firstdate + 7.day
+      @departmentblob = Expense.find(params[:id]).department
+      @pagez = Expense.where(["date_activity IN (?)",
+                              (firstdate)..(lastdate)]).where(:user_id => Expense.find(params[:id]).user_id)
+
+
+      respond_to do |format|
+        if @pagez.update_all(:approvalFinal => @approvalStatus)
+          # If update succeeds, redirect to the list action
+          format.js   { }
+          format.json { render :show, status: :created, location: @comment }
+        else
+          # If save fails, redisplay the form so user can fix problems
+          format.js   { }
+          flash[:notice] = "Approval failed."
+        end
+      end
+    end
+
 
     if @approvalStatus == "SubmittedEX" || @approvalStatus == "Not SubmittedEX"
       if @approvalStatus == "SubmittedEX"
@@ -350,7 +388,7 @@ class PagesController < ApplicationController
   end
 
   def new_pages_params_expense
-    params.require(:expense).permit(:date_activity, :type_of_expense, :amount, :payment, :notes, :image, :credit_union, :meal_type)
+    params.require(:expense).permit(:date_activity, :type_of_expense, :amount, :payment, :notes, :image, :credit_union, :meal_type,:approvalFinal)
   end
 
 

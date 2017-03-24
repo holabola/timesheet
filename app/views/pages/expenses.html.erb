@@ -233,8 +233,9 @@
      ------------------------------------------- */
 
 
-  .table-responsive {
-
+  .disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
   }
 
   html {
@@ -723,6 +724,7 @@
           control.clear();
       });
 
+
   });
 
 // DOCUMENT READY END  //
@@ -928,10 +930,11 @@ var approvalStatus;
           text = "";
       }
 
-      var CUlistE = [], dateListE = [];
+      var CUlistE = [], dateListE = [], approvalFinalE = [];
       <% @expenses.each do |p| %>
         CUlistE.push("<%= p.credit_union %>");
         dateListE.push("<%= p.date_activity %>");
+        approvalFinalE.push("<%= p.approvalFinal %>");
       <% end %>
 
       $(".expenseTab").each(function() {
@@ -949,6 +952,12 @@ var approvalStatus;
               if (moment(dateListE[i]) <= lastday && moment(dateListE[i]) >= firstday) {
                   if (CUlistE[i] == CU && CUlistE[i] != "") {
                       $(this).css("display","inherit");
+                      if (approvalFinalE[i] != 0 && approvalFinalE[i] != undefined) {
+                          $(this).find("#approvalStatus").text(approvalFinalE[i]);
+                      } else {
+                          $(this).find("#approvalStatus").text("Pending");
+                      }
+
                   }
               }
           }
@@ -987,6 +996,14 @@ var approvalStatus;
               $(this).find(".three").addClass("no-color");
               $(this).find(".four").addClass("no-color");
           }
+          if (approval == "Approved") {
+              $(this).find(".pb").addClass("progress-bar-success");
+              $(this).find(".pb").css("width","100%");
+              $(this).find(".one").addClass("success-color");
+              $(this).find(".two").addClass("success-color");
+              $(this).find(".three").addClass("success-color");
+              $(this).find(".four").addClass("success-color");
+          }
       });
 
       $(".expenseEntry").each(function() {
@@ -1019,6 +1036,8 @@ var approvalStatus;
                   $(this).addClass("btn-danger");
                   $(this).attr("value","Not SubmittedEX");
                   $(this).text("Unsubmit for Approval?");
+                  $("#newEntry").addClass("disabledbutton");
+                  $("#allExpenses").addClass("disabledbutton");
               }
           } else {
               $(this).css("display","none");
@@ -1205,7 +1224,7 @@ var approvalStatus;
                   <div style="line-height:75%;"><br></div>
 
 
-                <div class="container" style="width:100%;">
+                <div id="allExpenses" class="container" style="width:100%;">
                   <div class="well span8 offset2">
                     <% @combinedCUs.each do |c| %>
                    <div class="expenseTab" data-role="<%= c %>">
@@ -1217,7 +1236,7 @@ var approvalStatus;
                       <div class="span10">
                         <strong><%= c %></strong><br>
                         <p class="text-muted" id="datesWorked" style="margin-bottom:1px;">Dates Worked: </p>
-                        <p class="text-muted">Approval Status: <span id="approvalStatus">Reviewed</span></p>
+                        <p class="text-muted">Approval Status: <span id="approvalStatus"></span></p>
                         <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
                         <div class="progress" style="width:100%;">
                           <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>

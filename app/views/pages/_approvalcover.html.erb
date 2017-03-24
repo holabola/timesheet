@@ -233,7 +233,7 @@
                     </td>
                   </tr>
                   <% @users.each do |u| %>
-                      <tr class="frontTable" id="<%= u.first_name %> <%= u.last_name %>" data-status="pagado">
+                      <tr class="frontTable" id="<%= u.first_name %> <%= u.last_name %>" data-id="<%= u.id %>">
                         <td>
                           <div class="ckbox">
                             <% @pages.each do |p| %>

@@ -182,7 +182,24 @@
   }
 
   .progress {height: 40px;}
-  .progress-bar { line-height: 40px; }
+  .progress-bar {
+      line-height: 40px;
+      }
+    .progress-bar-none {
+      background-color: #9E9E9E;
+    }
+    .progress-bar-info {
+      background-color: #5bc0de;
+    }
+    .progress-bar-warning {
+      background-color: #ffbb33;
+    }
+    .progress-bar-success {
+      background-color: #5bc0de;
+    }
+    .progress-bar-danger {
+      background-color: 	#d9534f;
+    }
 
 </style>
 <script>
@@ -214,12 +231,14 @@
                       <tr class="frontTable" id="<%= u.first_name %> <%= u.last_name %>" data-status="pagado">
                         <td>
                           <div class="ckbox">
-                            <% @pages.each do |p| %>
-                                <div class="manySubmitButtons" id="butonz" style="" data-date="<%= p.date_of_time %>" data-extra="<%= p.user.first_name %> <%= p.user.last_name %>"><div class="btn-group approvalButtons" role="group" aria-label="..."><%= form_for(p, remote: true, :url => {:action => 'update', :id => p.id}) do |f| %><%= f.text_field :approval, :value => p.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "successButt hvr-radial-out-green", id:"successBut", name: "subaction", value: "Approved", style: "width:100px;margin-bottom:10px;" %><%= button_tag "", type: 'submit', class: "btn btn-default failButt hvr-radial-out", id: "failBut", name: "subaction", value: "Unapproved", style: "width:100px;" %></div>
+                            <% if current_user.superadmin? %>
+                            <% @expenses.each do |p| %>
+                                <div class="manySubmitButtons" id="butonz" style="" data-date="<%= p.date_activity %>" data-extra="<%= p.user.first_name %> <%= p.user.last_name %>"><div class="btn-group approvalButtonsFinal" role="group" aria-label="..."><%= form_for(p, remote: true, :url => {:action => 'update', :id => p.id}) do |f| %><%= f.text_field :approvalFinal, :value => p.approvalFinal,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "successButt hvr-radial-out-green", id:"successBut", name: "subaction", value: "ApprovedFinalEX", style: "width:100px;margin-bottom:10px;" %><%= button_tag "", type: 'submit', class: "btn btn-default failButt hvr-radial-out", id: "failBut", name: "subaction", value: "UnapprovedFinalEX", style: "width:100px;" %></div>
                                       <p id="idholderinside" style="display:none;"><%= p.user.id %></p>
                                   <% end %>
                                   </div>
                             <% end %>
+                                <% end %>
                           </div>
                         </td>
                         <td>
@@ -250,8 +269,8 @@
 
                                 <span class="pull-right pagado approvalclass" id="approval" style="width:200px;">
                                 <div class="progress progress-striped active">
-                                  <div class="progress-bar progress-bar-success" id="progressbar" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="40" style="width:0%">
-                                    <h10 id="progressbartext" style="color:black;">0</h10>
+                                  <div class="progress-bar progress-bar-none" id="progressbar" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="40" style="width:100%">
+                                    <h10 id="progressbartext" style="color:black;">Not Created</h10>
                                   </div>
                                 </div>
                                 </span>
