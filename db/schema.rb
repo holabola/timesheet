@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324151655) do
+ActiveRecord::Schema.define(version: 20170419221133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
-    t.string   "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "expenses", force: :cascade do |t|
     t.string   "credit_union",    limit: 255
@@ -32,14 +25,27 @@ ActiveRecord::Schema.define(version: 20170324151655) do
     t.string   "content_type",    limit: 255
     t.string   "department",      limit: 255
     t.string   "approval",        limit: 255
-    t.string   "image",           limit: 255
     t.binary   "file_contents"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "meal_type",       limit: 255
     t.string   "submitted",       limit: 255
-    t.string   "approvalFinal",   limit: 255
+    t.string   "approval_final",  limit: 255
+    t.float    "miles_traveled"
+    t.float    "mileage_expense"
+    t.float    "air_travel"
+    t.float    "taxi_parking"
+    t.float    "car_rental"
+    t.float    "lodging"
+    t.float    "entertainment"
+    t.float    "other"
+    t.float    "total"
+    t.string   "job"
+    t.json     "images"
+    t.float    "meal_total"
+    t.json     "meal_names"
+    t.json     "meals"
   end
 
   create_table "games", force: :cascade do |t|
@@ -60,10 +66,9 @@ ActiveRecord::Schema.define(version: 20170324151655) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_installs_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "installs", ["email"], name: "index_installs_on_email", unique: true, using: :btree
-  add_index "installs", ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true, using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -71,9 +76,8 @@ ActiveRecord::Schema.define(version: 20170324151655) do
     t.integer  "todo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["todo_id"], name: "index_items_on_todo_id", using: :btree
   end
-
-  add_index "items", ["todo_id"], name: "index_items_on_todo_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
     t.string   "credit_union",    limit: 255
@@ -102,9 +106,8 @@ ActiveRecord::Schema.define(version: 20170324151655) do
     t.string   "frinotes",        limit: 255
     t.string   "satnotes",        limit: 255
     t.string   "submitted",       limit: 255
+    t.index ["user_id", "created_at"], name: "index_pages_on_user_id_and_created_at", using: :btree
   end
-
-  add_index "pages", ["user_id", "created_at"], name: "index_pages_on_user_id_and_created_at", using: :btree
 
   create_table "todos", force: :cascade do |t|
     t.string   "title"
@@ -133,11 +136,11 @@ ActiveRecord::Schema.define(version: 20170324151655) do
     t.datetime "confirmation_sent_at"
     t.string   "profile",                limit: 255
     t.boolean  "superadmin",                         default: false
+    t.date     "lastemailed"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "items", "todos"
 end

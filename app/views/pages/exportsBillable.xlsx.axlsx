@@ -49,6 +49,10 @@ wb.styles do |style|
 
     wb.add_worksheet(name: (user.first_name + user.last_name + "(" + user.id.to_s + ")")) do |sheet|
       sheet.add_row [],:height => 24
+      sheet.add_row ["","Name:",user.first_name + " " + user.last_name]
+      sheet.add_row ["","Report:", "Billable Time"]
+      sheet.add_row ["","Date Range:", @startDate.to_s + " - " + @endDate.to_s ]
+      sheet.add_row [""," "]
       sheet.add_row ["", "Billable Hours", "",""],style:[nil,title_cell_1,title_cell_1,title_cell_1],:height => 20
       sheet.add_row ["", "Onsite:", onsite,""],style:[nil,body_cell_1_no_center,body_cell_1,body_cell_1],:height => 17
       sheet.add_row ["", "Remote:", remote,""],style:[nil,body_cell_1_no_center,body_cell_1,body_cell_1],:height => 17
@@ -58,14 +62,17 @@ wb.styles do |style|
       sheet.add_row ["", "", "",""],style:[nil,body_cell_1_no_center,body_cell_1,body_cell_1],:height => 17
       sheet.add_row ["", "Production vs Non:", percentage,""],style:[nil,body_cell_2_no_center,percent,percent],:height => 17
 
-      sheet.merge_cells "B2:D2"
+      sheet.merge_cells "C2:D2"
       sheet.merge_cells "C3:D3"
       sheet.merge_cells "C4:D4"
-      sheet.merge_cells "C5:D5"
-      sheet.merge_cells "C6:D6"
+      sheet.merge_cells "B6:D6"
       sheet.merge_cells "C7:D7"
       sheet.merge_cells "C8:D8"
       sheet.merge_cells "C9:D9"
+      sheet.merge_cells "C10:D10"
+      sheet.merge_cells "C11:D11"
+      sheet.merge_cells "C12:D12"
+      sheet.merge_cells "C13:D13"
       sheet.column_widths 6, 17, 12, 12
 
       #resize first row to 28px

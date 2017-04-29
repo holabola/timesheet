@@ -2,20 +2,202 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c14c5481-09b4-43f9-8cc4-253b629dec6c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/12/14089192_10207062517416620_3156179801358920066_n.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/12/thumb_14089192_10207062517416620_3156179801358920066_n.jpg" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/OtherFiles/hover.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/select2.full.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/select2.full.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/select2.css.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/page_mailer/reminder_send.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/pages/employees.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/pages/exportsWeekExpenses.xlsx.axlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/edit_admin.html.erb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/hover.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/jquery-ui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/jquery-ui.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/selectize.bootstrap3.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/welcome.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/manifest-ba80456e18abb1c4c2af63c78ee797d7.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/10/Screen_Shot_2017-01-31_at_7.09.26_PM.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/10/thumb_Screen_Shot_2017-01-31_at_7.09.26_PM.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/11/6c6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/expense/image/11/thumb_6c6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/user/profile/1/14086474_1365503273478958_787598706965911868_o.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/user/profile/1/large_14086474_1365503273478958_787598706965911868_o.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/user/profile/1/thumb_14086474_1365503273478958_787598706965911868_o.jpg" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/daterangepicker.css" afterPath="$PROJECT_DIR$/app/assets/OtherFiles/daterangepicker.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/jquery.tinymce.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/jquery.tinymce.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/advlist/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/advlist/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/anchor/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/anchor/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/autolink/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/autolink/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/autoresize/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/autoresize/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/autosave/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/autosave/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/bbcode/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/bbcode/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/charmap/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/charmap/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/code/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/code/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/codesample/css/prism.css.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/codesample/css/prism.css.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/codesample/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/codesample/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/colorpicker/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/colorpicker/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/contextmenu/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/contextmenu/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/directionality/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/directionality/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-cool.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-cool.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-cry.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-cry.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-embarassed.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-frown.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-frown.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-innocent.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-kiss.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-laughing.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-sealed.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-smile.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-smile.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-surprised.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-undecided.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-wink.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-wink.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-yell.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/img/smiley-yell.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/example/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/example/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/example_dependency/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/example_dependency/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/fullpage/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/fullpage/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/fullscreen/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/fullscreen/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/hr/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/hr/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/image/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/image/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/imagetools/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/imagetools/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/importcss/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/importcss/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/insertdatetime/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/insertdatetime/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/legacyoutput/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/legacyoutput/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/link/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/link/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/lists/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/lists/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/media/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/media/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/nonbreaking/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/nonbreaking/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/noneditable/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/noneditable/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/pagebreak/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/pagebreak/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/paste/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/paste/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/preview/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/preview/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/print/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/print/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/save/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/save/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/searchreplace/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/searchreplace/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/spellchecker/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/spellchecker/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/tabfocus/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/tabfocus/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/table/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/table/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/template/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/template/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/textcolor/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/textcolor/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/textpattern/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/textpattern/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/toc/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/toc/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualblocks/css/visualblocks.css.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualblocks/css/visualblocks.css.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualblocks/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualblocks/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualchars/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualchars/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/wordcount/plugin.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/wordcount/plugin.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/preinit.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/preinit.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/content.inline.min.css.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/content.inline.min.css.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/content.min.css.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/content.min.css.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce-small.eot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce-small.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce-small.woff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce.eot" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce.eot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce.ttf" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce.woff" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce.woff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/img/anchor.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/img/anchor.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/img/loader.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/img/loader.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/img/object.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/img/object.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/img/trans.gif" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/img/trans.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/skin.ie7.min.css.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/skin.ie7.min.css.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/skin.min.css.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/skin.min.css.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/themes/inlite/theme.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/themes/inlite/theme.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/themes/modern/theme.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/themes/modern/theme.js.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/tinymce.js.gz" afterPath="$PROJECT_DIR$/public/assets/tinymce/tinymce.js.gz" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pages_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/registrations_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/registrations_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/expense.rb" afterPath="$PROJECT_DIR$/app/models/expense.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/uploaders/expense_uploader.rb" afterPath="$PROJECT_DIR$/app/uploaders/expense_uploader.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/uploaders/profile_uploader.rb" afterPath="$PROJECT_DIR$/app/uploaders/profile_uploader.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_culist.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_culist.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_normaluser.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/_normaluser.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/approvals.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/approvals.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/expenses.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/expenses.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/exports.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/exports.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/exportsBillable.xlsx.axlsx" afterPath="$PROJECT_DIR$/app/views/pages/exportsBillable.xlsx.axlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/exportsDepart.xlsx.axlsx" afterPath="$PROJECT_DIR$/app/views/pages/exportsDepart.xlsx.axlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/exportsExpenses.xlsx.axlsx" afterPath="$PROJECT_DIR$/app/views/pages/exportsExpenses.xlsx.axlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/truedashboard.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/truedashboard.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/development.rb" afterPath="$PROJECT_DIR$/config/environments/development.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/assets.rb" afterPath="$PROJECT_DIR$/config/initializers/assets.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/jquery.tinymce.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/jquery.tinymce.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/langs/readme.md" afterPath="$PROJECT_DIR$/public/assets/tinymce/langs/readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/license.txt" afterPath="$PROJECT_DIR$/public/assets/tinymce/license.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/advlist/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/advlist/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/anchor/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/anchor/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/autolink/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/autolink/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/autoresize/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/autoresize/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/autosave/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/autosave/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/bbcode/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/bbcode/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/charmap/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/charmap/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/code/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/code/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/codesample/css/prism.css" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/codesample/css/prism.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/codesample/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/codesample/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/colorpicker/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/colorpicker/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/contextmenu/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/contextmenu/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/directionality/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/directionality/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/emoticons/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/example/dialog.html" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/example/dialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/example/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/example/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/example_dependency/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/example_dependency/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/fullpage/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/fullpage/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/fullscreen/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/fullscreen/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/hr/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/hr/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/image/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/image/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/imagetools/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/imagetools/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/importcss/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/importcss/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/insertdatetime/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/insertdatetime/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/layer/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/layer/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/legacyoutput/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/legacyoutput/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/link/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/link/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/lists/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/lists/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/media/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/media/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/nonbreaking/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/nonbreaking/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/noneditable/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/noneditable/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/pagebreak/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/pagebreak/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/paste/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/paste/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/preview/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/preview/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/print/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/print/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/save/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/save/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/searchreplace/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/searchreplace/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/spellchecker/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/spellchecker/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/tabfocus/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/tabfocus/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/table/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/table/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/template/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/template/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/textcolor/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/textcolor/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/textpattern/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/textpattern/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/toc/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/toc/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualblocks/css/visualblocks.css" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualblocks/css/visualblocks.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualblocks/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualblocks/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualchars/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/visualchars/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/plugins/wordcount/plugin.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/plugins/wordcount/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/preinit.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/preinit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/content.inline.min.css" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/content.inline.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/content.min.css" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/content.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce-small.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce.svg" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/fonts/tinymce.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/skin.ie7.min.css" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/skin.ie7.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/skin.min.css" afterPath="$PROJECT_DIR$/public/assets/tinymce/skins/lightgray/skin.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/themes/inlite/theme.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/themes/inlite/theme.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/themes/modern/theme.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/themes/modern/theme.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tinymce/tinymce.js" afterPath="$PROJECT_DIR$/public/assets/tinymce/tinymce.js" />
     </list>
     <ignored path="timesheet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,24 +231,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="approvals.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
+      <file leaf-file-name="employees.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/pages/employees.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3996">
-              <caret line="683" column="19" lean-forward="false" selection-start-line="683" selection-start-column="19" selection-end-line="683" selection-end-column="19" />
+            <state relative-caret-position="-420">
+              <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="expenses.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/pages/expenses.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2691">
+              <caret line="353" column="10" lean-forward="true" selection-start-line="353" selection-start-column="10" selection-end-line="360" selection-end-column="0" />
               <folding>
-                <marker date="1490392123000" expanded="false" signature="35000:35011" ph="..." />
+                <element signature="e#42914#42921#0#HTML" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#tbody#1;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <marker date="1493244266000" expanded="true" signature="48779:48791" ph="..." />
+                <marker date="1493244266000" expanded="true" signature="48859:48871" ph="..." />
+                <marker date="1493244266000" expanded="true" signature="48918:48930" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_approvalcover.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb">
+      <file leaf-file-name="expensesapprovals.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="239" column="147" lean-forward="false" selection-start-line="239" selection-start-column="147" selection-end-line="239" selection-end-column="147" />
-              <folding />
+            <state relative-caret-position="231">
+              <caret line="516" column="0" lean-forward="true" selection-start-line="516" selection-start-column="0" selection-end-line="516" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#td#16;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#45615#45622#0#HTML" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,21 +285,48 @@
       <file leaf-file-name="_expenseapprovalcover.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="235" column="505" lean-forward="false" selection-start-line="235" selection-start-column="505" selection-end-line="235" selection-end-column="525" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#span#0;n#h4#0;n#div#1;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h10#0;n#div#0;n#div#0;n#span#0;n#h4#0;n#div#1;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="-39">
+              <caret line="234" column="39" lean-forward="false" selection-start-line="234" selection-start-column="39" selection-end-line="234" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="expenses.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/pages/expenses.html.erb">
+      <file leaf-file-name="exports.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/pages/exports.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="1039" column="63" lean-forward="false" selection-start-line="1039" selection-start-column="63" selection-end-line="1039" selection-end-column="63" />
+            <state relative-caret-position="360">
+              <caret line="57" column="130" lean-forward="false" selection-start-line="57" selection-start-column="113" selection-end-line="57" selection-end-column="130" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pages_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="450" column="78287" lean-forward="true" selection-start-line="450" selection-start-column="78287" selection-end-line="450" selection-end-column="78287" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mailer.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/mailer.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reminder_send.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/page_mailer/reminder_send.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="134" lean-forward="false" selection-start-line="18" selection-start-column="134" selection-end-line="18" selection-end-column="134" />
               <folding />
             </state>
           </provider>
@@ -106,36 +344,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>reviewed</find>
-      <find>progress</find>
-      <find>progressbartext</find>
-      <find>progress-bar</find>
-      <find>event.</find>
-      <find>daterange</find>
-      <find>approvalclass</find>
-      <find>Approved</find>
-      <find>approvalSuccessButton</find>
-      <find>manysub</find>
-      <find>approvalStatus</find>
-      <find>manysubmitbu</find>
-      <find>clearmonth</find>
-      <find>console.log</find>
-      <find>timesheetentry</find>
-      <find>400</find>
-      <find>slide</find>
-      <find>totalColumns</find>
-      <find>selectedName</find>
-      <find>info</find>
+      <find>week</find>
+      <find>expenseswitcher</find>
+      <find>dateblob</find>
+      <find>name</find>
       <find>approvalblob</find>
-      <find>approvalBlob</find>
-      <find>approvalButtons</find>
-      <find>approvalFinal</find>
-      <find>approvalButtonsfinal</find>
-      <find>manysubmitbutton</find>
       <find>successbut</find>
-      <find>submitButton</find>
-      <find>nameholder</find>
-      <find>namefor</find>
+      <find>expenseswit</find>
+      <find>submitStatus</find>
+      <find>approvalfinal</find>
+      <find>approvalbuttonsfinal</find>
+      <find>manysubmit</find>
+      <find>approvalButtonsFinal</find>
+      <find>approvalbuttons</find>
+      <find>two</find>
+      <find>Unapproved</find>
+      <find>expenseentry</find>
+      <find>clearmonth</find>
+      <find>progressbar</find>
+      <find>dashcontents</find>
+      <find>reviewed</find>
+      <find>unapproved (final)</find>
+      <find>dateRange</find>
+      <find>expensedate</find>
+      <find>EAF1FC</find>
+      <find>background-color:#eaf1fc;</find>
+      <find>body</find>
+      <find>dollarcheck</find>
+      <find>daterange</find>
+      <find>fronttable</find>
+      <find>non-client</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -145,57 +383,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/db/migrate/20161117222454_create_pages.rb" />
-        <option value="$PROJECT_DIR$/Gemfile.lock" />
-        <option value="$PROJECT_DIR$/knownissues.txt" />
-        <option value="$PROJECT_DIR$/config/initializers/switch_user.rb" />
-        <option value="$PROJECT_DIR$/app/views/pages/destroy.js.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/_sidebar.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/truedashboard.html.erb" />
-        <option value="$PROJECT_DIR$/db/migrate/20170223192650_add_submitted_to_pages.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/users.js.coffee" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/_normaluser.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/exportsall.xlsx.axlsx" />
-        <option value="$PROJECT_DIR$/app/uploaders/profile_uploader.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/registrations_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
-        <option value="$PROJECT_DIR$/db/migrate/20170308191647_add_date_of_time_2_to_pages.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20170308194635_remove_date_from_pages.rb" />
-        <option value="$PROJECT_DIR$/db/seeds.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20170308194826_delete_date_from_pages.rb" />
-        <option value="$PROJECT_DIR$/app/views/pages/exportsDepart.xlsx.axlsx" />
-        <option value="$PROJECT_DIR$/app/views/pages/exports.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/exportsExpenses.xlsx.axlsx" />
-        <option value="$PROJECT_DIR$/app/views/pages/exportsBillable.xlsx.axlsx" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" />
-        <option value="$PROJECT_DIR$/db/migrate/20170310165026_change_payment_in_expenses.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20170310180313_add_mealtype_to_expenses.rb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/hover.css" />
-        <option value="$PROJECT_DIR$/app/models/page.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20170315210557_add_submitted_to_expenses.rb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/welcome.css" />
-        <option value="$PROJECT_DIR$/app/views/pages/_newexpense.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/expensesapprovalsold.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/expensesapprovalsupdated.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/app/models/expense.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20161122205559_add_first_name_to_users.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20170324151655_add_superadmin_to_users.rb" />
         <option value="$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb" />
+        <option value="$PROJECT_DIR$/db/migrate/20170329152222_approval_final_change_capital.rb" />
         <option value="$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/exportsDepart.xlsx.axlsx" />
+        <option value="$PROJECT_DIR$/app/views/pages/exportsExpenses.xlsx.axlsx" />
+        <option value="$PROJECT_DIR$/app/views/pages/exportsBillable.xlsx.axlsx" />
+        <option value="$PROJECT_DIR$/config/initializers/chartkick.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20170403193428_add_emailtime_to_users.rb" />
+        <option value="$PROJECT_DIR$/app/mailers/reminder_mailer.rb" />
+        <option value="$PROJECT_DIR$/app/mailers/page_mailer.rb" />
+        <option value="$PROJECT_DIR$/app/views/users/edit.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/passthrough_controller.rb" />
+        <option value="$PROJECT_DIR$/app/uploaders/profile_uploader.rb" />
+        <option value="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/registrations_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/users/edit_admin.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/truedashboard.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/employees.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/approvals.html.erb" />
+        <option value="$PROJECT_DIR$/db/migrate/20170412151324_add_jobs_to_expenses.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20170412163333_change_image_to_json.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20170412164831_rename_image_expenses.rb" />
+        <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/config/environments/development.rb" />
+        <option value="$PROJECT_DIR$/config/application.rb" />
+        <option value="$PROJECT_DIR$/config/initializers/assets.rb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/dropzone.css" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/app/views/pages/expensesOLD.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" />
+        <option value="$PROJECT_DIR$/app/views/pages/_culist.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+        <option value="$PROJECT_DIR$/app/views/pages/_adminuser.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/_normaluser.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/dashboard.html.erb" />
+        <option value="$PROJECT_DIR$/db/migrate/20170419211150_add_mealnames_to_expenses.rb" />
+        <option value="$PROJECT_DIR$/db/schema.rb" />
+        <option value="$PROJECT_DIR$/app/models/expense.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20170419221133_change_meals_to_json.rb" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/uploaders/expense_uploader.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/pages/exportsWeekExpenses.xlsx.axlsx" />
+        <option value="$PROJECT_DIR$/app/views/pages/exports.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/expenses.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/page_mailer/reminder_send.html.erb" />
       </list>
     </option>
   </component>
@@ -206,7 +444,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="y" value="24" />
     <option name="width" value="1280" />
     <option name="height" value="707" />
   </component>
@@ -228,9 +466,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="RailsProjectView" />
       <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -240,6 +477,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="log" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -425,7 +676,51 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="page_mailer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -470,36 +765,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="devise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="unlocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="timesheet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="timesheet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="devise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -569,84 +834,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="devise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passwords" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="timesheet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="timesheet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="devise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mailer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="timesheet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="timesheet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="devise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="confirmations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="timesheet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="timesheet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="uploaders" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -666,6 +853,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mailers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -763,8 +968,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timesheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OtherFiles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -776,15 +1004,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/assets/OtherFiles" />
       <recent name="$PROJECT_DIR$/app/views/pages" />
       <recent name="$PROJECT_DIR$/app/assets/stylesheets" />
       <recent name="$PROJECT_DIR$/config/environments" />
       <recent name="C:\Sites\timesheet\app\views\pages" />
-      <recent name="C:\Sites\timesheet\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/assets/javascripts" />
       <recent name="$PROJECT_DIR$/app/assets/stylesheets" />
+      <recent name="$PROJECT_DIR$/app/assets/OtherFiles" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: timesheet">
@@ -1029,12 +1258,15 @@
       <workItem from="1487777824489" duration="15526000" />
       <workItem from="1487866420096" duration="12298000" />
       <workItem from="1488293497078" duration="88394000" />
-      <workItem from="1490131715776" duration="30501000" />
+      <workItem from="1490131715776" duration="86835000" />
+      <workItem from="1492008138180" duration="27087000" />
+      <workItem from="1492613074092" duration="37750000" />
+      <workItem from="1493228585608" duration="21970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="613677000" />
+    <option name="totallyTimeSpent" value="756818000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1046,12 +1278,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="707" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="24" width="1280" height="707" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.215625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.215625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32833582" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32831326" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1064,7 +1296,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32831326" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32680723" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1084,276 +1316,108 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/db/schema.rb</url>
+          <line>32</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="93" lean-forward="false" selection-start-line="18" selection-start-column="93" selection-end-line="18" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="12" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="18" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/exportsall.xlsx.axlsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="109" lean-forward="false" selection-start-line="6" selection-start-column="109" selection-end-line="6" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/uploaders/profile_uploader.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="33" column="4" lean-forward="false" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/registrations_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170223192650_add_submitted_to_pages.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170228164126_add_profile_to_users.rb">
+    <entry file="file://$PROJECT_DIR$/config/secrets.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170308194635_remove_date_from_pages.rb" />
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170308194826_delete_date_from_pages.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/exportsExpenses.xlsx.axlsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/exportsBillable.xlsx.axlsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/exportsDepart.xlsx.axlsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="33" lean-forward="false" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/selectize.js" />
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/selectize.bootstrap3.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170308191647_add_date_of_time_2_to_pages.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170310165026_change_payment_in_expenses.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="37" lean-forward="true" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/exports.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="183" column="6" lean-forward="true" selection-start-line="183" selection-start-column="6" selection-end-line="183" selection-end-column="40" />
+        <state relative-caret-position="-315">
+          <caret line="134" column="55" lean-forward="true" selection-start-line="134" selection-start-column="55" selection-end-line="134" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/welcome.js">
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-354">
-          <caret line="23" column="26" lean-forward="false" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+        <state relative-caret-position="165">
+          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jquery-ui.css">
+    <entry file="file://$PROJECT_DIR$/app/controllers/registrations_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="26" column="7" lean-forward="false" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/welcome.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/hover.css">
+    <entry file="file://$PROJECT_DIR$/app/views/users/edit_admin.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="322" column="0" lean-forward="false" selection-start-line="322" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
+        <state relative-caret-position="1725">
+          <caret line="115" column="29" lean-forward="false" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/truedashboard.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5355">
+          <caret line="357" column="62" lean-forward="false" selection-start-line="357" selection-start-column="62" selection-end-line="357" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170310180313_add_mealtype_to_expenses.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="811" column="66" lean-forward="false" selection-start-line="811" selection-start-column="66" selection-end-line="811" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170403193428_add_emailtime_to_users.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/_normaluser.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/welcome.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="681" column="1" lean-forward="false" selection-start-line="681" selection-start-column="1" selection-end-line="681" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170412151324_add_jobs_to_expenses.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="25" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="34" lean-forward="true" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/_newexpense.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="182" column="0" lean-forward="true" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10665">
-          <caret line="1172" column="12" lean-forward="false" selection-start-line="1172" selection-start-column="12" selection-end-line="1172" selection-end-column="12" />
+        <state relative-caret-position="165">
+          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/expensesapprovalsold.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <caret line="757" column="24" lean-forward="false" selection-start-line="701" selection-start-column="0" selection-end-line="757" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="41" lean-forward="true" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+        <state relative-caret-position="315">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/page.rb">
+    <entry file="file://$PROJECT_DIR$/app/uploaders/image_uploader.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170315210557_add_submitted_to_expenses.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="83" column="55" lean-forward="true" selection-start-line="83" selection-start-column="55" selection-end-line="83" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20161115204153_add_devise_to_users.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-216">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20161117222454_create_pages.rb">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/jquery.elevatezoom.js" />
+    <entry file="file://$PROJECT_DIR$/config/environment.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1361,15 +1425,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20161122205559_add_first_name_to_users.rb">
+    <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="55" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/application.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170324151655_add_superadmin_to_users.rb">
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/dropzone.css.scss" />
+    <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="28" column="42" lean-forward="false" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/OtherFiles/hover.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/initializers/assets.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/welcome.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="72" column="13" lean-forward="false" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/bootstrap-select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/_culist.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/_normaluser.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="120" column="70" lean-forward="false" selection-start-line="120" selection-start-column="70" selection-end-line="120" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/_adminuser.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="90" column="70" lean-forward="false" selection-start-line="90" selection-start-column="70" selection-end-line="90" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="28" column="24" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/expensesOLD.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10575">
+          <caret line="705" column="42" lean-forward="false" selection-start-line="705" selection-start-column="28" selection-end-line="705" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/exportsExpenses.xlsx.axlsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="28" column="11" lean-forward="true" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/dashboard.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="337" column="72" lean-forward="false" selection-start-line="337" selection-start-column="72" selection-end-line="337" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170419211150_add_mealnames_to_expenses.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170412164831_rename_image_expenses.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
@@ -1377,10 +1557,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/uploaders/expense_uploader.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170412163333_change_image_to_json.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="30">
+          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="3" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170419221133_change_meals_to_json.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1388,76 +1576,146 @@
     <entry file="file://$PROJECT_DIR$/app/models/expense.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+          <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/pages/exportsBillable.xlsx.axlsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="278" column="9" lean-forward="false" selection-start-line="278" selection-start-column="9" selection-end-line="278" selection-end-column="9" />
+        <state relative-caret-position="144">
+          <caret line="55" column="114" lean-forward="true" selection-start-line="55" selection-start-column="100" selection-end-line="55" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="48" column="22" lean-forward="true" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/_adminuser.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20940">
-          <caret line="400" column="58" lean-forward="false" selection-start-line="400" selection-start-column="58" selection-end-line="400" selection-end-column="58" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="24" column="51" lean-forward="true" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="922" column="19" lean-forward="true" selection-start-line="922" selection-start-column="19" selection-end-line="922" selection-end-column="19" />
+        <state relative-caret-position="239">
+          <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/dashboard.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/pages/exports.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+        <state relative-caret-position="360">
+          <caret line="57" column="130" lean-forward="false" selection-start-line="57" selection-start-column="113" selection-end-line="57" selection-end-column="130" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/approvals.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/pages/exportsWeekExpenses.xlsx.axlsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3996">
-          <caret line="683" column="19" lean-forward="false" selection-start-line="683" selection-start-column="19" selection-end-line="683" selection-end-column="19" />
-          <folding>
-            <marker date="1490392123000" expanded="false" signature="35000:35011" ph="..." />
-          </folding>
+        <state relative-caret-position="74">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/_approvalcover.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/uploaders/expense_uploader.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="239" column="147" lean-forward="false" selection-start-line="239" selection-start-column="147" selection-end-line="239" selection-end-column="147" />
+        <state relative-caret-position="105">
+          <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/_expenseapprovalcover.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="235" column="505" lean-forward="false" selection-start-line="235" selection-start-column="505" selection-end-line="235" selection-end-column="525" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#span#0;n#h4#0;n#div#1;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h10#0;n#div#0;n#div#0;n#span#0;n#h4#0;n#div#1;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="-39">
+          <caret line="234" column="39" lean-forward="false" selection-start-line="234" selection-start-column="39" selection-end-line="234" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/expenses.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="1039" column="63" lean-forward="false" selection-start-line="1039" selection-start-column="63" selection-end-line="1039" selection-end-column="63" />
+        <state relative-caret-position="2691">
+          <caret line="353" column="10" lean-forward="true" selection-start-line="353" selection-start-column="10" selection-end-line="360" selection-end-column="0" />
+          <folding>
+            <element signature="e#42914#42921#0#HTML" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#tbody#1;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1493244266000" expanded="true" signature="48779:48791" ph="..." />
+            <marker date="1493244266000" expanded="true" signature="48859:48871" ph="..." />
+            <marker date="1493244266000" expanded="true" signature="48918:48930" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/expensesapprovals.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="516" column="0" lean-forward="true" selection-start-line="516" selection-start-column="0" selection-end-line="516" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#td#16;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#45615#45622#0#HTML" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#table#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#section#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/employees.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-420">
+          <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="450" column="78287" lean-forward="true" selection-start-line="450" selection-start-column="78287" selection-end-line="450" selection-end-column="78287" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/mailer.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/page_mailer/reminder_send.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="134" lean-forward="false" selection-start-line="18" selection-start-column="134" selection-end-line="18" selection-end-column="134" />
           <folding />
         </state>
       </provider>

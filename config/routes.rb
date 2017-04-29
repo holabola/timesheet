@@ -1,20 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
-  #get 'sessions/login,'
 
-  #get 'sessions/home,'
+  get '/admin' => 'pages#truedashboard'
 
- # get 'sessions/profile,'
 
- # get 'sessions/setting'
-  #devise_for :user
-  root 'pages#dashboard'
+
   get 'users/new'
   resource :users, :controllers => { :confirmations => "confirmations" }
   resources :pages
 
 
+  get :send_reminder_mail, to: 'pages#send_reminder_mail', as: :send_reminder_mail
   get 'sessions/home' => 'sessions#home'
+  get '/employees' => 'pages#employees'
+  get '/timesheet' => 'pages#dashboard'
   get '/exports' => 'pages#exports'
   get '/approvals' => 'pages#approvals'
   get '/expenses' => 'pages#expenses'
@@ -24,9 +23,12 @@ Rails.application.routes.draw do
   get '/exportsDepart' => 'pages#exportsDepart'
   get '/exportsExpenses' => 'pages#exportsExpenses'
   get '/exportsBillable' => 'pages#exportsBillable'
+  get '/exportsWeekExpenses' => 'pages#exportsWeekExpenses'
+  get '/exportsWeekImages' => 'pages#exportsWeekImages'
   get '/dashboard' => 'pages#truedashboard'
+  get '/edit_user' => 'users#edit_admin'
   #get '/settings' => 'devise/registrations#edit'
-
+  root 'passthrough#index'
 
   #match ':controller(/:action(/:id))(.:format)'
 

@@ -496,6 +496,8 @@
       setTimeout(dateUpdate,400);
       setTimeout(totalColumns,400);
       setTimeout(newTotalFunction,400);
+      $("#wholeWrapper").css("display","none");
+      $("#expenseWrap").slideDown();
 
       $("#dashContents").fadeIn();
 
@@ -771,7 +773,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/" >Timesheet</a></li>
+        <li><a href="/timesheet" >Timesheet</a></li>
         <% if current_user.admin == true %>
         <li><a href="/approvals" >Timesheet Approvals</a></li>
             <% end %>
@@ -807,6 +809,7 @@
             <% if current_user.admin == true %>
                 <li ><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
                 <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
+                <li><a class="hvr-sweep-to-right" href="/employees">Employees<span class="glyphicon glyphicon-user pull-right"></span></a></li>
             <% end %>
           </ul>
           <!-- <ul class="nav nav-sidebar">

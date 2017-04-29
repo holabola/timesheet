@@ -7,7 +7,7 @@ gem 'rails'
 
 
 group :development, :test  do
-  gem 'mailcatcher'
+  #gem 'mailcatcher'
 end
 
 gem 'pg'
@@ -63,8 +63,8 @@ gem 'momentjs-rails'
 gem 'data-confirm-modal'
 gem 'axlsx_rails'
 gem 'select2-rails'
-gem 'carrierwave'
-gem 'carrierwave-crop'
+gem 'carrierwave', "~> 1.0.0"
+#gem 'carrierwave-crop', git: "https://github.com/kirtithorat/carrierwave-crop"
 gem 'mini_magick'
 gem 'scout_apm'
 
@@ -73,3 +73,7 @@ gem 'figaro'
 gem 'switch_user'
 
 gem 'selectize-rails'
+
+gem 'chart-js-rails'
+
+gem 'dropzonejs-rails'

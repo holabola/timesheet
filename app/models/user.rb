@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   mount_uploader :profile, ProfileUploader
-  crop_uploaded :profile
   has_many :pages, dependent: :destroy
   has_many :expenses, dependent: :destroy
 
@@ -10,7 +9,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  validate :email_domain
+  #validate :email_domain
 
   def email_domain
     domain = email.split(".").last

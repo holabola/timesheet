@@ -23,21 +23,44 @@ class ExpenseUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-   process resize_to_fit: [1000, 1000]
+   version :large, :if => :image? do
+     process resize_to_fit: [1000, 1000]
+   end
   #
   # def scale(width, height)
   #   # do something
   # end
+   version :printable, :if => :image? do
+     process resize_to_fit: [280,1000]
+   end
 
   # Create different versions of your uploaded files:
-   version :thumb do
-     process resize_to_fit: [50, 50]
+   version :thumb, :if => :image? do
+     process resize_to_fit: [200, 200]
+   end
+
+   version :pdf, :if => :pdf? do
+       process :convert => 'jpg'
+       process :resize_to_fit => [560,1000]
+       process :set_content_type
+
+       def full_filename (for_file = model.file.file)
+         "#{model.id}-thumb.jpg"
+       end
+   end
+
+
+   def pdf?(new_file)
+     MIME::Types.any? { |type| type.content_type == 'application/pdf' }
+   end
+   def set_content_type(*args)
+     self.file.instance_variable_set(:@content_type, "image/jpeg")
    end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
    def extension_whitelist
-     %w(jpg jpeg gif png)
+     %w(jpg jpeg gif png pdf)
    end
 
   # Override the filename of the uploaded files:
@@ -46,6 +69,10 @@ class ExpenseUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+   protected
 
+   def image?(new_file)
+     new_file.content_type.include? 'image'
+   end
 
 end

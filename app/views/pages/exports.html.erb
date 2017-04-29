@@ -34,6 +34,8 @@
               $('#exportDepart').attr('href',"/exportsDepart.xlsx?endDate=" + endDate + "&startDate=" + startDate);
               $('#expenses').attr('href',"/exportsExpenses.xlsx?endDate=" + endDate + "&startDate=" + startDate);
               $('#billable').attr('href',"/exportsBillable.xlsx?endDate=" + endDate + "&startDate=" + startDate);
+
+              $('#printWeek').attr('href',"/exportsWeekExpenses.xlsx?endDate=" + endDate + "&startDate=" + startDate + "&userID=" + $("#userSwitch").val());
           }
 
           $('#reportrange').daterangepicker({
@@ -49,6 +51,11 @@
 
           cb(start, end);
 
+      });
+
+      $(document).on('change','#userSwitch', function() {
+          id = $("#userSwitch").val();
+          $('#printWeek').attr('href',"/exportsWeekExpenses.xlsx?endDate=" + endDate + "&startDate=" + startDate + "&userID=" + id);
       });
 
   });
@@ -69,7 +76,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/" >Timesheet</a></li>
+        <li><a href="/timesheet" >Timesheet</a></li>
         <% if current_user.admin == true %>
             <li><a href="/approvals" >Timesheet Approvals</a></li>
         <% end %>
@@ -101,6 +108,7 @@
         <% if current_user.admin == true %>
             <li><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
             <li class="active"><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
+            <li><a class="hvr-sweep-to-right" href="/employees">Employees<span class="glyphicon glyphicon-user pull-right"></span></a></li>
         <% end %>
       </ul>
     </div>
@@ -111,6 +119,7 @@
   <h1 class="page-header">Export to Excel (.xlsx)</h1>
 
   <p>Enter Time Range: </p>
+  <p>(Note: If selecting custom range, start on a Sunday and end on a Saturday)</p>
   <div id="reportrange" class="" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 30%">
     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
     <span></span> <b class="caret"></b>
@@ -123,6 +132,7 @@
       <thead>
       <tr>
         <th>Download</th>
+        <th>Employee</th>
         <th>Description</th>
       </tr>
       </thead>
@@ -132,19 +142,40 @@
         <td>Download a list of all Timesheet entries from all users</td>
       </tr> -->
       <tr>
-        <td><%= link_to 'Department Users', exportsDepart_path(format: :xlsx, startDate: 'all', endDate: 'all'), id: "exportDepart" %></td>
+        <td><%= link_to 'Timesheets', exportsDepart_path(format: :xlsx, startDate: 'all', endDate: 'all'), id: "exportDepart" %></td>
+        <td></td>
         <td>Download a list of all Timesheet entries from the users of your specified department</td>
       </tr>
       <tr>
-        <td><%= link_to 'Department Expenses', exportsExpenses_path(format: :xlsx, startDate: 'all', endDate: 'all'), id: "expenses"  %></td>
+        <td><%= link_to 'Expenses', exportsExpenses_path(format: :xlsx, startDate: 'all', endDate: 'all'), id: "expenses"  %></td>
+        <td></td>
         <td>Download a list of all Expense entries from the users of your specified department</td>
       </tr>
       <tr>
         <td><%= link_to 'Billable Time', exportsBillable_path(format: :xlsx, startDate: 'all', endDate: 'all'), id: "billable"  %></td>
+        <td></td>
         <td>Download a list of all users billable time vs non-billable</td>
+      </tr>
+      <tr>
+        <td><%= link_to 'Expenses by Person', exportsExpenses_path(format: :xlsx, startDate: 'all', endDate: 'all', userID: ''), id: "printWeek"  %></td>
+        <td>
+          <select id="userSwitch" class="selectpicker">
+            <%= @users.each do |u| %>
+                <option value="<%= u.id %>"><%= u.first_name %> <%= u.last_name %></option>
+            <% end %>
+          </select>
+        </td>
+        <td>Download a list of all Expense entries from the users of your specified department</td>
       </tr>
       </tbody>
     </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </div>
 </div>
 </div>

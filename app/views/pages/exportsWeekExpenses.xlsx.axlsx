@@ -1,0 +1,156 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  bold_cell = style.add_style(b:true,:sz=>14,:font_name => 'Ariel')
+  n_cell = style.add_style(:sz => 8, :font_name => 'Ariel')
+  underline = style.add_style(b:true,:sz => 11, :font_name => 'Ariel', border: { :style => :thin,  color: "000000", :edges => [:bottom] })
+  thicktop = style.add_style(:sz => 8, :font_name => 'Ariel', border: { :style => :thin,  color: "000000", :edges => [:top,:left,:right] })
+  thicktopleft = style.add_style(:sz => 8, :font_name => 'Ariel', border: { :style => :thin,  color: "000000", :edges => [:top,:left,:right] })
+  thicktopbottom = style.add_style(:sz => 8, :font_name => 'Ariel', border: { :style => :thin,  color: "000000", :edges => [:top,:bottom] })
+  allaround = style.add_style(:alignment => {:horizontal => :center, :vertical => :center, :wrap_text => true},:sz => 8, :font_name => 'Ariel', border: { :style => :thin,  color: "000000", :edges => [:bottom,:right,:left] })
+  date_cell = style.add_style(:sz => 10, :font_name => 'Ariel',alignment: { horizontal: :right }, format_code: "mm/dd/yy", border: { :style => :thin,  color: "000000", :edges => [:bottom,:left,:right] })
+  number_cell = style.add_style(:sz => 10, :font_name => 'Ariel',alignment: { horizontal: :right }, :format_code => "#,##0.00", border: { :style => :thin,  color: "000000", :edges => [:bottom,:left,:right] })
+  number_cell_text = style.add_style(:sz => 10, :font_name => 'Ariel',alignment: { horizontal: :right }, border: { :style => :thin,  color: "000000", :edges => [:bottom,:left,:right] })
+  number_cell_dollar = style.add_style(:sz => 10, :font_name => 'Ariel', :format_code => "$#,##0.00",alignment: { horizontal: :right }, border: { :style => :thin,  color: "000000", :edges => [:bottom,:left,:right] })
+  highlight_bold = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :center }, b:true, bg_color: "C0C0C0", border: { :style => :thin,  color: "000000", :edges => [:top, :bottom,:left] })
+  highlight_bold_trim = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :center }, b:true, bg_color: "C0C0C0", border: { :style => :thin,  color: "000000", :edges => [:top, :bottom, :right] })
+  highlight_bold_last = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :left}, b:true, bg_color: "C0C0C0", border: { :style => :thin,  color: "000000", :edges => [:top, :bottom, :right, :left] })
+  n_cell_right = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :right })
+
+  strange_1 = style.add_style(:sz => 8, :font_name => 'Ariel', b:true, border: { :style => :thin,  color: "000000", :edges => [:right,:bottom, :left,:top] })
+  strange_2 = style.add_style(:sz => 8, :font_name => 'Ariel', b:true, border: { :style => :thin,  color: "000000", :edges => [:top] })
+  text_border_fill = style.add_style(:sz => 9, :font_name => 'Ariel', border: { :style => :thin,  color: "000000", :edges => [:bottom,:top] })
+  strange_last = style.add_style(:sz => 10, :font_name => 'Ariel', alignment: { horizontal: :right }, border: { :style => :thin,  color: "000000", :edges => [:bottom,:top,:right] })
+
+  highlight_bold_top_left = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :center }, b:true, bg_color: "C0C0C0", border: { :style => :thin,  color: "000000", :edges => [:top, :left] })
+  highlight_bold_top_right = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :center }, b:true, bg_color: "C0C0C0", border: { :style => :thin,  color: "000000", :edges => [:top, :right] })
+  highlight_bold_left = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :right }, b:true, bg_color: "C0C0C0", border: { :style => :thin,  color: "000000", :edges => [:left] })
+  highlight_bold_right = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :center }, b:true, bg_color: "C0C0C0", border: { :style => :thin,  color: "000000", :edges => [:right, :bottom] })
+  highlight_bold_bottom_left = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :center }, b:true, bg_color: "C0C0C0", border: { :style => :thin,  color: "000000", :edges => [:bottom, :left] })
+  highlight_bold_bottom_right = style.add_style(:sz => 8, :font_name => 'Ariel', alignment: { horizontal: :center }, b:true, bg_color: "C0C0C0", border: { :style => :thin,  color: "000000", :edges => [:bottom, :right] })
+  bold_cell_small = style.add_style(b:true,:sz=>8,:font_name => 'Ariel')
+
+  underline_new = style.add_style(:sz => 10, :font_name => 'Ariel', border: { :style => :thin,  color: "000000", :edges => [:bottom] })
+  n_cell_new = style.add_style(:sz => 10, :font_name => 'Ariel')
+  underline_new_c = style.add_style(alignment: { horizontal: :center },:sz => 10, :font_name => 'Ariel', border: { :style => :thin,  color: "000000", :edges => [:bottom] })
+  date_cell_new = style.add_style(:sz => 10, :font_name => 'Ariel',alignment: { horizontal: :center }, format_code: "mm/dd/yy", border: { :style => :thin,  color: "000000", :edges => [:bottom] })
+  number_cell_dollar_new = style.add_style(:sz => 10, :font_name => 'Ariel', :format_code => "$#,##0.00",alignment: { horizontal: :right }, border: { :style => :thin,  color: "000000", :edges => [:bottom] })
+
+  user = User.find(params[:userID])
+  id = params[:userID]
+
+  counter = 6
+      wb.add_worksheet(name: "Exp Stmt") do |sheet|
+        sheet.add_row [nil,nil,"2017 EMPLOYEE TRAVEL & EXPENSE STATEMENT",nil,nil,nil,nil,nil,nil,nil, "FOR PERIOD ENDING", @endDate.strftime('%m/%d/%y')], style: [nil,nil,bold_cell,nil,nil,nil,nil,nil,nil,nil,n_cell,underline],:height => 18
+        sheet.add_row [],:height => 9
+        sheet.add_row ["NAME (PRINT):", user.first_name + " " + user.last_name, nil,nil,nil, "DEPARTMENT:", user.department, nil,nil,"COMPANY:","CU Resources Inc.", "Check #"], style: [n_cell,underline,underline,underline,underline,n_cell,underline,underline,nil,n_cell,underline,highlight_bold_last],:height => 20
+        sheet.add_row [],:height => 12
+        sheet.add_row [nil,"Auto", "$0.535",nil,"Taxi", nil,nil,nil,nil,"Other",nil,nil], style: [thicktopleft,thicktopbottom,thicktopbottom,thicktop,thicktop,thicktop,thicktop,thicktop,thicktop,thicktopbottom,thicktopbottom,thicktop] ,:height => 11
+        sheet.add_row ["Date","Miles Traveled","Mileage Expense","Air Travel Gas, Bags","Parking, Tolls","Car Rental", "Meals", "Lodging", "Enter-tainment", "Amount","Explain","Reimbursement Totals"],style: [allaround, allaround, allaround, allaround, allaround, allaround, allaround, allaround, allaround, allaround, allaround, allaround] ,:height => 34
+        @expenses.where(:user_id => id).each do |e|
+          sheet.add_row [e.date_activity,e.miles_traveled,e.mileage_expense,e.air_travel, e.taxi_parking, e.car_rental, e.meal_total, e.lodging, e.entertainment, e.other,e.notes, e.total], style: [date_cell,number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, allaround, number_cell] , :height => 17
+          counter = counter + 1
+        end
+        sheet.add_row [nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil], style: [number_cell_text, number_cell_text, number_cell_text, number_cell_text, number_cell_text, number_cell_text, number_cell_text, number_cell_text, number_cell_text, number_cell_text, number_cell_text, number_cell_text], :height => 17
+        sheet.add_row ["Totals", "=SUM(B7:B" + counter.to_s + ")","=SUM(C7:C" + counter.to_s + ")", "=SUM(D7:D" + counter.to_s + ")", "=SUM(E7:E" + counter.to_s + ")", "=SUM(F7:F" + counter.to_s + ")", "=SUM(G7:G" + counter.to_s + ")", "=SUM(H7:H" + counter.to_s + ")", "=SUM(I7:I" + counter.to_s + ")", "=SUM(J7:J" + counter.to_s + ")", nil, "=SUM(L7:L" + counter.to_s + ")"], style: [number_cell_text, number_cell, number_cell_dollar, number_cell_dollar, number_cell_dollar, number_cell_dollar, number_cell_dollar, number_cell_dollar, number_cell_dollar, number_cell_dollar, number_cell_text, number_cell_dollar], :height => 17
+        sheet.add_row [nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,"Less: Personal Charges",nil], style: [nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,n_cell_right,number_cell], :height => 17
+        sheet.add_row ["Dept. # to Charge", nil, "101201",nil, "101202", "101203","101204","101205","101207", nil, "Travel Advance",nil], style: [highlight_bold, highlight_bold_trim, highlight_bold,highlight_bold_trim, highlight_bold, highlight_bold, highlight_bold, highlight_bold, highlight_bold, highlight_bold_last, n_cell_right, number_cell ], :height => 17
+        counter = counter + 2 #total row
+        sheet.add_row [nil,nil,nil,"=SUM(C" + counter.to_s + ":D" + counter.to_s + ")", "=E"+counter.to_s, "=F"+counter.to_s, "=G"+counter.to_s, "=H"+counter.to_s, "=I"+counter.to_s, "=J"+counter.to_s, "Net: Due Employee", "=L"+counter.to_s], style: [number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, n_cell_right, number_cell], :height => 17
+        sheet.add_row [nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,"(Company)","=IF(L" + counter.to_s + "-L" + (counter+1).to_s + " -L" + (counter+2).to_s + "<0,L" + counter.to_s + "-L" + (counter+1).to_s + "-L" + (counter+2).to_s + ",0)"], style: [number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, n_cell_right, number_cell], :height => 17
+        sheet.add_row [nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil], style: [number_cell,number_cell,number_cell,number_cell,number_cell,number_cell,number_cell,number_cell,number_cell,number_cell,nil,nil], :height => 17
+
+        sheet.add_row []
+        sheet.add_row ["Date", nil, "Diary (City, Business Purpose or Activity Requiring Expenditure)", nil,nil,nil,nil,nil,nil,nil,nil,nil], style: [strange_1,text_border_fill, strange_2, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, strange_last], :height => 17
+        @expenses.where(:user_id => id).each do |e|
+          sheet.add_row [e.date_activity, e.credit_union + " : " + e.job, nil,nil,nil,nil,nil,nil,nil,nil,nil,nil], style: [date_cell,text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, strange_last], :height => 17
+        end
+        sheet.add_row [nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil], style: [date_cell,text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, text_border_fill, strange_last], :height => 17
+
+        sheet.add_row [], :height => 20
+        sheet.add_row ["I hereby certify that the above is a true account of only the",nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil], style: [n_cell, nil,nil,nil,nil,nil,nil,nil,nil,nil,highlight_bold_top_left,highlight_bold_top_right] ,:height => 11
+        sheet.add_row ["ordinary and necessary business expense incurred by me",nil,nil,nil,nil,nil,nil,nil,nil,nil,"Approved:",nil], style: [n_cell,nil,nil,nil,nil,nil,nil,nil,nil,nil,highlight_bold_left,highlight_bold_right] ,:height => 11
+        sheet.add_row ["to the period indicated........................................Signed",nil,nil,nil,nil,nil,nil,nil,nil,nil,"Audited:",nil], style: [n_cell,nil,nil,nil,underline,underline,underline,underline,nil,nil,highlight_bold_left,highlight_bold_right] , :height => 11
+        sheet.add_row [nil,nil,"* Shaded Portions Are For Office Use Only *",nil,nil,nil,nil,nil,nil,nil,nil,nil], style: [nil,nil,bold_cell_small,nil,nil,nil,nil,nil,nil,nil,highlight_bold_bottom_left,highlight_bold_bottom_right], :height => 11
+
+        sheet.sheet_view.show_grid_lines = false
+        sheet.column_widths 11, 8, 8, 8, 8, 11.5, 8, 8, 8, 9, 28, 14
+        sheet.sheet_view.zoom_scale = 116
+      end
+
+  wb.add_worksheet(name: 'Meals') do |sheet|
+    sheet.add_row [nil,nil,nil,nil,nil,nil,nil,nil,nil], style: [], :height => 13
+    sheet.add_row ["Name:", nil, user.first_name + " " + user.last_name, nil,nil,nil,nil,nil,nil], style: [n_cell_new,nil,underline_new, nil,nil,nil,nil,nil,nil], :height => 13
+    sheet.add_row ["Week Ending", nil, @endDate.strftime('%m/%d/%y') , nil,nil,nil,nil,nil,nil], style: [n_cell_new,nil,underline_new, nil,nil,nil,nil,nil,nil], :height => 13
+    sheet.add_row [nil], :height => 13
+    sheet.add_row ["Date", nil, "Restaurant", nil, "Meals For", nil, "Cost", nil, "Daily Total"], style: [underline_new_c, nil, underline_new_c, nil, underline_new_c, nil, underline_new_c, nil, underline_new_c], :height => 13
+    sheet.add_row [nil], :height => 13
+
+    abbriev = user.first_name[0].upcase + "." + user.last_name[0].upcase + "."
+    @expenses.where(:user_id => id).each do |e|
+      mealnames = e.meal_names.split(",")
+      mealcosts = e.meals.split(",").map { |s| s.to_i }
+
+      if mealcosts.length > 1
+        sheet.add_row [e.date_activity, nil, mealnames[0], nil, abbriev, nil, mealcosts[0], nil, nil], style: [date_cell_new, nil,underline_new,nil,underline_new,nil,number_cell_dollar_new,nil,number_cell_dollar_new], :height => 13
+        for i in 1..(mealcosts.length-1)
+          if (i) >= (mealcosts.length-1)
+            z = i
+            break
+          end #breaks loop before last iteration
+
+          sheet.add_row [nil, nil, mealnames[i], nil, abbriev, nil, mealcosts[i], nil, nil], style: [date_cell_new, nil,underline_new,nil,underline_new,nil,number_cell_dollar_new,nil,number_cell_dollar_new], :height => 13
+        end
+        sheet.add_row [nil, nil, mealnames[z], nil, abbriev, nil, mealcosts[z], nil, e.meal_total], style: [date_cell_new, nil,underline_new,nil,underline_new,nil,number_cell_dollar_new,nil,number_cell_dollar_new], :height => 13
+
+      else
+        #if only 1 long
+        if mealcosts.length == 0
+          next
+        end
+        sheet.add_row [e.date_activity, nil, mealnames[0], nil, abbriev, nil, mealcosts[0], nil, e.meal_total], style: [date_cell_new, nil,underline_new,nil,underline_new,nil,number_cell_dollar_new,nil,number_cell_dollar_new], :height => 13
+      end
+      sheet.add_row [nil], :height =>13
+    end #end of expense.each
+
+    sheet.add_row [nil]
+    sheet.add_row [nil,nil,nil,nil,nil,nil,"Total:",nil,"=SUM(I6:I" + sheet.rows.last.index.to_s + ")"], style: [nil,nil,nil,nil,nil,nil,underline_new_c,nil,number_cell_dollar_new]
+
+    sheet.print_options.set(:grid_lines => true)
+    sheet.column_widths 8,4,30,1,8,1,8,1,8
+  end
+
+
+    imageCount = 0
+    @expenses.where(:user_id => id).each do |e|
+      if e.images.length == 0
+        next
+      end
+      wb.add_worksheet(:name => "Images"+imageCount.to_s) do |sheet|
+        sheet.page_setup.set(:orientation => :landscape)
+        sheet.page_margins.set(:left => 0.25, :right => 0.25, :top => 0.75, :bottom => 0.75)
+        imageCount=0
+      for i in 0..(e.images.length - 1)
+        begin
+          img = MiniMagick::Image.open(e.images[i].printable.path)
+          sheet.add_image(:image_src => e.images[i].printable.path, :noSelect => true, :noMove => true) do |image|
+            image.width =  img[:width]
+            image.height = img[:height]
+            image.hyperlink = e.images[i].path
+            image.start_at 0+imageCount , 1
+            imageCount += (5)
+          end
+        rescue
+          imgPDF = MiniMagick::Image.open(e.images[i].pdf.path)
+          sheet.add_image(:image_src => e.images[i].pdf.path, :noSelect => true, :noMove => true) do |image|
+            image.width = imgPDF[:width]
+            image.height = imgPDF[:height]
+            image.hyperlink = e.images[i].path
+            image.start_at 0+imageCount , 1
+            imageCount += (10)
+          end
+        end
+        end
+      end
+    end
+end

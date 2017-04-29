@@ -6,17 +6,26 @@ wb.styles do |style|
                                 :format_code => "#,##0")
   title_cell_1 = style.add_style(b: true, border: { :style => :thin,  color: "000000", :edges => [:bottom] })
   title_cell_2 = style.add_style(b: true, border: { :style => :thin,  color: "000000", :edges => [:bottom] })
+  title_cell_3 = style.add_style(b: true, border: { :style => :thin,  color: "000000", :edges => [:top] })
+  reg_cell_1 = style.add_style(alignment: { horizontal: :center }, :format_code => "#,##0", border: { :style => :thin,  color: "000000", :edges => [:top] })
 
   @users.each do |user|
+    counter = 5
     if user.department == current_user.department
     wb.add_worksheet(name: user.first_name) do |sheet|
-    sheet.add_row ["Date Created","Credit Union", "Activity", "Task", "Billing Options", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Total"], style: [ title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2 ]
+      sheet.add_row ["Name:",user.first_name + " " + user.last_name], style: [title_cell_1,nil]
+      sheet.add_row ["Report:", "Timesheet"], style: [title_cell_1,nil]
+      sheet.add_row ["Date Range:", @startDate.to_s + " - " + @endDate.to_s ], style:[title_cell_1,nil]
+      sheet.add_row [" "]
+    sheet.add_row ["Date","Credit Union", "Activity", "Task", "Billing Options", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Total"], style: [ title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2, title_cell_2 ]
     @pages.each do |page|
       if page.user_id == user.id
-        sheet.add_row [page.date_of_time, page.credit_union, page.activity, page.task, page.billing_options, page.sun, page.mon, page.tue, page.wed, page.thu, page.fri, page.sat, page.sun], style: [ date_cell, nil, nil, nil, nil, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell]
+        sheet.add_row [page.date_of_time, page.credit_union, page.activity, page.task, page.billing_options, page.sun, page.mon, page.tue, page.wed, page.thu, page.fri, page.sat, page.total], style: [ date_cell, nil, nil, nil, nil, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell, number_cell,number_cell]
         sheet.column_widths 13, 19, 19, 14, 14, 9,9,9,12,9,9,9,9
+        counter += 1
         end
-      end
+    end
+      sheet.add_row ["Totals:","","","","","=SUM(F6:F" + counter.to_s + ")", "=SUM(G6:G" + counter.to_s + ")", "=SUM(H6:H" + counter.to_s + ")", "=SUM(I6:I" + counter.to_s + ")", "=SUM(J6:J" + counter.to_s + ")", "=SUM(K6:K" + counter.to_s + ")", "=SUM(L6:L" + counter.to_s + ")", "=SUM(M6:M" + counter.to_s + ")"], style: [title_cell_3,reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1]
     end
       else
     end

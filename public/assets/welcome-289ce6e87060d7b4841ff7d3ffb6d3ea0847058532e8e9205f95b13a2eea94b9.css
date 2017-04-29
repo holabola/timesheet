@@ -1,0 +1,879 @@
+@charset "UTF-8";
+/* Carousel base class */
+/* line 3, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.carousel {
+  height: 85%;
+  margin-bottom: 60px;
+  background-color: #000000;
+}
+
+/* Since positioning the image, we need to help out the caption */
+/* line 9, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* line 12, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.first-slide {
+  opacity: .6;
+}
+
+/* Declare heights because of positioning of img element */
+/* line 16, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.carousel .item {
+  height: 100%;
+}
+
+/* line 19, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+}
+
+/* Expenses */
+/* line 28, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.importantRule > * {
+  background-color: #000000;
+  transition-timing-function: ease-in;
+  transition: .9s;
+}
+
+/* line 34, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#expenseWrap {
+  margin: 0px 0px 0px 80px;
+}
+
+/* line 38, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#goBlackApproval {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 44, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.marginBumpExpense {
+  margin-left: 230px;
+}
+
+/* Dashboard */
+/* line 50, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
+  padding: 2px;
+}
+
+/* line 54, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#textAboveTable {
+  position: relative;
+  height: 80px;
+  left: 310px;
+  top: 10px;
+}
+
+/* line 61, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#dashContents {
+  width: 95%;
+}
+
+/* line 65, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#aboveTable {
+  position: relative;
+  height: 80px;
+  left: 310px;
+  top: 10px;
+}
+
+/* line 71, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#pageGapDash {
+  position: absolute;
+  left: 310px;
+  width: 1500px;
+  height: 400px;
+}
+
+/* line 77, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#sidebarNav {
+  width: 280px;
+}
+
+/* line 81, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.scrollable-menu {
+  height: auto;
+  max-height: 270px;
+  overflow-x: hidden;
+}
+
+/* Exit Button for Register */
+/* line 88, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.exitButton {
+  font-size: 35px;
+  position: absolute;
+  left: 91.5%;
+  top: 16%;
+  z-index: 10000000;
+  color: slategray;
+}
+
+/* line 97, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+/* line 104, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.alert-alert {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+/* line 111, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+/* line 118, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.alert-notice {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+/* line 125, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#alertMessage {
+  color: #730E15;
+  top: 100px;
+}
+
+/* line 130, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.containerError {
+  top: 100px;
+  width: 50%;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+}
+
+/* line 141, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#alertWrap {
+  width: 100%;
+}
+
+/* line 148, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.carousel-caption {
+  height: 35%;
+}
+
+/* line 151, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#myCarousel {
+  flex: 0 1 auto;
+}
+
+/* line 155, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.first-slide {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 161, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.logo {
+  padding: 15px 0;
+  font-size: 25px;
+  font-weight: bold;
+  color: #efefef;
+}
+
+/* line 168, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+input[type="submit"] {
+  background: url(mybutton.png);
+}
+
+/* line 173, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#shadowOnOff {
+  background-color: #000000;
+  transition-timing-function: ease-in;
+  transition: .9s;
+  height: 100%;
+}
+
+/* line 179, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* line 184, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+html {
+  height: 100%;
+  width: 100%;
+  font-family: 'Varela Round';
+}
+
+/* line 189, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#welcomeWrapper {
+  height: 100%;
+  background: #000000;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(#000000, #434343);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(#000000, #434343);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* line 208, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#loginWrap {
+  display: none;
+  position: relative;
+}
+
+/* line 212, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#forgotWrap {
+  display: none;
+  position: relative;
+}
+
+/* line 216, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#registerWrap {
+  display: none;
+  position: relative;
+}
+
+/* line 221, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#login-form {
+  display: block;
+  -webkit-animation: fadeIn .9s;
+  animation: fadeIn .9s;
+  /*visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  transition-timing-function: ease-in;
+   transition: .9s;  */
+}
+
+/* line 231, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#register-form {
+  display: block;
+  -webkit-animation: fadeIn .9s;
+  animation: fadeIn .9s;
+}
+
+/* line 236, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+#forgot-password-form {
+  display: block;
+  -webkit-animation: fadeIn .9s;
+  animation: fadeIn .9s;
+}
+
+/* line 242, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.text-center {
+  position: fixed;
+  display: table;
+  margin: 0 auto;
+  top: 120px;
+  text-align: center;
+  z-index: 100;
+  width: 100%;
+}
+
+/* line 251, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+a {
+  color: #aaaaaa;
+  transition: all ease-in-out 200ms;
+}
+
+/* line 255, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+
+/*=== 3. Text Outside the Box ===*/
+/* line 260, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.etc-login-form {
+  color: #919191;
+  padding: 10px 20px;
+}
+
+/* line 264, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.etc-login-form p {
+  margin-bottom: 5px;
+}
+
+/*=== 4. Main Form ===*/
+/* line 268, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 {
+  max-width: 300px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+/* line 273, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.main-login-form {
+  position: relative;
+}
+
+/* line 276, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .form-control {
+  border: 0;
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  background: transparent;
+  color: #555555;
+  padding: 7px 0;
+  font-weight: bold;
+  height: auto;
+}
+
+/* line 286, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+
+/* line 289, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .form-control:-moz-placeholder,
+.login-form-1 .form-control::-moz-placeholder,
+.login-form-1 .form-control:-ms-input-placeholder {
+  color: #999999;
+}
+
+/* line 294, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .form-group {
+  margin-bottom: 0;
+  border-bottom: 2px solid #efefef;
+  padding-right: 20px;
+  position: relative;
+}
+
+/* line 300, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .form-group:last-child {
+  border-bottom: 0;
+}
+
+/* line 303, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-group {
+  background: #ffffff;
+  color: #999999;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+/* line 309, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-group-checkbox {
+  padding: 5px 0;
+}
+
+/*=== 5. Login Button ===*/
+/* line 313, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .login-button {
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  background: #ffffff;
+  color: #999999;
+  padding: 11px 0;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  border: 5px solid #efefef;
+  border-radius: 50%;
+  transition: all ease-in-out 500ms;
+}
+
+/* line 327, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 #registerWrap .login-button {
+  top: 58%;
+}
+
+/* line 330, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .login-button:hover {
+  color: #555555;
+  transform: rotate(450deg);
+}
+
+/* line 334, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .login-button.clicked {
+  color: #555555;
+}
+
+/* line 337, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .login-button.clicked:hover {
+  transform: none;
+}
+
+/* line 340, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .login-button.clicked.success {
+  color: #2ecc71;
+}
+
+/* line 343, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-1 .login-button.clicked.error {
+  color: #e74c3c;
+}
+
+/*=== 6. Form Invalid ===*/
+/* line 347, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+label.form-invalid {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  display: block;
+  margin-top: -25px;
+  padding: 7px 9px;
+  background: #777777;
+  color: #ffffff;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+/* line 361, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+label.form-invalid:after {
+  top: 100%;
+  right: 10px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: transparent;
+  border-top-color: #777777;
+  border-width: 6px;
+}
+
+/*=== 7. Form - Main Message ===*/
+/* line 375, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-main-message {
+  background: #ffffff;
+  color: #999999;
+  border-left: 3px solid transparent;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  height: 0;
+  padding: 0 20px 0 17px;
+  opacity: 0;
+  transition: all ease-in-out 200ms;
+}
+
+/* line 387, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-main-message.show {
+  height: auto;
+  opacity: 1;
+  padding: 10px 20px 10px 17px;
+}
+
+/* line 392, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-main-message.success {
+  border-left-color: #2ecc71;
+}
+
+/* line 395, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.login-form-main-message.error {
+  border-left-color: #e74c3c;
+}
+
+/*=== 8. Custom Checkbox & Radio ===*/
+/* Base for label styling */
+/* line 400, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked,
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+
+/* line 407, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label,
+[type="radio"]:not(:checked) + label,
+[type="radio"]:checked + label {
+  position: relative;
+  padding-left: 25px;
+  padding-top: 1px;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+/* line 417, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 17px;
+  height: 17px;
+  border: 0px solid #aaa;
+  background: #f0f0f0;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* checked mark aspect */
+/* line 433, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after,
+[type="radio"]:checked + label:after {
+  position: absolute;
+  color: #555555;
+  transition: all .2s;
+}
+
+/* checked mark aspect changes */
+/* line 442, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:not(:checked) + label:after,
+[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* line 447, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:checked + label:after,
+[type="radio"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* disabled checkbox */
+/* line 453, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before,
+[type="radio"]:disabled:not(:checked) + label:before,
+[type="radio"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #8c8c8c;
+  background-color: #878787;
+}
+
+/* line 461, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:disabled:checked + label:after,
+[type="radio"]:disabled:checked + label:after {
+  color: #555555;
+}
+
+/* line 465, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:disabled + label,
+[type="radio"]:disabled + label {
+  color: #8c8c8c;
+}
+
+/* accessibility */
+/* line 470, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before,
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+  border: 1px dotted #f6f6f6;
+}
+
+/* hover style just for information */
+/* line 477, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+label:hover:before {
+  border: 1px solid #f6f6f6 !important;
+}
+
+/*=== Customization ===*/
+/* radio aspect */
+/* line 482, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  border-radius: 3px;
+}
+
+/* line 486, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before {
+  border-radius: 35px;
+}
+
+/* selected mark aspect */
+/* line 491, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '✔';
+  top: 0;
+  left: 2px;
+  font-size: 14px;
+}
+
+/* line 498, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+[type="radio"]:not(:checked) + label:after,
+[type="radio"]:checked + label:after {
+  content: '\2022';
+  top: 0;
+  left: 3px;
+  font-size: 30px;
+  line-height: 25px;
+}
+
+/*Bootstrap button outline override*/
+/* line 508, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn-outline {
+  background-color: transparent;
+  color: inherit;
+  transition: all .5s;
+}
+
+/* line 514, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn-primary.btn-outline {
+  color: #428bca;
+}
+
+/* line 518, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn-success.btn-outline {
+  color: #5cb85c;
+}
+
+/* line 522, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn-info.btn-outline {
+  color: #5bc0de;
+}
+
+/* line 526, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn-warning.btn-outline {
+  color: #f0ad4e;
+}
+
+/* line 530, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn-danger.btn-outline {
+  color: #d9534f;
+}
+
+/* line 534, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+  color: #fff;
+}
+
+/* Mobile CSS */
+@media only screen and (max-device-width: 1000px) {
+  /* line 547, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #sidebarNav {
+    display: none;
+  }
+
+  /* line 550, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #pageGapDash {
+    left: 5px;
+    height: 0px;
+  }
+
+  /* line 554, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #aboveTable {
+    left: 10px;
+    top: -20px;
+  }
+
+  /* line 558, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #dateTitle {
+    font-size: 160%;
+  }
+
+  /* line 561, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #dashContents {
+    padding-left: 8px;
+    padding-top: 10px;
+    width: 550px;
+  }
+
+  /* line 566, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #goBlack {
+    width: 500px;
+  }
+
+  /* line 569, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #goBlackApproval {
+    width: 500px;
+  }
+
+  /* line 572, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #mobileRemove {
+    display: none;
+  }
+
+  /* line 575, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #exportsMobile {
+    width: 900px;
+  }
+
+  /* line 578, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #expenseWrap {
+    margin: 0px 0px 0px 5px;
+  }
+
+  /* line 581, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  #textAboveTable {
+    position: relative;
+    height: 80px;
+    left: 0px;
+    top: 0px;
+  }
+
+  /* line 587, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+  .marginBumpExpense {
+    margin-left: 0px;
+  }
+}
+/* 3D Button Effects */
+/* line 596, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d {
+  position: relative;
+  top: -6px;
+  border: 0;
+  transition: all 40ms linear;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+/* line 606, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d:active:focus,
+.btn3d:focus:hover,
+.btn3d:focus {
+  -moz-outline-style: none;
+  outline: medium none;
+}
+
+/* line 612, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d:active, .btn3d.active {
+  top: 2px;
+}
+
+/* line 615, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-white {
+  color: #666666;
+  box-shadow: 0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255, 255, 255, 0.1) inset, 0 8px 0 0 #f5f5f5, 0 8px 8px 1px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+/* line 620, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-white:active, .btn3d.btn-white.active {
+  color: #666666;
+  box-shadow: 0 0 0 1px #ebebeb inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* line 625, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-default {
+  color: #666666;
+  box-shadow: 0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255, 255, 255, 0.1) inset, 0 8px 0 0 #BEBEBE, 0 8px 8px 1px rgba(0, 0, 0, 0.2);
+  background-color: #f9f9f9;
+}
+
+/* line 630, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-default:active, .btn3d.btn-default.active {
+  color: #666666;
+  box-shadow: 0 0 0 1px #ebebeb inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+/* line 635, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-primary {
+  box-shadow: 0 0 0 1px #417fbd inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #4D5BBE, 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+  background-color: #4274D7;
+}
+
+/* line 639, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-primary:active, .btn3d.btn-primary.active {
+  box-shadow: 0 0 0 1px #417fbd inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+  background-color: #4274D7;
+}
+
+/* line 643, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-success {
+  box-shadow: 0 0 0 1px #31c300 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #5eb924, 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+  background-color: #78d739;
+}
+
+/* line 647, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-success:active, .btn3d.btn-success.active {
+  box-shadow: 0 0 0 1px #30cd00 inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+  background-color: #78d739;
+}
+
+/* line 651, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-info {
+  box-shadow: 0 0 0 1px #00a5c3 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #348FD2, 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+  background-color: #39B3D7;
+}
+
+/* line 655, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-info:active, .btn3d.btn-info.active {
+  box-shadow: 0 0 0 1px #00a5c3 inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+  background-color: #39B3D7;
+}
+
+/* line 659, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-warning {
+  box-shadow: 0 0 0 1px #d79a47 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #D79A34, 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+  background-color: #FEAF20;
+}
+
+/* line 663, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-warning:active, .btn3d.btn-warning.active {
+  box-shadow: 0 0 0 1px #d79a47 inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+  background-color: #FEAF20;
+}
+
+/* line 667, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-danger {
+  box-shadow: 0 0 0 1px #b93802 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #AA0000, 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+  background-color: #D73814;
+}
+
+/* line 671, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-danger:active, .btn3d.btn-danger.active {
+  box-shadow: 0 0 0 1px #b93802 inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+  background-color: #D73814;
+}
+
+/* line 675, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-magick {
+  color: #fff;
+  box-shadow: 0 0 0 1px #9a00cd inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #9823d5, 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+  background-color: #bb39d7;
+}
+
+/* line 680, /Users/stevenbarsam/.ssh/timesheet/app/assets/stylesheets/welcome.css.scss */
+.btn3d.btn-magick:active, .btn3d.btn-magick.active {
+  box-shadow: 0 0 0 1px #9a00cd inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+  background-color: #bb39d7;
+}

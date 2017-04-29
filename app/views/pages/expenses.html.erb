@@ -1,1130 +1,614 @@
 <head>
+
   <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
-<style>
-
-  /* ------------------------------------------
-          :: New Expense ::
-     ------------------------------------------ */
-  @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
-  .container{
-    margin-top:20px;
-  }
-
-  .css-class-to-highlight-approved a {
-    background-color: #218212 !important;
-    background-image :none !important;
-    color: #efefef !important;
-  }
-  .css-class-to-highlight-pending a {
-    background-color: #EC971F !important;
-    background-image :none !important;
-    color: #efefef !important;
-  }
-  .css-class-to-highlight-declined a {
-    background-color: #910101 !important;
-    background-image :none !important;
-    color: #efefef !important;
-  }
-
-  .ui-datepicker-current-day a {
-    background-color: #007fff !important;
-    background-image :none !important;
-    color: #efefef !important;
-  }
-
-  .image-preview-input {
-    position: relative;
-    overflow: hidden;
-    margin: 0px;
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
-  }
-  .image-preview-input input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-  }
-  .image-preview-input-title {
-    margin-left:2px;
-  }
-  * .inputwrap {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    -o-font-smoothing: antialiased;
-    font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  body .inputwrap {
-    font-family: "Roboto", Helvetica, Arial, sans-serif;
-    font-weight: 100;
-    font-size: 12px;
-    line-height: 30px;
-    color: #777;
-    background: #4CAF50;
-    background-color: #eaf1fc;
-  }
-
-  .containerz {
-    max-width: 400px;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  #contact input[type="text"],
-  #contact input[type="email"],
-  #contact input[type="tel"],
-  #contact input[type="url"],
-  #contact textarea,
-  #contact button[type="submit"] {
-    font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
-  }
-
-  #contactz {
-    background: #F9F9F9;
-    padding: 25px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  }
-
-  #contactz h3 {
-    display: block;
-    font-size: 30px;
-    font-weight: 300;
-    margin-bottom: 10px;
-  }
-
-  #contactz h4 {
-    margin: 5px 0 15px;
-    display: block;
-    font-size: 13px;
-    font-weight: 400;
-  }
-
-  fieldset .inputwrap  {
-    border: medium none !important;
-    margin: 0 0 10px;
-    min-width: 100%;
-    padding: 0;
-    width: 100%;
-  }
-
-  #contactz input[type="text"],
-  #contactz input[type="email"],
-  #contactz input[type="tel"],
-  #contactz input[type="url"],
-  #contactz textarea {
-    width: 100%;
-    border: 1px solid #ccc;
-    background: #FFF;
-    margin: 0 0 5px;
-    padding: 10px;
-  }
-
-  #contactz input[type="text"]:hover,
-  #contactz input[type="email"]:hover,
-  #contactz input[type="tel"]:hover,
-  #contactz input[type="url"]:hover,
-  #contactz textarea:hover {
-    -webkit-transition: border-color 0.3s ease-in-out;
-    -moz-transition: border-color 0.3s ease-in-out;
-    transition: border-color 0.3s ease-in-out;
-    border: 1px solid #aaa;
-  }
-
-  #contactz textarea {
-    height: 100px;
-    max-width: 100%;
-    resize: none;
-  }
-
-  #contactz button[type="submit"] {
-    cursor: pointer;
-    width: 100%;
-    border: none;
-    background: #4CAF50;
-    color: #FFF;
-    margin: 0 0 5px;
-    padding: 10px;
-    font-size: 15px;
-  }
-
-  #contactz button[type="submit"]:hover {
-    background: #43A047;
-    -webkit-transition: background 0.3s ease-in-out;
-    -moz-transition: background 0.3s ease-in-out;
-    transition: background-color 0.3s ease-in-out;
-  }
-
-  #contactz button[type="submit"]:active {
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
-  }
-
-
-  #contactz input:focus,
-  #contactz textarea:focus {
-    outline: 0;
-    border: 1px solid #aaa;
-  }
-
-  ::-webkit-input-placeholder {
-    color: #888;
-  }
-
-  :-moz-placeholder {
-    color: #888;
-  }
-
-  ::-moz-placeholder {
-    color: #888;
-  }
-
-  :-ms-input-placeholder {
-    color: #888;
-  }
-
-  .image-preview-input {
-    position: relative;
-    overflow: hidden;
-    margin: 0px;
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
-  }
-  .image-preview-input input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-  }
-  .image-preview-input-title {
-    margin-left:2px;
-  }
-
-  #imageNonZoom {
-    display: block;
-    max-width:300px;
-    max-height:500px;
-    width: auto;
-    height: auto;
-  }
-
-  /* -------------------------------------------
-          :: Custom ::
-     ------------------------------------------- */
-
-
-  .disabledbutton {
-    pointer-events: none;
-    opacity: 0.4;
-  }
-
-  html {
-    width: 100%;
-  }
-  .custom-combobox {
-    position: relative;
-    display: inline-block;
-  }
-  .custom-combobox-toggle {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin-left: -1px;
-    padding: 0;
-  }
-  .custom-combobox-input {
-    margin: 0;
-    padding: 5px 10px;
-  }
-
-  /*    --------------------------------------------------
-:: General
--------------------------------------------------- */
-  body {
-    font-family: 'Open Sans', sans-serif;
-    color: #353535;
-    background-color: #eaf1fc;
-  }
-  .content h1 {
-    text-align: center;
-  }
-  .content .content-footer p {
-    color: #6d6d6d;
-    font-size: 12px;
-    text-align: center;
-  }
-  .content .content-footer p a {
-    color: inherit;
-    font-weight: bold;
-  }
-
-  /*	--------------------------------------------------
-    :: Table Filter
-    -------------------------------------------------- */
-  .panel {
-    border: 1px solid #ddd;
-    background-color: #fcfcfc;
-  }
-  .panel .btn-group {
-    margin: 15px 0 30px;
-  }
-  .panel .btn-group .btn {
-    transition: background-color .3s ease;
-  }
-  .table-filter {
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
-  }
-  .table-filter tbody tr:hover {
-    cursor: pointer;
-    background-color: #eee;
-  }
-  .table-filter tbody tr td {
-    padding: 10px;
-    vertical-align: middle;
-    border-top-color: #eee;
-  }
-  .table-filter tbody tr.selected td {
-    background-color: #eee;
-  }
-  .table-filter tr td:first-child {
-    width: 38px;
-  }
-  .table-filter tr td:nth-child(2) {
-    width: 35px;
-  }
-  .ckbox {
-    position: relative;
-  }
-  .ckbox input[type="checkbox"] {
-    opacity: 0;
-  }
-  .ckbox label {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  .ckbox label:before {
-    content: '';
-    top: 1px;
-    left: 0;
-    width: 18px;
-    height: 18px;
-    display: block;
-    position: absolute;
-    border-radius: 2px;
-    border: 1px solid #bbb;
-    background-color: #fff;
-  }
-  .ckbox input[type="checkbox"]:checked + label:before {
-    border-color: #2BBCDE;
-    background-color: #2BBCDE;
-  }
-  .ckbox input[type="checkbox"]:checked + label:after {
-    top: 3px;
-    left: 3.5px;
-    content: '\e013';
-    color: #fff;
-    font-size: 11px;
-    font-family: 'Glyphicons Halflings';
-    position: absolute;
-  }
-  .table-filter .star {
-    color: #ccc;
-    text-align: center;
-    display: block;
-  }
-  .table-filter .star.star-checked {
-    color: #F0AD4E;
-  }
-  .table-filter .star:hover {
-    color: #ccc;
-  }
-  .table-filter .star.star-checked:hover {
-    color: #F0AD4E;
-  }
-  .table-filter .media-photo {
-    width: 35px;
-  }
-  .table-filter .media-body {
-    display: block;
-    /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
-  }
-  .table-filter .media-meta {
-    font-size: 11px;
-    color: #999;
-  }
-  .table-filter .media .title {
-    color: #2BBCDE;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: normal;
-    margin: 0;
-  }
-  .table-filter .media .title span {
-    font-size: .8em;
-    margin-right: 20px;
-  }
-  .table-filter .media .title span.pagado {
-    color: #5cb85c;
-  }
-  .table-filter .media .title span.pendiente {
-    color: #f0ad4e;
-  }
-  .table-filter .media .title span.cancelado {
-    color: #d9534f;
-  }
-  .table-filter .media .summary {
-    font-size: 14px;
-  }
-  #newExpense {
-
-  }
-  #milage {
-    display:none;
-  }
-
-    /* BOOTSNAP TEMPLATE */
-
-
-  .dropdown-user {
-    margin: 13px 0;
-    padding: 5px;
-    height: 100%;
-  }
-
-  .dropdown-user:hover {
-    cursor: pointer;
-
-  }
-
-    .dropdown-user:active {
-      transition: all ease-in-out 500ms;
-      transform: rotate(450deg);
-    }
-
-    /* BOOTSNAP PROGRESS BAR 4-STEP */
-
-  .one, .two, .three, .four{
-    position:absolute;
-    margin-top:-10px;
-    z-index:1;
-    height:40px;
-    width:40px;
-    border-radius:25px;
-    background-color:#dcdcdc;
-  }
-
-  .one{
-    left:-1%;
-  }
-  .two{
-    left:33%;
-  }
-  .three{
-    left:66%;
-  }
-  .four {
-    left:99%;
-  }
-  .primary-color{
-    background-color:#4989bd;
-  }
-  .success-color{
-    background-color:#5cb85c;
-  }
-  .danger-color{
-    background-color:#d9534f;
-  }
-  .warning-color{
-    background-color:#f0ad4e;
-  }
-  .info-color{
-    background-color:#5bc0de;
-  }
-  .no-color{
-    background-color:#dcdcdc;
-  }
-    .progress {
-      background-color:#dcdcdc;
-    }
-
-</style>
-<script>
-
-    function calendarHighlight() {
-        //Init Datepicker and add Highlights if timesheets aren't finished
-
-        var counter = 0;
-        var firstDay, endDay;
-        var eventDates = [], eventDatesGood = [];
-        $('.submitButtonWrap').each(function () {
-            firstDay = moment($(this).find("#submitDate").text()).startOf("week");
-            if ($(this).find("#submitStatus").text() == "Submitted") {
-                eventDatesGood.push(firstDay);
-                eventDatesGood.push(moment(firstDay).add(1,'days'));
-                eventDatesGood.push(moment(firstDay).add(2,'days'));
-                eventDatesGood.push(moment(firstDay).add(3,'days'));
-                eventDatesGood.push(moment(firstDay).add(4,'days'));
-                eventDatesGood.push(moment(firstDay).add(5,'days'));
-                eventDatesGood.push(moment(firstDay).add(6,'days'));
-            } else {
-                eventDates.push(firstDay);
-                eventDates.push(moment(firstDay).add(1,'days'));
-                eventDates.push(moment(firstDay).add(2,'days'));
-                eventDates.push(moment(firstDay).add(3,'days'));
-                eventDates.push(moment(firstDay).add(4,'days'));
-                eventDates.push(moment(firstDay).add(5,'days'));
-                eventDates.push(moment(firstDay).add(6,'days'));
-            }
-        });
-
-        var datesave = $('#datepicker').datepicker('getDate');
-        $("#datepicker").datepicker('destroy');
-        $("#datepicker").datepicker({
-            beforeShowDay: function (date) {
-                for (var i = 0; i < eventDates.length; i++) {
-                    if (new Date(eventDates[i]).toString() == date.toString()) {
-                        return [true, 'css-class-to-highlight-declined', 'tooltip text'];
-                    }
-                }
-                for (var i = 0; i < eventDatesGood.length; i++) {
-                    if (new Date(eventDatesGood[i]).toString() == date.toString()) {
-                        return [true, 'css-class-to-highlight-approved', 'tooltip text'];
-                    }
-                }
-                return [true, ''];
-            }
-        });
-        $("#datepicker").datepicker('setDate',datesave);
-    }
-
-  $(document).on('click', '#close-preview', function(){
-    $('.image-preview').popover('hide');
-    // Hover befor close the preview
-    $('.image-preview').hover(
-        function () {
-          $('.image-preview').popover('show');
-        },
-        function () {
-          $('.image-preview').popover('hide');
-        }
-    );
-  });
-
-  $(function() {
-    // Create the close button
-    var closebtn = $('<button/>', {
-      type:"button",
-      text: 'x',
-      id: 'close-preview',
-      style: 'font-size: initial;',
-    });
-    closebtn.attr("class","close pull-right");
-    // Set the popover default content
-    $('.image-preview').popover({
-      trigger:'manual',
-      html:true,
-      title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
-      content: "There's no image",
-      placement:'bottom'
-    });
-    // Clear event
-    $('.image-preview-clear').click(function(){
-      $('.image-preview').attr("data-content","").popover('hide');
-      $('.image-preview-filename').val("");
-      $('.image-preview-clear').hide();
-      $('.image-preview-input input:file').val("");
-      $(".image-preview-input-title").text("Browse");
-    });
-    // Create the preview image
-    $(".image-preview-input input:file").change(function (){
-      var img = $('<img/>', {
-        id: 'dynamic',
-        width:250,
-        height:200
-      });
-      var file = this.files[0];
-      var reader = new FileReader();
-      // Set preview image into the popover data-content
-      reader.onload = function (e) {
-        $(".image-preview-input-title").text("Change");
-        $(".image-preview-clear").show();
-        $(".image-preview-filename").val(file.name);
-        img.attr('src', e.target.result);
-        $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
-      }
-      reader.readAsDataURL(file);
-    });
-  });
-
-  function isNumber(evt) {
-    var theEvent = evt || window.event;
-    var key = theEvent.keyCode || theEvent.which;
-    key = String.fromCharCode(key);
-    if (key.length == 0) return;
-    var regex = /^[0-9.,\b]+$/;
-    if (!regex.test(key)) {
-      theEvent.returnValue = false;
-      if (theEvent.preventDefault) theEvent.preventDefault();
-    }
-  }
-
-  function calculateMilage() {
-    var amount = $("#milage").val();
-    $("#amountInput").val((amount * 0.535).toFixed(2));
-  }
-
-  function milageButton() {
-      if ( $("#selectType option:selected").text() == "Car Travel" ) {
-          $("#milage").css("display","inherit");
-          $("#amountInput").css("margin-top","");
-          $("#amountInput").attr("readonly","true");
-      } else {
-          $("#milage").css("display","none");
-          $("#amountInput").css("margin-top","5px");
-          $("#amountInput").prop("readonly","");
-      }
-
-      current = "meal_type";
-      if ( $("#selectType option:selected").text() == "Meals" ) {
-          $("button[data-id='" + current +"']").css("display","inherit");
-          $("button[data-id='" + current +"']").css("margin-top","5px");
-          $("#amountInput").css("margin-top","5px");
-      } else {
-          $("button[data-id='" + current +"']").css("display","none");
-          $("#amountInput").css("margin-top","-25px");
-      }
-  }
-
-  // DOCUMENT READY START //
-
-    var CUlist = [], dateList = [], sunList = [], monList = [], tueList = [], wedList = [], thuList = [], friList = [], satList = [];
-  $(document).ready(function() {
-
-      if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          $('#sidebarNav').find('[datePickerTag="first"]').removeAttr("id");
-      }
-      else {
-          $('#sidebarNav').find('[datePickerTag="first"]').attr("id","datepicker");
-          $('.mobileDateCheck').find('[datePickerTag="last"]').css("display","none");
-      }
-
-      var monthNames = ["January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
-      ];
-      var nameArray = [];
-
-      calendarHighlight();
-
-      if (sessionStorage.refreshCount == undefined) {
-          $("#datepicker").datepicker().datepicker("setDate", new Date());
-          sessionStorage.refreshCount = 1;
-      } else {
-          var date = sessionStorage.datePicked;
-          date = new Date(date);
-          date.setDate(date.getDate());
-
-          $("#datepicker").datepicker().datepicker("setDate", date );
-      }
-      sessionStorage.refreshCount = sessionStorage.refreshCount + 1;
-      //new Date("10/10/2016")
-
-      noExpensesCheck();
-      dateRange();
-
-      $('#tableholder').find('tr').each(function () {
-          if (moment($(this).find('.dateBlob').text()) <= lastday && moment($(this).find('.dateBlob').text()) >= firstday) {
-              $(this).css("display","");
-          } else {
-              $(this).css("display","none");
-              // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
-          }
-
-          //find names
-          var name = $(this).find('#names').text();
-          if (jQuery.inArray(name,nameArray) == -1 ) {
-              nameArray.push(name);
-              $('#UserSearch').append('<option data-icon="glyphicon-user">' + name + '</option>');
-              $('.selectpicker').selectpicker('refresh');
-          } else {
-
-          }
-      });
-
-      //Saves date local variable
-      sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
-
-      $(".approvalclass").each(function() {
-        var approval = $(this).clone().children().remove().end().text();
-        if (approval == "Approved") {
-          $(this).css("color","");
-        }
-        if (approval == "Pending") {
-          $(this).css("color","#ec971f");
-        }
-        if (approval == "Unapproved") {
-          $(this).css("color","#cc0a0a");
-        }
-      });
-
-      milageButton();
-
-      $('.selectpicker').on('change', function(){
-          milageButton();
-      });
-
-
-      //initialize selector
-      $('#selectizeInput').selectize({
-          create: true,
-          placeholder: 'Select a CU or Type Your Own',
-      });
-
-      $("#expenseDate").on('change', function() {
-          var $select = $('#selectizeInput').selectize();
-          var control = $select[0].selectize;
-          var dateBeg, dateEnd;
-          control.clearCache('option');
-          control.clearOptions();
-          control.refreshOptions(true);
-
-          day = moment($("#expenseDate").val()).day();
-          dateBeg = moment($("#expenseDate").val()).subtract(day,'days');
-          dateEnd = moment(dateBeg).add(6,'days').endOf('day');
-
-          for (var i = 0; i < CUlist.length; i++) {
-              if (moment(dateList[i]) >= moment(dateBeg) && moment(dateList[i]) <= moment(dateEnd) ) {
-                  control.addOption({value:(CUlist[i]),text:CUlist[i]});
-                  control.addItem((CUlist[i]));
-              }
-          }
-
-          control.clear();
-      });
-
-
-  });
-
-// DOCUMENT READY END  //
-    // ############## //
-
-
-  function noExpensesCheck() {
-    var tablecount = 0;
-    var hiddencount = 0;
-    $("#tableholder").find('tr').each(function() {
-      tablecount = tablecount + 1;
-      if ($(this).css("display") == "none") {
-        hiddencount = hiddencount +1;
-      }
-    });
-
-    if ($("#noExpense").css("display") != "none") {
-      hiddencount = hiddencount +1;
-    }
-
-    if ( tablecount == hiddencount ) {
-      $("#noExpense").css("display","");
-      $("#noExpense").parents().closest(".expenseTab").find("#approvalStatus").text("Not Created");
-    } else {
-      $("#noExpense").css("display","none");
-    }
-  }
-
-var approvalStatus;
-  $(function() {
-    $('.selectpicker').selectpicker();
-  /*  $("#datepickermonth").datepicker( {
-      changeMonth: true,
-      changeYear: true,
-      showButtonPanel: true,
-      dateFormat: 'MM yy',
-      onClose: function(dateText, inst) {
-        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-        $(this).datepicker('setDate', new Date(year, month, 1));
-        $(".dateHolder").each(function() {
-          var dateColumn = moment($(this).clone().children().remove().end().text());
-          var from = new Date(year, month, 1);
-          var to = new Date(year, month, 31);
-          var rowNum = "#row_" + $(this).find("p").text();
-
-          if (dateColumn >= from && dateColumn <= to) {
-            $(rowNum).css("display","");
-            $(rowNum).css("opacity","");
-          } else {
-            $(rowNum).css("display","none");
-            $(rowNum).css("opacity",".99");
-          }
-        });
-      }
-    }); */
-
-    $("#clearMonth").click(function() {
-      $(".dateHolder").each(function() {
-        var rowNum = "#row_" + $(this).find(".idholder").text();
-        $(rowNum).css("display", "");
-        $(rowNum).css("opacity", "");
-      });
-    });
-
-    $("#Approved").click(function(){
-      approvalStatus = "Approved";
-      $(".approvalclass").each(function() {
-        var approval = $(this).clone().children().remove().end().text();
-        var row = "#row_" + $(this).find("p").text();
-        if ($(row).css("opacity") == "1"){
-          if (approval == approvalStatus) {
-            $(row).css("display","");
-          } else {
-            $(row).css("display","none");
-          }
-        }
-      });
-    });
-    $("#Pending").click(function(){
-      approvalStatus = "Pending";
-      $(".approvalclass").each(function() {
-        var approval = $(this).clone().children().remove().end().text();
-        var row = "#row_" + $(this).find("p").text();
-        if ($(row).css("opacity") == "1"){
-          if (approval == approvalStatus) {
-            $(row).css("display","");
-          } else {
-            $(row).css("display","none");
-          }
-        }
-      });
-    });
-    $("#Unapproved").click(function(){
-      approvalStatus = "Unapproved";
-      $(".approvalclass").each(function() {
-        var approval = $(this).clone().children().remove().end().text();
-        var row = "#row_" + $(this).find("p").text();
-        if ($(row).css("opacity") == "1"){
-          if (approval == approvalStatus) {
-            $(row).css("display","");
-          } else {
-            $(row).css("display","none");
-          }
-        }
-      });
-    });
-
-      $(document).on('show.bs.modal', '.modal', function (event) {
-          var zIndex = 1040 + (10 * $('.modal:visible').length);
-          $(this).css('z-index', zIndex);
-          setTimeout(function() {
-              $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-          }, 0);
-      });
-
-
-    $('input[id="expenseDate"]').daterangepicker({
-      singleDatePicker: true,
-      showDropdowns: true,
-      locale: {
-        format: 'YYYY-MM-DD'
-      },
-    });
-  });
-
-  function dateRange() {
-      var monthNames = ["January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
-      ];
-      curr = $('#datepicker').datepicker('getDate');
-      first = curr.getDate() - curr.getDay();
-      firstday = new Date(curr.setDate(first));
-      second = curr.getDate() +1;
-      secondday = new Date(curr.setDate(second));
-      third = curr.getDate() + 1;
-      thirdday = new Date(curr.setDate(third));
-      fourth = curr.getDate() + 1;
-      fourthday = new Date(curr.setDate(fourth));
-      fifth = curr.getDate() + 1;
-      fifthday = new Date(curr.setDate(fifth));
-      sixth = curr.getDate() + 1;
-      sixthday = new Date(curr.setDate(sixth));
-      last = curr.getDate() + 1;
-      lastday = new Date(curr.setDate(last));
-
-      $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
-      $('#Date1').text("Sun " + firstday.getDate() );
-      $('#Date2').text("Mon " + secondday.getDate() );
-      $('#Date3').text("Tue " + thirdday.getDate() );
-      $('#Date4').text("Wed " + fourthday.getDate() );
-      $('#Date5').text("Thu " + fifthday.getDate() );
-      $('#Date6').text("Fri " + sixthday.getDate() );
-      $('#Date7').text("Sat " + lastday.getDate() );
-
-
-      $('#datePicked').val($('#datepicker').datepicker('getDate'));
-
-      var heights = 0;
-      $('#tableholder').find('tr').each(function () {
-
-          if (moment($(this).find('.dateBlob').text()) <= lastday && moment($(this).find('.dateBlob').text()) >= firstday) {
-              $(this).css("display", "");
-
-          } else {
-              $(this).css("display", "none");
-              // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
-          }
-
-      });
-
-      finishedDateList = [], tempArray = [], text = "", almostText = "";
-      //add all of users timesheets into array
-      <% @pages.each do |p| %>
-        CUlist.push("<%= p.credit_union %>");
-        dateList.push("<%= p.date_of_time %>");
-        sunList.push(<%= p.sun %>);
-        monList.push(<%= p.mon %>);
-        tueList.push(<%= p.tue %>);
-        wedList.push(<%= p.wed %>);
-        thuList.push(<%= p.thu %>);
-        friList.push(<%= p.fri %>);
-        satList.push(<%= p.sat %>);
-        //start to get invidiual monday etc to get dates and list them
-      <% end %>
-
-      for (var a = 0; a < sunList.length; a++) {
-          if (sunList[a] > 0 ) { tempArray.push(0); }
-          if (monList[a] > 0 ) { tempArray.push(1); }
-          if (tueList[a] > 0 ) { tempArray.push(2); }
-          if (wedList[a] > 0 ) { tempArray.push(3); }
-          if (thuList[a] > 0 ) { tempArray.push(4); }
-          if (friList[a] > 0 ) { tempArray.push(5); }
-          if (satList[a] > 0 ) { tempArray.push(6); }
-
-          for(var i = 0; i < tempArray.length; i++) {
-              text = text + moment(dateList[a]).startOf('week').add(tempArray[i],'days').format("MM/DD") + ", ";
-          }
-
-          almostText = "Dates Worked: " + text;
-          finishedDateList.push((almostText.substring(0,almostText.length-2)));
-          tempArray.splice(0,tempArray.length);
-          text = "";
-      }
-
-      var CUlistE = [], dateListE = [], approvalFinalE = [];
-      <% @expenses.each do |p| %>
-        CUlistE.push("<%= p.credit_union %>");
-        dateListE.push("<%= p.date_activity %>");
-        approvalFinalE.push("<%= p.approvalFinal %>");
-      <% end %>
-
-      $(".expenseTab").each(function() {
-          var CU = $(this).data("role");
-          $(this).css("display","none");
-          for (var i = 0; i < CUlist.length; i++) {
-              if (moment(dateList[i]) <= lastday && moment(dateList[i]) >= firstday) {
-                  if (CUlist[i] == CU) {
-                      $(this).css("display","inherit");
-                      $(this).find("#datesWorked").text(finishedDateList[i]);
-                  }
-              }
-          }
-          for (var i = 0; i < CUlistE.length; i++) {
-              if (moment(dateListE[i]) <= lastday && moment(dateListE[i]) >= firstday) {
-                  if (CUlistE[i] == CU && CUlistE[i] != "") {
-                      $(this).css("display","inherit");
-                      if (approvalFinalE[i] != 0 && approvalFinalE[i] != undefined) {
-                          $(this).find("#approvalStatus").text(approvalFinalE[i]);
-                      } else {
-                          $(this).find("#approvalStatus").text("Pending");
-                      }
-
-                  }
-              }
-          }
-
-          //Individual progress bars
-          var approval = $(this).find("#approvalStatus").text();
-          if (approval == "Denied") {
-              $(this).find(".pb").addClass("progress-bar-danger");
-              $(this).find(".pb").css("width","100%");
-              $(this).find(".one").addClass("danger-color");
-              $(this).find(".two").addClass("danger-color");
-              $(this).find(".three").addClass("danger-color");
-              $(this).find(".four").addClass("danger-color");
-          }
-          if (approval == "Pending") {
-              $(this).find(".pb").addClass("progress-bar-warning");
-              $(this).find(".pb").css("width","34%");
-              $(this).find(".one").addClass("warning-color");
-              $(this).find(".two").addClass("warning-color");
-              $(this).find(".three").addClass("no-color");
-              $(this).find(".four").addClass("no-color");
-          }
-          if (approval == "Reviewed") {
-              $(this).find(".pb").addClass("progress-bar-info");
-              $(this).find(".pb").css("width","67%");
-              $(this).find(".one").addClass("info-color");
-              $(this).find(".two").addClass("info-color");
-              $(this).find(".three").addClass("info-color");
-              $(this).find(".four").addClass("no-color");
-          }
-          if (approval == "Not Created") {
-              $(this).find(".pb").addClass("progress-bar-info");
-              $(this).find(".pb").css("width","0%");
-              $(this).find(".one").addClass("no-color");
-              $(this).find(".two").addClass("no-color");
-              $(this).find(".three").addClass("no-color");
-              $(this).find(".four").addClass("no-color");
-          }
-          if (approval == "Approved") {
-              $(this).find(".pb").addClass("progress-bar-success");
-              $(this).find(".pb").css("width","100%");
-              $(this).find(".one").addClass("success-color");
-              $(this).find(".two").addClass("success-color");
-              $(this).find(".three").addClass("success-color");
-              $(this).find(".four").addClass("success-color");
-          }
-      });
-
-      $(".expenseEntry").each(function() {
-        var CU = $(this).data("cu");
-        var datez = $(this).data("date");
-        $(this).css("display","none");
-              if (moment(datez) <= lastday && moment(datez) >= firstday) {
-                  if ($(this).parent().data("cu") == CU) {
-                      $(this).css("display","inherit");
-                  }
-              }
-      });
-
-      var counter = 0;
-      $(".submitButton").each(function() {
-          var dater = $(this).parent().parent().find("#submitDate").text();
-          console.log(dater);
-          var submitStatus = $(this).parent().parent().find("#submitStatus").text();
-          //alert(dater + "...." + lastday + "...." + firstday);
-          if (moment(dater) <= lastday && moment(dater) >= firstday && counter == 0) {
-              $(this).css("display","");
-              counter = 1;
-              if (submitStatus == "Not Submitted" || submitStatus == "") {
-                  $(this).removeClass("btn-danger");
-                  $(this).addClass("btn-success");
-                  $(this).attr("value","SubmittedEX");
-                  $(this).text("Submit for Approval?");
+  <script>
+
+      function calendarHighlight() {
+          //Init Datepicker and add Highlights if timesheets aren't finished
+
+          var counter = 0;
+          var firstDay, endDay;
+          var eventDates = [], eventDatesGood = [];
+          $('.submitButtonWrap').each(function () {
+              firstDay = moment($(this).find("#submitDate").text()).startOf("week");
+              if ($(this).find("#submitStatus").text() == "Submitted") {
+                  eventDatesGood.push(firstDay);
+                  eventDatesGood.push(moment(firstDay).add(1,'days'));
+                  eventDatesGood.push(moment(firstDay).add(2,'days'));
+                  eventDatesGood.push(moment(firstDay).add(3,'days'));
+                  eventDatesGood.push(moment(firstDay).add(4,'days'));
+                  eventDatesGood.push(moment(firstDay).add(5,'days'));
+                  eventDatesGood.push(moment(firstDay).add(6,'days'));
               } else {
-                  $(this).removeClass("btn-success");
-                  $(this).addClass("btn-danger");
-                  $(this).attr("value","Not SubmittedEX");
-                  $(this).text("Unsubmit for Approval?");
-                  $("#newEntry").addClass("disabledbutton");
-                  $("#allExpenses").addClass("disabledbutton");
+                  eventDates.push(firstDay);
+                  eventDates.push(moment(firstDay).add(1,'days'));
+                  eventDates.push(moment(firstDay).add(2,'days'));
+                  eventDates.push(moment(firstDay).add(3,'days'));
+                  eventDates.push(moment(firstDay).add(4,'days'));
+                  eventDates.push(moment(firstDay).add(5,'days'));
+                  eventDates.push(moment(firstDay).add(6,'days'));
               }
-          } else {
-              $(this).css("display","none");
+          });
+
+          var datesave = $('#datepicker').datepicker('getDate');
+          $("#datepicker").datepicker('destroy');
+          $("#datepicker").datepicker({
+              beforeShowDay: function (date) {
+                  for (var i = 0; i < eventDates.length; i++) {
+                      if (new Date(eventDates[i]).toString() == date.toString()) {
+                          return [true, 'css-class-to-highlight-declined', 'tooltip text'];
+                      }
+                  }
+                  for (var i = 0; i < eventDatesGood.length; i++) {
+                      if (new Date(eventDatesGood[i]).toString() == date.toString()) {
+                          return [true, 'css-class-to-highlight-approved', 'tooltip text'];
+                      }
+                  }
+                  return [true, ''];
+              }
+          });
+          $("#datepicker").datepicker('setDate',datesave);
+      }
+
+
+      function isNumber(evt) {
+          var theEvent = evt || window.event;
+          var key = theEvent.keyCode || theEvent.which;
+          key = String.fromCharCode(key);
+          if (key.length == 0) return;
+          var regex = /^[0-9.,\b]+$/;
+          if (!regex.test(key)) {
+              theEvent.returnValue = false;
+              if (theEvent.preventDefault) theEvent.preventDefault();
           }
+      }
+
+      function calculateMilage() {
+          var amount = $("#mileage").val();
+          $("#amountInput").val((amount * 0.535).toFixed(2));
+      }
+
+
+      // DOCUMENT READY START //
+
+      var CUlist = [], dateList = [], sunList = [], monList = [], tueList = [], wedList = [], thuList = [], friList = [], satList = [];
+      $(document).ready(function() {
+
+          if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+              $('#sidebarNav').find('[datePickerTag="first"]').removeAttr("id");
+          }
+          else {
+              $('#sidebarNav').find('[datePickerTag="first"]').attr("id","datepicker");
+              $('.mobileDateCheck').find('[datePickerTag="last"]').css("display","none");
+          }
+
+          var monthNames = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"
+          ];
+          var nameArray = [];
+
+          calendarHighlight();
+
+          if (sessionStorage.refreshCount == undefined) {
+              $("#datepicker").datepicker().datepicker("setDate", new Date());
+              sessionStorage.refreshCount = 1;
+          } else {
+              var date = sessionStorage.datePicked;
+              date = new Date(date);
+              date.setDate(date.getDate());
+
+              $("#datepicker").datepicker().datepicker("setDate", date );
+          }
+          sessionStorage.refreshCount = sessionStorage.refreshCount + 1;
+          //new Date("10/10/2016")
+
+          dateRange();
+
+          $('.expenseEntry').each(function () {
+              if (moment($(this).find('.dateBlob').text()) <= lastday && moment($(this).find('.dateBlob').text()) >= firstday) {
+                  $(this).css("display","");
+              } else {
+                  $(this).css("display","none");
+                  // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
+              }
+
+              //find names
+              var name = $(this).find('#names').text();
+              if (jQuery.inArray(name,nameArray) == -1 ) {
+                  nameArray.push(name);
+                  $('#UserSearch').append('<option data-icon="glyphicon-user">' + name + '</option>');
+                  $('.selectpicker').selectpicker('refresh');
+              } else {
+
+              }
+          });
+
+          //Saves date local variable
+          sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+
+          $(".approvalclass").each(function() {
+              var approval = $(this).clone().children().remove().end().text();
+              if (approval == "Approved") {
+                  $(this).css("color","");
+              }
+              if (approval == "Pending") {
+                  $(this).css("color","#ec971f");
+              }
+              if (approval == "Unapproved") {
+                  $(this).css("color","#cc0a0a");
+              }
+          });
+
+
+          //initialize selector
+          $('#selectizeInput').selectize({
+              create: true,
+              placeholder: 'Select a CU or Type Your Own',
+          });
+
+
+
       });
 
-  }
-
-  var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
-  $(document).on('change', '#datepicker', function() {
-
-      $("#expenseWrap").fadeOut();
-
-      setTimeout(dateRange,400);
-
-      $("#expenseWrap").fadeIn();
-
-      //Saves date local variable
-      sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+      // DOCUMENT READY END  //
+      // ############## //
 
 
-  });
+      var approvalStatus;
+      $(function() {
+          $('.selectpicker').selectpicker();
 
 
-  $(".dropdown-menu li a").click(function(){
-    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-  });
+          $("#Approved").click(function(){
+              approvalStatus = "Approved";
+              $(".approvalclass").each(function() {
+                  var approval = $(this).clone().children().remove().end().text();
+                  var row = "#row_" + $(this).find("p").text();
+                  if ($(row).css("opacity") == "1"){
+                      if (approval == approvalStatus) {
+                          $(row).css("display","");
+                      } else {
+                          $(row).css("display","none");
+                      }
+                  }
+              });
+          });
+          $("#Pending").click(function(){
+              approvalStatus = "Pending";
+              $(".approvalclass").each(function() {
+                  var approval = $(this).clone().children().remove().end().text();
+                  var row = "#row_" + $(this).find("p").text();
+                  if ($(row).css("opacity") == "1"){
+                      if (approval == approvalStatus) {
+                          $(row).css("display","");
+                      } else {
+                          $(row).css("display","none");
+                      }
+                  }
+              });
+          });
+          $("#Unapproved").click(function(){
+              approvalStatus = "Unapproved";
+              $(".approvalclass").each(function() {
+                  var approval = $(this).clone().children().remove().end().text();
+                  var row = "#row_" + $(this).find("p").text();
+                  if ($(row).css("opacity") == "1"){
+                      if (approval == approvalStatus) {
+                          $(row).css("display","");
+                      } else {
+                          $(row).css("display","none");
+                      }
+                  }
+              });
+          });
 
-  var sum;
-  $(document).on('change', '.numb', function() {
-    sum = 0;
-    $('.numb').each(function () {
-      sum = sum + Number($(this).val());
-    });
-    $('#totalNew').val(sum);
-  });
+          $(document).on('show.bs.modal', '.modal', function (event) {
+              var zIndex = 1040 + (10 * $('.modal:visible').length);
+              $(this).css('z-index', zIndex);
+              setTimeout(function() {
+                  $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+              }, 0);
+          });
 
-  function validate(evt) {
-    var theEvent = evt || window.event;
-    var key = theEvent.keyCode || theEvent.which;
-    key = String.fromCharCode( key );
-    var regex = /[0-9]|\./;
-    if( !regex.test(key) ) {
-      theEvent.returnValue = false;
-      if(theEvent.preventDefault) theEvent.preventDefault();
+
+          $('input[id="expenseDate"]').daterangepicker({
+              singleDatePicker: true,
+              autoclose: true,
+              showDropdowns: true,
+              locale: {
+                  format: 'YYYY-MM-DD'
+              },
+          });
+      });
+
+      function dateRange() {
+          var monthNames = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"
+          ];
+          curr = $('#datepicker').datepicker('getDate');
+          first = curr.getDate() - curr.getDay();
+          firstday = new Date(curr.setDate(first));
+          second = curr.getDate() +1;
+          secondday = new Date(curr.setDate(second));
+          third = curr.getDate() + 1;
+          thirdday = new Date(curr.setDate(third));
+          fourth = curr.getDate() + 1;
+          fourthday = new Date(curr.setDate(fourth));
+          fifth = curr.getDate() + 1;
+          fifthday = new Date(curr.setDate(fifth));
+          sixth = curr.getDate() + 1;
+          sixthday = new Date(curr.setDate(sixth));
+          last = curr.getDate() + 1;
+          lastday = new Date(curr.setDate(last));
+
+          $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+          $('#Date1').text("Sun " + firstday.getDate() );
+          $('#Date2').text("Mon " + secondday.getDate() );
+          $('#Date3').text("Tue " + thirdday.getDate() );
+          $('#Date4').text("Wed " + fourthday.getDate() );
+          $('#Date5').text("Thu " + fifthday.getDate() );
+          $('#Date6').text("Fri " + sixthday.getDate() );
+          $('#Date7').text("Sat " + lastday.getDate() );
+
+
+          $('#datePicked').val($('#datepicker').datepicker('getDate'));
+
+          var heights = 0;
+          $('.expenseEntry').each(function () {
+              //alert($(this).find('.dateBlob').text());
+              if (moment($(this).find('.dateBlob').text()) <= lastday && moment($(this).find('.dateBlob').text()) >= firstday) {
+                  $(this).css("display", "");
+
+              } else {
+                  $(this).css("display", "none");
+                  // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
+              }
+
+          });
+
+
+          $(".expenseTab").each(function() {
+              var CU = $(this).data("role");
+
+              //Individual progress bars
+              var approval = $(this).find("#approvalStatus").text();
+              if (approval == "Denied") {
+                  $(this).find(".pb").addClass("progress-bar-danger");
+                  $(this).find(".pb").css("width","100%");
+                  $(this).find(".one").addClass("danger-color");
+                  $(this).find(".two").addClass("danger-color");
+                  $(this).find(".three").addClass("danger-color");
+                  $(this).find(".four").addClass("danger-color");
+              }
+              if (approval == "Pending") {
+                  $(this).find(".pb").addClass("progress-bar-warning");
+                  $(this).find(".pb").css("width","34%");
+                  $(this).find(".one").addClass("warning-color");
+                  $(this).find(".two").addClass("warning-color");
+                  $(this).find(".three").addClass("no-color");
+                  $(this).find(".four").addClass("no-color");
+              }
+              if (approval == "Reviewed") {
+                  $(this).find(".pb").addClass("progress-bar-info");
+                  $(this).find(".pb").css("width","67%");
+                  $(this).find(".one").addClass("info-color");
+                  $(this).find(".two").addClass("info-color");
+                  $(this).find(".three").addClass("info-color");
+                  $(this).find(".four").addClass("no-color");
+              }
+              if (approval == "Not Created") {
+                  $(this).find(".pb").addClass("progress-bar-info");
+                  $(this).find(".pb").css("width","0%");
+                  $(this).find(".one").addClass("no-color");
+                  $(this).find(".two").addClass("no-color");
+                  $(this).find(".three").addClass("no-color");
+                  $(this).find(".four").addClass("no-color");
+              }
+              if (approval == "Approved") {
+                  $(this).find(".pb").addClass("progress-bar-success");
+                  $(this).find(".pb").css("width","100%");
+                  $(this).find(".one").addClass("success-color");
+                  $(this).find(".two").addClass("success-color");
+                  $(this).find(".three").addClass("success-color");
+                  $(this).find(".four").addClass("success-color");
+              }
+          });
+
+
+          var counter = 0;
+          $(".submitButton").each(function() {
+              var dater = $(this).parent().parent().find("#submitDate").text();
+              console.log(dater);
+              var submitStatus = $(this).parent().parent().find("#submitStatus").text();
+              //alert(dater + "...." + lastday + "...." + firstday);
+              if (moment(dater) <= lastday && moment(dater) >= firstday && counter == 0) {
+                  $(this).css("display","");
+                  counter = 1;
+                  if (submitStatus == "Not Submitted" || submitStatus == "") {
+                      $(this).removeClass("btn-danger");
+                      $(this).addClass("btn-success");
+                      $(this).attr("value","SubmittedEX");
+                      $(this).text("Submit for Approval?");
+                      $("#pageGapDash").removeClass("disabledbutton");
+                      $("#allExpenses").removeClass("disabledbutton");
+                      $('.user-infos').hide();
+                  } else {
+                      $(this).removeClass("btn-success");
+                      $(this).addClass("btn-danger");
+                      $(this).attr("value","Not SubmittedEX");
+                      $(this).text("Unsubmit for Approval?");
+                      $("#pageGapDash").addClass("disabledbutton");
+                      $("#allExpenses").addClass("disabledbutton");
+                      $('.user-infos').show();
+                  }
+              } else {
+                  $(this).css("display","none");
+              }
+          });
+
+          startDate = moment(firstday).format("YYYY-MM-DD");
+          endDate = moment(lastday).format("YYYY-MM-DD");
+          $('#printWeek').attr('href',"/exportsWeekExpenses.xlsx?endDate=" + endDate + "&startDate=" + startDate + "&userID=" + <%= current_user.id %>);
+
+          $(".dollarCheck").each(function() {
+             if ($(this).children('span').text() == "") {
+
+             } else {
+                 $(this).html("<span class='.dollarCheck'>$<span class='" + $(this).children('span').attr('class') + "'>" + $(this).children('span').text() + "</span");
+             }
+          });
+
+          CUList();
+          totalColumns();
+
+      }
+
+      var CUArray = [], CUArrayTime = [], CUArrayJob = [];
+      var javascript_side_json = <%= raw @CUFinalList %>;
+
+      <% @pages.each do |p| %>
+        CUArray.push("<%= p.credit_union %>");
+        CUArrayTime.push("<%= p.date_of_time %>");
+        CUArrayJob.push("<%= p.activity %>");
+      <% end %>
+
+      var completed_list = {
+          'text': 'All CUs',
+          'children': [
+
+          ]
+      };
+
+      function CUList() {
+          var unique = [];
+
+          counter = 0;
+          for (var b = 0; b < CUArray.length; b++) {
+              console.log(CUArray[b]);
+              console.log(CUArrayTime[b]);
+              if (unique.indexOf(CUArray[b]) != -1) { continue; }
+              if (moment(firstday).startOf('day') < moment(CUArrayTime[b]) && moment(lastday).endOf('day') > moment(CUArrayTime[b]) ) {
+                  unique[counter] = CUArray[b];
+                  counter++;
+              }
+          }
+
+          var new_list = {
+              'text': 'CUs from Timesheet',
+              'children': [
+
+              ]
+          };
+
+          for (var i = 0; i < unique.length; i++) {
+              new_list['children'].push({'id': i, 'text': unique[i]});
+          }
+          for (var z = 0; z < javascript_side_json.length; z++) {
+              completed_list['children'].push({'id': javascript_side_json[z], 'text': javascript_side_json[z] });
+          }
+
+
+          $('#CUList').empty().trigger('change');
+          $('#CUList').select2({
+              data:[
+                  new_list,
+                  completed_list
+              ],
+          });
+          checkCUJob();
+      }
+
+      function checkCUJob() {
+        var selectedOption = $("#CUList option:selected").text();
+        var time = moment(CUArrayTime[CUArray.indexOf(selectedOption)]);
+        if (CUArray.indexOf(selectedOption) != -1 && time > moment(firstday).startOf('day') && time < moment(lastday).endOf('day') ) {
+            $("#jobSelect").val(CUArrayJob[CUArray.indexOf(selectedOption)]);
+            $('.selectpicker').selectpicker('refresh');
+        }
+      }
+
+      $(document).on('change', '#CUList', function() {
+         checkCUJob();
+      });
+
+
+      var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
+      $(document).on('change', '#datepicker', function() {
+
+          $("#dashContents").fadeOut();
+
+          setTimeout(dateRange,400);
+
+          $("#dashContents").fadeIn();
+
+          //Saves date local variable
+          sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
+
+
+      });
+
+
+      $(".dropdown-menu li a").click(function(){
+          $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+          $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+      });
+
+      var sum;
+
+      function numbTotal() {
+          sum = 0;
+          $('.numb').each(function () {
+              if ($(this).hasClass('skip')) {
+
+              } else {
+                  sum = sum + Number($(this).val());
+              }
+          });
+          $('#totalNew').val(sum);
+      }
+      $(document).on('change', '.numb', function() {
+          numbTotal();
+      });
+
+      $(document).on('keyup', 'input.costInput',function () {
+          total = 0;
+          var totalString = [];
+          $('.costInput').each(function () {
+              total = total + Number($(this).val());
+              totalString.push($(this).val());
+          });
+          $('#mealTotal').val(total);
+          $("#meals").val(totalString);
+          numbTotal();
+      });
+
+     $(document).on('keyup', 'input.restaurantInput',function () {
+          var totalString = [];
+          $(".restaurantInput").each(function() {
+              totalString.push($(this).val());
+          });
+          $("#mealNames").val(totalString);
+      });
+
+      function validate(evt) {
+          var theEvent = evt || window.event;
+          var key = theEvent.keyCode || theEvent.which;
+          key = String.fromCharCode( key );
+          var regex = /[0-9]|\./;
+          if( !regex.test(key) ) {
+              theEvent.returnValue = false;
+              if(theEvent.preventDefault) theEvent.preventDefault();
+          }
+      }
+
+      function totalColumns() {
+          var sunTotal,monTotal,tueTotal,wedTotal,thuTotal,friTotal,satTotal,otherTotal,totalTotal;
+          sunTotal = 0.00, monTotal = 0.00, tueTotal = 0.00, wedTotal = 0.00, thuTotal = 0.00, friTotal = 0.00, satTotal = 0.00, otherTotal = 0.00,totalTotal = 0.00;
+
+
+          $(".sunEntry").each(function () {
+              if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                  sunTotal += (parseFloat($(this).text()) || 0);
+              }
+          });
+          $(".monEntry").each(function () {
+              if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                  monTotal += (parseFloat($(this).text()) || 0);
+              }
+          });
+          $(".tueEntry").each(function () {
+              if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                  tueTotal += (parseFloat($(this).text())  || 0);
+              }
+          });
+          $(".wedEntry").each(function () {
+              if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                  wedTotal += (parseFloat($(this).text()) || 0);
+              }
+          });
+          $(".thuEntry").each(function () {
+              if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                  thuTotal += (parseFloat($(this).text())  || 0);
+              }
+          });
+          $(".friEntry").each(function () {
+              if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                  friTotal += (parseFloat($(this).text())  || 0);
+              }
+          });
+          $(".satEntry").each(function () {
+              if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                  satTotal += (parseFloat($(this).text()) || 0);
+              }
+          });
+          $(".otherEntry").each(function () {
+              if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                  otherTotal += (parseFloat($(this).text()) || 0);
+              }
+          });
+          $(".totalEntry").each(function () {
+              if (parseFloat($(this).text()) != NaN && $(this).closest('tr').css("display") != "none") {
+                  totalTotal += parseFloat($(this).text());
+              }
+          });
+          $("#totalSun").text(sunTotal.toFixed(2));
+          $("#totalMon").text(monTotal.toFixed(2));
+          $("#totalTue").text(tueTotal.toFixed(2));
+          $("#totalWed").text(wedTotal.toFixed(2));
+          $("#totalThu").text(thuTotal.toFixed(2));
+          $("#totalFri").text(friTotal.toFixed(2));
+          $("#totalSat").text(satTotal.toFixed(2));
+          $("#totalOther").text(otherTotal.toFixed(2));
+          $("#totalTotal").text(totalTotal.toFixed(2));
+      }
+
+
+  </script>
+  <style>
+    input {display: block; padding: 0; margin: 0; border: 0; width: 100%;}
+    td {margin: 0; padding: 0;}
+
+
+    .disabledbutton {
+      pointer-events: none;
+      opacity: 0.4;
     }
-  }
 
-    $(document).ready(function() {
-        var panels = $('.user-infos');
-        var panelsButton = $('.dropdown-user');
-        panels.hide();
+    .css-class-to-highlight-approved a {
+      background-color: #218212 !important;
+      background-image :none !important;
+      color: #efefef !important;
+    }
+    .css-class-to-highlight-pending a {
+      background-color: #EC971F !important;
+      background-image :none !important;
+      color: #efefef !important;
+    }
+    .css-class-to-highlight-declined a {
+      background-color: #910101 !important;
+      background-image :none !important;
+      color: #efefef !important;
+    }
 
-        //Click dropdown
-        panelsButton.click(function() {
-            //get data-for attribute
-            var dataFor = $(this).attr('data-for');
-            var idFor = $(dataFor);
+    .ui-datepicker-current-day a {
+      background-color: #007fff !important;
+      background-image :none !important;
+      color: #efefef !important;
+    }
+    .select2-container--default .select2-results__option{
+      font-size: x-small;
+    }
+    .input-w label, .input-w input {
+      float: none; /* if you had floats before? otherwise inline-block will behave differently */
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-            //current button
-            var currentButton = $(this);
-            idFor.slideToggle(400, function() {
-                //Completed slidetoggle
-                if(idFor.is(':visible'))
-                {
-                    currentButton.removeClass("hvr-icon-hang");
-                    currentButton.addClass("hvr-icon-bob");
-                }
-                else
-                {
-                    currentButton.removeClass("hvr-icon-bob");
-                    currentButton.addClass("hvr-icon-hang");
-                }
-            })
-        });
-
-        $('[data-toggle="tooltip"]').tooltip();
-
-
-    });
-
-
-</script>
+  </style>
 </head>
 
-<div id="shadowOnOffs" style="background-color:#eaf1fc;">
+<div id="shadowOnOffs" >
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -1139,7 +623,7 @@ var approvalStatus;
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/" >Timesheet</a></li>
+          <li><a href="/timesheet" >Timesheet</a></li>
           <% if current_user.admin == true %>
               <li><a href="/approvals" >Timesheet Approvals</a></li>
           <% end %>
@@ -1158,317 +642,458 @@ var approvalStatus;
 
 
 
-<div class="container-fluid" >
-  <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
-      <div style="line-height:75%;"><br></div>
-      <h2 style="text-align: center;">Expenses</h2>
-      <div style="" id="datepicker" datePickerTag="first"></div>
-      <br>
+  <div class="container-fluid" >
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
+        <div style="line-height:75%;"><br></div>
+        <h2 style="text-align: center;">Expenses</h2>
+        <div style="" id="datepicker" datePickerTag="first"></div>
+        <br>
 
-      <ul class="nav nav-sidebar">
-        <li><a class="hvr-sweep-to-right" href="/" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
-        <% if current_user.admin == true %>
-        <li ><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
-        <% end %>
-        <li class="active"><a class="hvr-sweep-to-right" href="/expenses">Expenses<span class="glyphicon glyphicon-usd pull-right"></span></a></li>
-        <% if current_user.admin == true %>
-        <li><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
-        <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
-        <% end %>
-      </ul>
-
-
-
-    </div>
+        <ul class="nav nav-sidebar">
+          <li><a class="hvr-sweep-to-right" href="/timesheet" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
+          <% if current_user.admin == true %>
+              <li ><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
+          <% end %>
+          <li class="active"><a class="hvr-sweep-to-right" href="/expenses">Expenses<span class="glyphicon glyphicon-usd pull-right"></span></a></li>
+          <% if current_user.admin == true %>
+              <li><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
+              <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
+              <li><a class="hvr-sweep-to-right" href="/exports">Employees<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+          <% end %>
+        </ul>
 
 
 
-    <div class="container" id="expenseWrap">
-      <div class="row">
+      </div>
 
-        <section class="content">
-          <h1 style="text-align:center;" class="marginBumpExpense">Add an Expense</h1>
 
-          <div class="marginBumpExpense">
-            <div class="panel panel-default"  id="goBlack">
-              <div class="panel-body">
-                <h2 class="page-header" style="margin:1px;text-align:center;" id="dateTitle"></h2>
-                <div class="pull-left">
-                    <button type="button" style="margin-top:3px;" class="btn btn-primary btn-filter" id="newEntry" data-toggle="modal" data-target="#myModal" >Create New Entry</button>
 
-                </div>
-                 <div class="pull-right">
-                   <!-- <div class="btn-group pull-right" style="margin: 30px 0px 10px 0px;">
-                      <button type="button" id="Approved" class="btn btn-success btn-filter" data-target="pagado">Approved</button>
-                      <button type="button" id="Pending" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
-                      <button type="button" id="Unapproved" class="btn btn-danger btn-filter" data-target="cancelado">Unapproved</button>
+
+
+      <div id="dashContents" style="width:1850px;">
+        <div id="textAboveTable">
+          <h2 class="page-header" style="" id="dateTitle"></h2>
+
+          <p style="left:310px;">Hit the checkmark to save a row of expenses. Hit the X button to delete a row.</p>
+          <a id="printWeek" href=""><i class="glyphicon glyphicon-print"></i>Print Week Expenses</a>
+          <% @expenses.each do |e| %>
+              <div class="submitButtonWrap" style="">
+                <p id="submitStatus" style="display:none;"><%= e.submitted %></p>
+                <p id="submitDate" style="display:none;"><%= e.date_activity %></p>
+                <%= form_for(e,  :url => {:action => 'update', :id => e.id}) do |f| %>
+                    <%= button_tag "Submit for Approval?", type: 'submit', class: "submitButton btn btn3d", style: "display:none;",id:"submitButton", name: "subaction", value: "SubmittedEX" %>
+                <% end %>
+              </div>
+          <% end %>
+        <br>
+          <!--<div datePickerTag="last" class="mobileDateCheck">
+            <label id="labelforlast">Select Date: </label>
+            <input style="" id="datepicker">
+            <br>
+
+          </div> -->
+
+        </div>
+        <br>
+        <br>
+        <%= form_for @new_expenses do |t| %>
+
+            <h2 class="sub-header">&nbsp;</h2>
+
+            <div class="table-responsive" id="pageGapDash" style="width:1800px;">
+
+              <table class="table table-striped table-bordered table-hover" style="font-size:12px;">
+                <thead>
+                <tr style="padding: 8px 8px 8px 0px;">
+                  <th></th>
+                  <th style="width:80px;">Date</th>
+                  <th>Credit Union</th>
+                  <th>Job</th>
+                  <th>Miles Traveled</th>
+                  <th>Mileage Expense</th>
+                  <th>Air Travel, Gas, Bags</th>
+                  <th>Taxi, Parking, Tolls</th>
+                  <th>Car Rental</th>
+                  <th>Meals</th>
+                  <th>Lodging</th>
+                  <th>Entertainment</th>
+                  <th>Other</th>
+                  <th>Explain Other</th>
+                  <th>Reimbursement Total</th>
+                  <th>Image Upload</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                  <td style="z-index:1000;" id="submitBut">
+                    <%= button_tag "", type: 'submit', class: "btn btn-success glyphicon glyphicon-ok pull-right actualSubmitBut" %>
+                  </td>
+
+                  <td>
+                    <%= t.text_field :date_activity, { :id => "expenseDate", :class => "form-control" ,:placeholder => "Date of Expense", :style => "vertical-align:center;height:100%;width:100px;" } %>
+
+                  </td>
+
+                  <td>
+                    <%= t.select :credit_union, options_for_select("List"), {}, { :id => "CUList", :class => "creditUnionSelect" , 'data-width' => '200px', 'title' => 'Credit Union', 'data-live-search' => "true" } %>
+                  </td>
+
+                  <td>
+
+                    <%= t.select :job, options_for_select([
+                                                              "06-CU-10 IT Compliance Review",
+                                                              "748 Annual Review",
+                                                              "ACH Audit",
+                                                              "ACH Risk Assessment",
+                                                              "Administrative",
+                                                              "ATM Safety Evaluation",
+                                                              "Ballot Tabulation",
+                                                              "Bank Reconciliation",
+                                                              "BSA/CIP/OFAC Compliance Review",
+                                                              "Call Report Preparation",
+                                                              "Cash Counts",
+                                                              "Custom IT Consulting",
+                                                              "Cyber Security Assessment Toolkit",
+                                                              "FTR Speaking Engagement",
+                                                              "FTR Workshops",
+                                                              "Holiday",
+                                                              "Illness",
+                                                              "Internal Audit",
+                                                              "Loan Review",
+                                                              "Member Account Verification",
+                                                              "PCI PIN Security Compliance Review",
+                                                              "Personal",
+                                                              "Remote Systems Maintence",
+                                                              "Risk Assessment & Policy Development",
+                                                              "Special Services",
+                                                              "Supervisory Committee Annual Review",
+                                                              "TR-39 PIN Audit",
+                                                              "Travel",
+                                                              "Vacation",
+                                                              "Vulnerability Assessment Training"]),
+                                 {}, { :id => "jobSelect", :class => "selectpicker show-tick activitySelect" , 'data-width' => '150px', 'title' => 'Activity' } %>
+                  </td>
+                  <td >
+                      <%= t.number_field :miles_traveled, { 'id' => "mileage", 'onkeyup' => "calculateMilage()", 'onkeypress' => 'validate(event)', :class => "form-control numb skip" , :style => "width:90px;" , 'value' => '0.00' , 'step' => '0.01', 'min' => '0' } %>
+                  </td>
+                  <td >
+                    <%= t.number_field :mileage_expense, { 'id' => 'amountInput', 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:90px;" , 'value' => '0.00' , 'step' => '0.01', 'min' => '0', 'onkeydown' => 'return false;' , :readonly => true } %>
+                  </td>
+                  <td>
+                    <%= t.number_field :air_travel, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:90px;" , 'value' => '0.00' , 'step' => '0.01', 'min' => '0' } %>
+                  </td>
+                  <td>
+                    <%= t.number_field :taxi_parking, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:90px;" , 'value' => '0.00' , 'step' => '0.01', 'min' => '0' } %>
+                  </td>
+                  <td>
+                    <%= t.number_field :car_rental, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:90px;" , 'value' => '0.00' , 'step' => '0.01', 'min' => '0' } %>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#enterMeals">Enter Meals</button>
+                  </td>
+                  <td>
+                  <%= t.number_field :lodging, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:90px;" , 'value' => '0.00' , 'step' => '0.01', 'min' => '0' } %>
+                </td>
+                  <td >
+                    <%= t.number_field :entertainment, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:90px;" , 'value' => '0.00' , 'step' => '0.01', 'min' => '0' } %>
+                  </td>
+                  <td>
+                    <%= t.number_field :other, { 'onkeypress' => 'validate(event)', :class => "form-control numb" , :style => "width:90px;" , 'value' => '0.00' , 'step' => '0.01', 'min' => '0' } %>
+                  </td>
+                  <td>
+                    <%= t.text_field :notes, { :class => "form-control" , :style => "width:150px;"} %>
+                  </td>
+
+                 <td>
+                    <div class="input-group">
+
+                      <%= t.number_field :total, {:class => "form-control" , :style => "width:100px;" , :id => "totalNew" , 'onkeydown' => 'return false;' , :readonly => true } %>
                     </div>
-  <br>
-                    <div class="pull-right mobileDateCheck" >
-                      <div datePickerTag="last">
-                        <label id="labelforlast">Select Date: </label>
-                        <input style="" id="datepicker">
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Files</button>
+                  </td>
+                </tr>
 
+
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Receipts or Files</h4>
                       </div>
+                      <div class="modal-body">
+                        <p>To add pictures or a PDF, just select them from your computer.</p>
+                        <p>To select multiple, hold CTRL (or COMMAND on Mac) and click on each one :D Happy uploadin'</p>
+                        <div id="gal1">
 
-                      <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:1px;">All</button>
-                      -->
-                    <!--
-                    <label for="startDate">Date Range:</label>
-                    <input name="startDate" id="datepickermonth" /> -->
+                          <%= t.file_field :images, multiple: true, id: 'fileupload' %>
+                          <hr />
+                          <b>Live Preview</b>
+                          <br />
+                          <br />
+                          <div id="dvPreview">
+                          </div>
+
+                          <script language="javascript" type="text/javascript">
+                              $(function () {
+                                  $("#fileupload").change(function () {
+                                      if (typeof (FileReader) != "undefined") {
+                                          var dvPreview = $("#dvPreview");
+                                          dvPreview.html("");
+                                          var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                                          $($(this)[0].files).each(function () {
+                                              var file = $(this);
+                                              if (regex.test(file[0].name.toLowerCase())) {
+                                                  var reader = new FileReader();
+                                                  reader.onload = function (e) {
+                                                      var img = $("<img />");
+                                                      img.attr("style", "height:100px;width: 100px");
+                                                      img.attr("src", e.target.result);
+                                                      dvPreview.append(img);
+                                                  }
+                                                  reader.readAsDataURL(file[0]);
+                                              } else {
+                                                  var regexPDF = /^([a-zA-Z0-9\s_\\.\-:])+(.pdf)$/;
+                                                  if (regexPDF.test(file[0].name.toLowerCase())) {
+                                                      var reader = new FileReader();
+                                                      reader.onload = function (e) {
+                                                          var img = $("<img src='http://gundemmedyam.com/img/pdf.png' />");
+                                                          img.attr("style", "height:100px;width: 100px");
+                                                          dvPreview.append(img);
+                                                      }
+                                                      reader.readAsDataURL(file[0]);
+                                                  } else {
+                                                          alert(file[0].name + " is not a valid image file.");
+                                                          dvPreview.html("");
+                                                          return false;
+                                                  }
+                                              }
+                                          });
+                                      } else {
+                                          alert("This browser does not support HTML5 FileReader.");
+                                      }
+                                  });
+                              });
+                          </script>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
 
-                  <div style="line-height:75%;"><br></div>
+        </tbody>
 
+        <tbody id="tableholder">
+        <% @expenses.each do |p| %>
+            <tr id="row_<%= p.id %>" class="expenseEntry">
+              <td><%= link_to '', page_path(p, :type => "expense"), method: :delete, data: { confirm: 'Do you want to delete this entry?' }, :remote => true, :style => "font-size:10px;", :class => 'delete_page btn btn-danger glyphicon glyphicon-remove pull-right' %></td>
+              <td><span class="dateBlob"><%= p.date_activity %> </span></td>
+              <td><%= p.credit_union %> </td>
+              <td><%= p.job %> </td>
 
-                <div id="allExpenses" class="container" style="width:100%;">
-                  <div class="well span8 offset2">
-                    <% @combinedCUs.each do |c| %>
-                   <div class="expenseTab" data-role="<%= c %>">
-                    <div class="row-fluid user-row">
-                      <div class="span1 dropdown-user pull-right hvr-icon-hang" data-for=".<%= c.gsub(/[ ]/,' ' => '-') %>">
+              <td class="dropdown">
+                <span class="Entry"><%= p.miles_traveled %></span>
+              </td>
+              <td class="dropdown">
+                <p class="dollarCheck"><span class="sunEntry"><%= p.mileage_expense %></span></p>
+              </td>
+              <td class="dropdown">
+                <span class="dollarCheck"><span class="monEntry"><%= p.air_travel %></span></span>
+              </td>
+              <td class="dropdown">
+                <span class="dollarCheck"><span class="tueEntry"><%= p.taxi_parking %></span></span>
+              </td>
+              <td class="dropdown">
+                <span class="dollarCheck"><span class="wedEntry"><%= p.car_rental %></span></span>
+              </td>
+              <td class="dropdown">
+                <span class="dollarCheck"><span class="thuEntry"><%= p.meal_total %></span></span>
+              </td>
+              <td class="dropdown">
+                <span class="dollarCheck"><span class="friEntry"><%= p.lodging %></span></span>
+              </td>
+              <td class="dropdown">
+                <span class="dollarCheck"><span class="satEntry"><%= p.entertainment %></span></span>
+              </td>
+              <td class="dropdown">
+                <span class="dollarCheck"><span class="otherEntry"><%= p.other %></span></span>
+              </td>
+              <td class="dropdown">
+                <span class="Entry"><%= p.notes %></span>
+              </td>
 
-                      </div>
-
-                      <div class="span10">
-                        <strong><%= c %></strong><br>
-                        <p class="text-muted" id="datesWorked" style="margin-bottom:1px;">Dates Worked: </p>
-                        <p class="text-muted">Approval Status: <span id="approvalStatus"></span></p>
-                        <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
-                        <div class="progress" style="width:100%;">
-                          <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>
-                          <div class="pb progress-bar" style="width: 27%"></div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row-fluid user-infos <%= c.gsub(/[ ]/,' ' => '-') %>" style="margin-top:20px;">
-                      <div class="span10 offset1">
-                        <div class="panel panel-primary">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Expense Entries</h3>
-                          </div>
-                          <div class="panel-body">
-                            <div class="row-fluid">
-                              <div class="table-container">
-                                <table id="tableholder" class="table table-filter">
-                                  <tbody data-cu="<%= c %>">
-                                  <tr id="noExpense" style="display:none;">
-                                    <td colspan="5" style="text-align:center;">
-                                      <h2>No expenses found :( </h2>
-                                    </td>
-                                  </tr>
-                                  <% @expenses.where(:credit_union => c).each do |e| %>
-                                      <tr id="row_<%= e.id %>" class="expenseEntry" data-cu="<%= e.credit_union %>" data-date="<%= e.date_activity %>" >
-                                        <td>
-                                          <div class="ckbox">
-                                            <%= link_to '', page_path(e, :type => "expense"), method: :delete, data: { confirm: 'Do you want to delete this entry?' }, :remote => true, :style => "font-size:6px;", :class => 'delete_page btn btn-danger glyphicon glyphicon-remove pull-right' %>
-
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <a href="javascript:;" class="star">
-                                            <i class="glyphicon glyphicon-star"></i>
-                                          </a>
-                                        </td>
-                                        <td>
-
-                                          <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
-                                            <a href="#" class="pull-left" >
-                                              <% if e.image.blank? %>
-                                                  <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
-                                              <% else %>
-                                                  <%= image_tag e.image.thumb %>
-                                              <% end %>
-                                            </a>
-
-                                            <div class="pull-left">
-                                              <h4 class="title" style="text-align:left;">
-                                                <%= e.type_of_expense%>
-                                              </h4>
-                                              <p class="summary">$<%= e.amount %></p>
-                                            </div>
-                                            <div class="media-body pull-right" style="width:300px;">
-                                              <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
-                                              <h4 class="title">
-
-                                                <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
-
-                                              </h4>
-
-                                            </div>
-                                          </div>
-
-                                        </td>
-                                      </tr>
-                                  <% end %>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                        <hr style="border-color:#0d5ddd;">
-                    </div>
-                        <% end %>
-
-
-
-                  </div>
-                </div>
-
-              <% @expenses.each do |e| %>
-                  <div class="submitButtonWrap" style="margin:0 auto;text-align:center;margin-bottom:10px;">
-                    <p id="submitStatus" style="display:none;"><%= e.submitted %></p>
-                    <p id="submitDate" style="display:none;"><%= e.date_activity %></p>
-                    <%= form_for(e,  :url => {:action => 'update', :id => e.id}) do |f| %>
-                        <%= button_tag "Submit for Approval?", type: 'submit', class: "submitButton btn btn3d", style: "display:none;",id:"submitButton", name: "subaction", value: "SubmittedEX" %>
+              <td>
+                $<span class="totalEntry"><%= p.total %></span>
+              </td>
+              <td>
+                <% if p.images.any? %>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#<%= p.id %>" style="margin-left:15px;">Files</button>
                     <% end %>
-                  </div>
-              <% end %>
+              </td>
+            </tr>
 
+
+
+            <!-- Modal -->
+            <div id="<%= p.id %>" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Receipts/Files from <%= p.date_activity %></h4>
+                  </div>
+                  <div class="modal-body">
+                    <div id="gal1">
+
+                    <% p.images.each do |i| %>
+                          <% if i.file.extension.downcase == "pdf" %>
+                              <div>
+                                <img href="<%= i.url %>" download="<%= i.filename %>" src="http://gundemmedyam.com/img/pdf.png" style="width:100px;">
+                                <br>
+                                <a href="<%= i.url %>" download="<%= i.filename %>">Download PDF</a>
+                              </div>
+                            <% else %>
+                          <a href="<%= i.large.url %>" rel="noopener noreferrer data-image="<%= i.thumb.url %>" data-zoom-image="<%= i.large.url %>" target="_blank">
+                            <img id="img_01" src="<%= i.thumb.url %>" />
+                          </a>
+                        <% end %>
+                    <% end %>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+        <% end %>
+
+        </tbody>
+
+        <tbody>
+        <tr class="success" id="totalsColumn">
+          <td class="otherTotalCol"><p style="font-weight:bold;">Totals:</p></td>
+          <td class="otherTotalCol"></td>
+          <td class="otherTotalCol"></td>
+          <td class="otherTotalCol"></td>
+          <td class="otherTotalCol"></td>
+          <td>$<span style="font-weight:bold;" id="totalSun"></span></td>
+          <td>$<span style="font-weight:bold;" id="totalMon"></span></td>
+          <td>$<span style="font-weight:bold;" id="totalTue"></span></td>
+          <td>$<span style="font-weight:bold;" id="totalWed"></span></td>
+          <td>$<span style="font-weight:bold;" id="totalThu"></span></td>
+          <td>$<span style="font-weight:bold;" id="totalFri"></span></td>
+          <td>$<span style="font-weight:bold;" id="totalSat"></span></td>
+          <td>$<span style="font-weight:bold;" id="totalOther"></span></td>
+          <td class="otherTotalCol"></td>
+          <td>$<span style="font-weight:bold;" id="totalTotal"></span></td>
+          <td class="otherTotalCol"></td>
+        </tr>
+        </tbody>
+
+        </table>
+
+        <div id="enterMeals" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Enter Meals</h4>
+              </div>
+              <table class="table" id="tab_logic">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Restaurant</th>
+                  <th>Cost</th>
+                  <th>Daily Total</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr id='addr0' class="inputBundle">
+                  <td>
+                    <p>1</p>
+                  </td>
+                  <td>
+                    <input class="form-control restaurantInput" type="text" placeholder="Restaurant Name">
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <p style="padding:0px;" class="col-sm-2 control-label">$</p>
+                      <div class="col-sm-10" style="padding:0px;">
+                        <input class="form-control costInput" style="padding:0px;" onkeypress='validate(event)' placeholder="Enter Cost">
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                <tr id='addr1' class="inputBundle"></tr>
+                <tr id='addr2' class="inputBundle"></tr>
+                <tr id='addr3' class="inputBundle"></tr>
+                <tr id='addr4' class="inputBundle"></tr>
+                <tr id='addr5' class="inputBundle"></tr>
+                <tr id='addr6' class="inputBundle"></tr>
+                <tr id='addr7' class="inputBundle"></tr>
+                <tr id='addr8' class="inputBundle"></tr>
+                <tr id='addr9' class="inputBundle"></tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <%= t.number_field :meal_total, { :id => "mealTotal", :class => "form-control numb" , :style => "width:90px;" , 'onkeydown' => 'return false;' , :readonly => true } %>
+                    <%= t.text_field :meals, { :class => "form-control", :style => "width:150px;display:none;", :id => "meals" } %>
+                    <%= t.text_field :meal_names, { :class => "form-control", :style => "width:150px;display:none;", :id => "mealNames" } %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <a id="add_row" class="btn btn-default pull-left">Add Row</a>&nbsp;<a style="padding-right:8px;" id='delete_row' class="btn btn-default">Delete Row</a>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
             </div>
 
           </div>
-        </section>
+        <% end %>
+        <script>
+          $(document).ready(function(){
+            var i=1;
+          $("#add_row").click(function(){
+            $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input class='form-control restaurantInput' type='text' placeholder='Restaurant Name'></td><td><div class='form-group'><p style='padding:0px;' class='col-sm-2 control-label'>$</p><div class='col-sm-10' style='padding:0px;'><input class='form-control costInput' style='padding:0px;' onkeypress='validate(event)' placeholder='Enter Cost'></div></div></td><td></td>");
 
-      </div>
-    </div>
-</div>
-<div id="newExpense">
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content containerz">
-        <div class="modal-header" style="padding: 1px 15px 1px 15px;">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+            $('#tab_logic').append('<tr class="inputBundle" id="addr'+(i+1)+'"></tr>');
+            i++;
+          });
+          $("#delete_row").click(function(){
+          if(i>1){
+            $("#addr"+(i-1)).html('');
+            i--;
+          }
+          });
 
+          });
+        </script>
         </div>
-
-        <div class="modal-body">
-
-          <div class="containerz" class="inputwrap" style="">
-            <div id="contactz" >
-              <h3>Add Expense</h3>
-              <h4>Enter the information below to submit an expense</h4>
-              <%= form_for @new_expenses, html: { multipart: true } do |t| %>
-
-                  <%= t.text_field :date_activity, { :id => "expenseDate", :placeholder => "Date of Expense"} %>
-
-                  <%= t.select :credit_union, options_for_select([["Select a CU or Type Your Own", ""],
-                                                                    ["Credit Union"]]),
-                               {}, { :class => "selectized" , 'data-width' => '318px', 'placeholder' => 'Select a CU or Type Your Own', :id => "selectizeInput" } %>
-
-                  <%= t.select :type_of_expense, options_for_select([
-                                                             "Car Travel",
-                                                             "Air Travel Baggage & Fuel",
-                                                             "Taxi Parking, Tolls",
-                                                              "Car Rental",
-                                                             "Meals",
-                                                                  "Lodging",
-                                                                  "Entertainment",
-                                                                  "Other"]),
-                               {}, { :class => "selectpicker show-tick" , 'data-width' => '318px', 'placeholder' => 'Type of Expense', :id => "selectType" } %>
-
-                  <input type="text" id="milage" placeholder="Miles Driven @ $0.535" onkeypress="return isNumber()" onkeyup="calculateMilage()" style="margin-top:5px;">
-
-                  <%= t.select :meal_type, options_for_select([
-                                                                        "Breakfest",
-                                                                        "Lunch",
-                                                                        "Dinner"]),
-                               {}, { :class => "selectpicker show-tick" , 'data-width' => '318px', 'placeholder' => 'Type of Meal', :id => "meal_type" } %>
-
-
-                  <%= t.text_field :amount, {  :onkeypress => 'return isNumber()', :id => "amountInput" , 'placeholder' => 'Amount $0.00', :step => 0.01 } %>
-
-                  <%= t.text_field :notes, {:class => "form-control", :placeholder => "Description"} %>
-
-                  <div style="line-height:75%;"><br></div>
-
-                  <div class="input-group image-preview" style="width:320px;">
-                    <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
-                    <span class="input-group-btn">
-                    <!-- image-preview-clear button -->
-                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                        <span class="glyphicon glyphicon-remove"></span> Clear
-                    </button>
-                      <!-- image-preview-input -->
-                    <div class="btn btn-default image-preview-input">
-                        <span class="glyphicon glyphicon-folder-open"></span>
-                        <span class="image-preview-input-title">Browse</span>
-                      <%= t.file_field :image, class: "image-preview-input" %>
-
-                    </div>
-                </span>
-                  </div>
-
-                  <br>
-
-                  <%= button_tag "Submit", type: 'submit', id: "contact-submit" %>
-
-              <% end %>
-            </div>
-          </div>
         </div>
-
       </div>
     </div>
   </div>
-
-</div>
-  <% @expenses.each do |e| %>
-      <div class="modal fade" id="myModal-<%= e.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content containerz">
-            <div class="modal-header" style="padding: 1px 15px 1px 15px;">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-
-            </div>
-
-            <div class="modal-body">
-
-              <div class="containerz" class="inputwrap" style="">
-                <form id="contactz" action="" method="post" style="padding: 2px 25px 25px 25px;">
-                  <h3 style="font-size:20px;text-align:center;">Expense from <%= e.date_activity %></h3>
-                  <div style="line-height:75%;"><br></div>
-                  <p>Credit Union: <%= e.credit_union %></p>
-                  <p>Type: <%= e.type_of_expense %></p>
-                  <p>Amount: $<%= e.amount %></p>
-                  <p>Description: <%= e.notes %></p>
-                  <a data-toggle="modal" href="#myModal2-<%= e.id %>" class="">
-                  <%= image_tag e.image, :id => "imageNonZoom" %>
-                  </a>
-                </form>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-      </div>
-      <div class="modal fade rotate" id="myModal2-<%= e.id %>" style="width:800px;">
-        <div class="modal-dialog" style="width:800px;position:relative;">
-          <div class="modal-content" style="margin:30px;position:relative;">
-            <div style="margin:0 auto;display:relative;">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 class="modal-title" style="text-align:center;">Image Zoom</h4>
-
-            </div>
-            <div style="margin: 0 auto;text-align:center;">
-              <%= image_tag e.image %>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>

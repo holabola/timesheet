@@ -8,6 +8,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit_admin
+    @user = User.find(params[:id])
+  end
 
 
 

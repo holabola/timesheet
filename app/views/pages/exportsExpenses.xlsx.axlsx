@@ -6,17 +6,30 @@ wb.styles do |style|
                                 :format_code => "$#,##0.00")
   title_cell_1 = style.add_style(b: true, border: { :style => :thin,  color: "000000", :edges => [:bottom] })
   title_cell_2 = style.add_style(b: true, border: { :style => :thin,  color: "000000", :edges => [:bottom] })
+  title_cell_3 = style.add_style(b: true, border: { :style => :thin,  color: "000000", :edges => [:top] })
+  reg_cell_1 = style.add_style(alignment: { horizontal: :center }, :format_code => "$#,##0.00", border: { :style => :thin,  color: "000000", :edges => [:top] })
 
   @users.each do |user|
+    counter = 5
     if user.department == current_user.department
     wb.add_worksheet(name: user.first_name) do |sheet|
-      sheet.add_row ["Date", "Approval Status", "Type", "Amount", "Payment Type", "Description"], style: [ title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1 ]
+      sheet.add_row ["Name:",user.first_name + " " + user.last_name], style: [title_cell_1,nil]
+      sheet.add_row ["Report:", "Expenses"], style: [title_cell_1,nil]
+      sheet.add_row ["Date Range:", @startDate.to_s + " - " + @endDate.to_s ], style:[title_cell_1,nil]
+      sheet.add_row [" "]
+      sheet.add_row ["Date", "Credit Union", "Type", "Amount", "Description","Approval"], style: [ title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1, title_cell_1 ]
       @expenses.each do |page|
         if page.user_id == user.id
-          sheet.add_row [page.date_activity, page.approval, page.type_of_expense, page.amount, page.payment, page.notes], style: [ date_cell, nil, nil, number_cell, nil, nil, nil, nil]
-          sheet.column_widths 12, 15, 16, 10, 14, 24, 20, 12
+          counter += 1
+          if page.type_of_expense == "Meals"
+            sheet.add_row [page.date_activity, page.credit_union, page.type_of_expense + " - " + page.meal_type, page.amount, page.notes, page.approval_final], style: [ date_cell, nil, nil, number_cell, nil, nil, nil, nil]
+          else
+            sheet.add_row [page.date_activity, page.credit_union, page.type_of_expense, page.amount, page.notes, page.approval_final], style: [ date_cell, nil, nil, number_cell, nil, nil, nil, nil]
+          end
+           sheet.column_widths 12, 24, 24, 10, 24, 14, 20, 12
         end
       end
+      sheet.add_row ["Totals:", "","","=SUM(D6:D" + counter.to_s + ")","",""], style: [title_cell_3, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1, reg_cell_1]
     end
       else
     end

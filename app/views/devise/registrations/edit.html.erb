@@ -128,7 +128,7 @@
     <div class="col-lg-6">
       <b><h4 style="text-align:center;">Add Profile Picture</h4></b>
       <br>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name, :id => current_user.id), html: { method: :put }) do |f| %>
           <div class="input-group image-preview" style="width:320px;margin:0 auto; text-align:center;">
             <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
             <span class="input-group-btn">
@@ -154,7 +154,7 @@
       <b><h4 style="text-align:center;">Crop Profile Picture</h4></b>
       <p>After uploading, crop it to choose yourself in the picture :D</p>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|  %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name, :id => current_user.id), html: { method: :put }) do |f|  %>
           <%= f.cropbox :profile %>
           <%= f.previewbox :profile %>
           <br>
@@ -165,7 +165,7 @@
       <hr style="border-color:#0d5ddd;">
 
       <b><h4 style="text-align:center;">Change First Name</h4></b>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name, :id => current_user.id), html: { method: :put }) do |f| %>
           <b>New First Name</b>
           <%= f.text_field :first_name, :class => "form-control", :style => "width:200px;", autocomplete: "off", placeholder: "First Name" %>
                   <div style="line-height:75%;"><br></div>
@@ -174,7 +174,7 @@
       <hr style="border-color:#0d5ddd;">
 
       <b><h4 style="text-align:center;">Change Last Name</h4></b>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name, :id => current_user.id), html: { method: :put }) do |f| %>
           <b>New Last Name</b>
           <%= f.text_field :last_name, :class => "form-control", :style => "width:200px;", autocomplete: "off", placeholder: "Last Name" %>
           <div style="line-height:40%;"><br></div>
@@ -184,7 +184,7 @@
       <hr style="border-color:#0d5ddd;">
 <!--
       <b><h4 style="text-align:center;">Change Department</h4></b>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name, :id => current_user.id), html: { method: :put }) do |f| %>
           <b>New Department</b>
           <br>
 
@@ -211,7 +211,7 @@
     <div class="col-lg-6">
     <h4 style="text-align:center;">Change Password</h4>
       <br>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name, :id => current_user.id), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
 
           <div class="field">

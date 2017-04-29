@@ -69,15 +69,19 @@
       text-rendering: optimizeLegibility;
     }
 
+    body {
+      background-color:#eaf1fc !important ;
+    }
+
     body .inputwrap {
       font-family: "Roboto", Helvetica, Arial, sans-serif;
       font-weight: 100;
       font-size: 12px;
       line-height: 30px;
       color: #777;
-      background: #4CAF50;
-      background-color: #eaf1fc;
     }
+
+
 
     .containerz {
       max-width: 400px;
@@ -256,172 +260,6 @@
       padding: 5px 10px;
     }
 
-    /*    --------------------------------------------------
-  :: General
-  -------------------------------------------------- */
-    body {
-      font-family: 'Open Sans', sans-serif;
-      color: #353535;
-      background-color: #eaf1fc;
-    }
-    .content h1 {
-      text-align: center;
-    }
-    .content .content-footer p {
-      color: #6d6d6d;
-      font-size: 12px;
-      text-align: center;
-    }
-    .content .content-footer p a {
-      color: inherit;
-      font-weight: bold;
-    }
-
-    /*	--------------------------------------------------
-      :: Table Filter
-      -------------------------------------------------- */
-    .panel {
-      border: 1px solid #ddd;
-      background-color: #fcfcfc;
-    }
-    .panel .btn-group {
-      margin: 15px 0 30px;
-    }
-    .panel .btn-group .btn {
-      transition: background-color .3s ease;
-    }
-    .table-filter {
-      background-color: #fff;
-      border-bottom: 1px solid #eee;
-    }
-    .table-filter tbody tr:hover {
-      cursor: pointer;
-      background-color: #eee;
-    }
-    .table-filter tbody tr td {
-      padding: 10px;
-      vertical-align: middle;
-      border-top-color: #eee;
-    }
-    .table-filter tbody tr.selected td {
-      background-color: #eee;
-    }
-    .table-filter tr td:first-child {
-      width: 38px;
-    }
-    .table-filter tr td:nth-child(2) {
-      width: 35px;
-    }
-    .ckbox {
-      position: relative;
-    }
-    .ckbox input[type="checkbox"] {
-      opacity: 0;
-    }
-    .ckbox label {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    .ckbox label:before {
-      content: '';
-      top: 1px;
-      left: 0;
-      width: 18px;
-      height: 18px;
-      display: block;
-      position: absolute;
-      border-radius: 2px;
-      border: 1px solid #bbb;
-      background-color: #fff;
-    }
-    .ckbox input[type="checkbox"]:checked + label:before {
-      border-color: #2BBCDE;
-      background-color: #2BBCDE;
-    }
-    .ckbox input[type="checkbox"]:checked + label:after {
-      top: 3px;
-      left: 3.5px;
-      content: '\e013';
-      color: #fff;
-      font-size: 11px;
-      font-family: 'Glyphicons Halflings';
-      position: absolute;
-    }
-    .table-filter .star {
-      color: #ccc;
-      text-align: center;
-      display: block;
-    }
-    .table-filter .star.star-checked {
-      color: #F0AD4E;
-    }
-    .table-filter .star:hover {
-      color: #ccc;
-    }
-    .table-filter .star.star-checked:hover {
-      color: #F0AD4E;
-    }
-    .table-filter .media-photo {
-      width: 35px;
-    }
-    .table-filter .media-body {
-      display: block;
-      /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
-    }
-    .table-filter .media-meta {
-      font-size: 11px;
-      color: #999;
-    }
-    .table-filter .media .title {
-      color: #2BBCDE;
-      font-size: 14px;
-      font-weight: bold;
-      line-height: normal;
-      margin: 0;
-    }
-    .table-filter .media .title span {
-      font-size: .8em;
-      margin-right: 20px;
-    }
-    .table-filter .media .title span.pagado {
-      color: #5cb85c;
-    }
-    .table-filter .media .title span.pendiente {
-      color: #f0ad4e;
-    }
-    .table-filter .media .title span.cancelado {
-      color: #d9534f;
-    }
-    .table-filter .media .summary {
-      font-size: 14px;
-    }
-    #newExpense {
-
-    }
-    #milage {
-      display:none;
-    }
-
-    /* BOOTSNAP TEMPLATE */
-
-
-    .dropdown-user {
-      margin: 13px 0;
-      padding: 5px;
-      height: 100%;
-    }
-
-    .dropdown-user:hover {
-      cursor: pointer;
-
-    }
-
-    .dropdown-user:active {
-      transition: all ease-in-out 500ms;
-      transform: rotate(450deg);
-    }
 
     /* BOOTSNAP PROGRESS BAR 4-STEP */
 
@@ -507,127 +345,52 @@
 
       }
 
-      function expenseSwitcher() {
+      function expenseSwitcher(name) {
 
-          var CUList, nameListEX, CUListEX, DateListEX, approvalFinalEX, approvalFinal;
-          CUList = [], nameListEX = [], CUListEX = [], DateListEX = [], approvalFinalEX = [], approvalFinal = [];
+          var monthNames = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"
+          ];
+          curr = $('#datepicker').datepicker('getDate');
+          first = curr.getDate() - curr.getDay();
+          firstday = new Date(curr.setDate(first));
+          second = curr.getDate() +1;
+          secondday = new Date(curr.setDate(second));
+          third = curr.getDate() + 1;
+          thirdday = new Date(curr.setDate(third));
+          fourth = curr.getDate() + 1;
+          fourthday = new Date(curr.setDate(fourth));
+          fifth = curr.getDate() + 1;
+          fifthday = new Date(curr.setDate(fifth));
+          sixth = curr.getDate() + 1;
+          sixthday = new Date(curr.setDate(sixth));
+          last = curr.getDate() + 1;
+          lastday = new Date(curr.setDate(last));
 
-          <% @expenses.each do |e| %>
-            nameListEX.push("<%= e.user.first_name %>" + " " + "<%= e.user.last_name %>");
-            CUListEX.push("<%= e.credit_union %>");
-            DateListEX.push("<%= e.date_activity %>");
-            approvalFinalEX.push("<%= e.approvalFinal %>");
-          <% end %>
+          $('#dateTitle').text( (monthNames[firstday.getMonth()] ) + ' ' + firstday.getDate() + ', ' +  firstday.getFullYear() + " - " + (monthNames[lastday.getMonth()] ) + ' ' + lastday.getDate() + ', ' +  lastday.getFullYear() );
+          $('#Date1').text("Sun " + firstday.getDate() );
+          $('#Date2').text("Mon " + secondday.getDate() );
+          $('#Date3').text("Tue " + thirdday.getDate() );
+          $('#Date4').text("Wed " + fourthday.getDate() );
+          $('#Date5').text("Thu " + fifthday.getDate() );
+          $('#Date6').text("Fri " + sixthday.getDate() );
+          $('#Date7').text("Sat " + lastday.getDate() );
 
 
-          for (var z = 0; z < nameListEX.length; z++) {
-              if (moment(DateListEX[z]) <= lastday && moment(DateListEX[z]) >= firstday && selectedName.trim() == nameListEX[z].trim() ) {
-                  if (CUList.indexOf(CUListEX[z]) == -1) {
-                      CUList.push(CUListEX[z]);
-                      approvalFinal.push(approvalFinalEX[z]);
-                  }
+          $('#datePicked').val($('#datepicker').datepicker('getDate'));
+
+          var heights = 0;
+          $('.expenseEntry').each(function () {
+              //alert($(this).find('.dateBlob').text());
+              if (moment($(this).find('.dateBlob').text()) <= lastday && moment($(this).find('.dateBlob').text()) >= firstday && $(this).find('.nameBlob').text() == name) {
+                  $(this).css("display", "");
+
+              } else {
+                  $(this).css("display", "none");
+                  // alert($(this).children('.dateBlob').text() + "      " + $.datepicker.formatDate("yy-mm-dd", curr) );
               }
 
-          }
-
-          for (var x = 1; x < 5; x++) {
-              tab = "#expenseTab" + x;
-              entry = $(tab).find(".expenseEntry");
-              if (CUList[x-1] != "" && CUList[x-1] != undefined) {
-                  $(tab).css("display","inherit");
-                  $(tab).find(".CUTitle").text(CUList[x-1]);
-                  console.log(approvalFinal[x-1]);
-                  if (approvalFinal[x-1] != undefined && approvalFinal[x-1] != 0) {
-                      $(tab).find("#approvalStatus").text(approvalFinal[x-1]);
-                  } else {
-                      $(tab).find("#approvalStatus").text("Pending");
-                  }
-                  $(tab).find(".expenseTab").data("role", CUList[x-1]);
-                  $(tab).find(".expenseEntry").each(function() {
-                      if ($(this).data("cu") == CUList[x-1] && moment($(this).data("date")) <= lastday && moment($(this).data("date")) >= firstday && selectedName == $(this).data("name")) {
-                          $(this).css("display","inherit");
-                      }
-                      else {
-                          $(this).css("display","none");
-                      }
-                  });
-              }
-              else {
-                  $(tab).css("display","none");
-              }
-          }
-
-
-          $(".expenseTab").each(function() {
-
-              //Individual progress bars
-              var approval = $(this).find("#approvalStatus").text();
-              if (approval == "Unapproved") {
-                  $(this).find(".pb").removeClass("progress-bar-danger progress-bar-info progress-bar-warning progress-bar-success1");
-                  $(this).find(".one").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".two").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".three").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".four").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".pb").addClass("progress-bar-danger");
-                  $(this).find(".pb").css("width","100%");
-                  $(this).find(".one").addClass("danger-color");
-                  $(this).find(".two").addClass("danger-color");
-                  $(this).find(".three").addClass("danger-color");
-                  $(this).find(".four").addClass("danger-color");
-              }
-              if (approval == "Pending") {
-                  $(this).find(".pb").removeClass("progress-bar-danger progress-bar-info progress-bar-warning progress-bar-success1");
-                  $(this).find(".one").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".two").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".three").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".four").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".pb").addClass("progress-bar-warning");
-                  $(this).find(".pb").css("width","34%");
-                  $(this).find(".one").addClass("warning-color");
-                  $(this).find(".two").addClass("warning-color");
-                  $(this).find(".three").addClass("no-color");
-                  $(this).find(".four").addClass("no-color");
-              }
-              if (approval == "Reviewed") {
-                  $(this).find(".pb").removeClass("progress-bar-danger progress-bar-info progress-bar-warning progress-bar-success1");
-                  $(this).find(".one").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".two").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".three").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".four").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".pb").addClass("progress-bar-info");
-                  $(this).find(".pb").css("width","67%");
-                  $(this).find(".one").addClass("info-color");
-                  $(this).find(".two").addClass("info-color");
-                  $(this).find(".three").addClass("info-color");
-                  $(this).find(".four").addClass("no-color");
-              }
-              if (approval == "Not Created") {
-                  $(this).find(".pb").removeClass("progress-bar-danger progress-bar-info progress-bar-warning progress-bar-success1");
-                  $(this).find(".one").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".two").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".three").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".four").removeClass("info-color no-color warning-color success-color");
-                  $(this).find(".pb").addClass("progress-bar-info");
-                  $(this).find(".pb").css("width","0%");
-                  $(this).find(".one").addClass("no-color");
-                  $(this).find(".two").addClass("no-color");
-                  $(this).find(".three").addClass("no-color");
-                  $(this).find(".four").addClass("no-color");
-              }
-              if (approval == "Approved") {
-                  $(this).find(".pb").removeClass("progress-bar-danger progress-bar-info progress-bar-warning");
-                  $(this).find(".one").removeClass("info-color no-color warning-color");
-                  $(this).find(".two").removeClass("info-color no-color warning-color");
-                  $(this).find(".three").removeClass("info-color no-color warning-color");
-                  $(this).find(".four").removeClass("info-color no-color warning-color");
-                  $(this).find(".pb").addClass("progress-bar-success1");
-                  $(this).find(".pb").css("width","100%");
-                  $(this).find(".one").addClass("success-color");
-                  $(this).find(".two").addClass("success-color");
-                  $(this).find(".three").addClass("success-color");
-                  $(this).find(".four").addClass("success-color");
-              }
           });
+
 
       }
 
@@ -676,66 +439,8 @@
               }
           });
           $("#datepicker").datepicker('setDate',datesave);
+
       }
-
-      $(document).on('click', '#close-preview', function(){
-          $('.image-preview').popover('hide');
-          // Hover befor close the preview
-          $('.image-preview').hover(
-              function () {
-                  $('.image-preview').popover('show');
-              },
-              function () {
-                  $('.image-preview').popover('hide');
-              }
-          );
-      });
-
-      $(function() {
-          // Create the close button
-          var closebtn = $('<button/>', {
-              type:"button",
-              text: 'x',
-              id: 'close-preview',
-              style: 'font-size: initial;',
-          });
-          closebtn.attr("class","close pull-right");
-          // Set the popover default content
-          $('.image-preview').popover({
-              trigger:'manual',
-              html:true,
-              title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
-              content: "There's no image",
-              placement:'bottom'
-          });
-          // Clear event
-          $('.image-preview-clear').click(function(){
-              $('.image-preview').attr("data-content","").popover('hide');
-              $('.image-preview-filename').val("");
-              $('.image-preview-clear').hide();
-              $('.image-preview-input input:file').val("");
-              $(".image-preview-input-title").text("Browse");
-          });
-          // Create the preview image
-          $(".image-preview-input input:file").change(function (){
-              var img = $('<img/>', {
-                  id: 'dynamic',
-                  width:250,
-                  height:200
-              });
-              var file = this.files[0];
-              var reader = new FileReader();
-              // Set preview image into the popover data-content
-              reader.onload = function (e) {
-                  $(".image-preview-input-title").text("Change");
-                  $(".image-preview-clear").show();
-                  $(".image-preview-filename").val(file.name);
-                  img.attr('src', e.target.result);
-                  $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
-              }
-              reader.readAsDataURL(file);
-          });
-      });
 
       function isNumber(evt) {
           var theEvent = evt || window.event;
@@ -751,7 +456,7 @@
 
 
       // DOCUMENT READY START //
-
+      var frontTableClicked;
       var CUlist = [], dateList = [], sunList = [], monList = [], tueList = [], wedList = [], thuList = [], friList = [], satList = [];
       $(document).ready(function() {
 
@@ -802,34 +507,12 @@
               }
           });
 
+          $(".dollarCheck").each(function() {
+              if ($(this).children('span').text() == "") {
 
-
-          //initialize selector
-          $('#selectizeInput').selectize({
-              create: true,
-              placeholder: 'Select a CU or Type Your Own',
-          });
-
-          $("#expenseDate").on('change', function() {
-              var $select = $('#selectizeInput').selectize();
-              var control = $select[0].selectize;
-              var dateBeg, dateEnd;
-              control.clearCache('option');
-              control.clearOptions();
-              control.refreshOptions(true);
-
-              day = moment($("#expenseDate").val()).day();
-              dateBeg = moment($("#expenseDate").val()).subtract(day,'days');
-              dateEnd = moment(dateBeg).add(6,'days').endOf('day');
-
-              for (var i = 0; i < CUlist.length; i++) {
-                  if (moment(dateList[i]) >= moment(dateBeg) && moment(dateList[i]) <= moment(dateEnd) ) {
-                      control.addOption({value:(CUlist[i]),text:CUlist[i]});
-                      control.addItem((CUlist[i]));
-                  }
+              } else {
+                  $(this).html("<span class='.dollarCheck'>$<span class='" + $(this).children('span').attr('class') + "'>" + $(this).children('span').text() + "</span");
               }
-
-              control.clear();
           });
 
 
@@ -840,8 +523,22 @@
               if (event.target.id == "successBut" || event.target.id == "failBut") {
                   return;
               }
+              frontTableClicked = $(this);
               selectedName = $(this).find("#nameHolder").text().trim();
-              expenseSwitcher();
+              expenseSwitcher(selectedName);
+
+              // Shows or hides review column if submitted or not
+              submitStatus = $(this).find("#approvalCover").text();
+              if (submitStatus == "Not Submitted") {
+                  $(".reviewColumn").each(function() {
+                     $(this).css("display","none");
+                  });
+              } else {
+                  $(".reviewColumn").each(function() {
+                      $(this).css("display","");
+                  });
+              }
+
               $("#expenseWrap").slideUp();
               $("#wholeWrapper").css("display","");
           });
@@ -919,10 +616,12 @@
                       $(tab).find("#progressbar").addClass("progress-bar-success1");
                   } else {
                       $(event.target).addClass("btn btn-info glyphicon glyphicon-ok approvalSuccessButton");
-                      $(event.target).parent().find("#failBut").addClass("btn btn-default glyphicon ");
+                      $(event.target).parent().find("#failBut").addClass("btn btn-default glyphicon glyphicon-remove");
                   }
-                  texts.text("Reviewed");
-                  texts.css("color","#5bc0de");
+                  if (texts != "Approved" && text != "Unapproved (Final)") {
+                      texts.text("Reviewed");
+                      texts.css("color","#5bc0de");
+                  }
               }
               else if (event.target.id == "failBut") {
                   var texts = $(event.target).parent().parent().parent().parent().parent().find("#approval");
@@ -933,7 +632,7 @@
                       otherchild.addClass("btn btn-default  approvalSuccessButton hvr-radial-out-green");
                       $(event.target).addClass("btn btn-danger hvr-radial-out-red");
                       tab = $(event.target).parent().parent().parent().parent().parent().parent();
-                      $(tab).find("#progressbartext").text("Unapproved");
+                      $(tab).find("#progressbartext").text("Unapproved (Final)");
                       $(tab).find("#progressbar").removeClass("progress-bar-success1");
                       $(tab).find("#progressbar").removeClass("progress-bar-info");
                       $(tab).find("#progressbar").removeClass("progress-bar-warning");
@@ -944,53 +643,57 @@
                       otherchild.addClass("btn btn-default glyphicon glyphicon-ok approvalSuccessButton");
                       $(event.target).addClass("btn btn-danger glyphicon glyphicon-remove");
                   }
-                  texts.text("Unapproved");
-                  texts.css("color","#cc0a0a");
+                  if (texts != "Approved" && text != "Unapproved (Final)") {
+                      texts.text("Unapproved");
+                      texts.css("color","#cc0a0a");
+                  }
               }
 
               cu = $(event.target).parent().parent().parent().parent().parent().data("cu");
               var hasUnapproved = false;
 
-              for (var x = 1; x < 5; x++) {
-                  tab = "#expenseTab" + x;
-                   if ($(tab).find(".CUTitle").text() == cu  ) {
-                       $(tab).find(".expenseEntry").each(function() {
-                           if($(this).css("display") != "none") {
-                               if( $(this).find(".approvalSuccessButton").hasClass("btn-info") == true ) {
-
-                               } else {
-                                   hasUnapproved = true;
-                               }
-                           }
-                       });
-                       if (hasUnapproved == false) {
-                           $(tab).find("#approvalStatus").text("Reviewed");
-                           $(tab).find(".pb").removeClass("progress-bar-danger progress-bar-info progress-bar-warning")
-                           $(tab).find(".one").removeClass("info-color no-color warning-color");
-                           $(tab).find(".two").removeClass("info-color no-color warning-color");
-                           $(tab).find(".three").removeClass("info-color no-color warning-color");
-                           $(tab).find(".four").removeClass("info-color no-color warning-color");
-                           $(tab).find(".pb").addClass("progress-bar-info");
-                           $(tab).find(".pb").css("width","67%");
-                           $(tab).find(".one").addClass("info-color");
-                           $(tab).find(".two").addClass("info-color");
-                           $(tab).find(".three").addClass("info-color");
-                           $(tab).find(".four").addClass("no-color");
-                       } else {
-                           $(tab).find("#approvalStatus").text("Unapproved");
-                           $(tab).find(".pb").removeClass("progress-bar-danger progress-bar-info progress-bar-warning")
-                           $(tab).find(".one").removeClass("info-color no-color warning-color");
-                           $(tab).find(".two").removeClass("info-color no-color warning-color");
-                           $(tab).find(".three").removeClass("info-color no-color warning-color");
-                           $(tab).find(".four").removeClass("info-color no-color warning-color");
-                           $(tab).find(".pb").addClass("progress-bar-danger");
-                           $(tab).find(".pb").css("width","100%");
-                           $(tab).find(".one").addClass("danger-color");
-                           $(tab).find(".two").addClass("danger-color");
-                           $(tab).find(".three").addClass("danger-color");
-                           $(tab).find(".four").addClass("danger-color");
-                       }
-                   }
+              if (frontTableClicked.find("#progressbartext").text() != "Approved" && frontTableClicked.find("#progressbartext").text() != "Unapproved (Final)") {
+                var reviewCheck = true;
+                $(".expenseEntry").each(function() {
+                    if ($(this).css("display") != "none") {
+                        successButton = $(this).find("#successBut");
+                        if (successButton.hasClass("btn-info") == false) {
+                            reviewCheck = false;
+                        }
+                    }
+                });
+                if (reviewCheck == true) {
+                    tab = frontTableClicked;
+                    $(tab).find("#progressbartext").text("Reviewed");
+                    $(tab).find("#progressbar").removeClass("progress-bar-danger");
+                    $(tab).find("#progressbar").removeClass("progress-bar-success1");
+                    $(tab).find("#progressbar").removeClass("progress-bar-warning");
+                    $(tab).find("#progressbar").removeClass("progress-bar-none");
+                    $(tab).find("#progressbar").removeClass("progress-bar-success");
+                    $(tab).find("#progressbar").addClass("progress-bar-info");
+                } else {
+                    tab = frontTableClicked;
+                    $(tab).find("#progressbartext").text("Unapproved");
+                    $(tab).find("#progressbar").removeClass("progress-bar-success1");
+                    $(tab).find("#progressbar").removeClass("progress-bar-info");
+                    $(tab).find("#progressbar").removeClass("progress-bar-warning");
+                    $(tab).find("#progressbar").removeClass("progress-bar-none");
+                    $(tab).find("#progressbar").removeClass("progress-bar-success");
+                    $(tab).find("#progressbar").addClass("progress-bar-danger");
+                }
+              }
+              passToken = false;
+              $(frontTableClicked).find(".manySubmitButtons").each(function() {
+                 if ($(this).css("display") != "none") {
+                     console.log(3);
+                     if ($(this).find("#successBut").hasClass("btn-warning") == true && $(this).find("#failBut").hasClass("btn-warning") == true) {
+                         $(this).css("display","none");
+                         passToken = true;
+                     }
+                 }
+              });
+              if (passToken == false) {
+                  showFinalButtons();
               }
           });
 
@@ -1038,14 +741,6 @@
               }, 0);
           });
 
-
-          $('input[id="expenseDate"]').daterangepicker({
-              singleDatePicker: true,
-              showDropdowns: true,
-              locale: {
-                  format: 'YYYY-MM-DD'
-              },
-          });
       });
 
       var selectedName;
@@ -1089,8 +784,9 @@
             dateListE.push("<%= p.date_activity %>");
             submitListE.push("<%= p.submitted %>");
             nameListE.push("<%= p.user.first_name %> <%= p.user.last_name %>");
-            approvalFinalE.push("<%= p.approvalFinal %>");
+            approvalFinalE.push("<%= p.approval_final %>");
           <% end %>
+
 
           //Changes submit status
           $(".frontTable").each(function () {
@@ -1109,15 +805,43 @@
                   }
               }
 
-              approvalFinal = [];
-              for (var z = 0; z < nameListE.length; z++) {
-                  if (nameListE[z] == name && moment(dateListE[z]) > firstday && moment(dateListE[z]) < lastday) {
-                    approvalFinal.push(approvalFinalE[z]);
-                    console.log(approvalFinalE[z] + name + CUListE[z]);
+              showFinalButtons();
+
+              var approvalStatus = "None";
+              $(this).find(".manySubmitButtons").each(function() {
+                  if ($(this).css("display") != "none") {
+                      if ($(this).find("#successBut").hasClass("btn-warning") == true && $(this).find("#failBut").hasClass("btn-warning") == true) {
+                          approvalStatus = "Reviewed";
+                      }
+                      if ($(this).find("#successBut").hasClass("btn-success") == true) {
+                          approvalStatus = "Approved";
+                      }
+                      if ($(this).find("#failBut").hasClass("btn-danger") == true) {
+                          approvalStatus = "Unapproved";
+                      }
                   }
+              });
+
+              if ($(this).find("#approvalCover").text() == "Not Submitted") {
+                  $(this).find("#progressbartext").text("Not Submitted");
+                  $(this).find("#progressbar").removeClass("progress-bar-success1");
+                  $(this).find("#progressbar").removeClass("progress-bar-success");
+                  $(this).find("#progressbar").removeClass("progress-bar-info");
+                  $(this).find("#progressbar").removeClass("progress-bar-warning");
+                  $(this).find("#progressbar").removeClass("progress-bar-danger");
+                  $(this).find("#progressbar").addClass("progress-bar-none");
               }
 
-                if (approvalFinal.indexOf("Reviewed") != -1) {
+              if ($(this).find("#approvalCover").text() == "Submitted") {
+                  $(this).find("#progressbartext").text("Pending");
+                  $(this).find("#progressbar").removeClass("progress-bar-success1");
+                  $(this).find("#progressbar").removeClass("progress-bar-success");
+                  $(this).find("#progressbar").removeClass("progress-bar-danger");
+                  $(this).find("#progressbar").removeClass("progress-bar-info");
+                  $(this).find("#progressbar").removeClass("progress-bar-none");
+                  $(this).find("#progressbar").addClass("progress-bar-warning");
+              }
+                if (approvalStatus == "Reviewed") {
                     $(this).find("#progressbartext").text("Reviewed");
                     $(this).find("#progressbar").removeClass("progress-bar-success1");
                     $(this).find("#progressbar").removeClass("progress-bar-success");
@@ -1126,17 +850,9 @@
                     $(this).find("#progressbar").removeClass("progress-bar-none");
                     $(this).find("#progressbar").addClass("progress-bar-info");
                 }
-                if (approvalFinal.indexOf("") != -1 || approvalFinal.indexOf(0) != -1 || approvalFinal.indexOf("Pending") != -1) {
-                  $(this).find("#progressbartext").text("Pending");
-                    $(this).find("#progressbar").removeClass("progress-bar-success1");
-                    $(this).find("#progressbar").removeClass("progress-bar-success");
-                    $(this).find("#progressbar").removeClass("progress-bar-danger");
-                    $(this).find("#progressbar").removeClass("progress-bar-info");
-                    $(this).find("#progressbar").removeClass("progress-bar-none");
-                    $(this).find("#progressbar").addClass("progress-bar-warning");
-                }
-                if (approvalFinal.indexOf("Unapproved") != -1) {
-                    $(this).find("#progressbartext").text("Unapproved");
+
+                if (approvalStatus == "Unapproved") {
+                    $(this).find("#progressbartext").text("Unapproved (Final)");
                     $(this).find("#progressbar").removeClass("progress-bar-success1");
                     $(this).find("#progressbar").removeClass("progress-bar-success");
                     $(this).find("#progressbar").removeClass("progress-bar-info");
@@ -1144,16 +860,8 @@
                     $(this).find("#progressbar").removeClass("progress-bar-none");
                     $(this).find("#progressbar").addClass("progress-bar-danger");
                 }
-                if (approvalFinal.length == 0) {
-                    $(this).find("#progressbartext").text("Not Created");
-                    $(this).find("#progressbar").removeClass("progress-bar-success1");
-                    $(this).find("#progressbar").removeClass("progress-bar-success");
-                    $(this).find("#progressbar").removeClass("progress-bar-info");
-                    $(this).find("#progressbar").removeClass("progress-bar-warning");
-                    $(this).find("#progressbar").removeClass("progress-bar-danger");
-                    $(this).find("#progressbar").addClass("progress-bar-none");
-                }
-              if (approvalFinal.indexOf("Approved") != -1) {
+
+              if (approvalStatus == "Approved") {
                   $(this).find("#progressbartext").text("Approved");
                   $(this).find("#progressbar").removeClass("progress-bar-success");
                   $(this).find("#progressbar").removeClass("progress-bar-danger");
@@ -1164,50 +872,31 @@
               }
           });
 
-          var counter = 0;
-          $(".submitButton").each(function() {
-              var dater = $(this).parent().parent().find("#submitDate").text();
-              console.log(dater);
-              var submitStatus = $(this).parent().parent().find("#submitStatus").text();
-              //alert(dater + "...." + lastday + "...." + firstday);
-              if (moment(dater) <= lastday && moment(dater) >= firstday && counter == 0) {
-                  $(this).css("display","");
-                  counter = 1;
-                  if (submitStatus == "Not Submitted" || submitStatus == "") {
-                      $(this).removeClass("btn-danger");
-                      $(this).addClass("btn-success");
-                      $(this).attr("value","SubmittedEX");
-                      $(this).text("Submit for Approval?");
-                  } else {
-                      $(this).removeClass("btn-success");
-                      $(this).addClass("btn-danger");
-                      $(this).attr("value","Not SubmittedEX");
-                      $(this).text("Unsubmit for Approval?");
-                  }
-              } else {
-                  $(this).css("display","none");
-              }
-          });
 
+      }
+
+      function showFinalButtons() {
           nameArray = [];
           $(".manySubmitButtons").each(function() {
               var butDate = moment($(this).data("date"));
               var butName = $(this).data("extra");
-              if (nameArray.indexOf(butName) != -1) { return true;}
               $(this).css("display","none");
+              if (nameArray.indexOf(butName) != -1) { return true;}
               if (butDate > firstday && butDate < lastday && butName == $(this).parent().parent().parent().attr("id") && $(this).parent().parent().parent().find("#approvalCover").text() == "Submitted" ) {
-                  $(this).css("display","inherit");
-                  nameArray.push(butName);
+
+                      $(this).css("display","inherit");
+                      nameArray.push(butName);
+
               }
           });
-
       }
 
       var curr, first, second, third, fourth, fifth, sixth, last, firstday, lastday, secondday, thirdday, fourthday, fifthday, sixthday;
       $(document).on('change', '#datepicker', function() {
 
           $("#expenseWrap").fadeOut();
-
+          $("#wholeWrapper").css("display","none");
+          $("#expenseWrap").slideDown();
           setTimeout(dateRange,400);
 
           $("#expenseWrap").fadeIn();
@@ -1298,7 +987,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/" >Timesheet</a></li>
+          <li><a href="/timesheet" >Timesheet</a></li>
           <% if current_user.admin == true %>
               <li><a href="/approvals" >Timesheet Approvals</a></li>
           <% end %>
@@ -1325,7 +1014,7 @@
         <div style="" id="datepicker" datePickerTag="first"></div>
         <br>
         <ul class="nav nav-sidebar">
-          <li><a class="hvr-sweep-to-right" href="/" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
+          <li><a class="hvr-sweep-to-right" href="/timesheets" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
           <% if current_user.admin == true %>
               <li ><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
           <% end %>
@@ -1333,6 +1022,7 @@
           <% if current_user.admin == true %>
               <li class="active"><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
               <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
+              <li><a class="hvr-sweep-to-right" href="/employees">Employees<span class="glyphicon glyphicon-user pull-right"></span></a></li>
           <% end %>
         </ul>
         <!-- <ul class="nav nav-sidebar">
@@ -1358,11 +1048,11 @@
       <div class="container" id="expenseWrap" >
         <div class="row" id="wholeWrapper" style="display:none;">
 
-          <section class="content">
+          <section class="content" style="background-color:#eaf1fc;">
             <h1 style="text-align:center;" class="marginBumpExpense">Review Expenses</h1>
 
             <div class="marginBumpExpense">
-              <div class="panel panel-default"  id="goBlack">
+              <div class="panel panel-default"  id="goBlack" style="width:1500px;">
                 <div class="panel-body">
                   <h2 class="page-header" style="margin:1px;text-align:center;" id="dateTitle"></h2>
 
@@ -1373,437 +1063,136 @@
 
 
                 <div class="container" style="width:100%;">
-                  <div class="well span8 offset2">
+                  <table class="table table-striped table-bordered table-hover" style="font-size:12px;">
+                    <thead>
+                    <tr style="padding: 8px 8px 8px 0px;">
+                      <th class="reviewColumn">Reviewed?</th>
+                      <th style="width:80px;">Date</th>
+                      <th>Credit Union</th>
+                      <th>Job</th>
+                      <th>Miles Traveled</th>
+                      <th>Mileage Expense</th>
+                      <th>Air Travel, Gas, Bags</th>
+                      <th>Taxi, Parking, Tolls</th>
+                      <th>Car Rental</th>
+                      <th>Meals</th>
+                      <th>Lodging</th>
+                      <th>Entertainment</th>
+                      <th>Other</th>
+                      <th>Explain Other</th>
+                      <th>Reimbursement Total</th>
+                      <th>Image Upload</th>
 
-                    <div id="expenseTab1">
-                        <div class="expenseTab" data-role="CREDITUNION">
-                          <div class="row-fluid user-row">
-                            <div class="span1 dropdown-user pull-right hvr-icon-hang" data-for=".CLASSTHATACTIVATESDROPDOWN1">
-
-                            </div>
-
-                            <div class="span10">
-                              <strong class="CUTitle">ITS A CREDIT UNION</strong><br>
-
-                              <p class="text-muted">Approval Status: <span id="approvalStatus">Reviewed</span></p>
-                              <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
-                                <div class="progress" style="width:100%;height:20px;">
-                                  <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>
-                                  <div class="pb progress-bar" style="width: 27%"></div>
+                    </tr>
+                    </thead>
+                    <tbody id="tableholder">
+                    <% @expenses.each do |p| %>
+                        <tr id="row_<%= p.id %>" class="expenseEntry">
+                          <td class="reviewColumn">
+                            <div class="ckbox">
+                              <div class="approvalButtons"  style="width:80px;" ><%= form_for(p, remote: true, :url => {:action => 'update', :id => p.id}) do |f| %><%= f.text_field :approval, :value => p.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "approvalSuccessButton", id:"successBut", name: "subaction", value: "ApprovedEX", style: "" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "UnapprovedEX", style: "" %></div>
+                                <% end %>
                                 </div>
+                          </td>
+                          <td style="display:none;"><span class="nameBlob"><%= p.user.first_name %> <%= p.user.last_name %></span></td>
+                          <td><span class="dateBlob"><%= p.date_activity %> </span></td>
+                          <td><%= p.credit_union %> </td>
+                          <td><%= p.job %> </td>
+
+                          <td class="dropdown">
+                            <span class="Entry"><%= p.miles_traveled %></span>
+                          </td>
+                          <td class="dropdown">
+                            <p class="dollarCheck"><span class="sunEntry"><%= p.mileage_expense %></span></p>
+                          </td>
+                          <td class="dropdown">
+                            <span class="dollarCheck"><span class="monEntry"><%= p.air_travel %></span></span>
+                          </td>
+                          <td class="dropdown">
+                            <span class="dollarCheck"><span class="tueEntry"><%= p.taxi_parking %></span></span>
+                          </td>
+                          <td class="dropdown">
+                            <span class="dollarCheck"><span class="wedEntry"><%= p.car_rental %></span></span>
+                          </td>
+                          <td class="dropdown">
+                            <span class="dollarCheck"><span class="thuEntry"><%= p.meal_total %></span></span>
+                          </td>
+                          <td class="dropdown">
+                            <span class="dollarCheck"><span class="friEntry"><%= p.lodging %></span></span>
+                          </td>
+                          <td class="dropdown">
+                            <span class="dollarCheck"><span class="satEntry"><%= p.entertainment %></span></span>
+                          </td>
+                          <td class="dropdown">
+                            <span class="dollarCheck"><span class="otherEntry"><%= p.other %></span></span>
+                          </td>
+                          <td class="dropdown">
+                            <span class="Entry"><%= p.notes %></span>
+                          </td>
+
+                          <td>
+                            $<span class="totalEntry"><%= p.total %></span>
+                          </td>
+                          <td>
+                            <% if p.images.any? %>
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#<%= p.id %>" style="margin-left:15px;">Files</button>
+                            <% end %>
+                          </td>
+                        </tr>
+                        </tbody>
+
+
+                        <!-- Modal -->
+                        <div id="<%= p.id %>" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Receipts/Files from <%= p.date_activity %></h4>
                               </div>
-                            </div>
-                          </div>
+                              <div class="modal-body">
+                                <div id="gal1">
 
-                          <div class="row-fluid user-infos CLASSTHATACTIVATESDROPDOWN1" style="margin-top:20px;">
-                            <div class="span10 offset1">
-                              <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                  <h3 class="panel-title">Expense Entries</h3>
-                                </div>
-                                <div class="panel-body">
-                                  <div class="row-fluid">
-                                    <div class="table-container">
-                                      <table id="tableholder" class="table table-filter">
-                                        <tbody data-cu="CREDITUNION">
-                                        <tr id="noExpense" style="display:none;">
-                                          <td colspan="5" style="text-align:center;">
-                                            <h2>No expenses found :( </h2>
-                                          </td>
-                                        </tr>
-                                        <% @expenses.each do |e| %>
-                                            <tr id="row_<%= e.id %>" class="expenseEntry" data-name="<%= e.user.first_name%> <%= e.user.last_name %>" data-cu="<%= e.credit_union %>" data-date="<%= e.date_activity %>" >
-                                              <td>
-                                                <div class="ckbox">
-                                                  <div class="approvalButtons"  style="width:80px;" ><%= form_for(e, remote: true, :url => {:action => 'update', :id => e.id}) do |f| %><%= f.text_field :approval, :value => e.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "approvalSuccessButton", id:"successBut", name: "subaction", value: "ApprovedEX", style: "" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "UnapprovedEX", style: "" %></div>
-                                                    <% end %>
-                                                </div>
-                                              </td>
-                                              <td>
-                                                <a href="javascript:;" class="star">
-                                                  <i class="glyphicon glyphicon-star"></i>
-                                                </a>
-                                              </td>
-                                              <td>
-
-                                                <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
-                                                  <a href="#" class="pull-left" >
-                                                    <% if e.image.blank? %>
-                                                        <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
-                                                    <% else %>
-                                                        <%= image_tag e.image.thumb %>
-                                                    <% end %>
-                                                  </a>
-
-                                                  <div class="pull-left">
-                                                    <h4 class="title" style="text-align:left;">
-                                                      <%= e.type_of_expense%>
-                                                    </h4>
-                                                    <p class="summary">$<%= e.amount %></p>
-                                                  </div>
-                                                  <div class="media-body pull-right" style="width:300px;">
-                                                    <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
-                                                    <h4 class="title">
-
-                                                      <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
-
-                                                    </h4>
-
-                                                  </div>
-                                                </div>
-
-                                              </td>
-                                            </tr>
-                                        <% end %>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <hr style="border-color:#0d5ddd;">
-                        </div>
-                    </div>
-
-                    <div id="expenseTab2">
-                    <div class="expenseTab" data-role="CREDITUNION">
-                      <div class="row-fluid user-row">
-                        <div class="span1 dropdown-user pull-right hvr-icon-hang" data-for=".CLASSTHATACTIVATESDROPDOWN2">
-
-                        </div>
-
-                        <div class="span10">
-                          <strong class="CUTitle">ITS A CREDIT UNION</strong><br>
-
-                          <p class="text-muted">Approval Status: <span id="approvalStatus">Reviewed</span></p>
-                          <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
-                            <div class="progress" style="width:100%;height:20px;">
-                              <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>
-                              <div class="pb progress-bar" style="width: 27%"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row-fluid user-infos CLASSTHATACTIVATESDROPDOWN2" style="margin-top:20px;">
-                        <div class="span10 offset1">
-                          <div class="panel panel-primary">
-                            <div class="panel-heading">
-                              <h3 class="panel-title">Expense Entries</h3>
-                            </div>
-                            <div class="panel-body">
-                              <div class="row-fluid">
-                                <div class="table-container">
-                                  <table id="tableholder" class="table table-filter">
-                                    <tbody data-cu="CREDITUNION">
-                                    <tr id="noExpense" style="display:none;">
-                                      <td colspan="5" style="text-align:center;">
-                                        <h2>No expenses found :( </h2>
-                                      </td>
-                                    </tr>
-                                    <% @expenses.each do |e| %>
-                                        <tr id="row_<%= e.id %>" class="expenseEntry" data-name="<%= e.user.first_name%> <%= e.user.last_name %>" data-cu="<%= e.credit_union %>" data-date="<%= e.date_activity %>" >
-                                          <td>
-                                            <div class="ckbox">
-                                              <div class="approvalButtons"  style="width:80px;" ><%= form_for(e, remote: true, :url => {:action => 'update', :id => e.id}) do |f| %><%= f.text_field :approval, :value => e.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "approvalSuccessButton", id:"successBut", name: "subaction", value: "ApprovedEX", style: "" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "UnapprovedEX", style: "" %></div>
-                                                <% end %>
-                                            </div>
-                                          </td>
-                                          <td>
-                                            <a href="javascript:;" class="star">
-                                              <i class="glyphicon glyphicon-star"></i>
-                                            </a>
-                                          </td>
-                                          <td>
-
-                                            <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
-                                              <a href="#" class="pull-left" >
-                                                <% if e.image.blank? %>
-                                                    <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
-                                                <% else %>
-                                                    <%= image_tag e.image.thumb %>
-                                                <% end %>
-                                              </a>
-
-                                              <div class="pull-left">
-                                                <h4 class="title" style="text-align:left;">
-                                                  <%= e.type_of_expense%>
-                                                </h4>
-                                                <p class="summary">$<%= e.amount %></p>
-                                              </div>
-                                              <div class="media-body pull-right" style="width:300px;">
-                                                <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
-                                                <h4 class="title">
-
-                                                  <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
-
-                                                </h4>
-
-                                              </div>
-                                            </div>
-
-                                          </td>
-                                        </tr>
-                                    <% end %>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <hr style="border-color:#0d5ddd;">
-                    </div>
-                    </div>
-
-                    <div id="expenseTab3">
-                    <div class="expenseTab" data-role="CREDITUNION">
-                      <div class="row-fluid user-row">
-                        <div class="span1 dropdown-user pull-right hvr-icon-hang" data-for=".CLASSTHATACTIVATESDROPDOWN3">
-
-                        </div>
-
-                        <div class="span10">
-                          <strong class="CUTitle">ITS A CREDIT UNION</strong><br>
-
-                          <p class="text-muted">Approval Status: <span id="approvalStatus">Reviewed</span></p>
-                          <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
-                            <div class="progress" style="width:100%;height:20px;">
-                              <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>
-                              <div class="pb progress-bar" style="width: 27%"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row-fluid user-infos CLASSTHATACTIVATESDROPDOWN3" style="margin-top:20px;">
-                        <div class="span10 offset1">
-                          <div class="panel panel-primary">
-                            <div class="panel-heading">
-                              <h3 class="panel-title">Expense Entries</h3>
-                            </div>
-                            <div class="panel-body">
-                              <div class="row-fluid">
-                                <div class="table-container">
-                                  <table id="tableholder" class="table table-filter">
-                                    <tbody data-cu="CREDITUNION">
-                                    <tr id="noExpense" style="display:none;">
-                                      <td colspan="5" style="text-align:center;">
-                                        <h2>No expenses found :( </h2>
-                                      </td>
-                                    </tr>
-                                    <% @expenses.each do |e| %>
-                                        <tr id="row_<%= e.id %>" class="expenseEntry" data-cu="<%= e.credit_union %>" data-date="<%= e.date_activity %>" data-name="<%= e.user.first_name%> <%= e.user.last_name %>">
-                                          <td>
-                                            <div class="ckbox">
-                                              <div class="approvalButtons"  style="width:80px;" ><%= form_for(e, remote: true, :url => {:action => 'update', :id => e.id}) do |f| %><%= f.text_field :approval, :value => e.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "approvalSuccessButton", id:"successBut", name: "subaction", value: "ApprovedEX", style: "" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "UnapprovedEX", style: "" %></div>
-                                                <% end %>
-                                            </div>
-                                          </td>
-                                          <td>
-                                            <a href="javascript:;" class="star">
-                                              <i class="glyphicon glyphicon-star"></i>
-                                            </a>
-                                          </td>
-                                          <td>
-
-                                            <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
-                                              <a href="#" class="pull-left" >
-                                                <% if e.image.blank? %>
-                                                    <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
-                                                <% else %>
-                                                    <%= image_tag e.image.thumb %>
-                                                <% end %>
-                                              </a>
-
-                                              <div class="pull-left">
-                                                <h4 class="title" style="text-align:left;">
-                                                  <%= e.type_of_expense%>
-                                                </h4>
-                                                <p class="summary">$<%= e.amount %></p>
-                                              </div>
-                                              <div class="media-body pull-right" style="width:300px;">
-                                                <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
-                                                <h4 class="title">
-
-                                                  <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
-
-                                                </h4>
-
-                                              </div>
-                                            </div>
-
-                                          </td>
-                                        </tr>
-                                    <% end %>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <hr style="border-color:#0d5ddd;">
-                    </div>
-                    </div>
-
-                    <div id="expenseTab4">
-                      <div class="expenseTab" data-role="CREDITUNION">
-                        <div class="row-fluid user-row">
-                          <div class="span1 dropdown-user pull-right hvr-icon-hang" data-for=".CLASSTHATACTIVATESDROPDOWN4">
-
-                          </div>
-
-                          <div class="span10">
-                            <strong class="CUTitle">ITS A CREDIT UNION</strong><br>
-
-                            <p class="text-muted">Approval Status: <span id="approvalStatus">Reviewed</span></p>
-                            <div style="margin-top:20px;margin-left:30px;width:90%;position:relative;">
-                              <div class="progress" style="width:100%;height:20px;">
-                                <div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div>
-                                <div class="pb progress-bar" style="width: 27%"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row-fluid user-infos CLASSTHATACTIVATESDROPDOWN4" style="margin-top:20px;">
-                          <div class="span10 offset1">
-                            <div class="panel panel-primary">
-                              <div class="panel-heading">
-                                <h3 class="panel-title">Expense Entries</h3>
-                              </div>
-                              <div class="panel-body">
-                                <div class="row-fluid">
-                                  <div class="table-container">
-                                    <table id="tableholder" class="table table-filter">
-                                      <tbody data-cu="CREDITUNION">
-                                      <tr id="noExpense" style="display:none;">
-                                        <td colspan="5" style="text-align:center;">
-                                          <h2>No expenses found :( </h2>
-                                        </td>
-                                      </tr>
-                                      <% @expenses.each do |e| %>
-                                          <tr id="row_<%= e.id %>" class="expenseEntry" data-name="<%= e.user.first_name%> <%= e.user.last_name %>" data-cu="<%= e.credit_union %>" data-date="<%= e.date_activity %>" >
-                                            <td>
-                                              <div class="ckbox">
-                                                <div class="approvalButtons"  style="width:80px;" ><%= form_for(e, remote: true, :url => {:action => 'update', :id => e.id}) do |f| %><%= f.text_field :approval, :value => e.approval,  :style => "display:none;", :id => "ApprovalBlob" %><%= button_tag "", type: 'submit', class: "approvalSuccessButton", id:"successBut", name: "subaction", value: "ApprovedEX", style: "" %><%= button_tag "", type: 'submit', class: "btn btn-default glyphicon glyphicon-remove", id: "failBut", name: "subaction", value: "UnapprovedEX", style: "" %></div>
-                                                  <% end %>
-                                                  </div>
-                                            </td>
-                                            <td>
-                                              <a href="javascript:;" class="star">
-                                                <i class="glyphicon glyphicon-star"></i>
-                                              </a>
-                                            </td>
-                                            <td>
-
-                                              <div class="media" data-toggle="modal" data-target="#myModal-<%= e.id %>">
-                                                <a href="#" class="pull-left" >
-                                                  <% if e.image.blank? %>
-                                                      <img src="http://i.imgur.com/kg0jDMm.png" class="media-photo">
-                                                  <% else %>
-                                                      <%= image_tag e.image.thumb %>
-                                                  <% end %>
-                                                </a>
-
-                                                <div class="pull-left">
-                                                  <h4 class="title" style="text-align:left;">
-                                                    <%= e.type_of_expense%>
-                                                  </h4>
-                                                  <p class="summary">$<%= e.amount %></p>
-                                                </div>
-                                                <div class="media-body pull-right" style="width:300px;">
-                                                  <span class="media-meta pull-right dateHolder" id="dateOfTime">&nbsp;&nbsp;&nbsp;&nbsp;<h10 class="dateBlob"><%= e.date_activity %></h10><p class="idholder" style="display:none"><%= e.id%></p></span>
-                                                  <h4 class="title">
-
-                                                    <span class="pull-right pagado approvalclass" id="approval"><%= e.approval %><p style="display:none"><%= e.id%></p></span>
-
-                                                  </h4>
-
-                                                </div>
-                                              </div>
-
-                                            </td>
-                                          </tr>
+                                  <% p.images.each do |i| %>
+                                      <% if i.file.extension.downcase == "pdf" %>
+                                          <div>
+                                            <img href="<%= i.url %>" download="<%= i.filename %>" src="http://gundemmedyam.com/img/pdf.png" style="width:100px;">
+                                            <br>
+                                            <a href="<%= i.url %>" download="<%= i.filename %>">Download PDF</a>
+                                          </div>
+                                      <% else %>
+                                          <a href="<%= i.large.url %>" rel="noopener noreferrer data-image="<%= i.thumb.url %>" data-zoom-image="<%= i.large.url %>" target="_blank">
+                                          <img id="img_01" src="<%= i.thumb.url %>" />
+                                          </a>
                                       <% end %>
-                                      </tbody>
-                                    </table>
-                                  </div>
+                                  <% end %>
                                 </div>
                               </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
                             </div>
+
                           </div>
                         </div>
-                        <hr style="border-color:#0d5ddd;">
-                      </div>
-                    </div>
-
-                  </div>
+<% end %>
+                 </table>
                   <button type="button" id="clearMonth" class="btn btn-default btn-filter" style="margin:2px;margin-bottom:15px;">Return to Main</button>
                 </div>
 
 
               </div>
             </div>
-
+                        </section>
         </div>
-        </section>
+
 
       </div>
     </div>
   </div>
-
-  <% @expenses.each do |e| %>
-      <div class="modal fade" id="myModal-<%= e.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content containerz">
-            <div class="modal-header" style="padding: 1px 15px 1px 15px;">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-
-            </div>
-
-            <div class="modal-body">
-
-              <div class="containerz" class="inputwrap" style="">
-                <form id="contactz" action="" method="post" style="padding: 2px 25px 25px 25px;">
-                  <h3 style="font-size:20px;text-align:center;">Expense from <%= e.date_activity %></h3>
-                  <div style="line-height:75%;"><br></div>
-                  <p>Credit Union: <%= e.credit_union %></p>
-                  <p>Type: <%= e.type_of_expense %></p>
-                  <p>Amount: $<%= e.amount %></p>
-                  <p>Description: <%= e.notes %></p>
-                  <a data-toggle="modal" href="#myModal2-<%= e.id %>" class="">
-                    <%= image_tag e.image, :id => "imageNonZoom" %>
-                  </a>
-                </form>
-              </div>
-            </div>
+                        </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="modal fade rotate" id="myModal2-<%= e.id %>" style="width:800px;">
-        <div class="modal-dialog" style="width:800px;position:relative;">
-          <div class="modal-content" style="margin:30px;position:relative;">
-            <div style="margin:0 auto;display:relative;">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" style="text-align:center;">Image Zoom</h4>
 
-              </div>
-              <div style="margin: 0 auto;text-align:center;">
-                <%= image_tag e.image %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  <% end %>

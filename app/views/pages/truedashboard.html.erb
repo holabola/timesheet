@@ -1,4 +1,310 @@
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,900,800,700,600);
+  .boxes {
+    background-color:#ededed;
+    margin-top:35px;
+    left:0px;
+    border-radius: 15px 15px 15px 15px;
+    top:270px;
+    box-shadow: 7px 7px 7px #888888;
+  }
+  .container {
+    width: 100%;
+  }
+  #currentTime {
+    color: #3d73c6;
+  }
+  #triangle-up {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 30px solid #ededed;
+    position:absolute;
+    margin: 0 auto;
+    top:-30px;
+    left:43%;
+  }
+  .quadroh2 {
+    border-bottom: 10px solid red;
+    font-family: 'Raleway', sans-serif;
+    font-size: 65px;
+    font-weight: 900;
+    margin: 0 auto;
+    padding: 20px 0 3px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 40.2%;
+  }
+  .quadroimg {
+    height: 200px !important;
+  }
 
+  .row.text-center p {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    margin: 3px 0 30px;
+    text-transform: uppercase;
+  }
+
+  .quadroh3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+  .btn-default {
+    border: 2px solid #fff;
+    border-radius: 50px;
+    text-shadow: 0 1px 0 #fff;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .btn-quadroh {
+    background: transparent none repeat scroll 0 0;
+  }
+
+  .caption-text p {
+    margin: 18px auto 13px;
+    text-align: center;
+    width: 91%;
+  }
+
+  .background1 {
+    background:
+        radial-gradient(black 15%, transparent 16%) 0 0,
+        radial-gradient(black 15%, transparent 16%) 8px 8px,
+        radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+        radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#282828;
+    background-size:16px 16px;
+  }
+
+  .background2 {
+    background:
+        linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+        linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+        linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+        linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+        linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+        linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+  }
+
+  .background3 {
+    background-color: #000000;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='16' viewBox='0 0 12 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 .99C4 .445 4.444 0 5 0c.552 0 1 .45 1 .99v4.02C6 5.555 5.556 6 5 6c-.552 0-1-.45-1-.99V.99zm6 8c0-.546.444-.99 1-.99.552 0 1 .45 1 .99v4.02c0 .546-.444.99-1 .99-.552 0-1-.45-1-.99V8.99z' fill='%236b6b6b' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+
+  .cuadro_intro_hover{
+    padding: 0px;
+    position: relative;
+    overflow: hidden;
+    height: 175px;
+
+  }
+  .cuadro_intro_hover:hover .caption{
+    opacity: 1;
+    transform: translateY(-100px);
+    -webkit-transform:translateY(-100px);
+    -moz-transform:translateY(-125px);
+    -ms-transform:translateY(-125px);
+    -o-transform:translateY(-125px);
+  }
+  .cuadro_intro_hover img{
+    z-index: 4;
+  }
+  .cuadro_intro_hover .caption{
+    position: absolute;
+    top:126px;
+    -webkit-transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    -ms-transition:all 0.3s ease-in-out;
+    transition:all 0.3s ease-in-out;
+    width: 100%;
+  }
+  .cuadro_intro_hover .blur{
+    background-color: rgba(0,0,0,0.7);
+    height: 175px;
+    z-index: 5;
+    position: absolute;
+    width: 100%;
+  }
+  .cuadro_intro_hover .caption-text{
+    z-index: 10;
+    color: #fff;
+    position: absolute;
+    height: 175px;
+    text-align: center;
+    top:-20px;
+    width: 100%;
+  }
+
+
+
+
+  .shadow1, .shadow2, .shadow3,.shadow4,.shadow5,.shadow6,.shadow7,.shadow8{
+    position:relative;
+  }
+  .shadow1,.shadow2,.shadow3,.shadow4,.shadow5,.shadow6,.shadow7,.shadow8{
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+  }
+  /*****************************************************************dashed border
+
+  /****************************************************************
+  *styling shadows
+  ****************************************************************/
+  .shadow1:before, .shadow1:after{
+    position:absolute;
+    content:"";
+    bottom:12px;left:15px;top:80%;
+    width:45%;
+    z-index:-1;
+    -webkit-box-shadow: 0 24px 19px grey;
+    -moz-box-shadow: 0 20px 19px grey;
+    box-shadow: 0 20px 19px grey;
+    -webkit-transform: rotate(-6deg);
+    -moz-transform: rotate(-6deg);
+    transform: rotate(-6deg);
+
+  }
+  .shadow1:after{
+    -webkit-transform: rotate(6deg);
+    -moz-transform: rotate(6deg);
+    transform: rotate(6deg);
+    right: 15px;left: auto;
+  }
+</style>
+<script>
+
+  $(document).ready(function() {
+
+      var startThis,endThis,startLast,endLast;
+      curr = moment().format();
+      startThis = moment(curr).subtract(7,'days').startOf('week').startOf('day');
+      endThis = moment(curr).subtract(7,'days').endOf('week').endOf('day');
+
+      startLast = moment(curr).subtract(14,'days').startOf('week').startOf('day');
+      endLast = moment(curr).subtract(14,'days').endOf('week').endOf('day');
+
+      $("#week1time").data("datestart",startThis);
+      $("#week1time").data("dateend",endThis);
+      $("#week1time").html("Week of " + moment(startThis).format("MMM DD") + " - " + moment(endThis).format("MMM DD"));
+
+      $("#week2time").data("datestart",startLast);
+      $("#week2time").data("dateend",endLast);
+      $("#week2time").html("Week of " + moment(startLast).format("MMM DD") + " - " + moment(endLast).format("MMM DD"));
+
+      $("#week1EX").data("datestart",startThis);
+      $("#week1EX").data("dateend",endThis);
+      $("#week1EX").html("Week of " + moment(startThis).format("MMM DD") + " - " + moment(endThis).format("MMM DD"));
+
+      $("#week2EX").data("datestart",startLast);
+      $("#week2EX").data("dateend",endLast);
+      $("#week2EX").html("Week of " + moment(startLast).format("MMM DD") + " - " + moment(endLast).format("MMM DD"));
+
+      sheetName = [], sheetDate = [], sheetApproval = [], sheetSubmitted = [], sheetCheck = [];
+      <% @pages.each do |p| %>
+        sheetName.push("<%= p.user.first_name %>" + " " + "<%= p.user.last_name %>");
+        sheetDate.push("<%= p.date_of_time %>");
+        sheetApproval.push("<%= p.approval %> ");
+        sheetSubmitted.push("<%= p.submitted %>");
+      <% end %>
+
+      EXName = [], EXDate = [], EXApproval = [], EXSubmitted = [], EXCheck = [];
+      <% @expenses.each do |p| %>
+        EXName.push("<%= p.user.first_name %>" + " " + "<%= p.user.last_name %>");
+        EXDate.push("<%= p.date_activity %>");
+        EXApproval.push("<%= p.approval_final %> ");
+        EXSubmitted.push("<%= p.submitted %>");
+      <% end %>
+
+      $(".EX1").each(function() {
+          for(var counter = 0; counter < EXName.length; counter++) {
+              if (sheetCheck.indexOf(EXName[counter]) != -1) {
+                  continue;
+              }
+              if ($(this).find(".name").html() == EXName[counter] && moment(EXDate[counter]) > moment($("#week1EX").data("datestart")) && moment(EXDate[counter]) < moment($("#week1EX").data("dateend"))) {
+                  sheetCheck.push(EXName[counter]);
+                  if (EXSubmitted[counter].trim() == "Submitted") {
+                      $(this).find(".submitted").html("<i class='glyphicon glyphicon-ok'></i>");
+                      $(this).find(".name").removeClass("danger");
+                      $(this).find(".submitted").removeClass("danger");
+                      $(this).find(".name").addClass("success");
+                      $(this).find(".submitted").addClass("success");
+                  }
+                  if (EXApproval[counter].trim() == "Reviewed") {
+                      $(this).find(".reviewed").html("<i class='glyphicon glyphicon-ok'></i>");
+                      $(this).find(".reviewed").removeClass("danger");
+                      $(this).find(".reviewed").addClass("success");
+                  }
+                  if (EXApproval[counter].trim() == "Approved") {
+                      $(this).find(".approval").html("<i class='glyphicon glyphicon-ok'></i>");
+                      $(this).find(".approval").removeClass("danger");
+                      $(this).find(".approval").addClass("success");
+                      $(this).find(".reviewed").html("<i class='glyphicon glyphicon-ok'></i>");
+                      $(this).find(".reviewed").removeClass("danger");
+                      $(this).find(".reviewed").addClass("success");
+                  }
+              }
+          }
+      });
+
+      sheetCheck=[];
+      $(".time1").each(function() {
+          for(var counter = 0; counter < sheetName.length; counter++) {
+              if (sheetCheck.indexOf(sheetName[counter]) != -1) {
+                  continue;
+              }
+              if ($(this).find(".name").html() == sheetName[counter] && moment(sheetDate[counter]) > moment($("#week1time").data("datestart")) && moment(sheetDate[counter]) < moment($("#week1time").data("dateend"))) {
+                  sheetCheck.push(sheetName[counter]);
+                  if (sheetSubmitted[counter].trim() == "Submitted") {
+                      $(this).find(".submitted").html("<i class='glyphicon glyphicon-ok'></i>");
+                      $(this).find(".name").removeClass("danger");
+                      $(this).find(".submitted").removeClass("danger");
+                      $(this).find(".name").addClass("success");
+                      $(this).find(".submitted").addClass("success");
+                  }
+                  if (sheetApproval[counter].trim() == "Approved") {
+                      $(this).find(".approval").html("<i class='glyphicon glyphicon-ok'></i>");
+                      $(this).find(".approval").removeClass("danger");
+                      $(this).find(".approval").addClass("success");
+                  }
+              }
+          }
+      });
+
+      sheetCheck = [];
+      $(".time2").each(function() {
+          for(var counter = 0; counter < sheetName.length; counter++) {
+              if (sheetCheck.indexOf(sheetName[counter]) != -1) {
+                  continue;
+              }
+              if ($(this).find(".name").html() == sheetName[counter] && moment(sheetDate[counter]) > moment($("#week2time").data("datestart")) && moment(sheetDate[counter]) < moment($("#week2time").data("dateend"))) {
+                  sheetCheck.push(sheetName[counter]);
+                  if (sheetSubmitted[counter].trim() == "Submitted") {
+                      $(this).find(".submitted").html("<i class='glyphicon glyphicon-ok'></i>");
+                      $(this).find(".name").removeClass("danger");
+                      $(this).find(".submitted").removeClass("danger");
+                      $(this).find(".name").addClass("success");
+                      $(this).find(".submitted").addClass("success");
+                  }
+                  if (sheetApproval[counter].trim() == "Approved") {
+                      $(this).find(".approval").html("<i class='glyphicon glyphicon-ok'></i>");
+                      $(this).find(".approval").removeClass("danger");
+                      $(this).find(".approval").addClass("success");
+                  }
+              }
+          }
+      });
+
+      $("#currentTime").text(moment().format('MMMM Do, YYYY'));
+
+  });
+
+</script>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
@@ -33,50 +339,240 @@
 
 
 <div class="container-fluid" >
-  <div class="row">
+
     <div class="col-sm-3 col-md-2 sidebar" id="sidebarNav">
       <div style="line-height:75%;"><br></div>
-      <h2 style="text-align: center;">Approvals</h2>
-      </br>
+      <h2 style="text-align: center;margin-bottom:0px;">Admin</h2>
+      <h2 style="text-align: center;margin-top:0px;">Dashboard</h2>
 
-      <div style="" id="datepicker" datePickerTag="first"></div>
-      </br>
       </br>
       <ul class="nav nav-sidebar">
-        <li><a class="hvr-sweep-to-right" href="/" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
+        <li><a class="hvr-sweep-to-right" href="/timesheet" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
         <% if current_user.admin == true %>
-            <li class="active"><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
+            <li ><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
         <% end %>
         <li><a class="hvr-sweep-to-right" href="/expenses">Expenses<span class="glyphicon glyphicon-usd pull-right"></span></a></li>
         <% if current_user.admin == true %>
             <li><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
             <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
-        <% end %>
+            <li><a class="hvr-sweep-to-right" href="/employees">Employees<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+      <% end %>
       </ul>
 
     </div>
 
     <div class="container marketing" id="aboveTable" style="top:30px;left:310px;width:75%;margin-left:0px;">
 
+      <div class="container">
+
+        <div class="row">
+          <h2>Welcome <%= current_user.first_name %> <%= current_user.last_name %> | <span id="currentTime"></span></h2>
+          <hr>
+        </div>
+
+        <div class="row">
+        <div class="col-lg-3 box1 shadow1" style="width:265px;height:175px;padding:0px;margin:5px;">
+          <div class="cuadro_intro_hover background1" style="">
+            <p style="text-align:center;padding-top:40px;">
+              <span class="glyphicon glyphicon-time" style="font-size:4em;color:white;"></span>
+            </p>
+            <div class="caption">
+              <div class="blur"></div>
+              <div class="caption-text">
+                <a href="/timesheet"><h3 class="quadroh3" style="color:white;border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Timesheets</h3></a>
+                <p>Get a snapshot of timesheet progress.</p>
+                <a class=" btn btn-default btn-quadroh" data-toggle="collapse" data-target="#timesheet"><span class="glyphicon glyphicon-plus"> INFO</span></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          <div class="col-lg-3 box1 shadow1" style="width:265px;height:175px;padding:0px;margin:5px;">
+            <div class="cuadro_intro_hover background2" style="">
+              <p style="text-align:center;padding-top:40px;">
+                <span class="glyphicon glyphicon-usd" style="font-size:4em;color:white;"></span>
+              </p>
+              <div class="caption">
+                <div class="blur"></div>
+                <div class="caption-text">
+                  <a href="/expenses"><h3 class="quadroh3" style="color:white;border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Expenses</h3></a>
+                  <p>Get a snapshot of expense progress.</p>
+                  <a class=" btn btn-default btn-quadroh" data-toggle="collapse" data-target="#expenses" ><span class="glyphicon glyphicon-plus"> INFO</span></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-3 box1 shadow1" style="width:265px;height:175px;padding:0px;margin:5px;">
+            <div class="cuadro_intro_hover background3" style="">
+              <p style="text-align:center;padding-top:40px;">
+                <span class="glyphicon glyphicon-save" style="font-size:4em;color:white;"></span>
+              </p>
+              <div class="caption">
+                <div class="blur"></div>
+                <div class="caption-text">
+                  <a href="/exports"><h3 class="quadroh3" style="color:white;border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Reports</h3></a>
+                  <p>Generate reports.</p>
+                  <a class=" btn btn-default btn-quadroh" href="/exports" target="_blank"><span class="glyphicon glyphicon-plus"> GO</span></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+        <div class="row">
+          <hr>
+          <h3 style="text-align:center;margin-right:85px;">Projects in the Last Month</h3>
+          <div>
+            <canvas id="myChart" style="height:200px;"></canvas>
+            <canvas id="myChartBillable" style="height:200px;"></canvas>
+            <h4 style="margin-left:155px;">Job Count<span style="margin-left:250px;">Billable Hours by Employee</span></h4>
+          </div>
+          <script>
+
+              sheetJobs = [], billableHours = [], billableNames = [];
+              <% @pages.each do |p| %>
+                sheetJobs.push("<%= p.activity %>");
+              <% end %>
+              <% @pages.where(:billing_options => "Onsite" || "Remote").each do |p| %>
+                if (billableNames.indexOf("<%= p.user.first_name %>" + " " + "<%= p.user.last_name %>") == -1) {
+                    billableNames.push("<%= p.user.first_name %>" + " " + "<%= p.user.last_name %>");
+                    billableHours.push(<%= p.total %>);
+                } else {
+                    billableHours[billableNames.indexOf("<%= p.user.first_name %>" + " " + "<%= p.user.last_name %>")] = billableHours[billableNames.indexOf("<%= p.user.first_name %>" + " " + "<%= p.user.last_name %>")] + parseInt(<%= p.total %>)
+                }
+              <% end %>
+
+              var jobdata = [], billabledata = [];
+              var colorArray = ["#878BB6","#4ACAB4","#FF8153","#FFEA88","#ff687f","#77abff","#6fe873","#bcbcbc"];
+
+              var uniqueJobs = [], jobCount = [];
+              $.each(sheetJobs, function(i, el){
+                  if($.inArray(el, uniqueJobs) === -1) {
+                      uniqueJobs.push(el);
+                      jobCount.push(1);
+                  } else {
+                      jobCount[uniqueJobs.indexOf(el)] = jobCount[uniqueJobs.indexOf(el)] + 1;
+                  }
+              });
+
+              for(var i = 0;i < uniqueJobs.length; i++) {
+
+                  var item = uniqueJobs[i];
+
+                  jobdata.push({
+                      "value" : jobCount[i],
+                      "color"  : colorArray[i],
+                      "label" : uniqueJobs[i]
+                  });
+              }
+
+              for(var i = 0;i < billableNames.length; i++) {
+
+                  billabledata.push({
+                      "value" : billableHours[i],
+                      "color"  : colorArray[i],
+                      "label" : billableNames[i]
+                  });
+              }
+
+              var optionsPie = {
+                  tooltipEvents: [],
+                  showTooltips: true,
+                  onAnimationComplete: function() {
+                      this.showTooltip(this.segments, true);
+                  },
+
+              }
+              // Get the context of the canvas element we want to select
+              var ctx= document.getElementById("myChart").getContext("2d");
+              new Chart(ctx).Doughnut(jobdata);
+              var billable = document.getElementById("myChartBillable").getContext("2d");
+              new Chart(billable).Pie(billabledata);
+          </script>
+        </div>
+
+      </div>
+
       <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-xs-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-xs-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-xs-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
+
+
+          <div style="position:absolute;" class="collapse boxes" id="timesheet">
+            <div id="triangle-up"></div>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Submitted?</th>
+              <th>Approved?</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="background-color:#eff5ff">
+              <td data-datestart="" data-dateend="" id="week1time" colspan="3" style="text-align:center;font-weight:bold;"><p></p></td>
+            </tr>
+            <% @users.each do |u| %>
+            <tr class="time1">
+              <td class="name danger" style="font-weight:bold;"><%= u.first_name %> <%= u.last_name %></td>
+              <td class="submitted danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+              <td class="approval danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+            </tr>
+             <% end %>
+             <tr style="background-color:#eff5ff">
+               <td data-datestart="" data-dateend="" id="week2time" colspan="3" style="text-align:center;font-weight:bold;"><p></p></td>
+             </tr>
+             <% @users.each do |u| %>
+                <tr class="time2">
+                  <td class="name danger" style="font-weight:bold;"><%= u.first_name %> <%= u.last_name %></td>
+                  <td class="submitted danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+                  <td class="approval danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+                </tr>
+            <% end %>
+
+            </tbody>
+          </table>
+          </div>
+
+
+          <div style="position:absolute;left:235px;" class="collapse boxes" id="expenses">
+            <div id="triangle-up"></div>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Submitted?</th>
+              <th>Reviewed?</th>
+              <th>Approved?</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="background-color:#eff5ff">
+              <td data-datestart="" data-dateend="" id="week1EX" colspan="4" style="text-align:center;font-weight:bold;"><p></p></td>
+            </tr>
+            <% @users.each do |u| %>
+                <tr class="EX1">
+                  <td class="name danger" style="font-weight:bold;"><%= u.first_name %> <%= u.last_name %></td>
+                  <td class="submitted danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+                  <td class="reviewed danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+                  <td class="approval danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+                </tr>
+            <% end %>
+            <tr style="background-color:#eff5ff">
+              <td data-datestart="" data-dateend="" id="week2EX" colspan="4" style="text-align:center;font-weight:bold;"><p></p></td>
+            </tr>
+            <% @users.each do |u| %>
+                <tr class="EX2">
+                  <td class="name danger" style="font-weight:bold;"><%= u.first_name %> <%= u.last_name %></td>
+                  <td class="submitted danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+                  <td class="reviewed danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+                  <td class="approval danger" style="text-align:center;"><i class='glyphicon glyphicon-remove'></i></td>
+                </tr>
+            <% end %>
+
+            </tbody>
+          </table>
+          </div>
     </div>
+</div>

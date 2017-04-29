@@ -1,4 +1,7 @@
 <style>
+  .select2-container--default .select2-results__option{
+    font-size: x-small;
+  }
   .table-responsive {
 
   }
@@ -293,6 +296,7 @@
 
   function submitButton() {
       var counter = 0;
+      $("#pageGapDash").removeClass("disabledbutton");
       $(".submitButton").each(function() {
           var dater = $(this).parent().parent().find("#submitDate").text();
           var submitStatus = $(this).parent().parent().find("#submitStatus").text();
@@ -305,6 +309,7 @@
                   $(this).addClass("btn-success");
                   $(this).attr("value","Submitted");
                   $(this).text("Submit for Approval?");
+                  $("#pageGapDash").removeClass("disabledbutton");
               } else {
                   $(this).removeClass("btn-success");
                   $(this).addClass("btn-danger");
@@ -315,6 +320,28 @@
           } else {
               $(this).css("display","none");
           }
+      });
+
+  }
+
+  function CUList() {
+
+      var javascript_side_json = <%= raw @CUFinalList %>;
+      var completed_list = {
+          'text': 'All CUs',
+          'children': [
+
+          ]
+      };
+
+      for (var z = 0; z < javascript_side_json.length; z++) {
+          completed_list['children'].push({'id': javascript_side_json[z], 'text': javascript_side_json[z] });
+      }
+
+      $('#CUList').select2({
+          data:[
+              completed_list
+          ]
       });
   }
 
@@ -384,6 +411,7 @@
     sessionStorage.datePicked = $('#datepicker').datepicker('getDate');
 
       totalColumns();
+      //CUList();
       submitButton();
       $("#timesheetContent").fadeIn();
 
@@ -397,6 +425,7 @@
    var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
+      $('#CUList').select2();
 
       if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
           $('#sidebarNav').find('[datePickerTag="first"]').removeAttr("id");
@@ -488,6 +517,7 @@
 
     totalColumns();
     submitButton();
+    CUList();
 
   });
 
@@ -574,7 +604,7 @@
       </br>
       </br>
       <ul class="nav nav-sidebar">
-        <li class="active"><a class="hvr-sweep-to-right" href="/" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
+        <li class="active"><a class="hvr-sweep-to-right" href="/timesheet" >Timesheet<span class="glyphicon glyphicon-time pull-right"></span></a></li>
         <% if current_user.admin == true %>
             <li ><a class="hvr-sweep-to-right" href="/approvals">Timesheet Approvals<span class="sr-only">(current)</span><span class="glyphicon glyphicon-ok-circle pull-right"></span></a></li>
         <% end %>
@@ -582,6 +612,7 @@
         <% if current_user.admin == true %>
             <li><a class="hvr-sweep-to-right" href="/expensesapprovals">Expenses Approvals<span class="glyphicon glyphicon-ok pull-right"></span></a></li>
             <li><a class="hvr-sweep-to-right" href="/exports">Exports<span class="glyphicon glyphicon-floppy-save pull-right"></span></a></li>
+            <li><a class="hvr-sweep-to-right" href="/employees">Employees<span class="glyphicon glyphicon-user pull-right"></span></a></li>
         <% end %>
       </ul>
       <!-- <ul class="nav nav-sidebar">

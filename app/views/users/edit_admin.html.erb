@@ -1,0 +1,147 @@
+<style>
+  .image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+  .image-preview-input input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+  .image-preview-input-title {
+    margin-left:2px;
+  }
+</style>
+<script>
+
+    $(document).on('click', '#close-preview', function(){
+        $('.image-preview').popover('hide');
+        // Hover befor close the preview
+        $('.image-preview').hover(
+            function () {
+                $('.image-preview').popover('show');
+            },
+            function () {
+                $('.image-preview').popover('hide');
+            }
+        );
+    });
+
+    $(function() {
+        // Create the close button
+        var closebtn = $('<button/>', {
+            type:"button",
+            text: 'x',
+            id: 'close-preview',
+            style: 'font-size: initial;',
+        });
+        closebtn.attr("class","close pull-right");
+        // Set the popover default content
+        $('.image-preview').popover({
+            trigger:'manual',
+            html:true,
+            title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+            content: "There's no image",
+            placement:'bottom'
+        });
+        // Clear event
+        $('.image-preview-clear').click(function(){
+            $('.image-preview').attr("data-content","").popover('hide');
+            $('.image-preview-filename').val("");
+            $('.image-preview-clear').hide();
+            $('.image-preview-input input:file').val("");
+            $(".image-preview-input-title").text("Browse");
+        });
+        // Create the preview image
+        $(".image-preview-input input:file").change(function (){
+            var img = $('<img/>', {
+                id: 'dynamic',
+                width:250,
+                height:200
+            });
+            var file = this.files[0];
+            var reader = new FileReader();
+            // Set preview image into the popover data-content
+            reader.onload = function (e) {
+                $(".image-preview-input-title").text("Change");
+                $(".image-preview-clear").show();
+                $(".image-preview-filename").val(file.name);
+                img.attr('src', e.target.result);
+                $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
+
+<% provide(:title, "Edit user") %>
+<h1 style="text-align:center;">Update <%= @user.first_name %> <%= @user.last_name %>'s Information</h1>
+<br>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name, :id => @user.id), html: { method: :put }) do |f| %>
+
+
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: 'form-control', placeholder: @user.first_name %>
+        <br>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: 'form-control', placeholder: @user.last_name %>
+        <br>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control', placeholder: @user.email %>
+        <br>
+        <%= f.submit "Save changes", class: "btn btn-primary", style: "background-color:black;" %>
+    <% end %>
+
+    <b><h4 style="text-align:center;">Add Profile Picture</h4></b>
+    <br>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name, :id => @user.id), html: { method: :put })  do |f| %>
+        <div class="input-group image-preview" style="width:320px;margin:0 auto; text-align:center;">
+          <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+          <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Clear
+                    </button>
+            <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">Browse</span>
+                      <%= f.file_field :profile, class: "image-preview-input" %>
+
+                    </div>
+                </span>
+        </div>
+        <br>
+
+        <%= f.submit "Add Profile Picture" , :class => "btn btn-primary", :style => "background-color:#337ab7;margin:0 auto; text-align:center;"%>
+    <% end %>
+    <hr style="border-color:#0d5ddd;">
+
+    <b><h4 style="text-align:center;">Crop Profile Picture</h4></b>
+    <p>After uploading, crop it to choose yourself in the picture :D</p>
+
+    <%= form_for(@user, url: registration_path(@user,:id => @user.id), html: { method: :put }) do |f|  %>
+        <%= f.cropbox :profile %>
+        <%= f.previewbox :profile %>
+        <br>
+        <%= f.submit 'Crop Profile Picture' , :class => "btn btn-primary", :style => "background-color:#337ab7;" %>
+    <% end %>
+
+
+    <hr style="border-color:#0d5ddd;">
+
+
+  </div>
+</div>

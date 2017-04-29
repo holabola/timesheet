@@ -18,10 +18,13 @@
 //= require jquery-ui
 //= require data-confirm-modal
 //= require moment
+//= require dropzone
 //= require tinymce
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require bootstrap-select
-//= require jquery.jcrop
 //= require selectize
+//= require jquery.Jcrop
+//= require Chart
+//= require select2.full
 //= require_tree .
